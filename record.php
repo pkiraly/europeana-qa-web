@@ -95,7 +95,7 @@ foreach ($graphs['total']['fields'] as $field) {
   $table[] = $row;
 }
 
-include("completenessTable.tpl.php");
+include("record.tpl.php");
 
 // echo json_encode(json_decode(file_get_contents("http://www.europeana.eu/portal/record/11620/MNHNBOTANY_MNHN_FRANCE_P04617748.json")), JSON_PRETTY_PRINT);
 

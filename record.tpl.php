@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
-<link rel="stylesheet" href="completenessTable.css" />
+<link rel="stylesheet" href="europeana-qa.css" />
 </head>
 <body>
 
