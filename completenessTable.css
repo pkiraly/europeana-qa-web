@@ -1,0 +1,63 @@
+body {
+  font-family: "raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+h1, h2, h3 {
+  color: maroon;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* float: left; */
+  margin-right: 20px;
+}
+table#fields {
+  margin-left: 20px;
+}
+#fields th {
+  -moz-user-select: none;
+  background-position: center bottom !important;
+  height: 150px;
+  outline: 0 none !important;
+  padding: 0 !important;
+  text-align: left;
+}
+.functionality {
+  transform: translate(17px, 47px) rotate(315deg);
+  white-space: nowrap;
+  width: 28px;
+}
+.functionality > span {
+  cursor: pointer;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+#fields td {
+  width: 10px;
+}
+#fields td.field {
+  width: 100px;
+}
+.red {
+  background-color: red;
+}
+.grey {
+  background-color: yellow;
+}
+.green {
+  background-color: green;
+}
+pre#code {
+  max-height: 800px;
+  overflow: auto;
+}
+
+table#legend {
+  width: 50%;
+  font-size: 90%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+table#legend td {
+  max-height: 10px;
+}
