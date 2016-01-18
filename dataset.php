@@ -42,7 +42,13 @@ $title = 'Metadata Quality Assurance Framework';
 $collectionId = $argv[1];
 $id = strstr($collectionId, '_', true);
 
-$stats = json_decode(file_get_contents($configuration['QA_R_PATH'] . '/' . $id . '.json'));
+$jsonFileName = $configuration['QA_R_PATH'] . '/' . $id . '.json';
+if (!file_exists($jsonFileName)) {
+  die(sprintf("File doesn't exist: %s (collection: %s)\n", $jsonFileName, $collectionId));
+} else {
+  printf("Processing: %s (collection: %s)\n", $jsonFileName, $collectionId);
+}
+$stats = json_decode(file_get_contents($jsonFileName));
 $assocStat = array();
 foreach ($stats as $obj) {
   $key = $obj->_row;
