@@ -61,3 +61,7 @@ table#legend {
 table#legend td {
   max-height: 10px;
 }
+
+footer p {
+  text-align: right;
+}

@@ -81,7 +81,7 @@
 <?php foreach ($rows as $counter => $obj) { ?>
     <tr>
       <td><?= $counter ?></td>
-      <td><a href="<?= $id ?>.html"><?= $collectionId ?></a></td>
+      <td><a href="<?= $obj->id ?>.html"><?= $obj->collectionId ?></a></td>
       <td><?= $obj->min ?></td>
       <td><?= $obj->max ?></td>
       <td><?= $obj->range ?></td>
@@ -97,12 +97,15 @@
  </tbody>
 </table>
 
+<footer>
+  <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
+</footer>
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() { 
-  $("#dataset").tablesorter(); 
-}); 
+$(document).ready(function() {
+  $("#dataset").tablesorter();
+});
 </script>
 </body>
 </html>

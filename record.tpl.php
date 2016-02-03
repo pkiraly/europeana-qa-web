@@ -15,7 +15,7 @@
 
 <div class="page-header">
   <h1>Record investigation</h1>
-  <h3><a href="index.html">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
   </div>
 </div>
 
@@ -126,6 +126,12 @@
 
 <h2>Metadata structure as represented in the OAI-PMH service</h2>
 <pre id="code"><code class="json"><?php print json_encode($metadata, JSON_PRETTY_PRINT); ?></code></pre>
+</div>
+
+<div class="col-md-12">
+<footer>
+  <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
+</footer>
 </div>
 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

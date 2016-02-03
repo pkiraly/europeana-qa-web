@@ -15,7 +15,7 @@
 
 <div class="page-header">
   <h1>Investigation of dataset '<?= $collectionId ?>'</h1>
-  <h3><a href="index.html">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
   </div>
 </div>
 
@@ -43,6 +43,10 @@
   <img src="img/<?= $id ?>/<?= $id ?>-<?= $name ?>.png" />
 <?php } ?>
 
+
+<footer>
+  <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
+</footer>
 </div>
 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

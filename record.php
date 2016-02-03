@@ -26,7 +26,7 @@ if (($record = $harvester->getNextRecord()) != null) {
   $metadata = processRecord($record);
   if (!empty($metadata)) {
     $command = sprintf(
-      "java -jar %s/europeana-qa-1.0-SNAPSHOT-jar-with-dependencies.jar '%s' 2>/dev/null",
+      "java -cp %s/europeana-qa-1.0-SNAPSHOT-jar-with-dependencies.jar com.nsdr.europeana.qa.cli.Counter '%s' 2>/dev/null",
       $configuration['JAR_PATH'],
       str_replace("'", "'\''", json_encode($metadata))
     );
