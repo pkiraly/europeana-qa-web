@@ -45,10 +45,7 @@
  <dt>Range</dt><dd>The difference between minimum and maximum.</dd>
  <dt>Median</dt><dd>The median (middle) value.</dd>
  <dt>Meam</dt><dd>The mean (avarage) of the scores.</dd>
- <dt>SE.mean</dt><dd>Standard error of the mean</dd>
- <dt>CI.mean</dt><dd>Confidence interval on the mean</dd>
  <dt>Standard deviation</dt><dd><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> - the amount of variation of a set. Close to 0 indicates that the data points tend to be very close to the mean of the set, while a high standard deviation indicates that the data points are spread out over a wider range of values.</dd>
- <dt>Coefficient variation</dt><dd><a href="https://en.wikipedia.org/wiki/Coefficient_of_variation">Coefficient of variation</a> a standardized measure of dispersion of a probability distribution or frequency distribution.</dd>
 </dl>
 
 <form>
@@ -70,11 +67,7 @@
       <th>Range</th>
       <th>Median</th>
       <th>Mean</th>
-      <th>SE.mean</th>
-      <th>CI.mean</th>
-      <th>Variance</th>
       <th>Standard deviation</th>
-      <th>Coefficient variation</th>
     </tr>
   </thead>
   <tbody>
@@ -87,11 +80,7 @@
       <td><?= $obj->range ?></td>
       <td><?= $obj->median ?></td>
       <td><?= $obj->mean ?></td>
-      <td><?= $obj->{'SE.mean'} ?></td>
-      <td><?= $obj->{'CI.mean.0.95'} ?></td>
-      <td><?= $obj->var ?></td>
       <td><?= $obj->{'std.dev'} ?></td>
-      <td><?= $obj->{'coef.var'} ?></td>
     </tr>
 <?php } ?>
  </tbody>
