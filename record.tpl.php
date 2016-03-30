@@ -83,8 +83,12 @@
       <td>existing element</td>
     </tr>
     <tr>
-      <td class="grey">&nbsp;</td>
+      <td class="yellow">&nbsp;</td>
       <td>missing element</td>
+    </tr>
+    <tr>
+      <td class="gray">&nbsp;</td>
+      <td>missing element, with alternatives</td>
     </tr>
     <tr>
       <td class="red">&nbsp;</td>

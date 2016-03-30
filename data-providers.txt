@@ -1,0 +1,3940 @@
+1;National Library of France
+2;Österreichische Nationalbibliothek - Austrian National Library
+3;National Library of the Netherlands
+4;Biblioteca Virtual de Prensa Histórica
+5;Bavarian State Library
+6;The National Archives of Norway
+7;Deutsche Fotothek
+8;Bildarchiv Foto Marburg
+9;Riksantikvarieämbetet | Swedish National Heritage Board
+10;SAN - Sistema Archivistico Nazionale
+11;National Library of Spain
+12;Nationaal Archief
+13;National Library of the Netherlands - Koninklijke Bibliotheek
+14;National Library of Finland
+15;Rijksdienst voor het Cultureel Erfgoed
+16;Ministère de la culture et de la communication, Médiathèque de l'architecture et du patrimoine
+17;National Library of Denmark
+18;Muséum national d'Histoire naturelle
+19;Progetto ArtPast- CulturaItalia
+20;Ajuntament de Girona
+21;Royal Botanic Gardens, Kew
+22;Statens historiska museum
+23;Catwalkpictures
+24;National and University Library of Iceland
+25;The British Museum and The Portable Antiquities Scheme
+26;Cinecittà Luce S.p.A.
+27;Bodleian Libraries, University of Oxford
+28;The Danish Agency for Culture
+29;The Royal Botanic Garden Edinburgh
+30;Norsk Folkemuseum
+31;Národní památkový ústav
+32;Internet Culturale - Biblioteca Braidense Milano
+33;Jagiellońska Biblioteka Cyfrowa
+34;NAVA
+35;Fylkesarkivet i Sogn og Fjordane
+36;Kulturstyrelsen
+37;CER.ES: Red Digital de Colecciones de museos de España
+38;Noord-Hollands Archief
+39;Wielkopolska Biblioteka Cyfrowa
+40;Världskulturmuseet
+41;Istituto Sturzo, Roma
+42;ČT
+43;Complutense University Library of Madrid
+44;Haags Gemeentearchief
+45;Bibliothek der Friedrich-Ebert-Stiftung
+46;Natural History Museum, London
+47;Europeana 1914-1918
+48;Archiv der sozialen Demokratie (AdsD)
+49;German Archaeological Institute
+50;Nederlands Instituut voor Militaire Historie
+51;Rijksmuseum
+52;Internet Culturale
+53;Arts and Theatre Institute
+54;Stiftelsen Nordiska museet
+55;Ministère de la culture et de la communication, Musées de France
+56;The British Library
+57;Stadtgeschichtliches Museum Leipzig
+58;Archives Départementales de la Gironde
+59;Rahvusarhiiv
+60;Brabants Historisch Informatie Centrum
+61;e-biblioteka Uniwersytetu Warszawskiego
+62;Ghent University Library
+63;FylkesFOTOarkivet i Møre og Romsdal
+64;Galiciana: Biblioteca Digital de Galicia
+65;EuroPhoto ANP provider
+66;Riksantikvarieämbetet
+67;askaboutireland.ie
+68;KIK-IRPA, Brussels (Belgium)
+69;National Library of Wales
+70;Tekniska museet
+71;Staatsbibliothek zu Berlin - Preußischer Kulturbesitz
+72;Consiglio nazionale delle ricerche
+73;Internet Culturale / Biblioteca Nazionale Centrale - Firenze
+74;University of Patras
+75;Botanic Garden and Botanical Museum Berlin-Dahlem
+76;Arhiv Republike Slovenije
+77;National and University Library of Slovenia
+78;Upplandsmuseet
+79;EuroPhoto DPA provider
+80;RTBF
+81;Hamburg State Library
+82;Interkommunalt arkiv for Møre og Romsdal IKS
+83;Ministère de la culture et de la communication, conservations régionales des monuments historiques
+84;The Wellcome Library
+85;Etnografiska museet
+86;Arachne
+87;EuroPhoto MTI provider
+88;EuroPhoto PAP provider
+89;EuroPhoto EFE provider
+90;Śląska Biblioteka Cyfrowa
+91;Biblioteca nazionale centrale di Roma
+92;Open Society Archives at Central European University
+93;Teßmann Library
+94;Domkirkeodden
+95;Regionaal Archief Nijmegen
+96;Ministère de la culture et de la communication, services régionaux de l'archéologie
+97;KA
+98;Malmö museer
+99;Naturalis Biodiversity Center
+100;Architekturmuseum der Technischen Universität Berlin in der Universitätsbibliothek
+101;Repositorio Biblioteca virtual de Andalucía
+102;National Library of Poland
+103;National Library of Latvia
+104;Institut National de l'Audiovisuel
+105;Hungarian Open Air Museum
+106;Gredos (Universidad de Salamanca, Spain)
+107;Department of Life Sciences, University of Trieste
+108;National Library of Estonia
+109;Eesti Rahvusringhääling
+110;Picture the Past OAI feed
+111;Bohusläns museum
+112;Murberget Länsmuseet Västernorrland
+113;Amsab-Institute of Social History
+114;Biologiezentrum der Oberoesterreichischen Landesmuseen
+115;Nieuwland Erfgoed Centrum
+116;Universitätsbibliothek JCS Frankfurt am Main
+117;Małopolska Biblioteka Cyfrowa
+118;LUCE
+119;Central and Eastern European  Online Library
+120;Gemeentearchief Zaanstad
+121;RBB AIT DISMARC
+122;Hellenic Literary and Historical Archive (E.L.I.A.)
+123;INA
+124;Vänersborgs museum
+125;Central Institute for the Union Catalogue of Italian Libraries
+126;UCL Museums
+127;Internet Culturale / CulturaItalia
+128;Armemuseet
+129;Pictures-bank.eu (ICIMSS)
+130;Swiss National Library
+131;TV3 Televisió de Catalunya (TVC)
+132;Sociaal Historisch Centrum voor Limburg (shclimburg.nl)
+133;Botanic Garden Meise, Belgium
+134;Kujawsko-Pomorska Biblioteka Cyfrowa
+135;Library and Information Center, University of Patras
+136;Museon
+137;Zeeuwse Bibliotheek
+138;Gemeentearchief Weert
+139;Ayuntamiento de Murcia. Archivo Municipal.
+140;Uppsala University
+141;Ośrodek "Brama Grodzka - Teatr NN"
+142;Nationalmuseum, Sweden
+143;Fitzwilliam Museum
+144;SMB-digital
+145;Het Nationaal Glasmuseum
+146;Digital Mechanism and Gear Library - www.dmg-lib.org
+147;Museum Catharijneconvent
+148;Biblioteca Virtual Miguel de Cervantes
+149;Lusto - The Finnish Forest Museum
+150;NIOD
+151;MuseiD-Italia
+152;Deutsches Filminstitut - DIF
+153;Epigraphic Database Roma
+154;Epigraphische Datenbank Heidelberg
+155;Det Danske Filminstitut
+156;Riksarkivet
+157;Centro de Estudios de Castilla - La Mancha.
+158;Romsdalsmuseet
+159;Sollefteå museum
+160;Instituto de Investigação Científica Tropical
+161;National Library of Luxembourg
+162;Royal Museums Greenwich
+163;Göteborgs stadsmuseum
+164;Gemeentearchief Roosendaal
+165;Bibliothèque nationale de Luxembourg - National Library of Luxembourg
+166;Generalitat de Catalunya. Arxiu Nacional de Catalunya
+167;Oslo Museum
+168;RCE Rijksmonumentenkaartlaag
+169;Narodna in univerzitetna knjižnica
+170;University of Vienna
+171;Kirklees Image Archive OAI Feed
+172;Landesarchiv Baden-Württemberg
+173;EuroPhoto ANSA
+174;Generalitat de Catalunya. Departament de Cultura
+175;TopFoto.co.uk
+176;Biblioteca Digital de Madrid
+177;Sverresborg Trøndelag Folkemuseum
+178;Östasiatiska museet
+179;Finnish Museum of Natural History
+180;Leodis - A photographic archive of Leeds
+181;dlib.si - Digital Library of Slovenia
+182;Fundação Mário Soares
+183;Muzej za umjetnost i obrt, Zagreb
+184;Stadsarchief 's-Hertogenbosch
+185;Gooi en Vecht Historisch
+186;Deutsche Welle
+187;Audiovisual Library of the European Commission
+188;Akershusbasen
+189;Biblioteka Cyfrowa - Regionalia Ziemi Łódzkiej
+190;Nationaal Archief, Den Haag
+191;Euregionaal Historisch Centrum Sittard-Geleen (ehc.sittard-geleen.eu)
+192;"Lucian Blaga" Central University Library of Cluj-Napoca
+193;Fondazione Luigi Micheletti
+194;Archaeology Data Service
+195;Spielzeugmuseum Nürnberg / \t http://www.museen.nuernberg.de/spielzeugmuseum/index.html
+196;Sjöhistoriska museet
+197;Joseph Zammit
+198;English Heritage - Viewfinder
+199;Regione Piemonte
+200;Archives départementales de la Gironde
+201;Biblioteca Digital de Castilla y León
+202;Museu Gabinet Postal de Barcelona (Col·leció Marull)
+203;Biblioteka Cyfrowa Uniwersytetu Wrocławskiego
+204;Medelhavsmuseet
+205;Országos Színháztörténeti Múzeum és Intézet (Hungarian Theatre Museum and Institute), OSZMI
+206;eSbírky
+207;Biblioteca Digital Memoriademadrid
+208;Manchester Museum
+209;Norsk Teknisk Museum
+210;Dario Fo & Franca Rame Archive, CTFR, Milano, Italia
+211;Regionaal Archief Tilburg
+212;NTNU Vitenskapsmuseet
+213;Biblioteca Virtual del Ministerio de Defensa
+214;National Library of Turkey
+215;Historisch Centrum Leeuwarden
+216;Sheffield Images
+217;Catalogue en ligne Carmentis
+218;Institutul Național al Patrimoniului
+219;Humboldt-Universität zu Berlin
+220;Elbląska Biblioteka Cyfrowa
+221;United Archives
+222;Gemeentearchief Ede-Barneveld
+223;Dr. Kovács Pál County Library
+224;Universitäts- und Landesbibliothek Sachsen-Anhalt, Halle (Saale)
+225;Bałtycka Biblioteka Cyfrowa
+226;Nordlandsmuseet
+227;National Inventory of Architectural Heritage
+228;National Széchényi Library - Digital Archive of Pictures
+229;Pomorska Biblioteka Cyfrowa
+230;Albertina
+231;The Regional Archives in Härnösand 
+232;Gemeentearchief Schiedam
+233;Archivio Franca Rame - Dario Fo
+234;Archivio di Stato di Venezia - Judaica-europeana
+235;Natural History Museum, Vienna - Herbarium W
+236;Gemeente Schouwen-Duiveland
+237;EuroPhoto BELGA provider
+238;Deventer Musea
+239;Teylers Museum
+240;Horniman Museum and Gardens
+241;Hunterian Museum
+242;National Library of Serbia
+243;Imperial War Museums
+244;ModeMuseum Provincie Antwerpen
+245;Kunsthistorisches Institut in Florenz
+246;Uppsala Universitet
+247;Filmoteka Narodowa
+248;Lincolnshire County Council
+249;Parisienne de Photographie
+250;Generalitat de Catalunya Departament de Cultura
+251;Norsk Jernbanemuseum, Jernbaneverket
+252;Regione Emilia Romagna
+253;Riksarkivet Landsarkivet i Härnösand
+254;Rijckheyt, centrum voor regionale geschiedenis
+255;GESIS - Leibniz-Institut für Sozialwissenschaften. Bibliothek Köln
+256;National Library of Ireland
+257;Telemark Museum
+258;Centre de la Culture Judéo-Marocaine
+259;Regione Lombardia
+260;Cumbria Archives and Local Studies Department
+261;Research Libraries UK
+262;EuroPhoto LUSA provider
+263;Podlaska Biblioteka Cyfrowa
+264;Preiser Records; Austria
+265;CODA Apeldoorn
+266;Hispania Epigraphica Online - HEpOl
+267;The Military Archives of Sweden
+268;Zachodniopomorska Biblioteka Cyfrowa "Pomerania"
+269;Radomska Biblioteka Cyfrowa
+270;EDR - Epigraphic Database Romae
+271;Den Gamle By
+272;The University and National Library of Debrecen
+273;The Regional Archives in Uppsala
+274;Repozytorium Cyfrowe Instytutów Naukowych
+275;Työväen Arkisto
+276;Biblioteca de Catalunya
+277;Streekarchief Langstraat Heusden Altena
+278;Vänermuseet
+279;Gemeentearchief Tholen
+280;Biblioteka Cyfrowa Ośrodka KARTA
+281;Biblioteca Digital de Castilla-La Mancha
+282;Stichting Academisch Erfgoed
+283;Schweizerisches Sozialarchiv
+284;University of Vienna, Institute for Botany - Herbarium WU
+285;Nord-Troms Museum
+286;Herzog August Bibliothek Wolfenbüttel / Digitaler Portraitindex
+287;Fondazione BEIC
+288;Museum Rotterdam
+289;The Jewish Museum of Greece
+290;Athos Memory -Αγιορείτικη Μνήμη
+291;Accademia Nazionale di Santa Cecilia
+292;Slovenski etnografski muzej
+293;Statens Museum for Kunst
+294;Confederazione Generale Italiana del Lavoro
+295;University of Tartu, Natural History Museum
+296;Glomdalsmuseet
+297;Mazowiecka Biblioteka Cyfrowa
+298;Archivo de la Imagen de Castilla La Mancha
+299;Tobar an Dualchais/Kist o Riches
+300;Arkitektur- och designcentrum
+301;Norsk Luftfartsmuseum
+302;Arbejdermuseet & ABA
+303;The Regional Archives in Vadstena
+304;Oslo byarkiv
+305;POLFOTO
+306;Kulturpool
+307;Germanisches Nationalmuseum Nürnberg / Digitaler Portraitindex
+308;Rybinsk State Architectural, Historical and Art Museum Preserve  Рыбинский государственный историко-архитектурный и художественный музей-заповедник
+309;University of Athens
+310;Vereniging De Hollandsche Molen
+311;Wakefield Council
+312;Telemuseet
+313;Internet Culturale / Istituzione Casa della Musica CIRPeM - Parma
+314;Netherlands Institute for Sound and Vision
+315;Dolnośląska Biblioteka Cyfrowa
+316;Norsk Skogmuseum
+317;The Regional Archives in Göteborg
+318;Cité de la musique
+319;Croatian Academy of Sciences and Arts
+320;Rijksmuseum van Oudheden
+321;DR
+322;Les Arts Décoratifs, Paris, France
+323;http://sapienzadigitallibrary.uniroma1.it/identifier/RMSSA
+324;Istituto Nazionale per la Grafica
+325;National and University Library in Zagreb
+326;Universitätsbibliothek Heidelberg
+327;Bibliothèque de l'Alliance israélite universelle
+328;Stockholms läns museum
+329;Centre de Documentació Museu de les Arts Escèniques Institut del Teatre de Barcelona, ITB, Barelona, Spain
+330;Staatsbibliothek zu Berlin - Preußischer Kulturbesitz / Digitaler Portraitindex
+331;Archivio fotografico Società Geografica Italia
+332;Biblioteca Digital Real Academia de la Historia
+333;Österreichisches Staatsarchiv
+334;Natural History Museum of Denmark
+335;National Documentation Centre (EKT)
+336;Alinari Archives
+337;Muis -Museums Public Portal
+338;University of Belgrade
+339;Регионална библиотека ПЕНЧО СЛАВЕЙКОВ - Варна
+340;Black Country History
+341;Museum für Naturkunde Berlin
+342;Hungarian National Museum
+343;BiblioNet
+344;National and University Library of Strasbourg
+345;Centro de Documentación de FUNDACIÓN MAPFRE
+346;Aruodai | Vilnius University Faculty of Communication
+347;Sundsvalls museum
+348;Museum Nord
+349;Bristol Museums, Galleries & Archives
+350;ERT SA
+351;Lietuvos dailės muziejus / Lithuanian Art Museum
+352;Archäologie und Museum Baselland
+353;Kulturmagasinet, Helsingborgs museer
+354;KU Leuven
+355;Centre Virtuel de la Connaissance sur líEurope
+356;University of Edinburgh
+357;Norsk Oljemuseum
+358;http://sapienzadigitallibrary.uniroma1.it/identifier/RMSBV
+359;EuroPhoto EPA provider
+360;Dorset Coast Digital Archive
+361;MMA
+362;Istituto Centrale per la Storia del Risorgimento
+363;IMAGNO brandstätter images GesmbH
+364;University of Leuven
+365;Haugalandmuseene
+366;Hardanger og Voss Museum
+367;Cineteca di Bologna
+368;Регионална библиотека ПЕНЧО СЛАВЕЙКОВ - Варна / Public Library - Varna
+369;Institut für Realienkunde
+370;IRCAM-Institut de Recherche et Coordination Acoustique/Musique
+371;PMR Maeyaert
+372;Science Museum
+373;The City Archives in Stockholm
+374;Vilnius University Faculty of Communication
+375;Frederiksberg Stadsarkiv
+376;Livrustkammaren
+377;Forsvarets museer
+378;Muzeum Narodowe w Warszawie
+379;Biblioteka Cyfrowa Politechniki Śląskiej
+380;Чувашский государственный художественный музей / Chouvashia State Art Museum
+381;LWL-Museum für Kunst und Kultur (Westfälisches Landesmuseum) / Digitaler Portraitindex
+382;Postmuseet
+383;Gemeentemuseum Den Haag
+384;Maihaugen
+385;Bibliothèque Medem - Maison de la Culture Yiddish
+386;Centre Français des Musiques Juives
+387;AHP Zaragoza
+388;Jewish Historical Institute
+389;University of Tartu
+390;Universität Bern
+391;Images of Cheshires people places and event
+392;Erfgoed Rijssen-Holten
+393;Digitale bibliotheek voor de Nederlandse letteren, DBNL, Nederland
+394;ECOMUSEU Municipal do Seixal
+395;Historisch centrum Limburg
+396;NALIS Foundation
+397;National Library of Lithuania
+398;Norsk Industriarbeidermuseum
+399;Bury Museum and Archives
+400;Circus Museum
+401;eheritage.si, Zavod za varstvo kulturne dediščine Slovenije
+402;Karlsborgs fästningsmuseum
+403;Museum of Geology, University of Tartu
+404;Exército - Biblioteca
+405;Netherlands Centre for Biodiversity Naturalis
+406;Online catalogus Carmentis
+407;Armémuseum, Stockholm, Sweden
+408;Fundacion Albeniz
+409;Institutul Național al Patrimoniului, București, România
+410;New Mills Family History
+411;Archivo de la Ciudad de Arganda del Rey
+412;Kulturhistorisk museum, Oslo
+413;Ryfylkemuseet
+414;Bowes-OAI
+415;Jewish Museum London
+416;Österreichisches Theatermuseum
+417;Library of Cyprus University of Technology 
+418;Slovenské múzeum ochrany prírody a jaskyniarstva
+419;Regionaal Archief Zutphen
+420;Sportimonium vzw
+421;Historisch Museum Ede
+422;Royal Library of Belgium
+423;Arxiu Fotogràfic de Barcelona - Institut de Cultura de Barcelona (ICUB)
+424;Marinmuseum
+425;Real Academia Galega, Galicia - Spain
+426;VGA
+427;Wikimedia Commons Community
+428;CIMEC
+429;Jeleniogórska Biblioteka Cyfrowa
+430;museum-digital
+431;Polo Museale Fiorentino - CulturaItalia
+432;Kulturarv Västernorrland
+433;Universitätsbibliothek Leipzig / Digitaler Portraitindex
+434;Kalliope
+435;Østfold fylkes billedarkiv
+436;Bibliothèque municipale de Lyon
+437;Zielonogórska Biblioteka Cyfrowa
+438;Historisch Centrum Limburg (rhcl.nl)
+439;Joods Historisch Museum, Amsterdam
+440;WebFolk Bulgaria
+441;National Library of Portugal
+442;PROBADO 3D 
+443;Direction des Monuments et des Sites de la Région de Bruxelles-Capitale / Directie Monumenten en Landschappen van het Brussels Hoofdstedelijk Gewest
+444;http://sapienzadigitallibrary.uniroma1.it/identifier/RMSIR
+445;National Library of Czech Republic
+446;Rossimoda Shoe Museum
+447;Comhaltas Traditional Music Archive
+448;Miliseum
+449;Smithsonian Institution Libraries
+450;Norsk Vasskraft- og Industristadmuseum
+451;Groninger Museum
+452;The Discovery Programme
+453;Šiaulių „Aušros“ muziejus / Šiauliai Aušros Museum
+454;Les Arts Décoratifs, Paris
+455;Médiathèque Valais - Martigny
+456;Benaki Museum
+457;Institute of Geology at TUT
+458;Nasjonalmuseet, billedkunstsamlingene
+459;Universitäts- und Landesbibliothek Düsseldorf
+460;Beeldbank Wageningen
+461;Museum fuer Naturkunde Berlin, Tierstimmenarchiv
+462;National Library of Israel
+463;RooyNet (limburgserfgoed.nl)
+464;Universität Osnabrück | Historische Bildpostkarten
+465;Biblioteka Cyfrowa UMCS
+466;Biblioteca Virtual de la Provincia de Málaga
+467;MBLWHOI Library
+468;Minerva (Universidade de Santiago de Compostela, Spain)
+469;Càtedra Màrius Torres de la Universitat de Lleida
+470;Münzkabinett der Staatlichen Museen zu Berlin - Preußischer Kulturbesitz
+471;AHP Huesca
+472;Gesellschaft für Historische Tonträger; Austria
+473;Muinsuskaitseamet | Estonian National Heritage Board
+474;Musées Royaux d'Art et d'Histoire
+475;Biblioteca Virtual de la Real Academia Nacional de Farmacia
+476;http://sapienzadigitallibrary.uniroma1.it/identifier/RMSEC
+477;Nuova Biblioteca Manoscritta, Regione del Veneto
+478;Universitat Jaume I
+479;Stiftinga Sunnmøre Museum
+480;Helvia (Universidad de Córdoba, Spain)
+481;Central Library of Zurich
+482;Sør-Troms Museum
+483;Stedelijk Museum Zutphen
+484;Ministère de la culture et de la communication, Archives nationales
+485;Aikaterini Laskaridis Foundation
+486;Hallwylska museet
+487;Historiske Foto- Marnardal og Audnedal
+488;SNM - Prírodovedné múzeum v Bratislave
+489;Biblioteca Virtual del Patrimonio Bibliográfico
+490;Prirodoslovni muzej Slovenije (Slovenian Museum of Natural History)
+491;Slovenian Museum of Natural History (Prirodoslovni muzej Slovenije)
+492;University of California Libraries (archive.org)
+493;Podkarpacka Biblioteka Cyfrowa
+494;Chełmska Biblioteka Cyfrowa
+495;Moluks Historisch Museum
+496;Ministrstvo za kulturo, Direktorat za kulturno dediščino, INDOK center (fototeka - diapozitivi), Slovenija
+497;Universitäts- und Stadtbibliothek Köln
+498;Eesti Maanteemuuseum
+499;Békés Megyei Tudásház es Könyvtár, HU
+500;Fundación Albéniz
+501;S.L. Steinheim-Institut, epidat
+502;Region Skånes medicinhistoriska samlingar
+503;Musea i Nord-Østerdalen
+504;National Széchényi Library - Hungarian Electronic Library
+505;Museum of Applied Arts, Budapest
+506;Polska Akademia Umiejętności
+507;Digitales Kunst- und Kulturarchiv Düsseldorf
+508;Finnmark Fylkesbibliotek
+509;Ethnologisches Museum, Staatliche Museen zu Berlin
+510;Dalane Folkemuseum
+511;National Széchényi Library
+512;CODA Museum
+513;Vasamuseet
+514;DEXTRA Photo
+515;Wejherowska Biblioteka Cyfrowa
+516;Hedatuz
+517;Pitti Immagine
+518;Russian State Library
+519;Heritage Malta
+520;Регионална библиотека ПЕНЧО СЛАВЕЙКОВ - Варна/Public Library - Varna
+521;Kunstbibliothek, Staatliche Museen zu Berlin
+522;Liber Liber, Roma, Italia
+523;LMTA (DIZI)
+524;Wien Museum
+525;Norsk Maritimt Museum
+526;Pucci Archive
+527;Bundesanstalt für Wasserbau
+528;Festival International de Films de Femmes de Créteil, FIFF, Paris, France
+529;Petőfi Irodalmi Múzeum
+530;http://sapienzadigitallibrary.uniroma1.it/identifier/RMS64
+531;Biblioteca Valenciana Digital
+532;The Library of The Jewish Theological Seminary
+533;Divadelný ústav
+534;MISSONI
+535;Fototeca de la Diputación de Huesca
+536;Staatliche Graphische Sammlung München / Digitaler Portraitindex
+537;Biblioteca Virtual de Derecho Aragonés
+538;Eesti Põllumajandusmuuseum
+539;Government Art Collection
+540;Llyfrgell Genedlaethol Cymru / The National Library of Wales
+541;National Széchényi Library-MDK
+542;Österreichische Mediathek
+543;Svenskt HällristningsForskningsArkiv
+544;The Orchard
+545;Kungliga biblioteket
+546;National Gallery - Alexandros Soutzos Museum, Athens
+547;Faculty of Arts and Humanities at the University of Graz
+548;Roskilde lokalhistoriske Arkiv
+549;Nederlands Architectuurinstituut
+550;Archief Eemland
+551;Biblioteca Academiei Române
+552;DANS-KNAW
+553;Durham county council
+554;Centraal Museum
+555;Bialska Biblioteka Cyfrowa
+556;Prirodoslovni muzej Slovenije
+557;Gol bygdearkiv
+558;Museo Galileo - Istituto e Museo di Storia della Scienza
+559;SNM - Historické múzeum v Bratislave
+560;Centre de Documentació de l'Orfeó Català
+561;http://sapienzadigitallibrary.uniroma1.it/identifier/RMS66
+562;The Israel Museum, Jerusalem
+563;Bulgariana
+564;http://sapienzadigitallibrary.uniroma1.it/identifier/RMS45
+565;Jærmuseet
+566;KADOC - KU Leuven
+567;Central Library of the Bulgarian Academy of Sciences
+568;Biblioteca Virtual de Aragón
+569;Hiiumaa Muuseumid SA
+570;Kunsthistorisches Museum
+571;Eesti Kunstimuuseum
+572;The Institute of Polish Culture University of Warsaw, IKP
+573;e_Buah (Universidad de Alcalá, Spain)
+574;Levanger Museum
+575;North Lincolnshire Council Image Archive
+576;Balatoni Múzeum - Keszthely
+577;Koninklijk museum voor Midden-Afrika - Musée royal de l'Afrique Centrale
+578;Instituto del Patrimonio Cultural de España
+579;KMKG-MRAH
+580;Vest-Telemark Museum
+581;Music Library of Greece of The Friends of Music Society
+582;Victoria and Albert Museum
+583;Archives nationales du Grand-Duché de Luxembourg
+584;Národní muzeum
+585;Lietuvos teatro, muzikos ir kino muziejus / Lithuanian Theatre, Music and Cinema Museum
+586;Norsk Institutt for Bunad og Folkedrakt
+587;Biblioteka Cyfrowa Politechniki Lubelskiej
+588;FEDAC: Carta Etnográfica de Gran Canaria (BVPB)
+589;La Cinémathèque Française
+590;Repositorio Institucional de la Universidad de Granada
+591;Beaford Arts
+592;Royal Museum for central Africa, Tervuren
+593;Klaipeda County Public Library
+594;cIMeC - Institutul de Memorie Culturală
+595;National Library of Rome - Italy
+596;TMA
+597;JSP Records
+598;Szépművészeti Múzeum
+599;Museen Muttenz
+600;Musées lausannois
+601;Narodowy Instytut Audiowizualny
+602;Catálogo Colectivo de la Red de Bibliotecas de los Archivos Estatales
+603;Helgeland Museum
+604;Regione Marche / SchedeRA:AN
+605;Cultural and Educational Technology Institute - Research Centre Athena
+606;Leo Baeck Institute/Center for Jewish History
+607;Biblioteca Virtual del Principado de Asturias
+608;ul. Partyzantów 1810-521 Olsztyn
+609;Fondazione Ranieri di Sorbello
+610;Kommandør Chr. Christensens Hvalfangstmuseum
+611;New York Botanical Garden
+612;Private Collections Library Bikop.eu (ICIMSS)
+613;Värmland Archives
+614;Lokalhistorisk Arkiv, Silkeborg
+615;Stedelijke Musea Mechelen
+616;CNRS-CREM
+617;InterArch-Steiermark
+618;Museum of Fine Arts - Hungarian National Gallery, Budapest
+619;Filmarchiv Austria
+620;Svalbard museum
+621;Hacienda Records
+622;Veria Central Public Library
+623;Bundesarchiv
+624;University of Cyprus
+625;Regione Veneto - CulturaItalia
+626;Bergen Public Library; Norway
+627;Carinco AG
+628;Corgialenios Digital Library
+629;Stiftelsen Nordmøre Museum
+630;Ateneumin taidemuseo
+631;Larvik Museum
+632;Ajtte, Svenskt Fjäll- och Samemuseum
+633;HMA
+634;Stadskasteel Zaltbommel
+635;Regione Umbria
+636;Saregama; India
+637;Norsk Kartmuseum
+638;Norsk Farmasihistorisk Museum
+639;Library and  Information Center, University of Patras
+640;Zavod za varstvo kulturne dediščine Slovenije
+641;Swiss Federal Archives, Bern
+642;Lokalhistorisk Arkiv Gentofte
+643;Digibess
+644;Ovação; Portugal
+645;OAPEN Foundation
+646;Provinciaal Depot Limburg (provincielimburg.adlibsoft.com)
+647;Biblioteca Navarra Digital: BiNaDi
+648;Harvard University, MCZ, Ernst Mayr Library
+649;The Language Archive
+650;Sunnfjord Museum
+651;Aust-Agder museum og arkiv – KUBEN
+652;Hoogheemraadschap van Rijnland
+653;Tallinna Linnamuuseum
+654;Basque Digital Library (Liburuklik)
+655;Slovenský národný archív
+656;Stiftung Preußischer Kulturbesitz - Ethnologisches Museum
+657;AHP Teruel
+658;Duck Records; Italy
+659;Museum of History of Photography
+660;Kunstsammlungen der Veste Coburg / Digitaler Portraitindex
+661;Arts Productions Ltd
+662;Eesti Spordimuuseum
+663;Peloponnesian Folklore Foundation
+664;Irish Traditional Music Archive
+665;RTV SLO
+666;http://sapienzadigitallibrary.uniroma1.it/identifier/RMSIC
+667;Regione Marche / SchedeA:MC
+668;Gudbrandsdalsmusea AS
+669;Hungarian Jewish Archives
+670;Võrumaa Muuseum
+671;Master Classics Records
+672;Museum Plantin-Moretus | Prentenkabinet
+673;Ministrstvo za kulturo, Direktorat za kulturno dediščino, INDOK center (fototeka - steklene plošče), Slovenija
+674;Zofia Rydet
+675;Harjumaa Muuseum
+676;Technical Chamber of\n Greece
+677;Claves Records; Switzerland
+678;Γενική Γραμματεία Πολιτισμού, Υπουργείο Παιδείας και Θρησκευμάτων, Πολιτισμού και Αθλητισμού | General Secretariat for Culture, Hellenic Ministry of Education and Religious Affiars, Culture and Sports
+679;Historisch Museum Rotterdam
+680;Regione Marche / SchedeOA:PU
+681;Transmediale festival
+682;Génériques
+683;Lambeth Landmark
+684;Zoological Research Museum Koenig
+685;Last Statues of Antiquity
+686;SNM - Archeologické múzeum v Bratislave
+687;Regione Marche / SchedeBDM:PU
+688;Deutsche Kinemathek
+689;SNM - Múzeum Bojnice v Bojniciach
+690;Łódzka Regionalna Biblioteka Cyfrowa
+691;Fundación Integra
+692;Slovenská národná knižnica - Slovak National Library in Martin
+3908;Music Library of Greece "Lilian Voudouri" - Friends of Music Society /Μεγάλη Μουσική Βιβλιοθήκη της Ελλάδος «Λίλιαν Βουδούρη» - Σύλλογος Οι Φίλοι της Μουσικής
+694;Aulestad
+695;Direção Regional da Cultura dos Açores
+696;Het Stadsmus, Hasselt
+697;Soprintendenza alla Galleria nazionale d'arte moderna e contemporanea
+698;Instituto de Arqueología Ibérica-Universidad de Jaén
+699;Musik & Teatermuseet
+700;Gemeentearchief Gemert-Bakel
+701;University of Swansea, Egypt Centre
+702;KAMRA
+703;Amsterdam Museum
+704;Regione Marche / SchedeA:AN
+705;Museene for kystkultur og gjenreisning IKS
+706;VU University Amsterdam Library
+707;Museu Frederic Marès
+708;Library of Congress (archive.org)
+709;RIUMA (Universidad de Málaga, Spain)
+710;Gerstein - University of Toronto (archive.org)
+711;Централна библиотека на БАН
+712;Press and Information Office, Republic of Cyprus
+713;History of Art at University of Glasgow (UG), UK
+714;Centralna Baza Judaików
+715;Petőfi Literary Museum
+716;Stockholm University
+717;Lokalhistorisk Arkiv i Gentofte
+718;Gleimhaus Halberstadt / Digitaler Portraitindex
+719;The National Library of Russia 
+720;Kunst i offentlige rom
+721;Magyar Nemzeti Múzeum
+722;Regione Marche / SchedeOA:AN
+723;Royal Museum for Central Africa
+724;National Library of Sweden
+725;Hemsedal Bygdearkiv
+726;Stadsarchief Breda
+727;Azzurra Music; Italy
+728;Institute of Botany of Slovak Academy of Sciences
+729;Saarländisches Schulmuseum
+730;The Central National Library of Florence
+731;Siauliai County Public Library
+732;Universitetsmuseet i Bergen
+733;Muziekinstrumentenmuseum - Musée des instruments de musique
+734;Centre for History and Analysis of Recorded Music, King's College London; United Kingdom
+735;DV More
+736;Roman Inscriptions of Britain
+737;Royal Albert Memorial Museum & Art Gallery
+738;MAK - Österreichisches Museum für angewandte Kunst / Gegenwartskunst
+739;Hadeland Folkemuseum
+740;Nationaal Jenevermuseum, Hasselt
+741;Verbundkatalog Kalliope
+742;Museumssenteret i Hordaland
+743;Jönköpings läns museum
+744;Norsk rettsmuseum
+745;M Leuven
+746;Lithuanian State Historical Archives
+747;Nuova Canaria; Italy
+748;Geologisches und Mineralogisches Museum der Universität Kiel
+749;Regione Marche / SchedeBDM:AN
+750;Don Juan Archiv Wien
+751;Sinebrychoffin taidemuseo
+752;Library of the Lithuanian Academy Sciences
+753;Myto Records S.a.s. / Qualiton Imports, Ltd.
+754;CulturaItalia
+755;Biblioteka Cyfrowa Politechniki Warszawskiej
+756;Hagyományok Háza
+757;Bjerkebæk
+758;Herr Zopfs Friseurmuseum
+759;Royal Albert Memorial Museum
+760;Universitäts- und Landesbibliothek Darmstadt
+761;Dr.Fr.R.Kreutzwaldi Memoriaalmuuseum
+762;Dichter- und Stadtmuseum Liestal
+763;Eesti Tarbekunsti- ja Disainimuuseum
+764;Museum De Mindere, Sint-Truiden
+765;Universidade de Lisboa
+766;Kuny Domokos Múzeum - Tata
+767;Tyne and Wear Imagine
+768;Kystmuseet i Nord-Trøndelag, Norveg
+769;Stichting Nederlands Fotomuseum
+770;Frauenforschungs-, -bildungs- und -informationszentrum FFBIZ e.V.
+771;Stadsmuseum Harderwijk
+772;Verzetsmuseum Friesland
+773;Regione Marche / SchedeOA:MC
+774;Future Noise Music Ltd.; United Kingdom
+775;Epigraphic Dabatase Bari
+776;Drents Museum
+777;Dialnet
+778;Fondo Fotográfico de la Universidad de Navarra
+779;dilibri Rheinland-Pfalz
+780;Royal Belgian Institute of Natural Sciences
+781;Sound & Vision (Beeld en Geluid), The Netherlands
+782;Natural History Museum of Crete - University of Crete
+783;HeNAA
+784;YIVO Institute for Jewish Research/Center for Jewish History
+785;Analekta; Canada
+786;Provinciaal Gallo-Romeins Museum, Tongeren
+787;FM Records; Greece
+788;Hungarian Natural History Museum
+789;Latvijas laikmetīgās mākslas centrs (LCCA)
+790;Tyne & Wear Archives & Museums
+791;Slot Loevestein
+792;Avid Entertainment
+793;Kvinnemuseet og Kongsvinger museum
+794;Culture Grid
+795;Library of Cyprus University of Technology
+796;Skoklosters slott
+797;Romanian Television
+798;RoerNet (roernet.nl)
+799;The Regional Archives in Visby
+800;The Romanian Academy Library
+801;Music Today; India
+802;Central Library of NTUA
+803;Regione Marche / SchedeBDM:MC
+804;Aarhus Stadsarkiv
+805;National Library of Romania
+806;Bibliothèque Nationale de France
+807;Landesbibliothek Mecklenburg-Vorpommern, Schwerin
+808;Eesti Teatri- ja Muusikamuuseum
+809;Nordfjord Folkemuseum
+810;Zentral- und Landesbibliothek Berlin
+811;Biblioteca Digital de la Región de Murcia
+812;Regione Marche / SchedeF
+813;The Regional Archives in Östersund
+814;Munchmuseet (The Munch Museum)
+815;National Library of Bulgaria
+816;Regione Marche / SchedeA:PU
+817;Stavanger maritime museum
+818;Museum für Musikinstrumente der Universität Leipzig
+819;VMA
+820;University College Dublin, UCD Library
+821;BURJC Digital. Instituto de danza Alicia Alonso
+822;Oberösterreichische Landesbibliothek
+823;Fondazione Barbanera 1762
+824;Zentral- und Landesbibliothek Berlin, Universitätsbibliothek Lodz
+825;Fundação Portuguesa das Comunicações
+826;Regione Calabria - CulturaItalia
+827;OMA
+828;Universitat Pompeu Fabra
+829;Hellenic Ministry of Culture and Sports/Υπουργείο Πολιτισμού και Αθλητισμού
+830;Schola Graphidis Art Collection. Hungarian University of Fine Arts - High School of Visual Arts, Budapest
+831;NCB Naturalis; Netherlands
+832;University of Illinois Urbana Champaign
+833;Oberoesterreichische Landesmuseen, Biologiezentrum
+834;Turaidas muzejrezervāts
+835;Regione Marche / SchedeOA:AP
+836;Bitoteko (Federación Española de Esperanto = Hispana Esperanto-Federacio)
+837;Hungarian University of Fine Arts, Budapest
+838;Regione Marche / SchedeA:AP
+839;Big Eye Music
+840;Pamiatkový úrad Slovenskej republiky
+841;Provinciaal Centrum voor Cultureel Erfgoed
+842;Benaki Museum / Μουσείο Μπενάκη
+843;Hellenic Army General Staff/ Army History Directorate
+844;Università degli Studi di Padova
+845;Midtdjurs Lokalarkiv
+846;Fundação Calouste Gulbenkian - Portugal
+847;Regione Marche / SchedeD
+848;Sound Archive of ISPAN; Poland
+849;State One
+850;veldkruus.nl (veldkruus.nl)
+851;Slottsfjellsmuseet
+852;Bács-Kiskun megyei Katona József Könyvtár - Kecskemét
+853;Ethnomusicology Department of the Ethnological Museum, State Museums Berlin - Foundation of Prussian Cultural Heritage
+854;Museum voor Schone Kunsten Gent
+855;Deutsche Nationalbibliothek
+856;SUMMA. Repositorio Documental UPSA
+857;Gemeentebestuur Lanaken
+858;Rørosmuseet
+859;Bodleian Libraries, Oxford University
+860;Försvarsmuseum Boden
+861;Badische Landesbibliothek Karlsruhe
+862;Stichting Liemers Museum
+863;Regione Marche / SchedeRA:PU
+864;Archiwum Muzyki Wiejskiej
+865;Shoes or no shoes
+866;Classical Renaissance
+867;Missouri Botanical Garden
+868;Digitalt Museum
+869;Buskerud fylkesfotoarkiv
+870;Kärtner Landesarchiv
+871;Universidade de Coimbra - Serviço Integrado das Bibliotecas
+872;TVR
+873;Eesti Tuletõrjemuuseum
+874;Museu Nacional d'Art de Catalunya
+875;RBINS
+876;Biblioteca Județeană "Alexandru D. Xenopol" Arad
+877;Museo di Chimica "Primo Levi"- Sapienza University Rome
+878;Regione Marche / SchedeRA:MC
+879;Danish Broadcasting Corporation
+880;MUDE - Museu do Design e da Moda, Colecção Francisco Capelo
+881;Universitätsbibliothek Würzburg
+882;Star Recording, Inc.
+883;Aveiro City Museum
+884;Flipje en Streekmuseum Tiel
+885;Germanisches Nationalmuseum
+886;Ventspils muzejs
+887;Manchester Regiment
+888;Orkla Industrimuseum
+889;Institut für Höhere Studien Wien
+890;Svenska litteratursällskapet i Finland
+891;Direzione Regionale Campania
+892;Epsa Music; Argentina
+893;Universitat de Lleida
+894;Wienbibliothek im Rathaus
+895;7 Productions
+896;Bibliothèque de Documentation Internationale Contemporaine (BDIC)
+897;Safari Music
+898;Malmö stadsarkiv
+899;Regione Marche / SchedeA:FM
+900;Repozytorium Politechniki Krakowskiej
+901; LM ISC LIMIS – Lietuvos muziejų informacijos, skaitmeninimo ir LIMIS centras
+902;SNM - Múzeum Červený Kameň v Častej
+903;Arkeologisk museum, Stavanger
+904;Regione Marche / SchedeBA
+905;Ringve Musikkmuseum
+906;Magyar Kereskedelmi és Vendéglátóipari Múzeum 
+907;Diputació de Barcelona
+908;Fundação Museu Nacional Ferroviário
+909;Eesti Piimandusmuuseum
+910;Centro Teatro Ateneo, University of Rome La Sapienza, UNIROMA, Italia
+911;Kulturkvartalet
+912;Norges Olympiske Museum
+913;Escola Superior de Música, Artes e Espectáculo do Porto, ESMAE-IPP, Porto, Portugal
+914;Skansen
+915;Bismusic
+916;National Museum of Natural History - University of Lisbon
+917;Stiftsarchiv Melk
+918;HIPLimburg
+919;Ministère de la culture et de la communication, services départementaux de l'architecture
+920;Nationaal Oorlogs- en Verzetsmuseum Overloon / Liberty Park
+921;Atração Fonográfica
+922;Salzburger Landesarchiv
+923;Hallingdal Museum
+924;Trinity College Dublin
+925;Oberösterreichisches Landesarchiv
+926;Κέντρο Διάδοσης Επιστημών & Μουσείο Τεχνολογία
+927;Muzeum, Institute of Art Production, Mediation and Publishing, Ljubljana, Slovenia
+928;American Museum of Natural History Library
+929;Alia Vox; France
+930;Listasafn Reykjavíkur/Reykjavik Art Museum
+931;Nederlands Instituut voor Beeld en Geluid
+932;The Royal Library: The National Library of Denmark and Copenhagen University Library
+933;Vardø museum
+934;Valdres Folkemuseum
+935;Beamish
+936;Centre Virtuel de la Connaissance sur l’Europe
+937;Archivi delle arti applicate italiane del XX secolo
+938;Elkar; Spain
+939;Εθνικό Κέντρο Τεκμηρίωσης (ΕΚΤ)
+940;Biblioteca Judeţeană "Panait Istrati" Brăila
+941;Gradska knjižnica Rijeka
+942;Rockheim
+943;Cinecittà Luce
+944;SNM - Múzeum bábkarských kultúr a hračiek hrad Modrý Kameň
+945;Museumsberg Flensburg
+946;MusicMasters
+947;Contemporary International Documentation Library
+948;Zisterzienserstift Stams
+949;Fundación Ignacio Larramendi
+950;Universidad de Valladolid. Spain
+951;The National Archives of Estonia
+952;Staats- und Universitätsbibliothek Bremen
+953;Panevezys County Public Library
+954;Pennrose Media
+955;Waterlands Archief
+956;CNRS-MMSH
+957;Slovak national gallery
+958;PETRAE - AUSONIUS
+959;De Heibergske Samlinger - Sogn Folkemuseum
+960;Atração; Brazil
+961;Fries Museum
+962;Koninklijk Museum voor Schone Kunsten Antwerpen
+963;Green Linnet
+964;Gulpen-WittemNet (gulpen-wittemnet.nl)
+965;Biblioteca Digital AECID
+966;Universitat de Barcelona
+967;Cavendish Music; United Kingdom
+968;National Library of Scotland
+969;Verdensarvsenter for bergkunst – Alta Museum IKS
+970;Bibliothek der Universität für Musik und darstellende Kunst Graz
+971;Regione Marche / SchedeRA:AP
+972;Glasbenonarodopisni inštitut; Slovenia
+973;MaNDA - Hungarian National Digital Archive and Film Institute
+974;LIMA (Living Media Art)
+975;Arbeiderbevegelsens arkiv og bibliotek
+976;Ģederta Eliasa Jelgavas Vēstures un mākslas muzejs
+977;Gamle Bergen Museum
+978;Battersea Arts Centre
+979;Maison des Sciences de l'Homme de Dijon (MSH Dijon), USR CNRS-uB 3516
+980;JoMA
+981;Lietuvos dailės muziejus
+982;Republic of Turkey Prime Ministry General Directorate of State Archives
+983;Madonas novadpētniecības un mākslas muzejs
+984;Musea Maaseik
+985;Museum van het Kamp van Beverlo
+986;Universidad de Oviedo, Spain
+987;Groeningemuseum Brugge
+988;NCSU Libraries (archive.org)
+989;TopFoto
+990;BPE Pontevedra (BVPB)
+991;University College London
+992;Institut Cartogràfic de Catalunya
+993;Museum für Völkerkunde
+994;Norsk vegmuseum
+995;Alexej von Assaulenko-Kulturstiftung
+996;Local Government Management Agency
+997;TVC
+998;Východočeské muzeum v Pardubicích
+999;Statsbiblioteket
+1000;Ljustorps hembygdsförening
+1001;Pipeline Music
+1002;Rødovre Kommunes Lokalhistoriske Samling
+1003;Viļānu novadpētniecības muzejs
+1004;Tarnowsko-Galicyjska Biblioteka Cyfrowa
+1005;Akadem
+1006;Culture.si photo library
+1007;Krigsminnesmerker i Norge
+1008;Regione Marche / SchedeOA:FM
+1009;FUNDACION SANCHO EL SABIO FUNDAZIOA
+1010;The Estonian Museum of Natural History
+1011;Zavod za varstvo kulturne dediščine Slovenije, Ministrstvo za izobraževanje, znanost, kulturo in šport Republike Slovenije
+1012;Provincie Vlaams-Brabant
+1013;Forum für Nachlässe von Künstlerinnen und Künstlern e.V.
+1014;Gróf Esterházy Károly Múzeum - Pápa
+1015;Burns Scotland
+1016;Bela Records
+1017;Hol Bygdearkiv
+1018;International Institute of Social History
+1019;Csongrád Megyei Levéltár Hódmezővásárhelyi Levéltára
+1020;SNM - Múzeum židovskej kultúry v Bratislave
+1021;Universitätsbibliothek 'Georgius Agricola' der TU Bergakademie Freiberg
+1022;Universidad de Alicante. Biblioteca Universitaria
+1023;Frodsham Historic Images
+1024;Georg-Eckert-Institut für internationale Schulbuchforschung
+1025;Schleswig-Holsteinische Landesbibliothek
+1026;Γενική Γραμματεία Πολιτισμού, Υπουργείο Παιδείας και Θρησκευμάτων, Πολιτισμού και Αθλητισμού 
+1027;Γενική Γραμματεία Πολιτισμού, Υπουργείο Παιδείας και Θρησκευμάτων, Πολιτισμού και Αθλητισμού
+1028;Biblioteka Cyfrowa Uniwersytetu Warmińsko-Mazurskiego
+1029;the online catalogue FABRITIUS of the Royal Museums of Fine Arts of Belgium
+1030;TCB - The Montreux Jazz Label™; Switzerland
+1031;Geffrye Museum
+1032;The European Library
+1033;UMass Amherst Libraries (archive.org)
+1034;Ministry of Culture of the Republic of Croatia
+1035;Museum voor de Oudere Technieken
+1036;Latvijas Nacionālais vēstures muzejs
+1037;Qualiton
+1038;RodeNet (rode-net.nl)
+1039;Regione Marche / SchedeS:PU
+1040;Atria, Institute on Gender Equality and Women's History
+1041;Bildarchiv Foto Marburg / Institut Mathildenhöhe Darmstadt
+1042;FeliXart Museum, Drogenbos
+1043;ORF Austrian Broadcasting Corporation
+1044;Регионална библиотека ЛЮБЕН КАРАВЕЛОВ - Русе / Public Library - Rousse
+1045;Kaunas County Public Library
+1046;Generalitat de Catalunya. Museu d'Arqueologia de Catalunya.
+1047;Museum Ludwig
+1048;Centro de documentacion Cesar Borgia, Viana, Navarra
+1049;Sigledal - portal slovenskega gledališča
+1050;Sächsische Landesbibliothek - Staats- und Universitätsbibliothek Dresden
+1051;Gotlands försvarsmuseum
+1052;Digitalt fortalt / Norsk kulturråd
+1053;Canadiana.org (archive.org)
+1054;Jura - Museum Eichstatt
+1055;Universitätsbibliothek Bielefeld; Germany
+1056;Norsk Jernbanemuseums fotosamling
+1057;Biblioteca de Asturias (BVPB)
+1058;Ortsmuseum Lausen
+1059;The Cyprus Institute - STARC
+1060;SNM - Spišské múzeum v Levoči
+1061;Herman Ottó Múzeum - Miskolc
+1062;Museum of Archaeology and Anthropology (University of Cambridge), Cambridge, UK
+1063;Déri Múzeum - Debrecen
+1064;Det Lokalhistoriske Arkiv i Herning
+1065;Nederlands Bakkerijmuseum "Het Warme Land"
+1066;Namdalsmuseet
+1067;Storyville Records
+1068;Maironio lietuvių literatūros muziejus / Maironis Lithuanian Literature Museum
+1069;The Oireachtas Library & Research Service
+1070;Fotosar - CulturaItalia
+1071;Zisterzienserstift Schlierbach
+1072;Latgales kultūrvēstures muzejs
+1073;Württembergische Landesbibliothek Stuttgart
+1074;Deutsches Textarchiv
+1075;Ville de Bourg-en-Bresse
+1076;ACA Digital Recording
+1077;Salacgrīvas muzejs
+1078;Spletna galerija, Semantika d.o.o.
+1079;Navras Records; United Kingdom
+1080;Fredrikstad Museum
+1081;Robarts - University of Toronto (archive.org)
+1082;Inscriptions of Aphrodisias
+1083;Arquivo Municipal de Lisboa
+1084;Polish Television
+1085;Picap; Spain
+1086;Sparkassenstiftung Schleswig-Holstein
+1087;Screen Archive South East
+1088;Slezské zemské muzeum
+1089;EMA Records
+1090;Етнографічна колекція "Кровець"
+1091;Księgozbiór Wirtualny Federacji Bibliotek Kościelnych FIDES
+1092;Diözesanarchiv St. Pölten
+1093;Kildenett.no
+1094;Fondo Documental Histórico de las Cortes de Aragón
+1095;Museum Conservation Services
+1096;EYE Film Instituut Nederland
+1097;Regione Marche / SchedeBDM:AP
+1098;Classical Records
+1099;Museum HAUS HANSESTADT DANZIG 
+1100;RGS Music; United Kingdom
+1101;Timis County Library
+1102;Kystreise
+1103;Teatro Nacional D. Maria II - Biblioteca|Arquivo
+1104;Boheme; Russia
+1105;IURIS Digital
+1106;Ainažu jūrskolas muzejs
+1107;www.esbirky.cz
+1108;Instituto dos Museus e da Conservação
+1109;Heemkring Heidebloemke
+1110;Universidad de Castilla La Mancha, UCLM, Spain
+1111;Hula Records
+1112;Biblioteca Virtual de La Rioja
+1113;Scottish Screen Archive at National Library of Scotland
+1114;Rokiškio krašto muziejus / Rokiškis Area Museum
+1115;SNM - Hudobné múzeum v Bratislave
+1116;Columna Música; Spain
+1117;LCVA
+1118;Museum of Applied Art, Belgrade
+1119;Helinä Rautavaaran museo
+1120;Max-Planck-Institut für Wissenschaftsgeschichte (Max Planck Institute for the History of Science)
+1121;Rotana
+1122;RTÉ
+1123;Národní filmový archiv
+1124;Alvøen Hovedbygning
+1125;National Audiovisual Archive
+1126;GNP Crescendo Record Co., Inc.
+1127;Erfgoed Leiden en Omstreken
+1128;K-Industria Cultural S.L.; Spain
+1129;Universitatea Babes Bolyai
+1130;Stavanger skolemuseum
+1131;Ateneu Barcelonès
+1132;Max-Planck-Institut für Wissenschaftsgeschichte
+1133;Zuidwestbrabants Museum
+1134;Kasteel Huis Bergh
+1135;Ishavsmuseet Aarvak
+1136;Vallensbæk Bibliotek
+1137;Ben Uri Gallery and Museum, London
+1138;Biblioteca Virtual de la Diputación de Zaragoza
+1139;Holmeegenes-samlingen (MUST)
+1140;Music Hit Factory
+1141;DISMARC
+1142;Etxe-Ondo
+1143;Miskolci Egyetem
+1144;Norsk Bergverksmuseum
+1145;OK Records
+1146;Regione Marche / SchedeS:MC
+1147;Delphian Records; United Kingdom
+1148;Hillerød Lokalarkiv
+1149;Sveučilište Jurja Dobrile u Puli
+1150;RiddoDuottarMuseat
+1151;Theatergeschichtliche Sammlung und Hebbelsammlung
+1152;Webster Family Library of Veterinary Medicine (archive.org)
+1153;SNM - Múzeum Ľudovíta Štúra Modra
+1154;Internet Culturale / Biblioteca Nazionale Marciana - Venezia
+1155;Ars Electronica
+1156;Europeana 1989
+1157;Maison des Sciences de l'Homme-Alpes - UPMF - CNRS
+1158;Magyar Zsidó Levéltár / Hungarian Jewish Archives
+1159;VDE-GALLO; Switzerland
+1160;Sylter Heimatmuseum
+1161;Ταμείο Αρχαιολογικών Πόρων και Απαλλοτριώσεων Archaelogical Receipts Fund
+1162;Czech Televison
+1163;Hungarian Academy of Sciences Institute for Musicology; Hungary
+1164;Digitum : Depósito de la Universidad de Murcia
+1165;Museum Martena
+1166;Universidad de La Laguna
+1167;Koç University Vehbi Koç Ankara Studies Research Center (VEKAM)
+1168;Charsur Digital Work Station
+1169;Virtuální muzeum
+1170;Museo Virtual del Seguro
+1171;Kystmuseet i Sør-Trøndelag
+1172;Plaza Mayor Company, Ltd.; United Kingdom
+1173;Tromsø Museum — Universitetsmuseet
+1174;Kunsthalle St. Annen
+1175;Osrednja knjižnica Celje
+1176;Žemaičių muziejus „Alka“
+1177;Museen im Kulturzentrum
+1178;Saphir Productions; France
+1179;ONB
+1180;Bildarchiv Foto Marburg / Bröhan-Museum, Berlin
+1181;Kretingos muziejus
+1182;Gemeente Beersel
+1183;Halton Library Service Image website
+1184;Lindesnes Bygdemuseum
+1185;Landeshauptstadt Dresden
+1186;Museo del Vicino Oriente- Sapienza University Rome
+1187;National Research Foundation "Eleftherios K. Venizelos" / Εθνικό Ίδρυμα Ελευθέριος Κ. Βενιζέλος
+1188;Vest-Agder-museet
+1189;Classical Masters
+1190;Erbario - Museo di Botanica- Sapienza University Rome
+1191;Naukšēnu Cilvēkmuzejs
+1192;Archief Zusters Annuntiaten Heverlee
+1193;Documentatiecentrum Dr. M. Bussels vzw
+1194;OAPEN
+1195;Arran Records
+1196;The Archives Internationales de Musique Populaire; Switzerland
+1197;Univerzita Komenského Prírodovedecká fakulta Katedra aplikovanej a environmentálnej geofyziky
+1198;Filmoteca de Catalunya
+1199;Sunnhordland Museum
+1200;Jewish Museum in Prague
+1201;Calibrated; Denmark
+1202;Kunsthalle zu Kiel
+1203;Politecnico di Milano - Computer Vision & Reverse Engineering Lab
+1204;Heimat- und Handwerksmuseum Wahlstedt
+1205;Vintage Music
+1206;Zentralbibliothek Zürich
+1207;Talking Elephant Records; United Kingdom
+1208;Moderna galerija, projekt DCA
+1209;Algemeen Rijksarchief en Rijksarchief in de Provinciën
+1210;British School at Rome
+1211;Gael Linn; Ireland
+1212;Kirsten Flagstadmuseet
+1213;CAG
+1214;RAI Public Italian Television
+1215;Fundação Robinson
+1216;American Farm School of Thessaloniki Historical Archives
+1217;Kupiškio etnografijos muziejus / Kupiškis Ethnographic Museum
+1218;Central Library of Bulgarian Academy of Sciences
+1219;RTV Slovenia
+1220;Município de Aveiro - Biblioteca Municipal
+1221;Rippl - Rónai Megyei Hatókörű Városi Múzeum - Kaposvár
+1222;Centrum Agrarische Geschiedenis (CAG)
+1223;Benediktinerstift Altenburg
+1224;Mediateca de la Universidad de Oviedo - Encycloasturias
+1225;Vilnius University Library
+1226;Natural History Museum, Vienna - Mineralogy and Petrology
+1227;http://www.ltmcollection.org/
+1228;Berger museum
+1229;Archivos de la Fundación Bernardo Aladrén
+1230;Universitat Autònoma de Barcelona
+1231;Museo di Mineralogia- Sapienza University Rome
+1232;Biblioteca Judeţeană "G. T. Kirileanu" Neamţ
+1233;Valstybinis Vilniaus Gaono žydų muziejus
+1234;Music Library of Greece "Lilian Voudouri" - Friends of Music Society / Μεγάλη Μουσική Βιβλιοθήκη της Ελλάδος «Λίλιαν Βουδούρη» - Σύλλογος Οι Φίλοι της Μουσικής
+1235;Museo Salvatore Ferragamo
+1236;Heemkundig Museum Woutershof Heusden Zolder
+1237;Openbaar Kunstbezit Vlaanderen
+1238;Künstlermuseum Heikendorf - Kieler Förde
+1239;Muzeum Okręgowe w Lesznie
+1240;Unit Records; United Kingdom
+1241;Latvijas Nacionālais mākslas muzejs
+1242;Museum Arnhem
+1243;Mjøsmuseet
+1244;Valmieras novadpētniecības muzejs
+1245;Frissiras Museum
+1246;Ringerikes museum
+1247;VA Rīgas vēstures un kuģniecības muzejs
+1248;Gemeentearchief Rotterdam
+1249;Carinco Neue Medien AG
+1250;Casa Fernando Pessoa
+1251;Pattaya
+1252;Museumstjenesten i Østfold
+1253;Eesti Vabaõhumuuseum EVM
+1254;Heimatmuseum Quierschied
+1255;Fundação de Serralves
+1256;Mariborska knjižnica
+1257;Industriemuseum Elmshorn
+1258;Magyar Nemzeti Digitális Archívum és Filmintézet közf.
+1259;Moss by- og industrimuseum
+1260;Universitäts- und Landesbibliothek Tirol
+1261;Eidsvoll 1814
+1262;University of Fribourg - Universitas Friburgensis
+1263;Primus
+1264;Tam-Tam Media
+1265;CNRS-MAP Modèles et simulations pour l'Architecture et le Patrimoine
+1266;Gorenjski muzej 
+1267;Dr. Carl-Haeberlin Friesen-Museum
+1268;The Cyprus Institute - STARC / Art Gallery of Archbishop Makarios III Foundation
+1269;Universitat Politecnica de Valencia
+1270;Sanocka Biblioteka Cyfrowa
+1271;Malta Aviation Museum Foundation
+1272;Dithmarscher Landesmuseum
+1273;JyMA
+1274;Ģ. Eliasa Jelgavas Vēstures un mākslas muzejs
+1275;Várjjat Sámi Musea / Varanger Samiske Museum
+1276;Cope Records; Denmark
+1277;Városi Képtár - Deák Gyűjtemény - Székesfehérvár
+1278;National Gallery - Alexandros Soutsos Museum 
+1279;CIMEC - Institute for Cultural Memory
+1280;Universitätsbibliothek Kiel
+1281;VRT
+1282;Seminar fuer Wirtschafts- und Unternehmensgeschichte, Universität Köln
+1283;University library "Svetozar Markovic", Belgrade / Univerzitetska biblioteka "Svetozar Markovic", Beograd
+1284;La Maison du Spectacle La Bellone, BELLONE, Brussels, Belgium
+1285;Knjižnica Mirana Jarca Novo mesto
+1286;Moviebox Birmingham Ltd
+1287;Kystmuseet i Sogn og Fjordane
+1288;Landesarchiv Berlin, Zentral- und Landesbibliothek Berlin
+1289;Museu Nacional de Arqueologia
+1290;Det Kongelige Bibliotek, Nationalbibliotek og Kobenhavns Universitetsbibliotek
+1291;Magyar Fotográfiai Múzeum - Kecskemét
+1292;Biblioteka Cyfrowych Archiwów Tradycji Lokalnej
+1293;Lands Museum
+1294;Hungarian National Gallery
+1295;Wiltshire Treasures
+1296;National Institute of Archaeology and Museum
+1297;British Broadcasting Corporation
+1298;Bolton Council
+1299;NOC*NSF
+1300;Aizputes novadpētniecības muzejs
+1301;Vanilla OMP
+1302;Phonogrammarchiv - Österreichische Akademie der Wissenschaften; Austria
+1303;Groupe Analekta, Inc.; Canada
+1304;Jaunpils muzejs
+1305;Norsk grafisk museum
+1306;Scuola Normale Superiore - La Fortuna Visiva di Pompei
+1307;Narodna in univerzitetna knjižnica - National and University Library of Slovenia
+1308;Kerkfabriek Sint-Quintinus en Onze-Lieve-Vrouw, Hasselt
+1309;Vaxholms Fästnings Museum
+1310;Montana State Library (archive.org)
+1311;Žemaičių vyskupystės muziejus
+1312;Monumenta Asia Minoris Antiquae
+1313;General Secretariat for Culture, Hellenic Ministry of Education and Religious Affiars, Culture and Sports
+1314;Pāvilostas Novadpētniecības muzejs
+1315;Magyar Ferences Könyvtár Gyöngyösi Műemlékkönyvtára
+1316;Nacionalinis M. K. Čiurlionio dailės muziejus / M. K. Čiurlionis National Museum of Art
+1317;Hordamuseet
+1318;Openbaar Psychiatrisch Zorgcentrum Rekem
+1319;Regione del Veneto, Il Fondo musicale della Chiesa di S. Maria della Consolazione di Venezia
+1320;Nasjonalbiblioteket
+1321;Museum Het Valkhof
+1322;Mestna knjižnica Ljubljana
+1323;Nationaal Militair Museum
+1324;Danish Mycological Society
+1325;Gesellschaft für Historische Tonträger
+1326;Stadsarchief Halle
+1327;Historisch Centrum Limburg (rhcl.nl)\n                  
+1328;Cyfrowa Biblioteka Diecezjalna w Sandomierzu
+1329;Università degli Studi di Padova | University of Padua
+1330;Vindolanda Tablets Online
+1331;Mākslas muzejs "Rīgas Birža"
+1332;Beelden van Gelderland
+1333;Boston Public Library (archive.org)
+1334;Museum of Modern and Contemporary Art, Rijeka - Kultura.hr
+1335;Библиотека РОДИНА - Стара Загора / Library Rodina - Stara Zagora
+1336;Argos, Centre for Art and Media
+1337;Max Planck Institute for the History of Science
+1338;Vadsø museum - Ruija kvenmuseum
+1339;Občinska knjižnica Jesenice
+1340;SIGIC - Slovenian music information centre
+1341;Arbetets museum
+1342;Kerk van de parochie Sint-Kwinten
+1343;Nacionalinis M. K. Čiurlionio dailės muziejus
+1344;Future Library
+1345;Stadtmuseum - Warleberger Hof
+1346;Regione Marche / SchedeOR
+1347;DW-WORLD.DE | Deutsche Welle
+1348;Rokiškio krašto muziejus
+1349;Trondheim Kunstmuseum
+1350;0233 Museum Korps Rijdende Artillerie
+1351;Sandra Maria - conservazione e restauro di fotografie
+1352;Fondazione Centro Studi Aldo Capitini
+1353;NF
+1354;Nederlands Openluchtmuseum
+1355;Knjižnica Domžale
+1356;Musée Romain Lausanne-Vidy
+1357;Φεστιβάλ Κινηματογράφου Θεσσαλονίκης
+1358;Goldenlane Records
+1359;Passport Audio
+1360;Kansallinen Audiovisuaalinen Arkisto
+1361;Geschied- en Heemkundige Kring Elen, Dilsen-Stokkem
+1362;Images of Old Cluj
+1363;Kunstsammlungen der Veste Coburg
+1364;Piejūras brīvdabas muzejs
+1365;Universitätsbibliothek der Humboldt-Universität zu Berlin
+1366;Gega New; Bulgaria
+1367;vzw Fruitstreekmuseum
+1368;Urania - Qualiton
+1369;Aizkraukles Vēstures un mākslas muzejs
+1370;Museumshof Lensahn
+1371;Bomba-Piter
+1372;Kauno IX forto muziejus / Kaunas 9th Fort Museum
+1373;Hellenic Educational Television
+1374;Fotballmuseet
+1375;Geheugen van Zeist
+1376;Signum Records; United Kingdom
+1377;Holmestrand Aluminium museum
+1378;Kerk Onze-Lieve-Vrouw-ten-Poel, Tienen
+1379;Dorfmuseum Schönwalde
+1380;Kunstmuseet Nord Trøndelag
+1381;The Cyprus Institute - STARC / Πινακοθήκη Ιδρύματος Αρχιεπισκόπου Μακαρίου Γ΄
+1382;Государственная Третьяковская Галерея / The State Tretyakov Gallery
+1383;Zarasų krašto muziejus
+1384;Pokrajinski muzej Celje
+1385;Regione Marche / SchedeRA:FM
+1386;Rīgas vēstures un kuģniecības muzejs
+1387;Stiklestad Nasjonale kultursenter
+1388;Park Records; United Kingdom
+1389;La Fa Mi Productions
+1390;Riksantikvaren
+1391;Stephan von Huene, Artist's Estate
+1392;eheritage.si, Muzej in galerije mesta Ljubljane, Urbanistični inštitut Republike Slovenije
+1393;Collectie Vlaamse Gemeenschap
+1394;Baltic Records Group; Latvia
+1395;Fredensborg Arkiverne
+1396;The Cyprus Institute - STARC / Βυζαντινό Μουσείο Ιδρύματος Αρχιεπισκόπου Μακαρίου Γ'
+1397;Sint-Germanuskerk
+1398;BUFVC
+1399;Stormarnsches Dorfmuseum
+1400;Institute of Lithuanian Literature and Folklore; Lithuania
+1401;Silver Streak Records; United Kingdom
+1402;OFS Records
+1403;Repositorio Documental del Ministerio de Empleo y Seguridad Social
+1404;eheritage.si, Urbanistični inštitut Republike Slovenije
+1405;Narodna biblioteka Srbije - National Library of Serbia
+1406;Deutsche Zentralbibliothek für Medizin
+1407;Regione Marche / SchedeS:AP
+1408;London’s Screen Archives
+1409;Mažosios Lietuvos istorijos muziejus
+1410;Armarium. dominikańska biblioteka cyfrowa
+1411;ILK Music
+1412;Elisabeth Weeshuis Museum
+1413;Gaztelupeko Hotsak S.L; Spain
+1414;Design Museum Gent
+1415;Eötvös Loránd Tudományegyetem
+1416;Pinneberg Museum
+1417;Trio Records
+1418;Ubi erat lupa
+1419;Arcodiva
+1420;Real Academia Nacional de Medicina
+1421;Kerkfabriek Sint-Martinus, Vechmaal
+1422;Almaviva
+1423;Saarländisches Uhrenmuseum
+1424;Escuelas Pías de Aragón
+1425;eheritage.si, Zavod za varstvo kulturne dediščine Slovenije, Urbanistični inštitut Republike Slovenije
+1426;Icelandic Institute of Natural History
+1427;Bergen Brannhistoriske Stiftelse
+1428;Tainiothiki tis Ellados
+1429;University of New Hampshire Library (archive.org)
+1430;Thyssen-Bornemisza Museum
+1431;Tarnowska Biblioteka Cyfrowa
+1432;YLE Radio archives
+1433;Naturhistoriske samlinger (MUST)
+1434;TownHall Records
+1435;A. Baranausko ir A. Vienuolio-Žukausko memorialinis muziejus
+1436;Latvijas Dabas muzejs
+1437;Openluchtmuseum Bokrijk, Genk
+1438;Stadsarchief Leuven
+1439;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Kortenbos
+1440;Blue Flame Records
+1441;Israel Music / Qualiton Imports, Ltd.
+1442;SNM - Múzeum Betliar v Betliari
+1443;Museovirasto
+1444;Biblioteca Pública Municipal do Porto
+1445;Cisterciácký klášter Vyšší Brod
+1446;GLD
+1447;Knjižnica Ivana Potrča Ptuj
+1448;Mestna knjižnica Izola
+1449;Koroška osrednja knjižnica  dr. Franca Sušnika
+1450;Oslo Skolemuseum
+1451;Gotlandstoner; Sweden
+1452;Museu de Cultures del Món
+1453;Chrome Dreams
+1454;Savaria Megyei Hatókörű Városi Múzeum - Szombathely
+1455;Stiftelsen Kulturkvartalet
+1456;Cyprus Food and Nutrition Museum (Μουσείο Κυπριακών Τροφίμων και Διατροφής)
+1457;Fantastic Voyage; United Kingdom
+1458;Joods Historisch Museum
+1459;RTP
+1460;Umeå University Library
+1461;Medizin- und Pharmaziehistorische Sammlung
+1462;University library Svetozar Markovic, Belgrade
+1463;Biblioteca Judeţeană „V.A. Urechia” Galaţi
+1464;Egge Museum
+1465;Antient Objects
+1466;Hellenic Archive of Scientific Culture (HASC)
+1467;Regione Marche / SchedeSIN
+1468;Seyffert Music
+1469;Alinari
+1470;Art Land
+1471;Museu da Ciência da Universidade de Coimbra - Museu de Física
+1472;The European Correspondence to Jacob Burckhardt
+1473;Институт за балканистика с Център по тракология
+1474;Cyprus Library
+1475;Lokalhistorisk Arkiv, Brande Bibliotek
+1476;Onze-Lieve-Vrouw Basiliek Scherpenheuvel-Zichem
+1477;Rörstrand Museum
+1478;Collecting Records OMP
+1479;Parnassus Records
+1480;БГБ, Одељење периодике
+1481;ORF
+1482;Wolverhampton Arts and Museums
+1483;Lietuvos liaudies buities muziejus
+1484;Master Music
+1485;Folkenborg Museum
+1486;High Quality
+1487;Arctic - Centre
+1488;Deanu Musea / Tana Museum
+1489;Munchs hus
+1490;Musée de la Castre
+1491;Université libre de Bruxelles
+1492;Århus Kommunes Biblioteker. Brabrand-Årslev Lokalhistoriske Arkiv
+1493;Musée de la Musique Mécanique
+1494;Biblioteca Judeţeană "Octavian Goga" Cluj
+1495;The National Architectural Heritage Board
+1496;The National Museum of Slovenia 
+1497;Tehniški muzej Slovenije, Parmova 33, 1001 Ljubljana
+1498;Museet kystens arv
+1499;Abaco Music
+1500;Dublin Institute of Advanced Studies
+1501;Artothek Eckernförde
+1502;Babel Label
+1503;Cinemateca Portuguesa-Museu do Cinema
+1504;Austrian Science Fund (FWF)
+1505;Det Internasjonale Barnekunstmuseet
+1506;Nagyerdei Kultúrpark Nonpr. Kft.
+1507;Stadtmuseum Wadern
+1508;Anatolia College
+1509;Designmuseo
+1510;Bogstad Gård
+1511;Skimuseet i Holmenkollen
+1512;Projektni konzorcij DEDI
+1513;University of British Columbia Library (archive.org)
+1514;Colibrí
+1515;Museum Langes Tannen
+1516;Teleseum
+1517;Norsk hermetikkmuseum
+1518;Cankarjeva knjižnica Vrhnika
+1519;Kulturhistoriske samlinger (MUST)
+1520;Synergie OMP
+1521;Museum für Naturkunde Berlin, GloBIS
+1522;St. Annen-Museum
+1523;Nordenfjeldske Kunstindustrimuseum
+1524;Richie S. Records (S.A.)
+1525;Mezhdunarodnaya Kniga Musica
+1526;Grenselandmuseet
+1527;Museum Boijmans Van Beuningen
+1528;Kerkfabriek Sint-Pieters-Banden, Lommel
+1529;architekturclips_network
+1530;Dinemec Classics
+1531;Indigenous Australia
+1532;Kerkfabriek Sint-Jan Baptist, Tongeren
+1533;Arkiv i Nordland
+1534;Πολιτιστικό Ίδρυμα Ομίλου Πειραιώς; Piraeus Bank Group Cultural Foundation; Piop collections
+1535;National Museum of Contemporary Art / Εθνικό Μουσείο Σύγχρονης Τέχνης
+1536;Library of the "Lucian Blaga" University of Sibiu
+1537;Röhsska museet
+1538;Biblioteca Județeană "Octavian Goga" Cluj
+1539;Musée du Palais Lascaris
+1540;Heaven Music
+1541;Norsk barnemuseum
+1542;Breidablikk (MUST)
+1543;Universidad de Las Palmas de Gran Canaria. Biblioteca Universitaria.
+1544;Muzeul Național de Istorie a României
+1545;Jazzpoint Records
+1546;Diputación Provincial de Zaragoza
+1547;Saarländisches Bergbaumuseum
+1548;Nalšios muziejus
+1549;Υπουργείο Πολιτισμού και Αθλητισμού
+1550;Библиотека РОДИНА - Стара Загора
+1551;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Leopoldsburg
+1552;Narodni Technicke Muzeum
+1553;University of Connecticut Libraries (archive.org)
+1554;Mažosios Lietuvos istorijos muziejus / The History Museum of Lithuania Minor
+1555;Penn State University (archive.org)
+1556;Damiaan Documentatie- en Informatiecentrum
+1557;Maironio lietuvių literatūros muziejus
+1558;Cleopatra Records
+1559;Cowbell Music; Denmark
+1560;Sección Nobleza del Archivo Histórico Nacional
+1561;Blue Griffin Recording
+1562;Wojciech Weiss Museum Foundation
+1563;Žemaičių dailės muziejus / Žemaičiai (Samogitian) Art Museum
+1564;Kerkfabriek Sint-Laurentius, Hamont
+1565;The Royal Irish Academy
+1566;Bibliothèques Virtuelles Humanistes
+1567;Kerkfabriek Sint-Laurentius, Bocholt
+1568;Dobre Records
+1569;Fuel 2000
+1570;Miskolci Evangélikus Egyházközség Lelkészi Hivatala
+1571;Järvakandi Klaasimuuseum
+1572;Percaso Production
+1573;Płocka Biblioteka Cyfrowa
+1574;Dolj County Library
+1575;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Veulen
+1576;Listasafn Íslands
+1577;Centre Excursionista de Catalunya (CEC)
+1578;Sainsbury Centre for Visual Arts, University of East Anglia
+1579;Fundación Federico Fliedner. Archivo Fliedner
+1580;Magyar Nemzeti Digitális Archívum és Filmintézet
+1581;Suomen Valokuvataiteen Museon
+1582;Turtle Island Music
+1583;Kerkfabriek Sint-Trudo, Grote Brogel
+1584;Kerkfabriek Sint-Petrus, Elen
+1585;Rainbow Media OMP
+1586;Museo di Storia della Medicina- Sapienza University Rome
+1587;Vojtina Bábszínház
+1588;Columbia University Libraries (archive.org)
+1589;Kerkfabriek Sint-Martinus, Overpelt
+1590;Radiant Future; United Kingdom
+1591;AAP Media
+1592;Kerkfabriek Sint-Martinus, Genk
+1593;Vadsø Museum - Ruija kvenmuseum
+1594;Via Asiago, 10
+1595;Goriška knjižnica Franceta Bevka Nova Gorica
+1596;Kerkfabriek Sint-Monulfus en Gondulphus, Sint-Huibrechts-Lille
+1597;Knjižnica Pavla Golie Trebnje
+1598;Museum Elburg
+1599;Kerkfabriek Sint-Monulfus en Gondulfus, Maasmechelen
+1600;Museo delle Origini- Sapienza University Rome
+1601;RKO/Unique
+1602;MAC's Grand-Hornu
+1603;Egvad Egnshistoriske Samling
+1604;Kolbuszowska Biblioteka Cyfrowa
+1605;Kerkfabriek Sint-Stephus, 's Herenelderen
+1606;Knjižnica Litija
+1607;TUTL
+1608;Kerkfabriek Sint-Catharina, Maaseik
+1609;Århus Kommunes Biblioteker. Vejlby-Risskov Lokalhistoriske Arkiv
+1610;Biblioteca Digital Educativa de la Región de Murcia
+1611;Tiszántúli Református Egyházkerületi és Kollégiumi Nagykönyvtár - Debrecen
+1612;Musée de la Lutherie et de l'Archèterie
+1613;Museum Henriette Polak
+1614;Kerkfabriek Sint-Blasius, Heppen
+1615;Kerkfabriek Sint-Martinus, Dilsen
+1616;Glasgow School of Art
+1617;Regione Marche / SchedeS:AN
+1618;Sagarika Music Pvt. Ltd.
+1619;Kauno miesto muziejus
+1620;Kerkfabriek Sint-Servatius, Diepenbeek
+1621;Kerkfabriek Sint-Ursula, Lanaken
+1622;Sint-Michielskerk Leuven
+1623;VTM Eidsborg
+1624;Sheffield Lab
+1625;The Field Museum
+1626;Regione Marche / SchedeBDM:FM
+1627;Galleria dell’Accademia - Dipartimento degli Strumenti Musicali
+1628;Complete Jazz Series
+1629;Kerk Onze-Lieve-Vrouw Hemelvaart, Vertrijk
+1630;Altfriesisches Haus
+1631;Jukebox Entertainment
+1632;Clean-tech bezoekerscentrum 'Ons Mijnverleden' - Houthalen-Helchteren (voorheen: Museum Ons Mijnverleden)
+1633;Kerkfabriek Sint-Anna, Aldeneik
+1634;Stiklestad Nasjonale Kultursenter AS
+1635;Wekkermuseum
+1636;Kerkfabriek Onze-Lieve-Vrouw Geboorte, Oostham
+1637;Latvijas Ugunsdzēsības muzejs
+1638;Amathus Music
+1639;Biblioteca Digital Do Alentejo
+1640;Department of Theatre Studies, University of Amsterdam, UvA, The Netherlands
+1641;Latvijas Arhitektūras muzejs
+1642;Osutaunu; Romania
+1643;Kerk Sint-Pieter, Kwerps
+1644;Stichting Oude Groninger Kerken
+1645;University of Florida, George A. Smathers Libraries (archive.org)
+1646;Forrest Hill Records; Italy
+1647;Regionální muzeum v Chrudimi
+1648;Biblioteka grada Beograda (Belgrade City Library)
+1649;Kerkfabriek Sint-Willibrordus, Eisden
+1650;Kerk Sint-Amandus, Erps
+1651;PAI Música
+1652;Archivo Municipal de la Puebla de Alfindén
+1653;Marijos ir Jurgio Šlapelių namas-muziejus / Marija and Jurgis Šlapeliai House-Museum
+1654;Kerkfabriek Sint-Martinus, Meeuwen
+1655;Tallinna Linnaarhiiv
+1656;Kerkfabriek Sint-Trudo, Opitter
+1657;NordseeMuseum - Nissenhaus
+1658;Caama Music; Australia
+1659;Provinciaal Archief Limburg
+1660;VanToenTotLater (vantoentotlater.nl)
+1661;Ayler Records; France
+1662;Kerkfabriek Sint-Lambertus, Geistingen
+1663;Szépművészeti Múzeum Budapest
+1664;Norges Banks myntverksamling
+1665;Arkhangelsk Regional Scientific Library
+1666;Foot Stompin' Records; United Kingdom
+1667;Dobeles Novadpētniecības muzejs
+1668;Hyena Records
+1669;Biblioteka Cyfrowa Instytutu Geodezji i Kartografii
+1670;FONOCAL
+1671;Kerkfabriek Sint-Gertrudis, Kuringen
+1672;Leicestershire Museums
+1673;Prelinger Library (archive.org)
+1674;Menart
+1675;Norsk Reiselivsmuseum
+1676;Latvijas Kara muzejs
+1677;"Octavian Goga" Cluj County Library
+1678;Magenta
+1679;Verzetsmuseum Amsterdam
+1680;Саратовский государственный художественный музей имени А.Н. Радищева / Saratov State Art Museum after A.N. Radishev
+1681;Cluj County Library
+1682;Stiftelsen Saemien Sijte
+1683;Mu.ZEE, Kunstmuseum aan zee
+1684;D.E.T.S.
+1685;Kerkfabriek Sint-Mauritius, Bilzen
+1686;Horizon West Music
+1687;Kainós Producciones
+1688;Museum of Greek Folk Art / Μουσείο Ελληνικής Λαϊκής Τέχνης
+1689;Latvijas Nacionālā bibliotēka - National Library of Latvia
+1690;"Lucian Blaga" University of Sibiu
+1691;Archivo de la palabra de Castilla La Mancha
+1692;Hayat Production; Bosnia and Herzegovina
+1693;Earth Sciences - University of Toronto (archive.org)
+1694;Hemeroteca Municipal de Lisboa
+1695;Kerkfabriek Sint-Barbara, Eisden
+1696;Kerkfabriek Sint-Willibrordus, Reppel
+1697;Регионална библиотека ХРИСТО СМИРНЕНСКИ - Хасково / Public Library - Haskovo
+1698;Hadeland Bergverksmuseum
+1699;Memoriav - SRF
+1700;Associazione Archibraille (ACCESSIBLE MUSIC SCORES), ARCHIBRAILLE, Italia
+1701;Literatūrinis A. Puškino muziejus
+1702;Ivar Aasen-tunet
+1703;Ortsmuseum Binningen
+1704;Kerkfabriek Sint-Quintinus, Guigoven
+1705;Kerkfabriek Sint-Petrus, Leut
+1706;Kunst i offentlige rom - KORO
+1707;Replay Music
+1708;STK
+1709;Cambridge University Library
+1710;Kulturnett Hordaland
+1711;Panevėžio kraštotyros muziejus
+1712;Museu Nacional de Arte Antiga
+1713;eheritage.si, Zavod za varstvo kulturne dediščine Slovenije - Restavratorski center, Urbanistični inštitut Republike Slovenije
+1714;Eesti Rahvusraamatukogu - National Library of Estonia
+1715;Kerkfabriek Sint-Albanus, Vlijtingen
+1716;Volkskunde Museum Schleswig
+1717;Comissão para a Cidadania e a Igualdade de Género
+1718;California Department of Fish and Game (archive.org)
+1719;Gulbenes novada vēstures un mākslas muzejs
+1720;Sociaal Historisch Centrum voor Limburg (shclimburg.nl)\n                  
+1721;Kerkfabriek Sint-Hubertus en Sint-Vincentius, Zolder
+1722;Soli Deo Gloria - Monteverdi Productions Ltd.
+1723;Acqua Records
+1724;Instituto de Historia Contemporânea da Faculdade de Ciências Sociais e Humanas da Universidade Nova Lisboa – Portugal
+1725;MMCA
+1726;Kerkfabriek Sint-Lambertus, Opglabbeek
+1727;http://sapienzadigitallibrary.uniroma1.it/identifier/RMSDIGILAB_BURCARDO
+1728;Folk Music Archive of the Lithuanian Academy of  Music and Theatre; Lithuania
+1729;Fundación Arte, Ciencia y Diálogo
+1730;Nasjonalt Pilegrimssenter
+1731;Internet Culturale / biblioteca marciana - venezia
+1732;Kerkfabriek Sint-Monulfus en Gondulfus, Achel
+1733;Kerkfabriek Sint-Hubertus, Henis
+1734;Byantikvaren i Oslo
+1735;Kerkfabriek Sint-Dionysius, Opoeteren
+1736;Kerkfabriek Sint-Petrus, Halen
+1737;National Gallery of Ireland
+1738;Stadsbestuur Tongeren
+1739;Generalitat de Catalunya. Arxiu Comarcal de l'Alt Penedès
+1740;Universitetet i Bergen
+1741;Harbinger Records / Qualiton Imports, Ltd.
+1742;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Wijshagen
+1743;Bayerische Staatsbibliothek
+1744;Digital Music Group, Inc.
+1745;Kosovelova knjižnica Sežana
+1746;Musée des Instruments à Vent
+1747;kwerk
+1748;Dorfmuseum Bottmingen
+1749;Halden historiske Samlinger
+1750;Kerkfabriek Sint-Gertrudis, Heppeneert
+1751;Black Point Music; Czech Republic
+1752;Kerk Sint-Martinus en Lodewijk, Everberg
+1753;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Munsterbilzen
+1754;Tukuma muzejs
+1755;Classic Records
+1756;FHS Burgenland
+1757;Kerkfabriek Sint-Gertrudis, Gruitrode
+1758;Kerkfabriek Sint-Lambertus, Beverlo
+1759;Group 7 Music
+1760;Kerkfabriek Sint-Aldegondis, Alken
+1761;Kerkfabriek Sint-Medardus, Vreren
+1762;Narodowy Instytut Dziedzictwa
+1763;Stam Studio
+1764;Frank Andrada Music
+1765;Kijk & Luistermuseum
+1766;WOMEX; Germany
+1767;Comité Zevenjaarlijkse Virga Jessefeesten te Hasselt vzw, Hasselt
+1768;Fylkesgalleriet
+1769;Ikast lokalhistoriske Arkiv
+1770;Radioservis
+1771;The Zagreb City Libraries
+1772;Κρατική Ορχήστρα Θεσσαλονίκης
+1773;Aeroseum
+1774;Kerkfabriek Sint-Petrus, Kortessem
+1775;Kerkfabriek Sint-Trudo, Peer
+1776;Museum HAUS HANSESTADT DANZIG
+1777;Kerkfabriek Sint-Servatius, Lanaken
+1778;Irco Video
+1779;National Library of Technology
+1780;Patuxent Music
+1781;University of Pittsburgh Library System (archive.org)
+1782;www.maltamigration.com
+1783;Förderverein Sammlung Heinz Kirchhoff e.V.
+1784;Intercont Music
+1785;Kerkfabriek Sint-Odulfus, Borgloon
+1786;Alex Vella Gera
+1787;Independent
+1788;Kerkfabriek Sint-Pieter, Rosmeer
+1789;Marijampolės kraštotyros muziejus / Marijampolė Local Lore Museum
+1790;Xenophile/Green Linnet
+1791;33 Jazz Records
+1792;Kerkfabriek Sint-Petrus, Tongerlo
+1793;Regionaal Landschap Noord-Hageland vzw
+1794;Universitat Politècnica de Catalunya
+1795;Kerkfabriek Heilig Hart, Hasselt
+1796;Kerkfabriek Sint-Pieter, Nieuwerkerken
+1797;Museum Stavanger AS
+1798;Kerkfabriek Heilig Hart, Winterslag
+1799;Kerkfabriek Sint-Ludgerus, Neerrepen
+1800;Kerkfabriek Sint-Stefanus, Hoeselt
+1801;Knjižnica Logatec
+1802;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Kermt
+1803;AYVA Musica
+1804;Kerkfabriek Sint-Niklaas, Wimmertingen
+1805;Saarländisches Schulmuseum 
+1806;Telenor Kulturarv
+1807;Νομική Βιβλιοθήκη
+1808;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Zutendaal
+1809;Borgarsyssel Museum
+1810;K Para K
+1811;Kerkfabriek Sint-Agapitus, Vliermaal
+1812;Kerkfabriek Sint-Stefanus, Batsheers
+1813;Red de Bibliotecas Municipales de Bilbao
+1814;CRC Éditions
+1815;Kerkfabriek Sint-Michiel, Bree
+1816;Laika Records
+1817;Pieronero
+1818;Drew's Famous
+1819;Kerkfabriek Sint-Martinus, Berg
+1820;Archives of The American Jewish Joint Distribution Committee
+1821;Generalitat de Catalunya. Arxiu Comarcal del Vallès Occidental
+1822;BlueArt
+1823;Kerkfabriek Sint-Michael, Kesselt
+1824;Premier Records Ltd
+1825;Steunpunt Industrieel Wetenschappelijk Erfgoed vzw
+1826;Instituto de Historia Contemporanea da Faculdade de Ciencias Sociais e Humanas da Universidade Nova Lisboa – Portugal
+1827;Caravelas
+1828;Club 99
+1829;Fisher - University of Toronto (archive.org)
+1830;Kerkfabriek Sint-Remigius, Vucht
+1831;Kubešovo Hudební Vydavaleství
+1832;Museums.si spletna stran
+1833;Nederlands Tegelmuseum
+1834;The Cyprus Institute - STARC / Mediterranean Archaeological Research\n          Institute-Vrije Universiteit Brussel
+1835;Y Records
+1836;Austrian National Library
+1837;Kerkfabriek Sint-Catharina, Hasselt
+1838;Kerkfabriek Sint-Lambertus, Zelem
+1839;Sint-Hilariuskerk in Bierbeek
+1840;The Cyprus Institute - STARC / Βυζαντινό Μουσείο Ιδρύματος Αρχιεπισκόπου Μακαρίου Γ΄
+1841;Midt-Troms Museum
+1842;Romana Sutas un Aleksandras Beļcovas muzejs
+1843;Stiftelsen Glomdalsmuseet
+1844; ISTI-CNR -Istituto di Scienza e Tecnologie dell Informazione
+1845;Biblioteca Apostolica Vaticana
+1846;Cluj County Center for the Preservation of Traditional Culture
+1847;Регионална библиотека Дора Габе - Добрич
+1848;Móra Ferenc Múzeum - Szeged
+1849;Znanstvenoraziskovalni center Slovenske akademije znanosti in umetnosti
+1850;Kerkfabriek Sint-Cornelius, Lindel-Hoeven
+1851;Kerkfabriek Sint-Martinus (Stevoort, Hasselt)
+1852;Northampton Museums
+1853;Kerkfabriek Heilig Hart, Rooierheide
+1854;Sting Music
+1855;Kerkfabriek Onze-Lieve-Vrouw, Gerdingen
+1856;Tilburg University
+1857;Alytaus kraštotyros muziejus / Alytus Ethnographic Museum
+1858;Arhivele Naţionale, Serviciul Judeţean Cluj
+1859;Marijos ir Jurgio Šlapelių namas-muziejus
+1860;Arizona University Recordings
+1861;Kerkfabriek Sint-Martinus, Houthalen
+1862;New Sound
+1863;Stadsmuseum Doetinchem
+1864;Gemeentebestuur Borgloon
+1865;Staatsbibliothek Hamburg
+1866;Mestna knjižnica Grosuplje
+1867;People's Records
+1868;Trama Promções Artisticas
+1869;Documents; United Kingdom
+1870;J.L.Alvarez/Open Records
+1871;The Archaeological Heritage Agency of Iceland
+1872;Bergen Skolemuseum
+1873;Celtic Airs Records
+1874;Kerkfabriek Sint-Gertrudis Ternat
+1875;Museum der Landschaft Eiderstedt
+1876;DiaD Records
+1877;Legendary Legacy
+1878;Lithuanian Central State Archives
+1879;Museum Tuch + Technik
+1880;The Chester Beatty Library
+1881;Cygnus; United Kingdom
+1882;Hemsö fästning
+1883;Kizmet Records Uk Limited
+1884;Cinémathèque Royale de Belgique
+1885;Kerkfabriek Onze-Lieve-Vrouw Maagd der Armen, Leopoldsburg
+1886;Universitat de Girona. Biblioteca. Fons Bertrana
+1887;Limburgse Kastelen (limburgsekastelen.nl)
+1888;Petőfi Irodalmi Múzeum Budapest
+1889;Royal Botanic Garden Edinburgh; United Kingdom
+1890;7/8 Music Productions
+1891;Kerkfabriek Onze-Lieve-Vrouw Onbevlekt Ontvangen, Terkoest
+1892;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Kwaadmechelen
+1893;Mestna knjižnica Piran
+1894;Ameritz Music Ltd.
+1895;Kerkfabriek Onze-Lieve-Vrouw Onbevlekt Ontvangen, Aalst
+1896;Biblioteca Judeţeană "Alexandru şi Aristia Aman" Craiova
+1897;Generalitat de Catalunya. Arxiu Comarcal de l'Anoia
+1898;Kerkfabriek Sint-Stefanus, Millen
+1899;Rojas Jūras zvejniecības muzejs
+1900;Falcatruada
+1901;Fundacio Antoni Tapies http://www.fundaciotapies-ac.org/, DCA Project http://www.dca-project.eu/
+1902;Kerkfabriek Sint-Kristoffel, Opgrimbie
+1903;Ville de Paris
+1904;Archivo de la Corona de Aragón
+1905;Seydoni; Burkina Faso
+1906;Kerkfabriek Sint-Jozef, Halveweg
+1907;Lumi OMP
+1908;GOR
+1909;e-archivo Universidad Carlos III de Madrid
+1910;Nocd-Records
+1911;Roma II Limited / Empire Music Limited
+1912;Regionaal Archief Leiden
+1913;Aaltense Musea
+1914;Brambus Records; Switzerland
+1915;Biblioteca Palatina di Parma - CulturaItalia
+1916;Ortsmuseum zum Feld, Reigoldswil
+1917;Córdoba: Real Academia de Córdoba de Ciencias, Bellas Letras y Nobles Artes
+1918;Poštovní muzeum
+1919;Kerkfabriek Sint-Albertus, Zwartberg
+1920;Kerkfabriek Onze-Lieve-Vrouw van Banneux, Hasselt
+1921;Lupulus
+1922;Dat ole Hus
+1923;Iris Music Group; Germany
+1924;Mediterráneo Music Latino
+1925;Município de Vila Nova de Famalicão
+1926;Fantasia Musiek
+1927;Kerkfabriek Heilig Kruis Runkst, Hasselt
+1928;Kerkfabriek Sint-Genoveva, Zepperen
+1929;Kerkfabriek Sint-Hubertus, Runkst
+1930;Kerkfabriek Sint-Theresia, As
+1931;Kerkfabriek Sint-Ursula, Eigenbilzen
+1932;Staatsbibliothek zu Berlin - Preußischer Kulturbesitz - Handschriftenabteilung
+1933;Stedelijk Museum Aarschot
+1934;General Secretariat for Culture, Hellenic Ministry of Education and Religious Affiars, Culture and Sports Γενική Γραμματεία Πολιτισμού, Υπουργείο Παιδείας και Θρησκευμάτων, Πολιτισμού και Αθλητισμού
+1935;Guitarra Brasileira Produções Artisticas
+1936;Kingston Records
+1937;1Compose Memories
+1938;FlowCenter
+1939;'de Rand' vzw
+1940;Academie voor de Streekgebonden Gastronomie
+1941;Ciclo 3; Argentina
+1942;Fundación Hospital de Benasque
+1943;Kerk Sint-Amandus Stokrooie, Hasselt.
+1944;Kerkfabriek Sint-Martinus, Genoelselderen
+1945;Academy of Athens - Research Center for the Study of Modern Greek History / Ακαδημία Αθηνών - Κέντρο Ερεύνης της Ιστορίας του Νεωτέρου Ελληνισμού
+1946;Pastorie van de kapelanij Onze-Lieve Vrouw van Fatima, Essenhout
+1947;CNR - Consiglio Nazionale delle Ricerche
+1948;Internet Archive (archive.org)
+1949;JM Music
+1950;Sugakane Enterprise
+1951;Valdresmusea
+1952;Fondazione Centro Studi Aldo Capitini\n\t\t\n\t\t
+1953;Kerkfabriek Onze-Lieve-Vrouw-Boodschap Klein-Gelmen, Heers
+1954;Kerkfabriek Sint-Martinus, Tessenderlo
+1955;EuropeanaLocal Romania
+1956;Jubilee
+1957;Barbaraville
+1958;Kerk Heilig Kruis, Korbeek-Lo
+1959;Kerkfabriek Sint-Laurentius, Brustem
+1960;Zoölogisch Museum Amsterdam
+1961;Kerkfabriek Sint-Lambertus, Kiewit
+1962;Maghreb Music
+1963;Oriente Musik; Germany
+1964;CISA -Interdipartimental Center for Archaeology
+1965;Copyright Group
+1966;Vision 21 OMP
+1967;Hunedoara County Library
+1968;Musée Arlaten
+1969;Byhistorisk samling
+1970;Kerkfabriek Sint-Jan Baptist de la Salle, Boksbergheide
+1971;e-spacio UNED
+1972;EMAF(European Media Art Festival, Osnabrueck)
+1973;Kerkfabriek Sint-Hubertus, Kanne
+1974;Bogstad
+1975;Bulgaria and the Slavic Peoples - 2
+1976;Kerkfabriek Sint-Lambertus, Neeroeteren
+1977;Knjižnica Mozirje
+1978;Stadtmuseum Schleswig
+1979;Vlechtwerkmuseum De Wissen
+1980;Kerkfabriek Sint-Augustinus Beert
+1981;Kerkfabriek Sint-Hubertus, Membruggen
+1982;Nordmøre Museum
+1983;Producciones AR
+1984;Regione Marche / SchedeS:FM
+1985;Stadsarchief Diest
+1986;Deep ARCO
+1987;Francis A. Countway Library of Medicine (archive.org)
+1988;Kerkfabriek Sint-Pancratius, Zelk
+1989;Centre nationale du cinéma et de l’image animée
+1990;Kerkfabriek Sint-Jozef, Rapertingen
+1991;Technical Chamber of Greece regional department of Corfu - Digital Library SCHERIA http://lib.teekerk.gr
+1992;Kulturnett Møre og Romsdal
+1993;Living Earth Music
+1994;2gs Records
+1995;Avang
+1996;Kerkfabriek Sint-Martinus, Hasselt
+1997;Sound Freedom
+1998;Warm Up
+1999;FBK - Fondazione Bruno Kessler
+2000;Hoogheemraadschap van Schieland en de Krimpenerwaard
+2001;Kerkfabriek Onze-Lieve-Vrouw van de Vrede, Lutselus
+2002;Open Sky Records
+2003;Rama Lama
+2004;World Domination Music
+2005;Rietavo Oginskių kultūros istorijos muziejus / Culture History Museum of Rietavas Oginskiai
+2006;Scouts en Gidsen Museum
+2007;Regione Marche / SchedeSTS
+2008;Amulet Records
+2009;Discoloco
+2010;University of Pennsylvania Libraries (archive.org)
+2011;Østfoldmuseene
+2012;Future Noise Music Ltd
+2013;Industriemuseum Elmshorn 
+2014;Kerkfabriek Onze-Lieve-Vrouw, Brelaar-Heide
+2015;Medobčinska splošna knjižnica Žalec
+2016;Som Livre
+2017;The Sound Pipe Records
+2018;Vrienden van het Begijnhof van Sint-Truiden vzw
+2019;Visual Dimension bvba
+2020;Indies Scope Records
+2021;Kelly - University of Toronto (archive.org)
+2022;Kerkfabriek Sint-Lambertus, Sint-Lambrechts-Herk
+2023;Music Mecca; United Kingdom
+2024;The Cyprus Institute - STARC, Cyprus Folk Art Museum
+2025;Xanadu Records
+2026;Charly Records
+2027;Kerkfabriek Sint-Trudo, Wijchmaal
+2028;Plaza Mayor
+2029;AnimaMundi Edizioni
+2030;Kerkfabriek Sint-Job, Bolderberg
+2031;Qualiton - Doron Music
+2032;Randsfjordmuseene AS
+2033;Cyprus Folk Art Museum, The Cyprus Institute-STARC
+2034;Erfgoedcel Leuven
+2035;Museum Laufental
+2036;Paul Joubert Music
+2037;The Cyprus Institute-STARC, Cyprus Folk Art Museum
+2038;UNEP-WCMC, Cambridge (archive.org)
+2039;Archeotransfert
+2040;Chi-Qi Ltd.
+2041;Deutsches Sport & Olympia Museum
+2042;Ninth World Music/VME
+2043;Roméo Records / Qualiton Imports, Ltd.
+2044;Державний політехнічний музей 
+2045;Istituto Conestabile Piastrelli
+2046;Biblioteka Cyfrowa Katedry Lingwistyki Formalnej Uniwersytetu Warszawskiego
+2047;Espacial; Portugal
+2048;Kerkfabriek Sint-Lambertus, Neerharen
+2049;Interra Records
+2050;eSbirky
+2051;Next Music
+2052;Osterøy Museum
+2053;The National Archives of Sweden
+2054;A.I. Records Kenya Ltd.
+2055;Kerkfabriek Sint-Paulus, Lanklaar
+2056;Muzeum Sztuki w Łodzi
+2057;Stadsmuseum ‘De Hofstadt’ Diest
+2058;Casa Ric - Baronía de Valdeolivos
+2059;Matična knjižnica Kamnik
+2060;Norsk Sagbruksmuseum
+2061;Discos CNR; Netherlands
+2062;EHA Productions
+2063;OBH Musikverlag
+2064;Classic Art
+2065;Memoriav - RTS
+2066;Meta / Pasarela
+2067;PANARECORD
+2068;Regione Marche / SchedePG
+2069;Plenum Vox; France
+2070;Kerkfabriek Sint-Petrus, Gingelom
+2071;Pôle Accordéons
+2072;Spillumbruket
+2073;Kansalliskirjasto - The National Library of Finland
+2074;Kerkfabriek Sint-Jozef, Kuringen-Tuilt
+2075;Kerkfabriek Sint-Laurentius, Wurfeld
+2076;Rallarvegen
+2077;Tana og Varanger Museumssiida
+2078;Goldfarb Library, Brandeis University
+2079;Vidisco
+2080;Bezoekerscentrum De Lieteberg
+2081;Cascade-Medien
+2082;Gemeente Dilbeek
+2083;National Library of the Udmurt Republic
+2084;Stadtgalerie Kiel
+2085;Cluj County Centre for the Preservation and Promotion of Traditional Culture
+2086;DArIL: Digital Archive of Inaugural Lectures at Renaissance and Early Modern Universities
+2087;Errabal
+2088;Fylkesgalleriet; Museet Midt
+2089;Protasis
+2090;SEMPLICE records (Record Label); Lithuania
+2091;Aleksandro Stulginskio universiteto muziejus
+2092;Kerkfabriek Sint-Jan de Doper, Paal
+2093;Kerkfabriek Sint-Lucia, Engsbergen
+2094;Select Music
+2095;CMG
+2096;Shangali Records
+2097;TUTM
+2098;Zgodovinski arhiv Celje
+2099;Kerkfabriek Sint-Petrus, Lauw
+2100;Knjižnica Makse Samsa
+2101;NIGLO
+2102;Herinneringscentrum Kamp Westerbork
+2103;Herzog August Bibliothek Wolfenbüttel
+2104;MúzeumDigitár
+2105;Umbruch Bildarchiv Berlin
+2106;Central Library of the Bulgarian Academy of Sciencess
+2107;D+3
+2108;DBC Records
+2109;Generalitat de Catalunya. Arxiu Comarcal de l'Alt Empordà
+2110;Museu Nacional de Machado de Castro
+2111;Zavod za varstvo kulturne dediščine Slovenije, OE Novo mesto
+2112;Colibri Music
+2113;Geschied- en heemkundige kring van Landen
+2114;Hedmarksmuseet
+2115;Research Library, The Getty Research Institute (archive.org)
+2116;Royal Irish Academy
+2117;Rhythm Records
+2118;University of Copenhagen; Denmark
+2119;City Records
+2120;DNA Productions
+2121;Sense World Music; United Kingdom
+2122;Fondazione Fabbrica Europa per le Arti Contemporanee, FFEAC, Italia
+2123;Kunsthalle zu Kiel 
+2124;Музей истории Казанского государственного университета / Museum of History of the Kasan State University
+2125;A. ir J. Juškų etninės kultūros muziejus
+2126;Akkiraz Müzik Film Yapım
+2127;Desert Rock Records
+2128;Dorfmuseum Schacht-Audorf
+2129;Kerkfabriek Onze-Lieve-Vrouw Maagd Der Armen (Bilzen, Schoonbeek)
+2130;Kerkfabriek Sint-Anna, Mechelen-Bovelingen
+2131;Kerkfabriek Sint-Gertrudis, Beverst
+2132;Museo Nacional del Prado
+2133;New York Public Library (archive.org)
+2134;Open Monumentenvereniging Herisemvrienden vzw
+2135;Vampi Soul
+2136;Kerkfabriek Onze-Lieve-Vrouw, Wilderen
+2137;Leicester Arts & Museums Service, Leicester City Council
+2138;Vast-Lab
+2139;Augusta Raurica
+2140;Conservation Centre Kanut / Kadriorg Art Museum
+2141;Dienst Cultuur Dilsen-Stokkem
+2142;Tauragės krašto muziejus
+2143;The National Archives of Latvia
+2144;Balatoni Múzeum
+2145;Crawford Gallery
+2146;Fondazione Cerratelli
+2147;Indigenous Records
+2148;Ivory Music Ltd
+2149;Lubican Records
+2150;Theater Instituut Nederland
+2151;DREANDAS
+2152;Molėtų krašto muziejus
+2153;Museo Arte e giacimenti Minerari- Sapienza University Rome
+2154;Connoisseur Records
+2155;DaHype Records; Belgium
+2156;Brill
+2157;Deep Listening
+2158;Grenselandsmuseet Kirkenes
+2159;Kerkfabriek Sint-Dionysius, Gotem
+2160;Atavistic
+2161;Gaztelupeko Hotsak
+2162;Great Value Music
+2163;EWM-Music; Netherlands
+2164;Jugendstilsenteret
+2165;Kerkfabriek Sint-Jan, Kuringen
+2166;Ontario Ministry of the Environment (archive.org)
+2167;Open Records/Countdown Media
+2168;Sylter Heimatmuseum Söl'ring Foriining Sylter Verein e.V.
+2169;Ukmergės kraštotyros muziejus
+2170;University de Valencia
+2171;Andy Fortuna Productions
+2172;Kerkfabriek Sint-Willibrordus, Meldert
+2173;State Leo Tolstoy Museum
+2174;Centro de documentação 25 de Abril da UC
+2175;Lietuvos liaudies buities muziejus / Open-Air Museum of Lithuania
+2176;Musée des instruments de musique
+2177;Sergent Major Company
+2178;Detlefsen-Museum im Brockdorff-Palais
+2179;Gavino Music
+2180;Rob Mullins Entertainment
+2181;Регионална библиотека Дора Габе - Добрич / Public Library - Dobrich
+2182;Circular Records
+2183;DISIT Lab, University of Florence, Italy
+2184;Bridge To Entertainment
+2185;Eole
+2186;Kasba Music, S.L.; Spain
+2187;Redrock Records
+2188;Vestfoldarkivet
+2189;Lokalhistorisk Arkiv Engesvang
+2190;Your Favourite Records
+2191;Ørre-Sinding Sognearkiv
+2192;Count Melody
+2193;Gradska knjiznica Rijeka
+2194;Nasjonalmuseet, arkitektursamlingene
+2195;Pinneberg Museum 
+2196;Earthbeat! Records
+2197;Flea Market Music, Inc.
+2198;Katholieke Universiteit Leuven - Faculteit Psychologie en Pedagogische Wetenschappen
+2199;Levanger museum
+2200;Tårnby Stads- og Lokalarkiv 
+2201;Vestnorsk utvandringssenter
+2202;Art Gallery of Kazanlak
+2203;Associació de Mestres Rosa Sensat
+2204;Kerkfabriek Sint-Jacobus, Schurhoven
+2205;Heimat- und Handwerksmuseum Wahlstedt in der Volkshochschule Wahlstedt e.V.
+2206;Red Kite Records
+2207;Soho 1 Records
+2208;Musée de l'Hospice Comtesse
+2209;Universitetet i Agder
+2210;Classic Hits OMP
+2211;Generalitat de Catalunya. Arxiu Històric de Tarragona
+2212;Kerkfabriek Sint-Rochus, Ulbeek
+2213;Kerkfabriek Sint-Theodardus, Beverlo
+2214;Vrienden van de Sint-Jacobskerk
+2215;Musée des musiques populaires
+2216;Zolad+
+2217;Avik
+2218;Hammondbeat Records
+2219;4Play Recordings Ltd.
+2220;Bogalusa Records
+2221;Industriemuseum Waldenburgertal IMW
+2222;Jamal Records
+2223;Provincie Gelderland
+2224;Alytaus kraštotyros muziejus
+2225;Kecskemétfilm Kft.
+2226;Kerkfabriek Sint-Kristoffel Runkst, Hasselt
+2227;Lepramuseet St. Jørgens hospital
+2228;Soundies
+2229;The National Library of Republic of Karelia
+2230;Vilkaviškio krašto muziejus / Vilkaviškis Area Museum
+2231;-
+2232;Athena R.I.C., ILSP, Xanthi, (former Cultural and Educational Technology Institute (CETI) )
+2233;Contraseña Records
+2234;Golden Cage Music
+2235;Stjørdal museum Værnes
+2236;Dinemec Jazz
+2237;Harold B. Lee Library (archive.org)
+2238;Holokauszt Dokumentációs Központ és Emlékgyűjtemény Közalapítvány
+2239;Museum Eckernförde
+2240;Norsk Jernbanemuseum
+2241;Verso
+2242;Black Point Records
+2243;Fondazione Cineteca Italiana
+2244;Kerkfabriek Sint-Saturninus, Mielen-boven-Aalst
+2245;EMI Pakistan Ltd; Pakistan
+2246;Gemeentearchief Bocholt
+2247;JDub Records
+2248;Joyfull Strings Music
+2249;Nord-Troms museum
+2250;iPlay
+2251;Fundación Francisco Giner de los Ríos
+2252;Knjižnica Laško
+2253;Manx National Heritage
+2254;John Adams Library at the Boston Public Library (archive.org)
+2255;Kerkfabriek Sint-Lutgardis, 't Hasselt
+2256;Lantower Records
+2257;Afrodisia
+2258;Difference Entertainment, Lda
+2259;FullFill
+2260;Institut fur Papierrestaurierung Schloss Schonbrunn Mag. Markus Klaszund Mitgesellschafter
+2261;Kerkfabriek Sint-Lambertus, Veldwezelt
+2262;Knjižnica Duplek
+2263;Latvijas Nacionâlâ Bibliotçka
+2264;Old Sofia
+2265;P.M. Produccions
+2266;Slovak National Library
+2267;Museu Nacional do Azulejo
+2268;Butterfly Music
+2269;Hemsedal
+2270;Albemarle Records
+2271;Biblioteca Municipal Simões de Almeida (tio)
+2272;Box Tree Music
+2273;Kerkfabriek Sint-Jozef Werkman, Hoevenzavel
+2274;Park- og idrettsvesenet
+2275;Saarländisches Uhrenmuseum 
+2276;Cesar Productions
+2277;Doonaree
+2278;Fonda-Mental S.A.
+2279;Gebali Music
+2280;K-DISC
+2281;Maroela Musiek
+2282;Museum of Domestic Design & Architecture, Middlesex University
+2283;Pokrajinska in študijska knjižnica Murska Sobota 
+2284;Vyskupo Motiejaus Valančiaus gimtinės muziejus
+2285;187 Records
+2286;Kerkfabriek Salvator Mundi, Hamont-Achel (Hamont-Lo)
+2287;Kerkfabriek Sint-Willibrordus, Heusden
+2288;Leo Musiek
+2289;eheritage.si, Urbanistični inštitut Republike Slovenijeeheritage.si, Urbanistični inštitut Republike Slovenije
+2290;Boston College Libraries (archive.org)
+2291;CMC - CMC Associates Ltd.
+2292;Cacch a Smile Enterprises
+2293;Divine Arts-Ishq Records; United Kingdom
+2294;Heimatmuseum an der Mühle
+2295;Indies Records
+2296;Jugoslovenska Kinoteka
+2297;Trøndelag Folkemus
+2298;18 Chulos Records
+2299;ASC - York University Libraries (archive.org)
+2300;Beatfarm Recorders
+2301;Compose Music
+2302;Different World
+2303;Foto
+2304;Kretingos muziejus / Kretinga Museum
+2305;Air Music
+2306;Dorfmuseum Schacht-Audorf 
+2307;Ermitage Records
+2308;Gemeentebestuur Riemst
+2309;Humboldt-Universität zu Berlin; Germany
+2310;Museum der Landschaft Eiderstedt 
+2311;Fundacion Lazaro Galdiano
+2312;Gambit Records; Spain
+2313;Insideout
+2314;Kviteseid Bygdetun
+2315;Zona Música
+2316;Bankrobber
+2317;Bibus Music
+2318;First Music Publishing
+2319;Geschied- en Heemkundige Kring Groot Lummen
+2320;Hammer Musik
+2321;Kerkfabriek Onze-Lieve-Vrouw van het Hart, Bree
+2322;Kerkfabriek Sint-Jan Baptist, Schulen
+2323;National Gallery-Alexandros Soutzos Museum / Εθνική Πινακοθήκη-Μουσείο Αλεξάνδρου Σούτζου
+2324;Rising Records Ltd
+2325;DDS
+2326;Gemeentearchief Houthalen-Helchteren
+2327;Kerkfabriek Onze-Lieve-Vrouw Onbevlekt Ontvangen, Hulst
+2328;Shamrock-n-Roll, Inc.
+2329;Trama Promções Artisticas Ltda
+2330;Autumn Light Productions
+2331;Big Blue Records
+2332;Bø og Sauherad-piloten
+2333;Kitty-Yo
+2334;Music Now
+2335;Inner Eye Music
+2336;Kapel Onze-Lieve-Vrouw Onbevlekte Ontvangenis, Bierbeek
+2337;Kerkfabriek Heilig Hart, Korspel
+2338;Kerkfabriek Sint-Laurentius, Overrepen
+2339;Pacific High Productions
+2340;Rise Entertainment
+2341;Sans Bruit
+2342;Satélite K
+2343;Biržų krašto muziejus „Sėla“
+2344;Causing Change Music
+2345;Edicions Albert Moraleda
+2346;Elkar Xoxoa
+2347;Kerkfabriek Sint-Brigida, Koersel
+2348;Kystmuseet Hvaler
+2349;Native Expressions
+2350;Stupido Records
+2351;Canadian American/Caprice International
+2352;Enchiriadis
+2353;Northeastern University, Snell Library (archive.org)
+2354;Sogn og Fjordane Kunstmuseum
+2355;Chicken Madness Arts Group
+2356;Filmoteca Española
+2357;Kražių M. K. Sarbievijaus kultūros centro muziejus / Kražiai M. K. Sarbievijus Cultural Centre Museum
+2358;Nasjonalmuseet for kunst, arkitektur og design
+2359;Nationaal Archief Suriname
+2360;Norsk Farmasihistorisk museum
+2361;Les Productions Alain Morisod
+2362;Royal Museum for Central Africa; Belgium
+2363;Stormarnsches Dorfmuseum 
+2364;Absolute Music
+2365;Amores Grup de Percussió
+2366;Biblioteca Judeţeană "Astra" Sibiu
+2367;Biblioteca Judeţeană "Nicolae Iorga" Ploieşti
+2368;Chosen Few Emerald Entertainment/LB Records Inc.
+2369;Galletti-Boston; Italy
+2370;Hepta Trad
+2371;Kerkfabriek Sint-Alfons, Bommershoven
+2372;Kystkultur i Telemark
+2373;Künstlermuseum Heikendorf - Kieler Förde 
+2374;Museo Nazionale d'Arte Orientale
+2375;Ortsmuseum Frenkendorf
+2376;Osrednja knjižnica Srečka Vilharja Koper
+2377;Paleis Het Loo Nationaal Museum
+2378;Bit Music LLC
+2379;Centre de Documentació i Museu Tèxtil
+2380;Hellenic Maritime Museum / Ναυτικό Μουσείο της Ελλάδος
+2381;James Hardiman Library, NUI Galway
+2382;Knjižnica Kočevje
+2383;Next Music (Pty) Ltd
+2384;Regione Marche / SchedeNU
+2385;eheritage.si, Narodni muzej Slovenije, Urbanistični inštitut Republike Slovenije
+2386;Институт за литература Българска академия на науките
+2387;ASSETS
+2388;Allen County Public Library Genealogy Center (archive.org)
+2389;Biblioteca Museu Víctor Balaguer
+2390;Ediciones Bizarras
+2391;Gut Records
+2392;Huisje Mostinckx
+2393;Interkommunalt arkiv i Vest-Agder IKS (IKAVA)
+2394;Mutable Music
+2395;Princeton Theological Seminary Library (archive.org)
+2396;Rhythm World
+2397;Stadt Koln
+2398;Swit Records
+2399;Voiceprint
+2400;WRO Art Center
+2401;eheritage.si, Zgodovinski arhiv Ljubljana, Urbanistični inštitut Republike Slovenije
+2402;AEJ Music
+2403;Berg - Kragerø Museum
+2404;FAO Regional Office for Africa (archive.org)
+2405;Flamingo Records
+2406;Kerkfabriek Onze-Lieve-Vrouw ten Hemelopneming, Gorsem
+2407;Museu Nacional dos Coches
+2408;NordseeMuseum - Nissenhaus Museumsverbund Nordfriesland
+2409;RLPO Live
+2410;Österreichisches Filmmuseum
+2411;EGREM; Cuba
+2412;Mountain Records
+2413;Walter Stöhrer-Stiftung
+2414;Wellesley College Library (archive.org)
+2415;БГБ, Одељење старе и ретке књиге и књиге о Београду
+2416;Armada Music; Netherlands
+2417;Aumón
+2418;Karmsund folkemuseum
+2419;Lavangen kommune
+2420;Lofish Music
+2421;AI Records
+2422;Autoedita
+2423;Fondo Archivi delle arti applicate italiane del XX secolo  GNAM
+2424;Kerkfabriek Onze-Lieve-Vrouw der Kempen, Opglabbeek
+2425;Kerkfabriek Sint-Lambertus, Ham
+2426;Mountain Laurel Productions
+2427;El Volcán Música
+2428;Etoile Verte
+2429;Gobierno de Aragón
+2430;Kerkfabriek Sint-Gertrudis, Riksingen
+2431;Rīgas
+2432;Sur Sagar
+2433;Thulani
+2434;Variety Plus
+2435;Clovelly Recordings Ltd
+2436;Greenhouse Music; Germany
+2437;Kerkfabriek Onze-Lieve-Vrouw Onbevlekt Ontvangen, Tervant
+2438;Kerkfabriek Sint-Quintinus (Hees, Bilzen).
+2439;Secretaria Geral do Ministério das Finanças
+2440;Your Favourite Jazz
+2441;Big Thumb Records
+2442;Diputación Provincial de Huesca
+2443;Flynn and Flynn Music
+2444;Norsk kulturråd
+2445;Altfriesisches Haus Söl'ring Foriining Sylter Verein e.V.
+2446;Essential World Masters
+2447;Greenhaw Records
+2448;Heart of Gyaltsen Music
+2449;Kerkfabriek Sint-Martinus, Velm
+2450;OISE - University of Toronto (archive.org)
+2451;Bolero Records
+2452;Kerkfabriek Sint-Jacobus, Eversel
+2453;Lichtspiel - Kinemathek Bern
+2454;O+ Music
+2455;West Virginia University Libraries (archive.org)
+2456;Aagoo
+2457;AmeriMusic
+2458;Bachatero Records
+2459;Dance Plant Records Inc.; Canada
+2460;Evasion Musique SA
+2461;FM Groove
+2462;ILW Music
+2463;Oliver Sudden Productions
+2464;Toronto Public Library: Research and Reference Libraries (archive.org)
+2465;Uemura Bunko
+2466;University of Toronto (archive.org)
+2467;Ambia
+2468;BRO Recordings
+2469;Blue Art Records
+2470;Eagle Records
+2471;Editions Evasion Musique SA
+2472;Kandisa Music Production
+2473;Parochiehuis Drogenbos
+2474;Stiftelsen Musikkulturens Främjande
+2475;kerkfabriek Onze-Lieve-Vrouw Alsemberg
+2476;Eternal Sunday
+2477;Family Records
+2478;Gold Leaf Productions, Inc.
+2479;Menart / Music Net
+2480;The Johns Hopkins University Sheridan Libraries (archive.org)
+2481;Trysil folkebibliotek
+2482;Bamboo Gardens And Music
+2483;Biblioteca Judeţeană "I. S. Bădescu" Sălaj
+2484;Fania
+2485;Kerkfabriek Heilig Hart, Merem
+2486;Montrose Productions
+2487;Pneuma; Spain
+2488;Pubblikazzjonijiet Kamaleontici
+2489;Sjællands Stiftsbibliotek
+2490;Stilnovo
+2491;Elkar Herri Gogoa
+2492;Flora historielag
+2493;Flynn and Flynn Music/Chain Gang Label
+2494;Indies Happy Trails Records
+2495;Mestna knjižnica Kranj
+2496;Meta / Countdown
+2497;Quilombo Records
+2498;Academy Recordings
+2499;Ar Re Se
+2500;Garra Records
+2501;Hit Designers;Argentina
+2502;John Carter Brown Library (archive.org)
+2503;Knjižnica Rogaška Slatina
+2504;Lenniks Archief
+2505;Norsk Jernbanemuseums gjenstandssamling
+2506;On-The-Go Music
+2507;Tuff City
+2508;University of Ottawa (archive.org)
+2509;Voss Folkemuseum
+2510;Biblioteca Nazionale Centrale di Firenze
+2511;Blueazul Records
+2512;Dahiz Produccions
+2513;Drumzine
+2514;GOBI Music
+2515;IKA Møre og Romsdal
+2516;Knjižnica Velenje
+2517;Koninklijke Sint-Pietersgilde Mazenzele
+2518;New Mood Jazz
+2519;Stingray Music Group
+2520;Κέντρο Τεχνικού Πολιτισμού - Βιομηχανικό Μουσείο Ερμούπολης / Centre for Technical Culture - Industrial Museum Hermoupolis
+2521;Donato Soranno
+2522;Earth Music Network /Connaught Records
+2523;Ministério dos Negócios Estrangeiros | Instituto Diplomático | Divisão de Arquivo e Biblioteca
+2524;Música Global Discogràfica S.L
+2525;Regione Marche / SchedeEMI
+2526;Scientific and Technical Library of the National Aviation UniversityНаучно-техническая библиотека Национального авиационного университета
+2527;TON 4 Records
+2528;Ants
+2529;Bagn Bygdesamling
+2530;Bricio Productions
+2531;Candy Factory
+2532;Dos Almas
+2533;GRS West Music
+2534;HardKandy Records inc.
+2535;Invisible China
+2536;JuJu Recordings / Mahjong Music
+2537;Juozo Naujalio memorialinis muziejus
+2538;Knjižnica Toneta Seliškarja Trbovlje
+2539;Manchester Metropolitan University
+2540;Museum - Cyclorama “Kursk Battle. Belgorod Direction”
+2541;Musée Auguste Grasset
+2542;Muzej Miklova hiša
+2543;Penya
+2544;Poki Records
+2545;ProClassica
+2546;Simplyred.com; United Kingdom
+2547;Worpt Productions
+2548;Žemaičių muziejus „Alka“ / Samogitian Museum "Alka"
+2549;Aman Library
+2550;Arkivverket
+2551;Autoproduit
+2552;Du Records
+2553;Gary Smith Productions
+2554;Global Recording Artists
+2555;Godfather Productions
+2556;Helsingin yliopisto; Finland
+2557;Jazz at Lincoln Center
+2558;Knjižnica dr. Toneta Pretnarja Tržič
+2559;Koroški pokrajinski muzej
+2560;Pogus Productions
+2561;Vers ved vannvegen
+2562;Advanced Audio Productions
+2563;Alliance Records Copenhagen Ltd.
+2564;Altenburgh Records
+2565;BCA Music
+2566;Bibliotheek Genk
+2567;Bibliotheek Herk-De-Stad
+2568;Chyme Music/Outlet Recording
+2569;David Ferreira Investidas Editoriais LDA
+2570;Erfgoed Leiden en omstreken
+2571;Harmony Creations Limited
+2572;Hydrophonics
+2573;KK-klassisk samling
+2574;Kerkfabriek Sint-Lambertus, Grote-Spouwen
+2575;Kerkfabriek Sint-Paulus, Heeserbergen
+2576;Kerkfabriek Sint-Petrus en Paulus, Vroenhoven
+2577;Kulturno društvo Koral Laško
+2578;MDR Records
+2579;Norsk Oljemuseums samling i Primus
+2580;Ontario Ministry of Natural Resources Library (archive.org)
+2581;SherBamate
+2582;Studio Paradiso
+2583;T-cophony
+2584;Also Productions
+2585;Brana Records
+2586;D'Autore
+2587;DLP Digital
+2588;Foehn Records; Spain
+2589;Fruitcake
+2590;Generalitat de Catalunya. Arxiu Comarcal del Pallàrs Sobirà
+2591;Hamaya International Cameroun
+2592;Heemkundig Genootschap "van Witthem" Beersel
+2593;Hō'oli Productions
+2594;Internet Culturale - Biblioteca Universitaria Alessandrina
+2595;LoudMouthMusic
+2596;Merab Mamardashvili Foundation
+2597;NTM
+2598;Regionální muzeum a galerie v Jičíně
+2599;Tandem Music Group
+2600;Ādolfa Alunāna memoriālais muzejs
+2601;Emmtee Music
+2602;Grasland
+2603;Kerkfabriek Sint-Willibrordus, Herent
+2604;Rowa Records
+2605;Turmic Records
+2606;UHB-fotosamling
+2607;Ulefos Hovedgaard
+2608;Arsis Classics
+2609;Black Flame
+2610;Brettian Productions
+2611;DIS-Norge
+2612;DXPLIVE, Inc.
+2613;Dancetera
+2614;DigtaltMuseum
+2615;Eidsvoll1814
+2616;Etcetera Records; Netherlands
+2617;Gato Loco Productions
+2618;Ke'alohi Corporation
+2619;Music Trends Records
+2620;Propaganda pel Fet!
+2621;Soli Deo Gloria
+2622;Ulefoss Kulturarv
+2623;Univ. of Mass Medical School, Lamar Soutter Library (archive.org)
+2624;Belfagor Label
+2625;Biograph Records
+2626;Black Soul International Records
+2627;Cavernjatt Records
+2628;Chord Records
+2629;Društvo Adria Classic, Koper
+2630;Fairewood Studios
+2631;Feuerwehrmuseum Schleswig-Holstein 
+2632;Footmovin'
+2633;Guiraman Records
+2634;Knitting Factory Records
+2635;LMU
+2636;Limbo Starr
+2637;National Technical University of Ukraine «Kyiv Polytechnic Institute», Scientific and Technical Library after G.Denisenko
+2638;Oxygen Music
+2639;The Maksymovych Scientific Library of the Taras Shevchenko Kyiv National University
+2640;The Sound Of Everything
+2641;Vest-Agder Fylkeskommune
+2642;Vilkaviškio krašto muziejus
+2643;booxbox inc.
+2644;Alfmar Records
+2645;Associazione Thèm Romanó
+2646;Badene
+2647;Big Eye
+2648;Bø Museum
+2649;FMU
+2650;Galaktika Magazin
+2651;Ginger Girl Records
+2652;Goriški literarni klub GOvoRICA
+2653;Historisch Museum "De Scheper"
+2654;Hollier
+2655;ILK Music/VME
+2656;Kerkfabriek Maagd der Armen, Mariaheide
+2657;La Cineteca del Friuli
+2658;Leo Baeck Institute Archives (archive.org)
+2659;Los Años Luz Discos
+2660;MEPL
+2661;Música Das Esferas
+2662;Músicas de Salitre
+2663;Norsk Selskap for Skibbrudnes Redning; Norsk Maritimt Museum
+2664;PPL Production
+2665;Riga Recording Studio, Ltd
+2666;Bamboo Alchemy Instruments
+2667;Delfon Recording Society
+2668;Direct Distribution
+2669;HF - Hadeland Folkemuseum
+2670;Heptown Records
+2671;Larger Than Life
+2672;Marilyn Records
+2673;Poley Records
+2674;Research Library of the National Pedagogical University after M.P. Dragomanov
+2675;Starz Music
+2676;Sunrise Marinov
+2677;kassert materiell
+2678;Bass Lion
+2679;Central Scientific Library of V.N. Karazin Kharkiv National University
+2680;Comhaltas Ceoltóirí Éireann
+2681;Dejavu Record Company
+2682;Duke University Libraries (archive.org)
+2683;Enric Barbat / K Digital
+2684;Fabulous
+2685;Kerkfabriek Sint-Martinus, Mettekoven (Heers)
+2686;Lounge Music Records
+2687;MAA
+2688;Michel Bühler
+2689;Museu de Évora
+2690;Musica De Andalucia Ahuarira
+2691;New Net Music
+2692;Shams Records
+2693;Statens naturoppsyn
+2694;Stay Gold Records
+2695;Techniche Label OMP
+2696;Avanticlassic
+2697;Bayou Productions
+2698;Canadian American Records
+2699;Factual Fabrications
+2700;Flamenco Vision
+2701;ICM & Ard-Media
+2702;Intelligent Music, Inc.
+2703;International Music Emporium
+2704;Joseph Pecoraro
+2705;M.O.D.A. - Music Fashion
+2706;Marijampolės kraštotyros muziejus
+2707;Medici Classics Productions
+2708;Norsk Trikotasjemuseum
+2709;Pokrajinski arhiv Maribor
+2710;Unheard Music Series / Atavistic
+2711;Universitat de Girona. Biblioteca
+2712;Verdensarvsenter for bergkunst - Alta Museum IKS
+2713;Wolverhampton Archives & Local Studies
+2714;expo.acrosslimits.com
+2715;Afro Vibes Records
+2716;Brown University Library (archive.org)
+2717;CLARA
+2718;Caimán Records / Producciones Malditas
+2719;California Academy of Sciences Library (archive.org)
+2720;EXworks Records
+2721;Espectro Enterprises, LLC
+2722;Fondo Adolfo De Carolis  GNAM
+2723;Gemeentebestuur Diepenbeek
+2724;Holmestrand Museum
+2725;KORO; Kunst i offentlige rom
+2726;Kerkfabriek Sint-Lambertus (Alt-Hoeselt, Hoeselt).
+2727;Kerkfabriek Sint-Remigius, Waltwilder
+2728;Knjižnica Lenart
+2729;Landesfilmsammlung BW
+2730;Militant Muzic
+2731;Mugar Memorial Library, Boston University (archive.org)
+2732;Nationaal Bevrijdingsmuseum 1944-1945
+2733;Nils Aas Kunstverksted
+2734;Stad Vilvoorde
+2735;Strip Sounds
+2736;University Library, University of North Carolina at Chapel Hill (archive.org)
+2737;Wittgenstein Archives at the University of Bergen (WAB)
+2738;2morrow Records
+2739;Archivo Histórico Nacional
+2740;Beegum
+2741;Berg Kragerø Museum
+2742;Brandeis University Libraries (archive.org)
+2743;CMD Records
+2744;Carline Productions
+2745;DNA Labs
+2746;GBA
+2747;Hatikvah Music
+2748;Herbert-Gerisch-Stiftung
+2749;Historische Kring Huessen
+2750;Hordaland fylkesarkiv
+2751;Hungaria Records Inc.
+2752;Hybrid Music
+2753;IKA Trøndelag
+2754;KMT Records
+2755;Kleztet Records
+2756;Kražių M. K. Sarbievijaus kultūros centro muziejus
+2757;Lindesnes
+2758;Living Music India Ltd
+2759;Michelle Featherstone Music
+2760;Ministère de la Culture
+2761;Munchmuseet
+2762;Nuova Canaria
+2763;Other Electricities
+2764;Pilegrimssenter Dovrefjell
+2765;Poema
+2766;Potenza Music
+2767;Pursuance Records
+2768;Quire of Voyces
+2769;The University of Western Ontario, Western Archives (archive.org)
+2770;Wink Martindale Enterprises, Inc.
+2771;YES
+2772;eheritage.si, Narodna galerija Slovenije, Urbanistični inštitut Republike Slovenije
+2773;ABM Artists
+2774;AMP Recordings
+2775;Artwork Media
+2776;Chromatic Enterainment
+2777;Decima
+2778;Gemeenschapscentrum Grote Sleutel Alsemberg
+2779;Green Bay Records, Inc.
+2780;Hedmark fylkesbibliotek
+2781;Itm 2000
+2782;Kulturminneåret 2009
+2783;Museet Midt
+2784;Museo Nazionale del Cinema
+2785;Museu de Lamego
+2786;Music For Dreams
+2787;Opplandsarkivet avd. Maihaugen
+2788;Original Future Sounds
+2789;Valvasorjeva knjižnica Krško
+2790;Xingra
+2791;ZE Records
+2792;AQP Collective
+2793;Adnap Records
+2794;Aim Records
+2795;Baga-Biga Musika Ideiak
+2796;Balik Farm
+2797;Bermuda Reefs Records
+2798;Brutal Noise/Ramhaus
+2799;Cinevox; Italy
+2800;Cottonwood Music LLC
+2801;Del Palo/K-Industria
+2802;Folk Era
+2803;Full Circle Press
+2804;Gardenia Discos
+2805;Gonzalo Aloras
+2806;Heavenly Music for Earthly Eve
+2807;K Digital
+2808;Kima Exclusive Entertainment
+2809;Kulturhistorischer Verein Ettingen
+2810;Moravskoslezská vědecká knihovna v Ostravě, příspěvková organizace
+2811;Museu Monográfico de Conimbriga
+2812;National Library of Scotland (archive.org)
+2813;Official Seal Records
+2814;Phonolab
+2815;Quite Scientific Records
+2816;TerhorstNet (terhorstnet.nl)
+2817;True Azul Music
+2818;Assembleia da República
+2819;CMR Moongate Records
+2820;Celestio
+2821;Diquela Records; Spain
+2822;Discos Fuentes / Miami Records
+2823;Eastern Promise Records
+2824;El Ejemplo Music / Musica De La Calle
+2825;Espace Plaisirs
+2826;Frecuencia 13:20 Records
+2827;Hedmark fylkeskommune, Kulturvernseksjonen
+2828;In Print Records
+2829;Jazz Heritage
+2830;Kerkfabriek Sint-Martinus, Groot-Gelmen
+2831;Kerkfabriek Sint-Quintinus, Gelinden
+2832;Knjižnica dr. Marje Boršnik Borovnica
+2833;Monster Records
+2834;Movieplay Do Brasil
+2835;Music Network
+2836;Musée National des Douanes
+2837;Old Fart Records
+2838;Qualiton - Fleur De Son
+2839;Robert M. Dominy
+2840;Sciopero Records
+2841;Smøla museum
+2842;Sporveismuseet
+2843;Violipiano Records
+2844;WPR Music
+2845;ZUM Records
+2846;Zanfonia / K Digital
+2847;15th and Brown Entertainment
+2848;51 Lex Records Ltd
+2849;AKA Records; South Africa
+2850;Association Musique dedans dehors
+2851;Bavaro
+2852;Beagletone
+2853;Big Plain Records
+2854;Bip-Hop
+2855;Blue Saphir
+2856;Calliope Music
+2857;Century Records
+2858;De Heibergske Samlinger
+2859;Diamante
+2860;Dug Up Music; United Kingdom
+2861;Evenadam Media
+2862;Fernando Blanco
+2863;FocalPoint Records
+2864;Gary Arbuthnot
+2865;Global Music Centre; Finland
+2866;Gudbrandsdalsmusea
+2867;Hands On Music
+2868;Hollywood Klezmer
+2869;Humppa Records / Stupido Records
+2870;K-DISC / SCRUM STAFF Inc.
+2871;Kayax Production
+2872;Kerkfabriek Sint-Andreas, Runkelen
+2873;Kerkfabriek Sint-Joris, Alken
+2874;Knjižnica Josipa Vošnjaka Slovenska Bistrica
+2875;Licanus
+2876;Mona Lisa Sound, Inc.
+2877;Museum Heidi Weber Centre le Corbusier
+2878;NF Dokumentasjon
+2879;Naked Productions
+2880;O+ Evolution
+2881;PCR / Grownup Records
+2882;Primeros Pasitos
+2883;Red Admiral Records
+2884;Red Lightnin Records
+2885;Rockseed Records
+2886;Ruf Records
+2887;Sleeveless Records
+2888;Sparkassenstiftung Schleswig-Holstein 
+2889;Spitze! Productions
+2890;Tangible Music
+2891;Tetrapod Recordings
+2892;The Rembrandt Label
+2893;Tradition
+2894;Triple Stamp Records
+2895;440 Records, LLC.
+2896;Akershus fylkesmuseum
+2897;Awareness
+2898;Bush Music
+2899;Cash Mattock Inc. / CMI Records
+2900;Centre Excursionista de Catalunya
+2901;Classic D'Or
+2902;Divine Arts-Yatra; United Kingdom
+2903;Flor de Serena Records
+2904;Generalitat de Catalunya. Arxiu Comarcal de la Conca de Barberà
+2905;Giselle Records
+2906;Grace Notes Productions Records
+2907;Griffin / Qualiton Imports, Ltd.
+2908;Harp Guitar Music
+2909;Intune Records
+2910;Irie Records; Germany
+2911;Kamlee Records Ltd (Uk)
+2912;Laterne Tonträger
+2913;Mountain/GSE
+2914;Museu de Alberto Sampaio
+2915;Musik Live Records
+2916;Oslo yrkesskole (Elvebakken videregående skole)
+2917;Pagodamusic
+2918;Palau Musica Catalana
+2919;Plan- og bygningsetaten, byplankontoret
+2920;Planet Bollywood / Empire Music Limited
+2921;RDP Music
+2922;Ressonadors
+2923;Saarländisches Bergbaumuseum 
+2924;Smilax Records
+2925;Sudaca Power
+2926;The Bancroft Library (archive.org)
+2927;V. Mykolaičio-Putino memorialinis butas-muziejus
+2928;VEE Records
+2929;Vojaški muzej Slovenske vojske
+2930;Wrong Records
+2931;Yurican Music
+2932;Институт за български език при БАН
+2933;Acoustic World Records
+2934;Adrum Productions
+2935;Alberto Caracciolo
+2936;Aquarian Nation Records
+2937;Arax
+2938;At the Primitive Rhythm
+2939;BHL-US
+2940;Browne Bag Productions
+2941;Buddy Records/Good-Day Co., LTD.
+2942;Creative Associates / Bis Music
+2943;DjobiNow Publishing LLC
+2944;Drive Archive
+2945;EDJ Productions
+2946;Earth Orbit Music
+2947;Ebbeson Records
+2948;Fat Carrot Productions
+2949;Femitone
+2950;Floroven
+2951;Glenwild Records
+2952;Gotta Be Music
+2953;Gumalaka
+2954;Güasa Records/K-Industria
+2955;ILM Records, Inc.
+2956;Igloo
+2957;Jackalope Records
+2958;Kbaret Music; Mexico
+2959;Khnoum Music Productions
+2960;Knjižnica Antona Sovreta Hrastnik
+2961;Kross Kolor Records; Gyuana
+2962;Lincoln Financial Collection (archive.org)
+2963;Love Records USA
+2964;Low Transit Industries
+2965;MFLP
+2966;Menart Slovenia
+2967;Merab Mamardashvili Foundtion
+2968;Merchant
+2969;Mississauga - University of Toronto (archive.org)
+2970;Muse Eek Publishing
+2971;Music Trends, Inc.
+2972;NRM Music
+2973;Nordøsterdalsmuseet
+2974;North Records
+2975;Ode Records
+2976;Parriscope Entertainment, Inc
+2977;Procom  DIscos
+2978;Sandefjordmuseene
+2979;Sin-Drome Records
+2980;Storfjord kommune
+2981;Strokeland Records
+2982;Studio MATOUŠ
+2983;The Highwaymen
+2984;Ululani Records
+2985;Univerzitetna knjižnica Maribor
+2986;VPS Entertainment
+2987;Volkskunde Museum Schleswig Stiftung Schleswig-Holsteinische Landesmuseen Schloss Gottorf
+2988;WPR Jazz Luxembourg
+2989;Watermelon Music
+2990;Wigmore Hall Live; United Kingdom
+2991;labelmusic.eu
+2992;A Regueifa Plataforma
+2993;A'Costao Records/K-Industria
+2994;ABM-utvikling
+2995;AD Music
+2996;Adelphi Records
+2997;Alfonso Vilallonga
+2998;Apricot Records
+2999;Artful Records
+3000;Backtalk Unlimited
+3001;Banjo Jazz Records
+3002;Baroque Records; United Kingdom
+3003;Base Point Media
+3004;Bergen Byarkiv
+3005;Brazilmúsica!
+3006;Clear Pond Music
+3007;Coinhead Studios
+3008;Creative Associates / Caribe Productions Inc.
+3009;DBC GmbH Switzerland
+3010;DHW Records
+3011;Dakotah Records
+3012;Damba / K digital
+3013;Dancetera 1001
+3014;Del Mate
+3015;Detlefsen-Museum im Brockdorff-Palais 
+3016;Doublemoon Records; Turkey
+3017;Effervescent Music And Records
+3018;Ellen Lebowitz
+3019;Equinoxe Reords
+3020;Escuela De La Calle
+3021;Fapman Records
+3022;Femme Sutil / New Mood Jazz
+3023;Ferment Sp. Zo.o.
+3024;Folksinger
+3025;Fondazione Centro Studi Rinascimento Musicale
+3026;Funk Nación Records / K Industria Cultural
+3027;Harare Management
+3028;Historic Scotland
+3029;ICAB
+3030;Idest/Qwa
+3031;Ishba Music
+3032;Izzy Gold Records
+3033;Jim Bianco
+3034;Jules Jazz
+3035;Kapel van Ter Hilst
+3036;Kerkfabriek Onze-Lieve-Vrouw Geboorte, Berbroek
+3037;Lakehouse Music
+3038;Larvik Museum - avd av Vestfoldmuseene IKS
+3039;Malvón Records
+3040;Mescal
+3041;Museu do Chiado-Museu Nacional de Arte Contemporânea
+3042;Niamh Fahy
+3043;Ouvirmos
+3044;Penya Africa
+3045;RDM-Porsáŋggu Musea/Porsanger Museum
+3046;Scott - York University Libraries (archive.org)
+3047;Scraggly Records
+3048;Shalimar Records
+3049;Sinnamon Records
+3050;The State Scientific and Pedagogical Library of Ukraine after V. Sukhomlynskyi
+3051;Thinker Thought Records
+3052;Tribb Records
+3053;University of Maryland, College Park (archive.org)
+3054;VLO
+3055;Vestfold fylkeskommune
+3056;Vicious Records
+3057;Zouma Records
+3058;226 Records Company
+3059;ABAHA Entertainment
+3060;AM Sounds
+3061;Acoustic Medicine
+3062;Acuarela
+3063;Akuma Recordings
+3064;Amuyen
+3065;Aplauso
+3066;Arhiva Naţională de Filme
+3067;Arrayed Roots Sounds
+3068;August Son Productions
+3069;Awbaweto Wold Music
+3070;BTG Music
+3071;Bass Heavy Entertainment
+3072;Ben-Jam Music
+3073;Bleecker Street Records
+3074;Blue Line Music
+3075;CAS Records
+3076;California Academy of Sciences
+3077;Cesta Records
+3078;Chariot Music
+3079;Chivalra
+3080;Cookietime Productions, LLC
+3081;DCD / K Digital
+3082;Dannyboy Records
+3083;Darkhalo
+3084;Discos Musart; Mexico
+3085;Divine Inspiration Records
+3086;Dorfmuseum Schönwalde 
+3087;Download Party Music
+3088;Elec-Trip Records; Germany
+3089;Enraptured Records
+3090;Ernesto Vidal
+3091;FAM
+3092;FORMATION 70
+3093;Flashpoint Records (tm)
+3094;Folk
+3095;Funny Bonemusic
+3096;Ginger Root Records
+3097;Gooji Music
+3098;Independent Records Inc.
+3099;Instant Records
+3100;KICK
+3101;Kulturnett Vestfold
+3102;MDP OMP
+3103;MORIYA
+3104;MTF Productions
+3105;Museu da Música
+3106;Musical Heritage Society
+3107;Neelam
+3108;Nextagem Records
+3109;Nothing Toulouse
+3110;Pan Rhythm Productions / Empire Music Limited
+3111;Patagonia
+3112;Prairie Queen
+3113;Public Monuments and Sculpture Association
+3114;Realm Music Group
+3115;Regione Marche / SchedeMI
+3116;Rhythm And Muse Records
+3117;Risen Records
+3118;SOM FINO
+3119;Saint Mary's College of California (archive.org)
+3120;Serious Business Records
+3121;Slide On Rye Records
+3122;Sound and Vision
+3123;Sue Mogan Mattison
+3124;Thulani Promotions
+3125;Toronto Public Library : North York Central (archive.org)
+3126;Transduction Records
+3127;Tromsø kommune
+3128;Trova Industrias Musicales
+3129;Tumbet
+3130;Vinje Biletgalleri
+3131;Voerman Museum Hattem
+3132;World Alert Records
+3133;Zube Records
+3134;514 Music
+3135;Afrotex Music
+3136;AgaRhythm
+3137;ArticFish Music
+3138;Biblioteca Virtual Silverio Lanza
+3139;Bunad og folkedrakt
+3140;Camprodon Music
+3141;Dragonfly Music
+3142;Echophonic/Lucente
+3143;El Camello Records
+3144;Elibor
+3145;Euphonious/VME
+3146;Faker Five Music
+3147;Firenze Records; Canada
+3148;Flag of Freedom Productions
+3149;God's Glory Records
+3150;Heemkundige Kring Bellingahaim Bellingen
+3151;Kerkfabriek Onze-Lieve-Vrouw Bezoeking, Godsheide
+3152;Kerkfabriek Sint-Quirinus Rukkelingen-Loon (Heers)
+3153;Kodály Filharmónia Debrecen
+3154;Lancaster County Historical Society (archive.org)
+3155;Lazarus Music
+3156;Lewis & Clark Community College and the National Great Rivers Research and Education Center (archive.org)
+3157;Lewis and Clark Community College and the National Great Rivers Research and Education Center (archive.org)
+3158;LiLLuLu Records
+3159;Marlex Records
+3160;Mighty Quinn Productions
+3161;Museum for universitets- og vitenskapshistorie (MUV)
+3162;NHM Vienna, Geology and Palaeontology
+3163;NPM Classics
+3164;National Print Museum
+3165;Norsk Selskap for Skibbrudnes Redning
+3166;Norsk Vegmuseum
+3167;Premium Music Solutions LLC
+3168;RAMTAI BROS ENT
+3169;Scorpio Music
+3170;Sortland Videregående Skole
+3171;Stavanger sjøfartsmuseum
+3172;Steel Bird Music
+3173;The National Archives, Londen
+3174;Twelvetones Records
+3175;Varanger Samiske Museum
+3176;eheritage.si, Ministrstvo za kulturo Republike Slovenije, Urbanistični inštitut Republike Slovenije
+3177;0233 Stichting Museum Korps Rijdende Artillerie
+3178;A.D. Music
+3179;Akase
+3180;Alfa Records
+3181;AmeriSong
+3182;Ariaworld Productions, Inc.
+3183;Arkivverket, Riksarkivet
+3184;Astonishing Music
+3185;Barcelona Ad Libitum
+3186;Blaafarveværket
+3187;Briarhill Records/The Orchard
+3188;Brownstone Records
+3189;Bymuseet i Bergen
+3190;Consejo Superior de Investigaciones Científicas; Spain
+3191;Cultureel centrum 't Stichelke
+3192;DF
+3193;Dinemec Records
+3194;Dry Bones Press
+3195;Earth Music Network/Salsa Groove Records
+3196;Fire Records
+3197;Genie Records Limited
+3198;GigaPutz Records
+3199;Habil Aliyev
+3200;Hen House Studios
+3201;Henry Stone Music USA Inc
+3202;ICM Ard-Media
+3203;Irish Film Archive
+3204;Juu Jääb Records
+3205;KAF Muzik
+3206;Katamanto Music
+3207;Lantern Music
+3208;Membran Music Ltd
+3209;Møre og Romsdal fylkeskommune
+3210;Non Profit Music
+3211;Princes Of Time
+3212;Quartet Offensive
+3213;Right Brain Creations
+3214;Rollercoaster Records
+3215;Ropeadope Digital
+3216;Sogn og Fjordane fylkeskommune
+3217;Solid Discs Inc
+3218;Stadtmuseum Schleswig 
+3219;Sweet Briar College (archive.org)
+3220;Sør-Troms regionråd
+3221;Tete Montoliu
+3222;Ullensaker Bygdesamling
+3223;Vaso Music
+3224;jungle boy entertainment
+3225;Academy of Natural Sciences, Philadelphia
+3226;Acuity Soundworks
+3227;Artmusic
+3228;Associazione Culturale Onlus ICT Ad Duas Lauros, Roma, Italia
+3229;Berger Museumsforening
+3230;Books about Cluj County
+3231;Buzkhasi
+3232;Byantikvaren
+3233;Dorothy H. Hoover Library, Ontario College of Art & Design (archive.org)
+3234;Earth Music Network/The Bottom Line
+3235;Ernest Jenning Record Co.
+3236;GC de Moelie
+3237;Gonzalo Fi
+3238;Hanaichi Records
+3239;Healthy Boys
+3240;Hell Fire Music OMP
+3241;Hymnus
+3242;IVAC
+3243;Kerkfabriek Sint-Jozef, Sledderlo
+3244;Knjižnica Jožeta Mazovca
+3245;Knjižnica Sevnica
+3246;Law Library, University of North Carolina at Chapel Hill (archive.org)
+3247;Lou Bennett
+3248;Memix
+3249;Musikstrasse; Italy
+3250;Night Train International
+3251;Press and Information Office
+3252;Qualiton - Myto
+3253;Sandy Rapp Music
+3254;Sogn og Fjordane
+3255;TCB Records
+3256;THE FUNCTIONS
+3257;Troms fylkeskommune, Kulturarv
+3258;Vers ved vannvegen - Sauherad
+3259;Y2G RECORDS
+3260;Zgodovinski arhiv Ljubljana, enota za Dolenjsko in Belo krajino 
+3261;Zgodovinski arhiv Ljubljana, enota za Dolenjsko in Belo krajino
+3262;Aahang Productions
+3263;Amanojaku; Japan
+3264;Archivo Municipal de Abiego
+3265;Bamble Museum
+3266;Borirock Records
+3267;Claire T. Carney Library, University of Massachusetts Dartmouth (archive.org)
+3268;Daddy What Records
+3269;Darshanam
+3270;Department of Antiquities, Cyprus/ The Cyprus Institute - STARC
+3271;Duck Record
+3272;Electric Lemon Record Co.
+3273;Gjenstander
+3274;Hamarkaupangen
+3275;Javni zavod za kulturo Litija
+3276;K-DISC / ebiten!music
+3277;Kerkfabriek Sint-Valentinus, Berkenbos
+3278;Lube Records
+3279;Museum im Bürgerhaus
+3280;Musicbase
+3281;Object Records
+3282;RDM-Guovdageainnu gilišillju/RDM-Kautokeino bygdetun
+3283;RLW
+3284;Rootbag Records OMP
+3285;Royal Commission on the Ancient and Historical Monuments of Scotland
+3286;Statsarkivet i Trondheim
+3287;Stiftelsen Folldal Gruver
+3288;Sør-Trøndelag Fylkeskommune
+3289;The Cyprus Institute - STARC/ Department of Antiquities, Cyprus
+3290;Timmermans Joke
+3291;Trinity College - University of Toronto (archive.org)
+3292;Wax Poetics Records
+3293;Williams College Libraries (archive.org)
+3294;there-musik atlach
+3295;Archaeology Survey of Ireland, Department of the Arts, heritage and the Gaeltacht
+3296;Arts Entertainment Ltd
+3297;Beatrice Records
+3298;Biblioteca Digital Floridablanca
+3299;Campanae Lovanienses
+3300;Conspiracy Records
+3301;Cornell University Library (archive.org)
+3302;EBM Elektrizitätsmuseum
+3303;Eraki
+3304;Estonian Filmarchives
+3305;Generalitat de Catalunya. Arxiu Comarcal de la Segarra
+3306;Globalev World Music; Israel
+3307;GuavaJamm Entertainment, Inc.
+3308;H.Oki
+3309;Hardanger Folkemuseum
+3310;JohnnyOsi Productions
+3311;K-DISC / AlligatorPear Records
+3312;Kulturnett Østfold
+3313;LECCIA　RECORDS
+3314;Lyra Barberina
+3315;Modemuze.nl
+3316;Museu Nacional de Soares dos Reis
+3317;Museu de Francisco Tavares Proença Júnior
+3318;Museu de José Malhoa
+3319;Musée des Instruments de Musique
+3320;Nasjonalt medisinsk museum/Norsk Teknisk Museum
+3321;Select Records
+3322;Ski lokalhistoriske arkiv
+3323;Splash Point Records
+3324;Stiftelsen iNasjonalparker
+3325;Verwaltungsinformationszentrum Charlottenburg-Wilmersdorf
+3326;Vintage Films Ltd.
+3327;Vision Records
+3328;Widerøes Flyveselskap AS
+3329;Østfold fylkesbibliotek
+3330;Столична община - район "Кремиковци"
+3331;1 in 7 Recordings
+3332;American Entomological Society
+3333;Arbeiderbladet
+3334;Aust-Agder bibliotek og kulturformidling
+3335;Concordia Discors
+3336;Feuerwehrmuseum Schleswig-Holstein
+3337;Folk og Feler - Bø Museum
+3338;Fondo Archivi delle arti applicate italiane del XX secolo - GNAM
+3339;Franco Jacobo
+3340;Hedmark fylkeskommune
+3341;Helper Monkey Records
+3342;Hispana; Spain
+3343;Histria
+3344;Hvalfangstmuseet
+3345;Indian Department, Victoria and Albert Museum
+3346;Interkommunalt arkiv i Hordaland IKS
+3347;Jotunheimen Adventure
+3348;Kulturhistorisk samling
+3349;Kulturnett Aust-Agder
+3350;Kulturnett Trøndelag
+3351;Museum Langes Tannen 
+3352;Museum Stavanger
+3353;Møre og Romsdal
+3354;NHM
+3355;NTNU UB, Dorabiblioteket
+3356;Nidaros Domkirkes Restaureringsarbeider
+3357;Personal collection of David Arnold
+3358;Psalms 150 Records
+3359;Queen's University Library, W.D. Jordan Special Collections and Music Library (archive.org)
+3360;Royal Liverpool Philharmonic
+3361;Scion Records
+3362;Sculpture Department, Victoria and Albert Museum
+3363;Store Norske kullgruvemuseum
+3364;Tisch Library (archive.org)
+3365;Tone Casualties
+3366;U.S. Government Printing Office (archive.org)
+3367;UZrecords
+3368;Vadsø Museum
+3369;Vestfold fylkeskommune, Virksomheten for kulturarv
+3370;infinity
+3371;Árran lulesamisk senter
+3372;Астрономічний музей Астрономічної обсерваторії Київського національного університету імені Тараса Шевченка
+3373;Akershusmuseet avdeling Gamle Hvam museum
+3374;Andøy historielag
+3375;Andøy museum / Andøy kommune / Andøy historielag
+3376;Archivo Municipal de Jaca
+3377;Aust-Agder kulturhistoriske senter
+3378;Biblioteca de l'Orfeó Català
+3379;Bruderschaft St. Christoph/Arlberg
+3380;Buster Records
+3381;Ceramics Department, Victoria and Albert Museum
+3382;Compañía Carles Santos
+3383;Den Gamle ByDen Gamle By
+3384;Digitale Bilder i Vest-Agder
+3385;Dovre kommune
+3386;Dune Records
+3387;EsNtion Records
+3388;Falstadsenteret
+3389;Generalitat de Catalunya. Arxiu Comarcal del Ripollès
+3390;Gudbrandsdal krigsminnesamling
+3391;Hedmark fylkeskommune, Jørn Øversveen
+3392;Helgeland Museum, avd. Nesna
+3393;Henrik Ibsens skrifter
+3394;Herøy Kystmuseum
+3395;Historisch Museum Apeldoorn
+3396;Hønse Lovisas Hus
+3397;Jeugdcentrum 'Het Castelhof'
+3398;Jugendstilsenteret/Kunstmuseet KUBE
+3399;Kerkfabriek Sint-Jan Baptist, Engelmanshoven
+3400;Kristiania Kommunale Sporveie
+3401;Kulturavdelinga, Møre og Romsdal fylke
+3402;Kulturrådet
+3403;MMU
+3404;Melhus kommune, kultur og fritid
+3405;Museo Opera Primaziale Pisana
+3406;Museum of Dacic and Roman Civilisation in Deva
+3407;Muzej novejše zgodovine Celje
+3408;Norsk Telemuseum
+3409;Oppland Fylkeskommune
+3410;POLFOTO 
+3411;Postojnska jama d.d.
+3412;Ramkat Music Entertainment
+3413;Real Session
+3414;Roots and Culture Records
+3415;Rutgers University Libraries (archive.org)
+3416;Sockets Records
+3417;Sogn og Fjordane fylkeskommune ved kulturavdelingen
+3418;Sovraintendenza dei beni archeologici della Toscana
+3419;Statsarkivet i Bergen
+3420;Stavanger kunstmuseum
+3421;Stiftelsen Arkivet
+3422;Telemarkskanalen regionalpark
+3423;University of Birmingham
+3424;Vestfoldmuseene IKS / Kompetansesenter for museum og arkiv
+3425;Árran Lulesamisk senter
+3426;Регионален исторически музей - Стара Загора / Regional Museum of History - Stara Zagora
+3427;AS Holmenkolbanen
+3428;Andøy Kommune/ Nordland Fylke/ Statens Veivesen
+3429;BBC
+3430;Basepoint Media
+3431;Bergen Museum
+3432;Bergkunstmuseet - Det magiske berget
+3433;Bis Music
+3434;Byggedirektøren
+3435;Byremo Videregående Skole
+3436;Casa-Museu Dr. Anastácio Gonçalves
+3437;Crashed Records
+3438;Deichmanske bibliotek, hovedbiblioteket
+3439;Dhadkan
+3440;EsNtion Latino
+3441;Far Eastern Department, Victoria and Albert Museum
+3442;Fylkesarkivet i Oppland
+3443;Grimstad bys museer
+3444;Göteborgs konstmuseum
+3445;HiB Mediesenteret
+3446;IKA Kongsberg
+3447;JJP
+3448;Kerkfabriek Sint-Theodardus Bogaarden
+3449;Knjižnica Bežigrad
+3450;Krigsminnesmerker
+3451;Lindås bibliotek
+3452;MUUD
+3453;Musea i Sogn og Fjordane
+3454;Museumsberg Flensburg Städtische Museen und Sammlungen für den Landesteil Schleswig
+3455;Music - University of Toronto (archive.org)
+3456;Narrow Road Productions
+3457;Narviksenteret m/Røde Kors Krigsmuseum
+3458;Nationaal Monument Kamp Vught
+3459;Naturhistorisk museum, Universitetet i Oslo
+3460;PIMS - University of Toronto (archive.org)
+3461;Pathfinder Audio
+3462;RKT
+3463;ROM - University of Toronto (archive.org)
+3464;Ringve_museumsgjenstander
+3465;Setesdalsmuseet
+3466;State Library of Massachusetts (archive.org)
+3467;Stefkos Music
+3468;Telemarkpiloten
+3469;Theatre and Performance Department, Victoria and Albert Museum
+3470;Trondheim kunstmuseum
+3471;Trøndelag Folkemuseum
+3472;Universitetet i Oslo
+3473;VSM
+3474;Westminister Choir College Of Rider University
+3475;Zavod Jara
+3476;Árran - julevsáme guovdásj/lulesamisk senter
+3477;ABM Sogn og Fjordane
+3478;ALC Music Ltd
+3479;API /D.A. Recordings Ltd
+3480;Abraham Lincoln Presidential Library (archive.org)
+3481;Akershus Fylkeskommune
+3482;Akershusmuseet
+3483;Andøy Kommune/Nordland Fylke/ Statens Veivesen
+3484;Andøy Kommune/Nordland Fylke/Statens Veivesen
+3485;Berlevåg Havnemuseum
+3486;Biblioteca Municipal de Montalegre
+3487;Brevik Bymuseum
+3488;Cementmuseet Slemmestad
+3489;Criminal Recordz Ltd.
+3490;Dagbladet
+3491;Divine Arts-Dya Singh; United Kingdom
+3492;Earthly Music
+3493;Egil Reimers
+3494;Emmanuel - University of Toronto (archive.org)
+3495;Environmental Services & Library Systems (archive.org)
+3496;Eventyrmuseet Villa Fridheim
+3497;Finnmark fylkesbibliotek
+3498;Folkemusikkarkivet i Nord-Gudbrandsdalen
+3499;Folldal kommune, Hedmark fylkeskommune og Norsk Villreinsenter
+3500;Froland Kommune
+3501;Froland folkebibliotek
+3502;Fundació Bosch i Cardellach ; Gremi de Fabricants de Sabadell
+3503;Furuhaugli turisthytte
+3504;Fylkesarkivet
+3505;Gea Norvegica Geopark og prosjektet Drømmemila
+3506;Hamsunsenteret
+3507;Harvard University Herbarium
+3508;Hedrum Historielag
+3509;Heimatmuseum Aesch
+3510;Helgeland Museum, avd. Grane
+3511;Herzog August Bibliothek
+3512;Hjerkinn Fjellstue og Fjellridning
+3513;Høyanger Industristadmuseum
+3514;Ipecac Recordings
+3515;Julaichi.K
+3516;Kerkfabriek Onze-Lieve-Vrouw Geboorte, Donk
+3517;Knjižnica Otona Župančiča
+3518;Kulturtorvet i Lindesnes
+3519;Kunduru Music Inc.
+3520;Kystens Arv
+3521;Lauvlia, Th.Kittelsens Kunstnerhjem i Sigdal
+3522;Liemers Museum
+3523;Lokalhistorisk arkiv, Lærdal kulturkontor
+3524;Lunde slusepark drift
+3525;MIT Libraries (archive.org)
+3526;Malmö Konstmuseum
+3527;Martin Lutz (Rova Records)
+3528;Mathematical Sciences - University of Toronto (archive.org)
+3529;Midsund Slekt og Historielag
+3530;Mike Millius Music
+3531;Misjonsarkivet, Misjonshøgskolen
+3532;Moss bibliotek
+3533;Museu de Aveiro
+3534;Museum Eckernförde 
+3535;Museum Stavanger -Stavanger maritime museum
+3536;Museum Vest avd. Nordsjøfartmuseet
+3537;Møre og Romsdal fylke
+3538;NVE - Museumsordningen
+3539;National Library of Medicine (archive.org)
+3540;New College of California (archive.org)
+3541;Nordvegen Historiesenter, Avaldsnes
+3542;Norsk Teknisk Museum / Oslo Museum / Kulturrådet
+3543;Norsk filminstitutt
+3544;Næs Jernverksmuseum
+3545;Oppland fylkesbibliotek
+3546;Os kommune, Kultureininga
+3547;Oslo lysverker / Oslo Energi
+3548;Parochie Sint-Trudo, Laar
+3549;Randsfjordmuseene
+3550;Randsfjordmuseene, avd. Hadeland Folkemuseum
+3551;Regis - University of Toronto (archive.org)
+3552;Ringtone Records
+3553;Roadhouse Records
+3554;STUDIO Arcana
+3555;Salten Museum
+3556;Sametinget
+3557;San Francisco Public Library (archive.org)
+3558;School of Theology, Boston University (archive.org)
+3559;Sogn og Fjordane Kunstmuseum; Sogn og Fjordane
+3560;Sogndal bibliotek
+3561;State Library of North Carolina (archive.org)
+3562;Statsarkivet i Hamar
+3563;Statsarkivet i Kristiansand
+3564;Statsarkivet i Tromsø
+3565;Stiklestad Nasjonale Kultursenter
+3566;Talent Factory, Grenland
+3567;The Cyprus Institute - STARCThe Cyprus Institute - STARC
+3568;The Music Force
+3569;Tiger Records/IME Ltd.
+3570;Troms fylkeskommune, Kulturetaten
+3571;Tromsø Museum, Universitetet i Tromsø
+3572;Trondheim kunstmuseum; Trondheim Kunstmuseum
+3573;Tufts University (archive.org)
+3574;Unique Jazz/RKO
+3575;University of Illinois at Chicago (archive.org)
+3576;University of North Carolina at Chapel Hill (archive.org)
+3577;Vanylven Kommune
+3578;Volda Bygdetun og Garverimuseet
+3579;europeana:dataProvider
+3580;jNederlands Openluchtmuseum
+3581;sigledal.org - portal slovenskega gledališča
+3582;Øyfjell bygdetun
+3583;Геокад 93 ЕООД
+3584;Институт за балканистика с Център по тракология - БАН
+3585;AS Kristiania Elektriske Sporvei
+3586;AS Oslo Sporveier
+3587;Alexej von Assaulenko-Kulturstiftung 
+3588;Alvdal bibliotek
+3589;Andøy Kommune/ Nordland Fylke/Statens Veivesen
+3590;Andøy Kommune/ Nordland Fylkeskommune/ Statens Veivesen
+3591;Andøy Kommune/Nordland Fylke /Statens Veivesen
+3592;Andøy Kommune/Nordland Fylkeskommune/ Statens Veivesen
+3593;Andøy kommune/Nordland Fylke/ Statens Veivesen
+3594;Archivi delle arti applicate italiane del XX secolo 
+3595;Arild Gulbrandsen
+3596;Arkeologisk Museum, UiS
+3597;Asker Museum
+3598;Askim Historielag
+3599;Aurskog-Høland Bygdetun
+3600;Austmarka historielag
+3601;Avistegnernes hus, Museene i Akershus
+3602;BHL-Europe
+3603;BLUES'UP
+3604;BODØGAARD - kunst & kultur
+3605;Biblioteca: Francesca Bonnemaison
+3606;Bildarchiv Foto Marburg (Dr. Franz Stoedtner-Archiv)
+3607;Bjarne Nærum, Høgskolen i Telemark
+3608;Blue Rose Records
+3609;Booth Library, Eastern Illinois University (archive.org)
+3610;Borne Recordings
+3611;Breivang vgs. biblioteket
+3612;Buskerud Fylkesbibliotek
+3613;Buskerud Fylkeskommune
+3614;Byhistorisk samling; Oslo Museum
+3615;Bøker i Bø
+3616;California Academy of Sciences (archive.org)
+3617;Crescendo Music
+3618;Cyprus Archaeological Museum
+3619;DHS Sogn Folkemuseum
+3620;DIS Telemark
+3621;Den Gamlem By
+3622;Digital Public Library of America
+3623;Digitalna knjižnica Slovenije
+3624;Direktoratet for naturforvaltning
+3625;Disco Díscols
+3626;Divine Arts-Rukus Avenue; United Kingdom
+3627;Divine Arts; United Kingdom
+3628;Dovrefjell nasjonalparkstyre
+3629;Drammensbiblioteket
+3630;Díscos Popular
+3631;East of Sideways Music
+3632;Echophonic
+3633;Education Centre Library, Nipissing University/ Canadore College (archive.org)
+3634;Eidsvoll Museum
+3635;Eiker Arkiv
+3636;El Séptimo Sello Records
+3637;Elca Productions
+3638;Elvarheim Museum
+3639;Europeana
+3640;Europeana Regia
+3641;Europeana Remix
+3642;EuropeanaConnect
+3643;Evangeline Records
+3644;Folkemusikkarkivet for Møre og Romsdal
+3645;Folkemusikkarkivet i Telemark
+3646;Folkenborg museum
+3647;Folldal kommune - Forsvarsmuseets fotoarkiv.
+3648;Follo Museum
+3649;Forsvaret
+3650;Forsvarsbygg
+3651;Fortidsminneforeininga avdeling Sunnmøre
+3652;Frost - York University Libraries (archive.org)
+3653;Fylkesbiblioteket i Møre og Romsdal
+3654;Fylkesbiblioteket i Rogaland
+3655;Gamle Hvam Museum
+3656;Gamvik Museum
+3657;Garborgsenteret
+3658;Geologisches und Mineralogisches Museum der Universität Kiel Institut für Geowissenschaften der CAU Kiel
+3659;Gjenreisningsmuseet for Finnmark og Nord-Troms
+3660;Gjenstand
+3661;Gratangen historielag
+3662;Greensleeves Records Ltd.; United Kingdom
+3663;Grimsbu Gard og Grendeutvikling
+3664;Gulen kommune, Byrknes Fiskarbondemuseum
+3665;Hallands Konstmuseum
+3666;Halti kvenkultursenter
+3667;Hamar katedralskole - Biblioteket
+3668;Hamarøy historielag
+3669;Heimatmuseum an der Mühle 
+3670;Helgeland Museum, avd. Hemnes
+3671;Helgeland museum, avdeling Herøy
+3672;Historiske Foto-Audnedal
+3673;Hjelmeland bygdemuseum
+3674;Holmeegenes-samlingen
+3675;Høgskolen i Oslo og Akershus
+3676;Høgskolen i Oslo og Akershus - Student
+3677;Høgskulen i Sogn og Fjordane
+3678;Høgskulen i Sogn og Fjordane avd. Førde
+3679;IC. Zed Records; Australia
+3680;Interkommunalt arkiv Troms IKS
+3681;Iris Properties, Inc
+3682;Jarlsberg historielag
+3683;Joint Committee on Taxation, US Congress (archive.org)
+3684;Joker Media
+3685;Joseph Palmer Knapp Library, UNC School of Government (archive.org)
+3686;Já
+3687;Kerkfabriek Sint-Aldegondis, Kleine-Spouwen
+3688;Kerkfabriek Sint-Harlindis en Relindis, Ordingen
+3689;Kerkfabriek Sint-Lambertus, 's Gravenvoeren
+3690;Kerkfabriek Sint-Quintinus, Zonhoven
+3691;Kirkevergen
+3692;Knight People
+3693;Knjižnica Prežihov Voranc
+3694;KomMA (Kompetansesenter for Museum og Arkiv)
+3695;Kongsberg våpen og industrihistoriske samling Gjenstand
+3696;Kragerø og Skåtøy Historielag
+3697;Kulmin
+3698;Kulturlandskapssenteret i Telemark
+3699;Kulturnett Hedmark
+3700;Kulturno društvo Pekre-Limbuš
+3701;Kvinnemuseet - Museene i Glåmdal
+3702;Kystmuseet i Nord-Trøndelag
+3703;Lantana Records / The Music Force Media Group, LLC
+3704;Lavangen Skole - 9. Klasse 2015
+3705;Lavangen bibliotek
+3706;Lavangen skole - 9.klasse 2015
+3707;Leikanger Folkebibliotek
+3708;Liberalisme
+3709;Lillehammer bibliotek
+3710;Limburgs Platform Roemeniëwerkingen vzw
+3711;Lofotr Viking Museum
+3712;Mangfoldige minner
+3713;Margit Liens samlinger
+3714;Marinemuseet, Forsvaretsmuseer
+3715;Marker Bibliotek
+3716;Mediterranean Archaeological Research Institute-Vrije Universiteit Brussel /\n          The Cyprus Institute - STARC
+3717;Memoar.no
+3718;Memòria Digital de Catalunya
+3719;Metalwork Collection Victoria and Albert Museum
+3720;Mikkel Glasser
+3721;Moderna Museet
+3722;Moonlight Sounds
+3723;Morphius
+3724;Morris Library, Southern Illinois University Carbondale (archive.org)
+3725;Moskee Al Ihsaan Leuven vzw
+3726;Mud Records
+3727;Museen im Kulturzentrum 
+3728;Museene for Kystkultur og Gjenreisning i Finnmark IKS
+3729;Museet Midt iks
+3730;Museo Nazionale del Bargello
+3731;Museum Het Pakhuis
+3732;Museum Nord - Bø Museum
+3733;Museum Nord - Lofotmuseet
+3734;Museum Vest
+3735;Music Control Salvatore Cusato
+3736;Møre og Romsdal fylkesbibliotek
+3737;NAV Hjelpemidler og tilrettelegging
+3738;NC History of Health Digital Collection (archive.org)
+3739;NTNU UBIT Gunnerusbiblioteket
+3740;Nasjonalt medisinsk museum
+3741;Nationaal Monument Kamp Amersfoort
+3742;National Archives, Ireland
+3743;Nils Jacob og Gjertrud Thorsens Porselenssamling
+3744;Nomis Musik
+3745;Nord-Jarlsbergmuseene
+3746;Nordfjord folkemuseum
+3747;Nordland Røde Kors Krigsmuseum/Narviksenteret
+3748;Nordmøre museum
+3749;Norrköpings Konstmuseum
+3750;Norsk Bergverksmuseum Gjenstand
+3751;Norsk Døvemuseum
+3752;Norsk Døveuseum/Trøndelag Folkemuseum
+3753;Norsk Folkemuseum, Norsk etnologisk gransking(NEG)
+3754;Norsk Sjøfartsmuseum
+3755;Norsk Villreinsenter sør, Skinnarbu
+3756;Norsk industriarbeidermuseum
+3757;Olav Duuns forfatterhjem i Holmestrand
+3758;Os kommune
+3759;Oslo museum, avd Bymuseet
+3760;Oslofjordens Friluftsråd
+3761;Otta Idrettslag
+3762;Otta idrettslag
+3763;Panoptikon/VME
+3764;Patronato de la Alhambra y Generalife
+3765;Petter Dass-museet
+3766;Philadelphia Museum of Art, Library (archive.org)
+3767;Pilegrimssenter Hamar
+3768;Pilegrimssenter Oslo
+3769;Plugged Records
+3770;Polarmuseet
+3771;Prophase Music
+3772;Pubblikazzjonijiet Kamaleonti&#267
+3773;Ramkat Musiek
+3774;Randsfjordmuseene, avd. Lands Museum
+3775;Reisendekartet
+3776;Rendalen bibliotek
+3777;Renholdsverket
+3778;Ringsaker folkebibliotek
+3779;Ringve
+3780;Ringve museum / Museene i Sør-Trøndelag
+3781;Ringve musikkmuseum
+3782;Roald Amundsens Minne, Stories of Norway
+3783;Rockheim og Ringve
+3784;Ryerson University Library Special Collections (archive.org)
+3785;STARC - The Cyprus Institute
+3786;Saint Louis Public Library
+3787;Sande kommune
+3788;Sandefjord bibliotek
+3789;Sandefjord museene
+3790;Sea for Society
+3791;Sjællands Sriftsbibliotek
+3792;Sjællands Stiftbibliotek
+3793;Sjællands StiftsbibliotekArkiv
+3794;Skiensatlas
+3795;Skihytta på Rismålshaugen i Tromsø
+3796;Skoklosters Slott
+3797;Sogn og Fjordane Fylkesbibliotek
+3798;Sogn og Fjordane Fylkessenter for Musikkterapi
+3799;Sogndal Sogelag
+3800;Sortland museum
+3801;Spanish Bizarro
+3802;Sparebankstiftelsen
+3803;Speidermuseet
+3804;Stadtmuseum Wadern 
+3805;Statped
+3806;Statsarkivet i Kongsberg
+3807;Statsarkivet i Stavanger
+3808;Stiftelsen Domkirkeodden, avd. Prøysenhuset
+3809;Stiftelsen Domkirkeodden, avdeling Hedmarksmuseet
+3810;Sællands Stiftsbibliotek
+3811;Sør-Hålogaland bispedømme
+3812;Sør-Trøndelag Fylkesbibliotek
+3813;TCK Production
+3814;TEXT
+3815;Teaterhistorisk samling
+3816;Telemark Museum Porsgrunnsmuseene
+3817;The Cyprus Institute - STARC</source>
+3818;Troms fylkesbibliotek
+3819;Tuf America
+3820;Tuff Ass Jazz
+3821;Tunnelbanekontoret
+3822;Tysfjord kommune
+3823;U.S. Dept. of the Treasury, Treasury Library (archive.org)
+3824;Ulefoss kulturarv
+3825;Universal Digital Library (archive.org)
+3826;Universidad de Oviedo
+3827;Universitetsbiblioteket i Bergen
+3828;Valdres Folkemuseum; Valdresmusea
+3829;Valdresmusea as
+3830;Vann- og avløpsetaten
+3831;Verzetsmuseum Zuid-Holland
+3832;Vest Telemark Museum
+3833;Vest-Agder-museet Setesdalsbanen
+3834;Vest-Agder-museet Sjølingstad Uldvarefabrik
+3835;Vestfoldmuseene IKS
+3836;Vevang vel
+3837;Vikvil
+3838;Visit Narvik og Narviksenteret
+3839;Vitenfabrikken avd. av Jærmuseet
+3840;Völgységi Múzeum - Bonyhád
+3841;Watersnoodmuseum
+3842;Weight Recordings
+3843;West Side
+3844;Zeptepi
+3845;Zididada
+3846;Zoo Productions
+3847;eheritage.si, Arhiv Republike Slovenije, Urbanistični inštitut Republike Slovenije
+3848;eheritage.si, Zavod za varstvo kulturne dediščine Slovenije, Restavratorski center
+3849;eheritage.si, začasno hrani Narodni muzej Slovenije, last Grand hotela Union
+3850;http://www.fliedner.es:8080/repositorio-archivo/bitstream/12345/330/1/rc18940150353.pdf
+3851;i
+3852;ihana! as
+3853;kreft
+3854;overnattingsstader
+3855;Århus Kommunes Biblioteker. Lokalhistorisk SamlingÅrhus Kommunes Biblioteker. Lokalhistorisk Samling
+3856;Østfold Historielag
+3857;Østsamisk museum
+3858;Картографска збирка Аћимовић
+3859;Across Limits
+3860;Archiwum Państwowe w Olsztynie
+3861;Arxiu Històric de Girona
+3862;BAM Portal / Bibliotheksservice - Zentrum Baden - Württemberg
+3863;BAM Portal / Technoseum
+3864;BAM Portal / Universitätsbibliothek Heidelberg
+3865;bg
+3866;Biblioteca de Comerç i Turisme de la Generalitat de Catalunya
+3867;Biblioteca de l'Esport de la Generalitat de Catalunya
+3868;Biblioteca Virtual Sierra-Pambley
+3869;cs
+3870;CulturaItaliaInternet Culturale
+3871;CulturaItaliaInternet Culturale / biblioteca nazionale centrale - firenze
+3872;CulturaItaliaInternet Culturale / biblioteca nazionale marciana - venezia
+3873;CulturaItaliaInternet Culturale / istituzione casa della musica. cirpem - parma
+3874;CulturaItaliaMuseiD-Italia
+3875;de
+3876;DIZI
+3877;el
+3878;en
+3879;ETI BioInformatics, Leiden, the Netherlands
+3880;EuropeanaTravel
+3881;Federico Zeri Foundation
+3882;Germanisches Nationalmuseum Nürnberg / Digitaler Porträtindex
+3883;Gleimhaus Halberstadt / Digitaler Porträtindex
+3884;Gobierno de Extremadura
+3885;Gorenjski muzej
+3886;Groeninge Museum Bruges
+3887;he Cyprus Institute - STARC / Byzantine Museum of the Archbishop Makarios III Foundation
+3888;Hellenic Aggregator
+3889;Hellenic Aggregator at Veria Public Library
+3890;Herzog August Bibliothek Wolfenbüttel / Digitaler Porträtindex
+3891;Institut d'Estudis Ilerdencs. Servei d'Arxiu i Llegats
+3892;ISTI-CNR -Istituto di Scienza e Tecnologie dell Informazione
+3893;Jersey Heritage
+3894;John Lenaerts
+3895;Koninklijke Musea voor Kunst en Geschiedenis
+3896;KulturIT
+3897;Kunstsammlungen der Veste Coburg / Digitaler Porträtindex
+3898;Latvijas Nacionālā bibliotēka
+3899;Legermuseum
+3900;Library of Cyprus Univeristy of Technology
+3901;Lippmann+Rau-Stiftung (Lippmann+Rau Foundation); Germany
+3902;Lithuanian Art Museum
+3903;Lithuanian Theatre, Music and Cinema Museum
+3904;LWL-Museum für Kunst und Kultur (Westfälisches Landesmuseum) / Digitaler Porträtindex
+3905;Mediterranean Archaeological Research Institute-Vrije Universiteit Brussel /           The Cyprus Institute - STARC
+3906;MIMO - Musical Instrument Museums Online
+3907;Museum of Fine Arts Ghent
+3909;MUSIT
+3910;Muziekinstrumentenmuseum
+3911;National Gallery - Alexandros Soutsos Museum
+3912;Niedersächsische Staats- und Universitätsbibliothek Göttingen
+3913;Open Beelden
+3914;Pamiatkový úrad SR
+3915;Pokrajinska in študijska knjižnica Murska Sobota
+3916;PROBADO 3D
+3917;Regionaal Historisch Centrum Vecht en Venen
+3918;Royal Museum of Fine Arts Antwerp
+3919;SAN - Sistema Archivistivo Nazionale
+3920;Slovenské národné múzeum
+3921;slv
+3922;Spielzeugmuseum Nürnberg / 	 http://www.museen.nuernberg.de/spielzeugmuseum/index.html
+3923;Staatliche Graphische Sammlung München / Digitaler Porträtindex
+3924;Staatsbibliothek zu Berlin - Preußischer Kulturbesitz / Digitaler Porträtindex
+3925;Tårnby Stads- og Lokalarkiv
+3926;Technical Chamber of  Greece
+3927;The Cyprus Institute - STARC / Byzantine Museum of the Archbishop Makarios III Foundation
+3928;The Cyprus Institute - STARC / Mediterranean Archaeological Research           Institute-Vrije Universiteit Brussel
+3929;The Cyprus Institute - STARC / Βυζαντινό Μουσείο Ιδρύματος Αρχιεπισκόπου Μακαρίου Γ
+3930;The Great War Archive, University of Oxford
+3931;The National Library of Russia
+3932;The National Museum of Slovenia
+3933;The Regional Archives in Härnösand
+3934;Università di Biologna
+3935;Università di Bologna
+3936;Universit� di Bologna
+3937;University library "Svetozar Markovic"
+3938;University of Patras/Library and Information Center
+3939;© Ville de Bourg-en-Bresse
+3940;Zgodovinski arhiv Ljubljana
+3941;Γενική Γραμματεία Πολιτισμού

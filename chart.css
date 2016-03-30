@@ -1,0 +1,22 @@
+#chart svg {
+  #background: #b0e0f8;
+  margin: 5px;
+}
+
+#chart svg rect {
+  stroke: white;
+  fill: #428bca;
+}
+
+#chart text.score {
+  fill: white;
+}
+
+#chart text.score.small {
+  fill: #000;
+}
+
+#chart text.label {
+  fill: #000;
+}
+

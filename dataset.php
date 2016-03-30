@@ -39,15 +39,25 @@ $graphs = array(
 );
 
 $title = 'Metadata Quality Assurance Framework';
-$collectionId = $argv[1];
-$id = strstr($collectionId, '_', true);
+if (isset($_GET['id'])) {
+  $collectionId = $_GET['name'];
+  $id = $_GET['id'];
+  $type = $_GET['type'];
+} else {
+  $collectionId = $argv[1];
+  $id = strstr($collectionId, '_', true);
+  $type = 'c';
+}
 
-$jsonFileName = $configuration['QA_R_PATH'] . '/' . $id . '.json';
+$jsonFileName = $configuration['QA_R_PATH'] . '/json/' . $type . $id . '.json';
 if (!file_exists($jsonFileName)) {
   die(sprintf("File doesn't exist: %s (collection: %s)\n", $jsonFileName, $collectionId));
 } else {
-  printf("Processing: %s (collection: %s)\n", $jsonFileName, $collectionId);
+  if (!isset($_GET['id'])) {
+    printf("Processing: %s (collection: %s)\n", $jsonFileName, $collectionId);
+  }
 }
+
 $stats = json_decode(file_get_contents($jsonFileName));
 $assocStat = array();
 foreach ($stats as $obj) {
@@ -56,9 +66,16 @@ foreach ($stats as $obj) {
   $assocStat[$key] = $obj;
 }
 
+$freqFile = 'json/' . $type . $id . '.freq.json';
+$freqFileExists = file_exists($freqFile);
+
 ob_start();
 include('dataset.tpl.php');
 $content = ob_get_contents();
 ob_end_clean();
 
-file_put_contents($id . '.html', $content);
+if (isset($_GET['id'])) {
+  echo $content;
+} else {
+  file_put_contents($id . '.html', $content);
+}

@@ -14,23 +14,21 @@ if (substr($id, 0, 1) == '/') {
   $id = substr($id, 1);
 }
 
-$params = array(
-  'metadataPrefix' => 'edm',
-  'identifier' => ID_PREFIX . $id
-);
-
-$harvester = new OAIHarvester('GetRecord', 'http://oai.europeana.eu/oaicat/OAIHandler', $params);
-$harvester->fetchContent();
-$harvester->processContent();
-if (($record = $harvester->getNextRecord()) != null) {
-  $metadata = processRecord($record);
-  if (!empty($metadata)) {
-    $command = sprintf(
-      "java -cp %s/europeana-qa-1.0-SNAPSHOT-jar-with-dependencies.jar com.nsdr.europeana.qa.cli.Counter '%s' 2>/dev/null",
-      $configuration['JAR_PATH'],
-      str_replace("'", "'\''", json_encode($metadata))
-    );
-    $analysis = json_decode(exec($command));
+$metadata = retrieveRecord($id);
+if (!empty($metadata)) {
+  $json = str_replace("'", "'\''", json_encode($metadata));
+  $command = sprintf(
+    "java -cp %s/europeana-qa-spark-1.0-SNAPSHOT-jar-with-dependencies.jar com.nsdr.spark.CLI '%s' 2>/dev/null",
+    $configuration['SPARK_JAR_PATH'],
+    $id
+  );
+  $result = exec($command);
+  $analysis = json_decode($result);
+  if (is_null($analysis)) {
+    echo 'command: ', $command;
+    echo 'metadata: ', $json;
+    echo 'result: ', $result;
+    die();
   }
 }
 
@@ -48,8 +46,8 @@ $graphs = array(
   'descriptiveness' => array('label' => 'Descriptiveness', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
   	"Proxy/dc:creator", "Proxy/dc:language", "Proxy/dc:subject", "Proxy/dcterms:extent", "Proxy/dcterms:medium", "Proxy/dcterms:provenance",
   	"Proxy/dc:format", "Proxy/dc:source")),
-  'searchability' => array('label' => 'Searchability', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description", 
-  	"Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:coverage", "Proxy/dcterms:temporal", 
+  'searchability' => array('label' => 'Searchability', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
+  	"Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:coverage", "Proxy/dcterms:temporal",
   	"Proxy/dcterms:spatial", "Proxy/dc:subject", "Proxy/dcterms:hasPart", "Proxy/dcterms:isPartOf", "Proxy/dc:relation", "Proxy/edm:isNextInSequence",
   	"Proxy/edm:type", "Aggregation/edm:provider", "Aggregation/edm:dataProvider")),
   'contextualization' => array('label' => 'Contextualization', 'fields' => array("Proxy/dc:description", "Proxy/dc:creator", "Proxy/dc:type",
@@ -70,6 +68,14 @@ $graphs = array(
   	"Proxy/dc:language", "Proxy/dc:subject"))
 );
 
+$optional_groups = [
+  'mandatory' => [
+    ['fields' => ['Proxy/dc:title', 'Proxy/dc:description'], 'has_value' => FALSE],
+    ['fields' => ['Proxy/dc:type', 'Proxy/dc:subject', 'Proxy/dc:coverage', 'Proxy/dcterms:temporal', 'Proxy/dcterms:spatial'], 'has_value' => FALSE]
+  ]
+];
+$has_alternatives = hasAlternative($optional_groups);
+
 $table = array();
 $table[0] = array();
 foreach ($graphs as $key => $object) {
@@ -78,14 +84,14 @@ foreach ($graphs as $key => $object) {
 
 foreach ($graphs['total']['fields'] as $field) {
   $row = array($field);
-  $color = in_array($field, $analysis->existingFields) ? 'green' : 'grey';
+  $color = in_array($field, $analysis->existingFields) ? 'green' : 'yellow';
   // $color = $colors[rand(0, 2)];
   foreach ($graphs as $key => $object) {
     if ($key == 'total')
       continue;
     if (in_array($field, $object['fields'])) {
       if ($key == 'mandatory' && $color != 'green')
-        $row[] = 'red';
+        $row[] = $has_alternatives[$field] ? 'gray' : 'red';
       else
         $row[] = $color;
     } else {
@@ -100,54 +106,37 @@ include("record.tpl.php");
 // echo json_encode(json_decode(file_get_contents("http://www.europeana.eu/portal/record/11620/MNHNBOTANY_MNHN_FRANCE_P04617748.json")), JSON_PRETTY_PRINT);
 
 
-function processRecord($record) {
-  $metadata = array();
-  $isDeleted = (isset($record['header']['@status']) && $record['header']['@status'] == 'deleted');
-  $id = $record['header']['identifier'];
-  if (!$isDeleted) {
-    $metadata = dom_to_array($record['metadata']['childNode']);
-    $metadata['qIdentifier'] = $record['header']['identifier'];
-    $metadata['identifier'] = str_replace(ID_PREFIX, '', $record['header']['identifier']);
-    $metadata['sets'] = $record['header']['setSpec'];
+function retrieveRecord($id) {
+  $cluster   = Cassandra::cluster()->build();
+  $session   = $cluster->connect('europeana');
+  $statement = new Cassandra\SimpleStatement(sprintf("SELECT content FROM edm WHERE id = '%s'", $id));
+  $future    = $session->executeAsync($statement);
+  $result    = $future->get();
+  $json = null;
+  foreach ($result as $row) {
+    $json = $row['content'];
   }
-  return $metadata;
+  return json_decode($json);
 }
 
-/**
- * Transform DOM object to an array
- */
-function dom_to_array($node, $parent_name = NULL) {
-  $name = $node->nodeName;
-  $metadata = array();
+function hasAlternative() {
+  global $optional_groups, $analysis;
 
-  // copy attributes
-  foreach ($node->attributes as $attr) {
-    $metadata['@' . $attr->name] = $attr->value;
-  }
-
-  // process children
-  foreach ($node->childNodes as $child) {
-    // process children elements
-    if ($child->nodeType == XML_ELEMENT_NODE) {
-      if ($node->childNodes->length == 1) {
-        $metadata[$child->nodeName] = dom_to_array($child, $name);
-      } else {
-        $metadata[$child->nodeName][] = dom_to_array($child, $name);
+  $has_alternative = [];
+  foreach ($optional_groups as $dimension => $groups) {
+    for ($g = 0; $g < count($groups); $g++) {
+      $group = $groups[$g];
+      for ($i =0; $i < count($group['fields']); $i++) {
+        $field = $group['fields'][$i];
+        if (in_array($field, $analysis->existingFields)) {
+          $optional_groups[$dimension][$g]['has_value'] = TRUE;
+          break;
+        }
       }
-    }
-    // copy text value
-    elseif ($child->nodeType == XML_TEXT_NODE) {
-      $value = trim($child->nodeValue);
-      if (!empty($value)) {
-        $metadata['#value'] = str_replace("\n", ' ', $value);
+      foreach ($group['fields'] as $field) {
+        $has_alternative[$field] = $optional_groups[$dimension][$g]['has_value'];
       }
     }
   }
-  if ($parent_name !== NULL) {
-    if (count($metadata) == 1 && isset($metadata['#value'])) {
-      $metadata = $metadata['#value'];
-    }
-  }
-
-  return $metadata;
+  return $has_alternative;
 }

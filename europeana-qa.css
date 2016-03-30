@@ -40,11 +40,14 @@ table#fields {
 .red {
   background-color: red;
 }
-.grey {
+.yellow {
   background-color: yellow;
 }
 .green {
   background-color: green;
+}
+.gray {
+  background-color: #ccc;
 }
 pre#code {
   max-height: 800px;

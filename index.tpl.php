@@ -26,14 +26,11 @@
 
 <p>Here you can find some sample result of the first iteration of the Metadata Quality Assurance Framework. All the records come from Europeana.</p>
 
-<h2>Individual record analyses</h2>
+<h2>Field frequency</h2>
 
-<ul type="square">
-  <li><a href="record.php?id=08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_00020602_1_024_377">08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_00020602_1_024_377</a></li>
-  <li><a href="record.php?id=08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_20365830_BC_4_175_3">08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_20365830_BC_4_175_3</a></li>
-  <li><a href="record.php?id=09404/id_oai_www_wbc_poznan_pl_22164">09404/id_oai_www_wbc_poznan_pl_22164</a></li>
-  <li><a href="record.php?id=09404/id_oai_bbc_mbp_org_pl_342">09404/id_oai_bbc_mbp_org_pl_342</a></li>
-</ul>
+<p>This chart shows the frequency of the analyzed fields in all records. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
+
+<div id="chart"></div>
 
 <h2>Dataset analyses</h2>
 
@@ -55,6 +52,13 @@
     <option value="<?= $name ?>" <?php if ($name == $feature) { ?>selected="selected"<?php } ?>><?= $label ?></option>
 <?php } ?>
   </select>
+
+  <label for="type">groupped by </label>
+  <select name="type" onchange="this.form.submit();">
+<?php foreach ($types as $name => $label) { ?>
+    <option value="<?= $name ?>" <?php if ($name == $type) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+<?php } ?>
+  </select>
 </form>
 
 <table id="dataset" class="table table-condensed table-striped tablesorter">
@@ -74,7 +78,7 @@
 <?php foreach ($rows as $counter => $obj) { ?>
     <tr>
       <td><?= $counter ?></td>
-      <td><a href="<?= $obj->id ?>.html"><?= $obj->collectionId ?></a></td>
+      <td><a href="dataset.php?id=<?= $obj->id ?>&name=<?= $obj->collectionId ?>&type=<?= $obj->type ?>"><?= $obj->collectionId ?></a></td>
       <td><?= $obj->min ?></td>
       <td><?= $obj->max ?></td>
       <td><?= $obj->range ?></td>
@@ -86,6 +90,19 @@
  </tbody>
 </table>
 
+<h2>Individual record analyses samples</h2>
+
+<ul type="square">
+  <li><a href="record.php?id=08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_00020602_1_024_377">08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_00020602_1_024_377</a></li>
+  <li><a href="record.php?id=08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_20365830_BC_4_175_3">08501/Athena_Update_ProvidedCHO_Bildarchiv_Foto_Marburg_obj_20365830_BC_4_175_3</a></li>
+  <li><a href="record.php?id=09404/id_oai_www_wbc_poznan_pl_22164">09404/id_oai_www_wbc_poznan_pl_22164</a></li>
+  <li><a href="record.php?id=09404/id_oai_bbc_mbp_org_pl_342">09404/id_oai_bbc_mbp_org_pl_342</a></li>
+</ul>
+
+<h2>Dataset download</h2>
+
+<p><a href="download.html">download page</a></p>
+
 <footer>
   <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
 </footer>
@@ -96,5 +113,10 @@ $(document).ready(function() {
   $("#dataset").tablesorter();
 });
 </script>
+
+<script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+<script type="text/javascript" src="chart.js.php?freq=json/all.freq.json&type=<?= $type ?>"></script>
+<link rel="stylesheet" href="chart.css" />
+
 </body>
 </html>
