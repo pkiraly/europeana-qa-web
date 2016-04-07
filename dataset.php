@@ -16,8 +16,8 @@ $graphs = array(
   'descriptiveness' => array('label' => 'Descriptiveness', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
   	"Proxy/dc:creator", "Proxy/dc:language", "Proxy/dc:subject", "Proxy/dcterms:extent", "Proxy/dcterms:medium", "Proxy/dcterms:provenance",
   	"Proxy/dc:format", "Proxy/dc:source")),
-  'searchability' => array('label' => 'Searchability', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description", 
-  	"Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:coverage", "Proxy/dcterms:temporal", 
+  'searchability' => array('label' => 'Searchability', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
+  	"Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:coverage", "Proxy/dcterms:temporal",
   	"Proxy/dcterms:spatial", "Proxy/dc:subject", "Proxy/dcterms:hasPart", "Proxy/dcterms:isPartOf", "Proxy/dc:relation", "Proxy/edm:isNextInSequence",
   	"Proxy/edm:type", "Aggregation/edm:provider", "Aggregation/edm:dataProvider")),
   'contextualization' => array('label' => 'Contextualization', 'fields' => array("Proxy/dc:description", "Proxy/dc:creator", "Proxy/dc:type",
@@ -35,7 +35,14 @@ $graphs = array(
   	"Proxy/dcterms:issued", "Proxy/dcterms:extent", "Proxy/dcterms:medium", "Proxy/dc:format", "Proxy/dc:rights", "Proxy/edm:rights",
   	"Aggregation/edm:rights", "Aggregation/edm:isShownBy", "Aggregation/edm:object")),
   'multilinguality' => array('label' => 'Multilinguality', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
-  	"Proxy/dc:language", "Proxy/dc:subject"))
+  	"Proxy/dc:language", "Proxy/dc:subject")),
+  'entropy_dc_title_sum' => array('label' => 'dc:title entropy - cumulative'),
+  'entropy_dc_title_avg' => array('label' => 'dc:title entropy - average'),
+  'entropy_dcterms_alternative_sum' => array('label' => 'dcterms:alternative entropy - cumulative'),
+  'entropy_dcterms_alternative_avg' => array('label' => 'dctersm:alternative entorpy - average'),
+  'entropy_dc_description_sum' => array('label' => 'dc:description entropy - cumulative'),
+  'entropy_dc_description_avg' => array('label' => 'dc:description entorpy - average')
+
 );
 
 $title = 'Metadata Quality Assurance Framework';

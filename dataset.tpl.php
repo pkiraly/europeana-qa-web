@@ -25,8 +25,7 @@
 <?php if ($freqFileExists) { ?>
 <h2>Field frequency</h2>
 
-<p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 deci
-mals.</p>
+<p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
 
 <div id="chart"></div>
 <?php } ?>
@@ -34,8 +33,10 @@ mals.</p>
 <?php foreach ($graphs as $name => $function) { ?>
   <h2><?= $function['label'] ?></h2>
 
-  <h3>Fields covered</h3>
-  <p><?php print join($function['fields'], ", "); ?></p>
+  <?php if (isset($function['fields']) && !empty($function['fields'])) { ?>
+    <h3>Fields covered</h3>
+    <p><?php print join($function['fields'], ", "); ?></p>
+  <?php } ?>
 
   <h3>Basic statistics</h3>
   <table>
@@ -50,8 +51,10 @@ mals.</p>
   <?php } ?>
   </table>
 
-  <h3>Graphs</h3>
-  <img src="img/<?= $type . $id ?>/<?= $type . $id ?>-<?= $name ?>.png" />
+  <?php if (file_exists('img/' . $type . $id . '/' . $type . $id . '-' . $name . '.png')) { ?>
+    <h3>Graphs</h3>
+    <img src="img/<?= $type . $id ?>/<?= $type . $id ?>-<?= $name ?>.png" />
+  <?php } ?>
 <?php } ?>
 
 <footer>
