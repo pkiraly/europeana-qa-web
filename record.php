@@ -65,7 +65,13 @@ $graphs = array(
   	"Proxy/dcterms:issued", "Proxy/dcterms:extent", "Proxy/dcterms:medium", "Proxy/dc:format", "Proxy/dc:rights", "Proxy/edm:rights",
   	"Aggregation/edm:rights", "Aggregation/edm:isShownBy", "Aggregation/edm:object")),
   'multilinguality' => array('label' => 'Multilinguality', 'fields' => array("Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
-  	"Proxy/dc:language", "Proxy/dc:subject"))
+  	"Proxy/dc:language", "Proxy/dc:subject")),
+  'dc:title:sum' => array('label' => 'dc:title entropy - cumulative'),
+  'dc:title:avg' => array('label' => 'dc:title entropy - average'),
+  'dcterms:alternative:sum' => array('label' => 'dcterms:alternative entropy - cumulative'),
+  'dcterms:alternative:avg' => array('label' => 'dctersm:alternative entorpy - average'),
+  'dc:description:sum' => array('label' => 'dc:description entropy - cumulative'),
+  'dc:description:avg' => array('label' => 'dc:description entorpy - average')
 );
 
 $optional_groups = [

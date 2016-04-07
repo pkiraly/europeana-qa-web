@@ -109,7 +109,7 @@
 <?php foreach ($graphs as $key => $object) { ?>
     <tr>
       <td><?php print $object['label']; ?></td>
-      <td><?php print $analysis->results->{strtoupper($key)}; ?></td>
+      <td><?php if (strpos($key, ':') === FALSE) {$key = strtoupper($key);}; print $analysis->results->{$key}; ?></td>
     </tr>
 <?php } ?>
   </tbody>
