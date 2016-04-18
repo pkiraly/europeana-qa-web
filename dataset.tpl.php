@@ -22,6 +22,14 @@
 
 <!-- div class="col-md-12" -->
 
+<h2>Table of contents</h2>
+<ul type="square">
+  <li><a href="#frequency">Field frequency</a></li>
+  <?php foreach ($graphs as $name => $function) { ?>
+    <li><a href="#<?= $name ?>"><?= $function['label'] ?></a></li>
+  <?php } ?>
+</ul>
+
 <?php if ($freqFileExists) { ?>
 <h2>Field frequency</h2>
 
@@ -31,6 +39,7 @@
 <?php } ?>
 
 <?php foreach ($graphs as $name => $function) { ?>
+  <a name="<?= $name ?>"></a>
   <h2><?= $function['label'] ?></h2>
 
   <?php if (isset($function['fields']) && !empty($function['fields'])) { ?>
@@ -50,6 +59,31 @@
     <?php } ?>
   <?php } ?>
   </table>
+
+  <?php if ($histograms !== FALSE && isset($histograms->$name)) { ?>
+    <h3>Histogram</h3>
+    <table class="histogram">
+      <tr>
+        <td class="legend">range of values</td>
+        <?php for($i = 0; $i < count($histograms->$name); $i++) { ?>
+          <td><?= $histograms->{$name}[$i]->label; ?></td>
+        <?php } ?>
+      </tr>
+      <tr>
+        <td class="legend">count</td>
+        <?php for($i = 0; $i < count($histograms->$name); $i++) { ?>
+          <td><?= $histograms->{$name}[$i]->count; ?></td>
+        <?php } ?>
+      </tr>
+      <tr>
+        <td class="legend">percentage</td>
+        <?php for($i = 0; $i < count($histograms->$name); $i++) { ?>
+          <td><?php printf("%.2f%%", $histograms->{$name}[$i]->density); ?></td>
+        <?php } ?>
+      </tr>
+    </table>
+
+  <?php } ?>
 
   <?php if (file_exists('img/' . $type . $id . '/' . $type . $id . '-' . $name . '.png')) { ?>
     <h3>Graphs</h3>

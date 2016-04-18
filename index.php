@@ -2,7 +2,7 @@
 $configuration = parse_ini_file('config.cfg');
 
 $features = array(
-  'total' => 'Total',
+  'total' => 'Every field',
   'mandatory' => 'Mandatory',
   'descriptiveness' => 'Descriptiveness',
   'searchability' => 'Searchability',
@@ -20,7 +20,7 @@ $features = array(
   'entropy_dc_description_avg' => 'dc:description entorpy - average'
 );
 
-$feature = $_GET['feature'];
+$feature = isset($_GET) && isset($_GET['feature']) ? $_GET['feature'] : 'total';
 if (!isset($feature) || !isset($features[$feature])) {
   $feature = 'total';
 }
@@ -29,7 +29,7 @@ $types = [
   'data-providers' => 'Data providers',
   'datasets' => 'Data sets'
 ];
-$type = $_GET['type'];
+$type = isset($_GET) && isset($_GET['type']) ? $_GET['type'] : 'datasets';
 if (!isset($type) || !isset($types[$type])) {
   $type = 'datasets';
 }
@@ -42,11 +42,10 @@ function parse_csv($t) {
 }
 $csv = array_map('parse_csv', file($type . '.txt'));
 
-$summaryFile = 'json/index-summary-' . $feature . '-' . $prefix . '.json';
-if (!file_exists($SummaryFile)) {
+$summaryFile = 'json_cache/index-summary-' . $feature . '-' . $prefix . '.json';
+$rows = [];
+if (!file_exists($summaryFile)) {
   $counter = 1;
-  $rows = array();
-  // include('dataset-directory-header.tpl.php');
   foreach ($csv as $id => $row) {
     $id = $row[0];
     $collectionId = $row[1];
@@ -54,7 +53,7 @@ if (!file_exists($SummaryFile)) {
     $jsonFileName = $configuration['QA_R_PATH'] . '/json/' . $prefix . $id . '.json';
     if (file_exists($jsonFileName)) {
       if ($counter == 1) {
-        // echo $jsonFileName, ' ';
+        // echo 'jsonFileName: ', $jsonFileName, "\n";
       }
       $stats = json_decode(file_get_contents($jsonFileName));
       $assocStat = array();
@@ -75,6 +74,7 @@ if (!file_exists($SummaryFile)) {
       }
     }
   }
+  // echo 'count: ', count($rows), "\n";
   file_put_contents($summaryFile, json_encode($rows));
 } else {
   $rows = json_decode(file_get_contents($summaryFile));

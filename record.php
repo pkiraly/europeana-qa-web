@@ -107,6 +107,7 @@ foreach ($graphs['total']['fields'] as $field) {
   $table[] = $row;
 }
 
+$structure = extractStructure($metadata, $graphs['total']['fields']);
 include("record.tpl.php");
 
 // echo json_encode(json_decode(file_get_contents("http://www.europeana.eu/portal/record/11620/MNHNBOTANY_MNHN_FRANCE_P04617748.json")), JSON_PRETTY_PRINT);
@@ -145,4 +146,66 @@ function hasAlternative() {
     }
   }
   return $has_alternative;
+}
+
+function extractStructure($metadata, $fields) {
+  $structure = [];
+  $outOfStructure = [];
+  $problems = [];
+  $proxy = null;
+  foreach ($metadata->{'ore:Proxy'} as $pxy) {
+    if ($pxy->{'edm:europeanaProxy'}[0] == "false") {
+      $proxy = $pxy;
+    }
+  }
+  $aggregation = $metadata->{'ore:Aggregation'}[0];
+  $providedCHO = $metadata->{'edm:ProvidedCHO'}[0];
+
+  $structure['edm:ProvidedCHO/@about'] = [$providedCHO->{'@about'}];
+  foreach ($proxy as $field => $values) {
+    extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+  }
+  foreach ($aggregation as $field => $values) {
+    extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+  }
+
+  $goodOrder = [];
+  foreach ($fields as $field) {
+    if (isset($structure[$field])) {
+      $goodOrder[$field] = $structure[$field];
+    }
+  }
+  $structure = $goodOrder;
+  foreach ($outOfStructure as $key => $value) {
+    $structure['#' . $key] = $value;
+  }
+
+  # $structure['problems'] = $problems;
+  return $structure;
+}
+
+function extractValues($key, $values, $fields, &$structure, &$outOfStructure, &$problems) {
+  static $ignorableFields = ['Proxy/@about', 'Proxy/edm:europeanaProxy', 'Proxy/ore:proxyFor', 'Proxy/ore:proxyIn', 'Aggregation/@about', 'Aggregation/edm:aggregatedCHO'];
+
+  if (in_array($key, $fields)) {
+    $container =& $structure;
+  } else if (!in_array($key, $ignorableFields)) {
+    $container =& $outOfStructure;
+  }
+  $container[$key] = [];
+  foreach ($values as $value) {
+    if (is_string($value)) {
+      $container[$key][] = $value;
+    } else if (is_object($value)) {
+      if (isset($value->{'@resource'})) {
+        $container[$key][] = $value->{'@resource'} . ' (@resource)';
+      } else if (isset($value->{'@lang'})) {
+        $container[$key][] = '"' . $value->{'#value'} . '"@' . $value->{'@lang'};
+      } else {
+        $problems[] = 'no resource: ' . json_encode($value);
+      }
+    } else {
+      $problems[] = 'other type: ' . var_export($value, TRUE);
+    }
+  }
 }

@@ -3,7 +3,7 @@
 $configuration = parse_ini_file('config.cfg');
 
 $graphs = array(
-  'total' => array('label' => 'Completeness', 'fields' => array("edm:ProvidedCHO/@about", "Proxy/dc:title", "Proxy/dcterms:alternative",
+  'total' => array('label' => 'Every fields', 'fields' => array("edm:ProvidedCHO/@about", "Proxy/dc:title", "Proxy/dcterms:alternative",
   	"Proxy/dc:description", "Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:identifier",
   	"Proxy/dc:language", "Proxy/dc:coverage", "Proxy/dcterms:temporal", "Proxy/dcterms:spatial", "Proxy/dc:subject", "Proxy/dc:date",
   	"Proxy/dcterms:created", "Proxy/dcterms:issued", "Proxy/dcterms:extent", "Proxy/dcterms:medium", "Proxy/dcterms:provenance",
@@ -42,7 +42,6 @@ $graphs = array(
   'entropy_dcterms_alternative_avg' => array('label' => 'dctersm:alternative entorpy - average'),
   'entropy_dc_description_sum' => array('label' => 'dc:description entropy - cumulative'),
   'entropy_dc_description_avg' => array('label' => 'dc:description entorpy - average')
-
 );
 
 $title = 'Metadata Quality Assurance Framework';
@@ -66,6 +65,7 @@ if (!file_exists($jsonFileName)) {
 }
 
 $stats = json_decode(file_get_contents($jsonFileName));
+
 $assocStat = array();
 foreach ($stats as $obj) {
   $key = $obj->_row;
@@ -75,6 +75,12 @@ foreach ($stats as $obj) {
 
 $freqFile = 'json/' . $type . $id . '.freq.json';
 $freqFileExists = file_exists($freqFile);
+$histFile = 'json/' . $type . $id . '.hist.json';
+if (file_exists($histFile)) {
+  $histograms = json_decode(file_get_contents($histFile));
+} else {
+  $histograms = FALSE;
+}
 
 ob_start();
 include('dataset.tpl.php');

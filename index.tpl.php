@@ -24,7 +24,8 @@
 <div class="container">
 <h1>Metadata Quality Assurance Framework</h1>
 
-<p>Here you can find some sample result of the first iteration of the Metadata Quality Assurance Framework. All the records come from Europeana.</p>
+<p>Here you can find some sample result of the first iteration of the Metadata Quality Assurance Framework. All the records come from <a href="http://europeana.eu">Europeana</a>.<br/>
+Note: this is a research project, the results here are experimental, they are subject of change.</p>
 
 <h2>Field frequency</h2>
 

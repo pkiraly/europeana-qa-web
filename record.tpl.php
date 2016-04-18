@@ -16,7 +16,6 @@
 <div class="page-header">
   <h1>Record investigation</h1>
   <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
-  </div>
 </div>
 
 <div class="col-md-12">
@@ -48,23 +47,25 @@
   <thead>
     <tr>
 <?php foreach ($table[0] as $key) { ?>
+  <?php if (strpos($key, ':') === FALSE) { ?>
       <th><div class="functionality"><span><?php print $key; ?></span></div></th>
+  <?php } ?>
 <?php } ?>
     </tr>
   </thead>
   <tbody>
 <?php foreach ($table as $key => $row) { ?>
-<?php if ($key == 0) continue; ?>
+  <?php if ($key == 0) continue; ?>
     <tr>
-<?php foreach ($row as $j => $cell) { ?>
-<?php if ($j == 0) { ?>
+  <?php foreach ($row as $j => $cell) { ?>
+    <?php if ($j == 0) { ?>
       <td class="field"><?php print $cell; ?></td>
-<?php } elseif ($cell == '') { ?>
+    <?php } elseif ($cell == '') { ?>
       <td>&nbsp;</td>
-<?php } else { ?>
+    <?php } else { ?>
       <td class="<?php print $cell; ?>">&nbsp;</td>
-<?php } ?>
-<?php } ?>
+    <?php } ?>
+  <?php } ?>
     </tr>
 <?php } ?>
   </tbody>
@@ -115,6 +116,36 @@
   </tbody>
 </table>
 
+<h2>Term frequencies</h2>
+<p>abbreviations</p>
+<ul type="square">
+  <li>tf = term frequency within the field</td>
+  <li>df = document frequency - who many document has this term in this field?</li>
+  <li>tf-idf = term frequency - inverse document frequency. A score measuring the term's importance. See <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf" target="_blank">tf–idf</a> in Wikipedia.</li>
+</ul>
+<table id="statistics" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Terms</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php foreach ($analysis->termsCollection as $field => $terms) { ?>
+    <tr>
+      <td><?= $field ?></td>
+      <td>
+        <ul type="square">
+          <?php foreach ($terms as $term) { ?>
+            <li><?php printf("%s (tf=%d, df=%d, tf-idf=%f)", $term->term, $term->tf, $term->df, $term->tfIdf); ?></li>
+          <?php } ?>
+        </ul>
+      </td>
+    </tr>
+<?php } ?>
+  </tbody>
+</table>
+
 </div>
 
 <div class="col-md-7">
@@ -127,6 +158,39 @@
   <li><a href="http://www.europeana.eu/api/v2/search.json?query=europeana_id:%22/<?php print $id ?>%22&wskey=api2demo" target="_blank">REST API: search record</a></li>
   <li><a href="http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=http://data.europeana.eu/item/<?php print $id; ?>" target="_blank">OAI-PMH server</a></li>
 </ul>
+
+<h2>Analyzed metadata fields</h2>
+<table id="statistics" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Values</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php foreach ($structure as $field => $values) { ?>
+    <tr<?php if (strpos($field, '#') === 0) { ?> class="remainder"<?php } ?>>
+      <?php if (strpos($field, '#') === 0) { ?>
+        <td><?php echo substr($field, 1); ?></td>
+      <?php } else { ?>
+        <td><?= $field ?></td>
+      <?php } ?>
+      <td>
+        <?php if (count($values) == 1) { ?>
+          <?= $values[0] ?>
+        <?php } else { ?>
+          <ul type="square">
+            <?php foreach ($values as $value) { ?>
+              <li><?= $value ?></li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
+      </td>
+    </tr>
+<?php } ?>
+  </tbody>
+</table>
+<p>Note: The grey color denotes fields which are part of the Proxy or Aggregation, but was not checked to analyze.</p>
 
 <h2>Metadata structure as represented in the OAI-PMH service</h2>
 <pre id="code"><code class="json"><?php print json_encode($metadata, JSON_PRETTY_PRINT); ?></code></pre>

@@ -68,3 +68,19 @@ table#legend td {
 footer p {
   text-align: right;
 }
+
+table.histogram td {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+}
+
+table.histogram td.legend {
+  font-weight: bold;
+  text-align: right;
+}
+
+tr.remainder {
+  color: #999;
+}
