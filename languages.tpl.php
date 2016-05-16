@@ -24,39 +24,53 @@
 <div class="container">
 
 <div class="page-header">
-  <h1>Field frequency of '<?= $fields[$field]; ?>' per <?php if($type == 'd' || $type == 'data-providers'){ ?>data providers<?php } else { ?>datasets<?php } ?></h1>
+  <h1>Language frequency</h1>
   <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <form>
   <label for="field">Select field: </label>
   <select name="field" onchange="this.form.submit();">
-<?php foreach ($fields as $fieldName => $label) { ?>
-    <option value="<?= $fieldName ?>" <?php if ($fieldName == $field) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+<?php foreach ($languages as $fieldName => $languageCounts) { ?>
+    <option value="<?= $fieldName ?>" <?php if ($fieldName == $field) { ?>selected="selected"<?php } ?>><?= $fields[$fieldName] ?></option>
 <?php } ?>
   </select>
 
-  <label for="type">groupped by </label>
-  <select name="type" onchange="this.form.submit();">
-<?php foreach ($types as $name => $label) { ?>
-    <option value="<?= $name ?>" <?php if ($name == $type) { ?>selected="selected"<?php } ?>><?= $label ?></option>
-<?php } ?>
-  </select>
-
-  exclude frequencies
   <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" <?php if ($excludeZeros) { ?>checked="checked"<?php } ?> onchange="this.form.submit();" />
-  <label for="excludeZeros">0%</label>
-
-  <input type="checkbox" name="exclusions[]" value="2" id="excludeRest" <?php if ($excludeRest) { ?>checked="checked"<?php } ?> onchange="this.form.submit();" />
-  <label for="excludeRest">between 0% and 100%</label>
-
-  <input type="checkbox" name="exclusions[]" value="1" id="excludeOnes" <?php if ($excludeOnes) { ?>checked="checked"<?php } ?> onchange="this.form.submit();" />
-  <label for="excludeOnes">100%</label>
+  <label for="excludeZeros">Exclude records without specified language</label>
 </form>
 
-<p>This chart shows the frequency of the analyzed fields in all records. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
+<p>This chart shows the specified languages, and the number of records they are occured in.</p>
 
-<div id="frequency-chart" class="chart"></div>
+<div id="language-chart" class="chart"></div>
+
+<table>
+  <?php if ($field == 'all') { ?>
+    <?php foreach ($languages as $fieldName => $languageCounts) { ?>
+      <tr>
+        <td valign="top"><?= $fields[$fieldName] ?></td>
+        <td>
+          <ol>
+            <?php foreach ($languageCounts as $language => $count) { ?>
+              <li><strong><?= $language ?></strong>: <?= $count ?></li>
+            <?php } ?>
+          </ol>
+        </td>
+      </tr>
+    <?php } ?>
+  <?php } else { ?>
+    <tr>
+      <td valign="top"><?= $fields[$field] ?></td>
+      <td>
+        <ol>
+          <?php foreach ($languages->$field as $language => $count) { ?>
+            <li><strong><?= $language ?></strong>: <?= $count ?></li>
+          <?php } ?>
+        </ol>
+      </td>
+    </tr>
+  <?php } ?>
+</table>
 
 <footer>
   <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
@@ -73,7 +87,7 @@ $(document).ready(function() {
 <script type="text/javascript">
   var labelSource = [];
 </script>
-<script type="text/javascript" src="chart.js.php?filename=<?= $fieldSummaryFile ?>&label=collectionId&type=<?= $type ?>&excludeZeros=<?= (int)$excludeZeros ?>&excludeOnes=<?= (int)$excludeOnes ?>&excludeRest=<?= $excludeRest ?>&target=frequency-chart&property=frequency"></script>
+<script type="text/javascript" src="chart.js.php?filename=<?php echo urlencode('language-filter.php?field=' . $field . '&excludeZeros=' . (int)$excludeZeros); ?>&label=language&type=<?= $type ?>&target=language-chart&property=count"></script>
 <link rel="stylesheet" href="chart.css" />
 
 </body>

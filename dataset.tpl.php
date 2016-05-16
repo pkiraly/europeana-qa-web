@@ -24,23 +24,42 @@
 
 <h2>Table of contents</h2>
 <ul type="square">
+  <li><a href="#n">Number of records</a></li>
   <li><a href="#frequency">Field frequency</a></li>
+  <li><a href="#cardinality">Field cardinality</a></li>
   <?php foreach ($graphs as $name => $function) { ?>
     <li><a href="#<?= $name ?>"><?= $function['label'] ?></a></li>
   <?php } ?>
 </ul>
 
+<h2 id="n">Number of records</h2>
+<p><?php echo number_format($n, 0, '.', ' '); ?></p>
+
 <?php if ($freqFileExists) { ?>
-<h2>Field frequency</h2>
+  <h2 id="frequency">Field frequency</h2>
 
-<p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
+  <p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
 
-<div id="chart"></div>
+  <div id="frequency-chart" class="chart"></div>
+<?php } ?>
+
+<?php if ($cardinalityFileExists) { ?>
+  <h2 id="cardinality">Field cardinality</h2>
+
+  <p>This chart shows the cardinality of the analyzed fields in the current record set.</p>
+  
+  <p>
+    Select statistics:
+    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'sum') ?>#cardinality">number of field instances</a>]
+    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'mean') ?>#cardinality">average</a>]
+    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'median') ?>#cardinality">median</a>]
+  </p>
+
+  <div id="cardinality-chart" class="chart"></div>
 <?php } ?>
 
 <?php foreach ($graphs as $name => $function) { ?>
-  <a name="<?= $name ?>"></a>
-  <h2><?= $function['label'] ?></h2>
+  <h2 id="<?= $name ?>"><?= $function['label'] ?></h2>
 
   <?php if (isset($function['fields']) && !empty($function['fields'])) { ?>
     <h3>Fields covered</h3>
@@ -98,10 +117,18 @@
 </div>
 
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<?php if ($freqFileExists) { ?>
-<script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
-<script type="text/javascript" src="chart.js.php?freq=<?= $freqFile ?>&type=<?= $type ?>"></script>
-<link rel="stylesheet" href="chart.css" />
+<?php if ($freqFileExists || $cardinalityFileExists ) { ?>
+  <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+  <script type="text/javascript">
+    var labelSource = [];
+  </script>
+  <?php if ($freqFileExists) { ?>
+    <script type="text/javascript" src="chart.js.php?filename=<?= $freqFile ?>&type=<?= $type ?>&target=frequency-chart&property=frequency"></script>
+  <?php } ?>
+  <?php if ($cardinalityFileExists) { ?>
+    <script type="text/javascript" src="chart.js.php?filename=<?= $cardinalityFile ?>&type=<?= $type ?>&target=cardinality-chart&property=<?= $cardinalityProperty ?>"></script>
+  <?php } ?>
+  <link rel="stylesheet" href="chart.css" />
 <?php } ?>
 </body>
 </html>

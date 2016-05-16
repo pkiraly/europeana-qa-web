@@ -37,69 +37,14 @@ $fields = [
   'aggregation_edm_isShownBy' => 'Aggregation / edm:isShownBy',
   'aggregation_edm_object' => 'Aggregation / edm:object',
   'aggregation_edm_hasView' => 'Aggregation / edm:hasView',
+  'aggregated' => 'All fields aggregated'
 ];
+
+$languages = json_decode(file_get_contents('json/languages.json'));
 
 $field = $_GET['field'];
-if (!isset($field) || !isset($fields[$field])) {
-  $field = 'identifier';
-}
-
-
-$types = [
-  'data-providers' => 'Data providers',
-  'datasets' => 'Data sets'
-];
-$type = $_GET['type'];
-if (!isset($type) || !isset($types[$type])) {
-  $type = 'datasets';
-}
-$prefix = $type == 'datasets' ? 'c' : 'd';
-
+if (!isset($field))
+  $field = 'all';
 $excludeZeros = in_array(0, $_GET['exclusions']);
-$excludeOnes = in_array(1, $_GET['exclusions']);
-$excludeRest = in_array(2, $_GET['exclusions']);
 
-// $csv = array_map('str_getcsv', file('collection-names.csv'));
-
-function parse_csv($line) {
-  return str_getcsv($line, ';');
-}
-
-$fieldSummaryFile = 'json_cache/field-summary-' . $field . '-' . $prefix . '.json';
-if (!file_exists($fieldSummaryFile)) {
-  $csv = array_map('parse_csv', file($type . '.txt'));
-  $counter = 1;
-  $rows = array();
-  // include('dataset-directory-header.tpl.php');
-  foreach ($csv as $id => $row) {
-    $id = $row[0];
-    $collectionId = $row[1];
-
-    $jsonFileName = $configuration['QA_R_PATH'] . '/json/' . $prefix . $id . '.freq.json';
-    if (file_exists($jsonFileName)) {
-      if ($counter == 1) {
-        echo $jsonFileName, ' ', $jsonFileName;
-      }
-      $stats = json_decode(file_get_contents($jsonFileName));
-      $assocStat = array();
-      foreach ($stats as $obj) {
-        if ($counter == 1) {
-          // echo json_encode($obj);
-        }
-        if ($obj->field == $field) {
-          // unset($obj->recMin);
-          // unset($obj->recMax);
-          // unset($obj->_row);
-          $obj->id = $id;
-          $obj->type = $prefix;
-          $obj->collectionId = $collectionId;
-          $rows[] = $obj;
-          break;
-        }
-      }
-    }
-  }
-  file_put_contents($fieldSummaryFile, json_encode($rows));
-}
-
-include("field.tpl.php");
+include("languages.tpl.php");

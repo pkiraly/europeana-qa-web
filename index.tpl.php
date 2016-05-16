@@ -31,7 +31,17 @@ Note: this is a research project, the results here are experimental, they are su
 
 <p>This chart shows the frequency of the analyzed fields in all records. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
 
-<div id="chart"></div>
+<div id="frequency-chart" class="chart"></div>
+
+<h2>Field cardinality</h2>
+
+<p>This chart shows the cardinality of the analyzed fields in all records.</p>
+
+<div id="cardinality-chart" class="chart"></div>
+
+<h2>Language frequency</h2>
+
+<p><a href="languages.php?field=proxy_dc_title&exclusions[]=0">Frequency of language specification in the most important fields.</a></p>
 
 <h2>Dataset analyses</h2>
 
@@ -66,6 +76,7 @@ Note: this is a research project, the results here are experimental, they are su
   <thead>
     <tr>
       <th></th>
+      <th># records</th>
       <th>Dataset</th>
       <th>Minimum</th>
       <th>Maximum</th>
@@ -79,6 +90,7 @@ Note: this is a research project, the results here are experimental, they are su
 <?php foreach ($rows as $counter => $obj) { ?>
     <tr>
       <td><?= $counter ?></td>
+      <td><?= $obj->n ?></td>
       <td><a href="dataset.php?id=<?= $obj->id ?>&name=<?= $obj->collectionId ?>&type=<?= $obj->type ?>"><?= $obj->collectionId ?></a></td>
       <td><?= $obj->min ?></td>
       <td><?= $obj->max ?></td>
@@ -116,7 +128,11 @@ $(document).ready(function() {
 </script>
 
 <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
-<script type="text/javascript" src="chart.js.php?freq=json/all.freq.json&type=<?= $type ?>"></script>
+<script type="text/javascript">
+  var labelSource = [];
+</script>
+<script type="text/javascript" src="chart.js.php?filename=json/frequency.json&type=<?= $type ?>&target=frequency-chart&property=frequency"></script>
+<script type="text/javascript" src="chart.js.php?filename=json/cardinality.json&type=<?= $type ?>&target=cardinality-chart&property=sum"></script>
 <link rel="stylesheet" href="chart.css" />
 
 </body>

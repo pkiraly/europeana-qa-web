@@ -41,7 +41,45 @@ $graphs = array(
   'entropy_dcterms_alternative_sum' => array('label' => 'dcterms:alternative entropy - cumulative'),
   'entropy_dcterms_alternative_avg' => array('label' => 'dctersm:alternative entorpy - average'),
   'entropy_dc_description_sum' => array('label' => 'dc:description entropy - cumulative'),
-  'entropy_dc_description_avg' => array('label' => 'dc:description entorpy - average')
+  'entropy_dc_description_avg' => array('label' => 'dc:description entorpy - average'),
+  'crd_identifier' => array('label' => 'Cardinality of identifier'),
+  'crd_proxy_dc_title' => array('label' => 'Cardinality of Proxy/dc:title'),
+  'crd_proxy_dcterms_alternative' => array('label' => 'Cardinality of Proxy/dcterms:alternative'),
+  'crd_proxy_dc_description' => array('label' => 'Cardinality of Proxy/dc:description'),
+  'crd_proxy_dc_creator' => array('label' => 'Cardinality of Proxy/dc:creator'),
+  'crd_proxy_dc_publisher' => array('label' => 'Cardinality of Proxy/dc:publisher'),
+  'crd_proxy_dc_contributor' => array('label' => 'Cardinality of Proxy/dc:contributor'),
+  'crd_proxy_dc_type' => array('label' => 'Cardinality of Proxy/dc:type'),
+  'crd_proxy_dc_identifier' => array('label' => 'Cardinality of Proxy/dc:identifier'),
+  'crd_proxy_dc_language' => array('label' => 'Cardinality of Proxy/dc:language'),
+  'crd_proxy_dc_coverage' => array('label' => 'Cardinality of Proxy/dc:coverage'),
+  'crd_proxy_dcterms_temporal' => array('label' => 'Cardinality of Proxy/dcterms:temporal'),
+  'crd_proxy_dcterms_spatial' => array('label' => 'Cardinality of Proxy/dcterms:spatial'),
+  'crd_proxy_dc_subject' => array('label' => 'Cardinality of Proxy/dc:subject'),
+  'crd_proxy_dc_date' => array('label' => 'Cardinality of Proxy/dc:date'),
+  'crd_proxy_dcterms_created' => array('label' => 'Cardinality of Proxy/dcterms:created'),
+  'crd_proxy_dcterms_issued' => array('label' => 'Cardinality of Proxy/dcterms:issued'),
+  'crd_proxy_dcterms_extent' => array('label' => 'Cardinality of Proxy/dcterms:extent'),
+  'crd_proxy_dcterms_medium' => array('label' => 'Cardinality of Proxy/dcterms:medium'),
+  'crd_proxy_dcterms_provenance' => array('label' => 'Cardinality of Proxy/dcterms:provenance'),
+  'crd_proxy_dcterms_hasPart' => array('label' => 'Cardinality of Proxy/dcterms:hasPart'),
+  'crd_proxy_dcterms_isPartOf' => array('label' => 'Cardinality of Proxy/dcterms:isPartOf'),
+  'crd_proxy_dc_format' => array('label' => 'Cardinality of Proxy/dc:format'),
+  'crd_proxy_dc_source' => array('label' => 'Cardinality of Proxy/dc:source'),
+  'crd_proxy_dc_rights' => array('label' => 'Cardinality of Proxy/dc:rights'),
+  'crd_proxy_dc_relation' => array('label' => 'Cardinality of Proxy/dc:relation'),
+  'crd_proxy_edm_isNextInSequence' => array('label' => 'Cardinality of Proxy/edm:isNextInSequence'),
+  'crd_proxy_edm_type' => array('label' => 'Cardinality of Proxy/edm:type'),
+  'crd_aggregation_edm_rights' => array('label' => 'Cardinality of Aggregation/edm:rights'),
+  'crd_aggregation_edm_provider' => array('label' => 'Cardinality of Aggregation/edm:provider'),
+  'crd_aggregation_edm_dataProvider' => array('label' => 'Cardinality of Aggregation/edm:dataProvider'),
+  'crd_aggregation_edm_isShownAt' => array('label' => 'Cardinality of Aggregation/edm:isShownAt'),
+  'crd_aggregation_edm_isShownBy' => array('label' => 'Cardinality of Aggregation/edm:isShownBy'),
+  'crd_aggregation_edm_object' => array('label' => 'Cardinality of Aggregation/edm:object'),
+  'crd_aggregation_edm_hasView' => array('label' => 'Cardinality of Aggregation/edm:hasView'),
+  'long_subject' => array('label' => 'Metadata problem - Long subject'),
+  'same_title_and_description' => array('label' => 'Metadata problem - title and description are the same'),
+  'empty_string' => array('label' => 'Metadata problem - empty field')
 );
 
 $title = 'Metadata Quality Assurance Framework';
@@ -53,6 +91,13 @@ if (isset($_GET['id'])) {
   $collectionId = $argv[1];
   $id = strstr($collectionId, '_', true);
   $type = 'c';
+}
+
+$n = 0;
+$jsonCountFileName = $configuration['QA_R_PATH'] . '/json/' . $type . $id . '.count.json';
+if (file_exists($jsonCountFileName)) {
+  $stats = json_decode(file_get_contents($jsonCountFileName));
+  $n = $stats[0]->count;
 }
 
 $jsonFileName = $configuration['QA_R_PATH'] . '/json/' . $type . $id . '.json';
@@ -75,6 +120,15 @@ foreach ($stats as $obj) {
 
 $freqFile = 'json/' . $type . $id . '.freq.json';
 $freqFileExists = file_exists($freqFile);
+
+$cardinalityFile = 'json/' . $type . $id . '.cardinality.json';
+$cardinalityFileExists = file_exists($cardinalityFile);
+$cardinalityProperties = ['sum', 'mean', 'median'];
+if ($cardinalityFileExists) {
+  $key = 'cardinality-property';
+  $cardinalityProperty = isset($_GET[$key]) && in_array($_GET[$key], $cardinalityProperties) ? $_GET[$key] : 'sum';
+}
+
 $histFile = 'json/' . $type . $id . '.hist.json';
 if (file_exists($histFile)) {
   $histograms = json_decode(file_get_contents($histFile));
