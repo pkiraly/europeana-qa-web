@@ -10,6 +10,16 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
 <link rel="stylesheet" href="europeana-qa.css" />
+<style type="text/css">
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+</style>
 </head>
 <body>
 
@@ -30,6 +40,7 @@
   <?php foreach ($graphs as $name => $function) { ?>
     <li><a href="#<?= $name ?>"><?= $function['label'] ?></a></li>
   <?php } ?>
+  <li><a href="#languages">Languages</a></li>
 </ul>
 
 <h2 id="n">Number of records</h2>
@@ -110,16 +121,49 @@
   <?php } ?>
 <?php } ?>
 
+<h2 id="languages">Languages</h2>
+<form id="tree-form" onchange="formUpdated(this);" >
+  <input type="hidden" name="collectionId" value="<?= $type . $id ?>" />
+  <input type="hidden" name="field" value="aggregated" />
+  <input type="hidden" name="targetId" value="#language-treemap" />
+  <input type="checkbox" name="excludeZeros" value="0" id="excludeZeros"/>
+  <label for="excludeZeros">Exclude records without specified language</label>
+  <input type="checkbox" name="showNoInstances" value="1" id="showNoInstances"/>
+  <label for="showNoInstances">Show records without field</label>
+</form>
+<div id="language-treemap"></div>
+<table>
+  <?php foreach ($languages as $fieldName => $languageCounts) { ?>
+    <?php if (!(count(get_object_vars($languageCounts)) == 1 && isset($languageCounts->{'no field instance'}))) { ?>
+      <tr>
+        <td valign="top">
+          <a href="#" onclick="updateData('<?= $type . $id ?>', '<?= $fieldName ?>', '#language-treemap'); return false;"><?= $fields[$fieldName] ?></a>
+        </td>
+        <td>
+          <ol>
+            <?php foreach ($languageCounts as $language => $count) { ?>
+              <li><strong><?= $language ?></strong>: <?= $count ?></li>
+            <?php } ?>
+          </ol>
+        </td>
+      </tr>
+    <?php } ?>
+  <?php } ?>
+</table>
+
 <footer>
   <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
 </footer>
 </div>
 </div>
 
+<script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php if ($freqFileExists || $cardinalityFileExists ) { ?>
-  <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+  <script type="text/javascript" src="treemap.js"></script>
   <script type="text/javascript">
+    updateData('<?= $type . $id ?>', 'aggregated', '#language-treemap', false, false);
     var labelSource = [];
   </script>
   <?php if ($freqFileExists) { ?>

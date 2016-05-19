@@ -40,11 +40,24 @@ $fields = [
   'aggregated' => 'All fields aggregated'
 ];
 
-$languages = json_decode(file_get_contents('json/languages.json'));
+
+$collectionId = $_GET['collectionId'];
+if (!isset($collectionId))
+  $collectionId = 'all';
 
 $field = $_GET['field'];
 if (!isset($field))
   $field = 'all';
+
 $excludeZeros = in_array(0, $_GET['exclusions']);
+$showNoInstances = in_array(1, $_GET['exclusions']);
+
+$treeMapUrl = 'plainjson2tree.php?field=' . $field 
+            . '&excludeZeros=' . (int)$excludeZeros 
+            . '&showNoInstances=' . (int)$showNoInstances 
+            . '&collectionId=' . $collectionId;
+
+$fileName = 'json/' . $collectionId . '.languages.json';
+$languages = json_decode(file_get_contents($fileName));
 
 include("languages.tpl.php");
