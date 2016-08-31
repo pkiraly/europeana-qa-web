@@ -137,7 +137,7 @@ function position() {
       <td>
         <ol>
           <?php foreach ($languages->$field as $language => $count) { ?>
-            <li><strong><?= $language ?></strong>: <?= $count ?></li>
+            <li><strong><?= $language ?></strong>: <?= number_format($count, 0, ' ', ' '); ?></li>
           <?php } ?>
         </ol>
       </td>

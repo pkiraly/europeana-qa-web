@@ -2,6 +2,9 @@
 define('LN', "\n");
 define('OAI_PMH_URL_TEMPLATE', 'http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=%s');
 define('ID_PREFIX', 'http://data.europeana.eu/item/');
+define('RECORD_API', 'http://144.76.218.178:8080/europeana-qa/record/%s.json');
+define('METRICS_API', 'http://144.76.218.178:8080/europeana-qa/%s.json');
+
 
 $configuration = parse_ini_file('config.cfg');
 require_once($configuration['OAI_PATH'] . '/OAIHarvester.php');
@@ -14,8 +17,11 @@ if (substr($id, 0, 1) == '/') {
   $id = substr($id, 1);
 }
 
-$metadata = retrieveRecord($id);
+# $metadata = retrieveRecord($id);
+$metadata = json_decode(file_get_contents(sprintf(RECORD_API, $id)));
 if (!empty($metadata)) {
+  $analysis = json_decode(file_get_contents(sprintf(METRICS_API, $id)));
+  /*
   $json = str_replace("'", "'\''", json_encode($metadata));
   $command = sprintf(
     "java -cp %s/europeana-qa-spark-1.0-SNAPSHOT-jar-with-dependencies.jar com.nsdr.spark.CLI '%s' 2>/dev/null",
@@ -30,6 +36,7 @@ if (!empty($metadata)) {
     echo 'result: ', $result;
     die();
   }
+  */
 }
 
 $graphs = array(
@@ -154,7 +161,11 @@ function extractStructure($metadata, $fields) {
   $problems = [];
   $proxy = null;
   foreach ($metadata->{'ore:Proxy'} as $pxy) {
-    if ($pxy->{'edm:europeanaProxy'}[0] == "false") {
+    if (
+        (is_bool($pxy->{'edm:europeanaProxy'}) && $pxy->{'edm:europeanaProxy'} === false)
+        ||
+        (is_array($pxy->{'edm:europeanaProxy'}) && $pxy->{'edm:europeanaProxy'}[0] == "false")
+    ) {
       $proxy = $pxy;
     }
   }
@@ -193,6 +204,9 @@ function extractValues($key, $values, $fields, &$structure, &$outOfStructure, &$
     $container =& $outOfStructure;
   }
   $container[$key] = [];
+  if (!is_array($values)) {
+    $values = [$values];
+  }
   foreach ($values as $value) {
     if (is_string($value)) {
       $container[$key][] = $value;

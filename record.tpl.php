@@ -110,7 +110,18 @@
 <?php foreach ($graphs as $key => $object) { ?>
     <tr>
       <td><?php print $object['label']; ?></td>
-      <td><?php if (strpos($key, ':') === FALSE) {$key = strtoupper($key);}; print $analysis->results->{$key}; ?></td>
+      <td><?php
+        if (strpos($key, ':') === FALSE) {
+          $key = strtoupper($key);
+        }
+        $value = null;
+        if (isset($analysis->labelledResults->completeness->{$key})) {
+          $value = $analysis->labelledResults->completeness->{$key};
+        } elseif (isset($analysis->labelledResults->uniqueness->{$key})) {
+          $value = $analysis->labelledResults->uniqueness->{$key};
+        }
+        print $value;
+      ?></td>
     </tr>
 <?php } ?>
   </tbody>
