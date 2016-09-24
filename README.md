@@ -1,7 +1,7 @@
 # europeana-qa-web
 Web interface for the Europeana branch of Metadata Quality Assurance Framework 
 
-# Prerequisites
+# Prerequisits
 
 ## europeana-qa-api REST API
 
