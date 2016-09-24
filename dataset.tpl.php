@@ -90,6 +90,30 @@
   <?php } ?>
   </table>
 
+  <?php if ($frequencyTable !== FALSE && isset($frequencyTable->$name)) { ?>
+    <h3>Frequency table</h3>
+    <table class="histogram">
+      <tr>
+        <td class="legend">values</td>
+        <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
+          <td><?= $value; ?></td>
+        <?php } ?>
+      </tr>
+      <tr>
+        <td class="legend">count</td>
+        <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
+          <td><?= $frequency[0]; ?></td>
+        <?php } ?>
+      </tr>
+      <tr>
+        <td class="legend">percentage</td>
+        <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
+          <td><?php printf("%.2f%%", ($frequency[0] * 100 / $n)); ?></td>
+        <?php } ?>
+      </tr>
+    </table>
+  <?php } ?>
+
   <?php if ($histograms !== FALSE && isset($histograms->$name)) { ?>
     <h3>Histogram</h3>
     <table class="histogram">
@@ -115,7 +139,7 @@
 
   <?php } ?>
 
-  <?php if (file_exists('img/' . $type . $id . '/' . $type . $id . '-' . $name . '.png')) { ?>
+  <?php if (file_exists('img/' . $type . $id . '/' . $type . $id . '-' . strtolower($name) . '.png')) { ?>
     <h3>Graphs</h3>
     <img src="img/<?= $type . $id ?>/<?= $type . $id ?>-<?= $name ?>.png" />
   <?php } ?>
