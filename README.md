@@ -34,3 +34,4 @@ bin/solr start
 bin/solr stop
 ```
 
+The source code and more information is available at the [project page](https://github.com/pkiraly/europeana-qa-solr).
