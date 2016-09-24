@@ -23,6 +23,8 @@ cd ~/apache-tomcat-8.0.36
 bin/shutdown
 ```
 
+The source code and more information is available at the [project page](https://github.com/pkiraly/europeana-qa-client).
+
 ## Apache Solr
 
 An Apache Solr index is needed for the working of the API. To manage it:
