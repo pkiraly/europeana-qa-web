@@ -117,7 +117,15 @@ d3.json("<?= $filename; ?>", function(data) {
       // console.log(d);
       label = d[labelSource['<?= $id ?>']];
       if (labelSource['<?= $id ?>'] == 'field') {
-        label = d[labelSource['<?= $id ?>']].replace("proxy_", "Proxy / ").replace("aggregation_", "Aggregation / ").replace("_", ":");
+        label = d[labelSource['<?= $id ?>']]
+          .replace("proxy_", "Proxy / ")
+          .replace("aggregation_", "Aggregation / ")
+          .replace("place_", "Place / ")
+          .replace("providedcho_", "ProvidedCHO / ")
+          .replace("agent_", "Agent / ")
+          .replace("timespan_", "Timespan / ")
+          .replace("concept_", "Concept / ")
+          .replace("_", ":");
       }
       return label;
       // return '<a href="field.php?field=' + d.field + '">' + label + '</a>';

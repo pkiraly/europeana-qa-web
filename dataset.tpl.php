@@ -161,12 +161,13 @@
     <?php if (!(count(get_object_vars($languageCounts)) == 1 && isset($languageCounts->{'no field instance'}))) { ?>
       <tr>
         <td valign="top">
-          <a href="#" onclick="updateData('<?= $type . $id ?>', '<?= $fieldName ?>', '#language-treemap'); return false;"><?= $fields[$fieldName] ?></a>
+          <a href="#" onclick="updateData('<?= $type . $id ?>', '<?= $fieldName ?>', '#language-treemap'); return false;"><?= 
+          isset($fields[$fieldName]) ? $fields[$fieldName] : $fieldName ?></a>
         </td>
         <td>
           <ol>
             <?php foreach ($languageCounts as $language => $count) { ?>
-              <li><strong><?= $language ?></strong>: <?= $count ?></li>
+              <li><strong><?= $language ?></strong>: <?= number_format($count, 0, ' ', ' '); ?></li>
             <?php } ?>
           </ol>
         </td>

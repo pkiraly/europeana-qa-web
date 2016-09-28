@@ -1,4 +1,5 @@
 <?php
+$configuration = parse_ini_file('config.cfg');
 
 $field = $_GET['field'];
 if (!isset($field))

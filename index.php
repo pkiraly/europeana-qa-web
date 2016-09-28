@@ -338,7 +338,6 @@ function parse_csv($t) {
 $csv = array_map('parse_csv', file($type . '.txt'));
 
 $summaryFile = 'json_cache/index-summary-' . $feature . '-' . $prefix . '.json';
-// echo 'summaryFile: ', $summaryFile, LN;
 $rows = [];
 if (!file_exists($summaryFile)) {
   $counter = 1;
@@ -354,7 +353,6 @@ if (!file_exists($summaryFile)) {
     }
 
     $jsonFileName = $configuration['QA_R_PATH'] . '/json2/' . $prefix . $id . '.json';
-    echo 'jsonFileName: ', $jsonFileName, LN;
     if (file_exists($jsonFileName)) {
       if ($counter == 1) {
         // echo 'jsonFileName: ', $jsonFileName, "\n";
@@ -365,9 +363,7 @@ if (!file_exists($summaryFile)) {
         if ($counter == 1) {
           // echo json_encode($obj);
         }
-        echo $obj->_row, LN;
         if ($obj->_row == $feature) {
-          echo 'bumm', LN;
           unset($obj->recMin);
           unset($obj->recMax);
           unset($obj->_row);
@@ -380,11 +376,11 @@ if (!file_exists($summaryFile)) {
         }
       }
     } else {
-      echo 'jsonFileName is not existing', LN;
+      // echo 'jsonFileName is not existing', LN;
     }
   }
   // echo 'count: ', count($rows), "\n";
-  // file_put_contents($summaryFile, json_encode($rows));
+  file_put_contents($summaryFile, json_encode($rows));
 } else {
   $rows = json_decode(file_get_contents($summaryFile));
 }

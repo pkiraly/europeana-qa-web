@@ -43,7 +43,6 @@ $graphs = array(
   'entropy_dc_description_sum' => array('label' => 'dc:description entropy - cumulative'),
   'entropy_dc_description_avg' => array('label' => 'dc:description entorpy - average'),
 
-
   'crd_providedcho_rdf_about' => array('label' => 'Cardinality of ProvidedCHO/rdf:about'),
   'crd_proxy_dc_title' => array('label' => 'Cardinality of Proxy/dc:title'),
   'crd_proxy_dcterms_alternative' => array('label' => 'Cardinality of Proxy/dcterms:alternative'),
@@ -212,42 +211,121 @@ $graphs = array(
 );
 
 $fields = [
-  'identifier' => 'identifier',
-  'proxy_dc_title' => 'Proxy / dc:title',
-  'proxy_dcterms_alternative' => 'Proxy / dcterms:alternative',
-  'proxy_dc_description' => 'Proxy / dc:description',
-  'proxy_dc_creator' => 'Proxy / dc:creator',
-  'proxy_dc_publisher' => 'Proxy / dc:publisher',
-  'proxy_dc_contributor' => 'Proxy / dc:contributor',
-  'proxy_dc_type' => 'Proxy / dc:type',
-  'proxy_dc_identifier' => 'Proxy / dc:identifier',
-  'proxy_dc_language' => 'Proxy / dc:language',
-  'proxy_dc_coverage' => 'Proxy / dc:coverage',
-  'proxy_dcterms_temporal' => 'Proxy / dcterms:temporal',
-  'proxy_dcterms_spatial' => 'Proxy / dcterms:spatial',
-  'proxy_dc_subject' => 'Proxy / dc:subject',
-  'proxy_dc_date' => 'Proxy / dc:date',
-  'proxy_dcterms_created' => 'Proxy / dcterms:created',
-  'proxy_dcterms_issued' => 'Proxy / dcterms:issued',
-  'proxy_dcterms_extent' => 'Proxy / dcterms:extent',
-  'proxy_dcterms_medium' => 'Proxy / dcterms:medium',
-  'proxy_dcterms_provenance' => 'Proxy / dcterms:provenance',
-  'proxy_dcterms_hasPart' => 'Proxy / dcterms:hasPart',
-  'proxy_dcterms_isPartOf' => 'Proxy / dcterms:isPartOf',
-  'proxy_dc_format' => 'Proxy / dc:format',
-  'proxy_dc_source' => 'Proxy / dc:source',
-  'proxy_dc_rights' => 'Proxy / dc:rights',
-  'proxy_dc_relation' => 'Proxy / dc:relation',
-  'proxy_edm_isNextInSequence' => 'Proxy / edm:isNextInSequence',
-  'proxy_edm_type' => 'Proxy / edm:type',
-  'aggregation_edm_rights' => 'Aggregation / edm:rights',
-  'aggregation_edm_provider' => 'Aggregation / edm:provider',
+  'aggregated' => 'All fields aggregated',
+  'agent_dc_date' => 'Agent / dc:date',
+  'agent_dc_identifier' => 'Agent / dc:identifier',
+  'agent_edm_begin' => 'Agent / edm:begin',
+  'agent_edm_end' => 'Agent / edm:end',
+  'agent_edm_hasMet' => 'Agent / edm:hasMet',
+  'agent_edm_isRelatedTo' => 'Agent / edm:isRelatedTo',
+  'agent_foaf_name' => 'Agent / foaf:name',
+  'agent_owl_sameAs' => 'Agent / owl:sameAs',
+  'agent_rdaGr2_biographicalInformation' => 'Agent / rdaGr2:biographicalInformation',
+  'agent_rdaGr2_dateOfBirth' => 'Agent / rdaGr2:dateOfBirth',
+  'agent_rdaGr2_dateOfDeath' => 'Agent / rdaGr2:dateOfDeath',
+  'agent_rdaGr2_dateOfEstablishment' => 'Agent / rdaGr2:dateOfEstablishment',
+  'agent_rdaGr2_dateOfTermination' => 'Agent / rdaGr2:dateOfTermination',
+  'agent_rdaGr2_gender' => 'Agent / rdaGr2:gender',
+  'agent_rdaGr2_placeOfBirth' => 'Agent / rdaGr2:placeOfBirth',
+  'agent_rdaGr2_placeOfDeath' => 'Agent / rdaGr2:placeOfDeath',
+  'agent_rdaGr2_professionOrOccupation' => 'Agent / rdaGr2:professionOrOccupation',
+  'agent_skos_altLabel' => 'Agent / skos:altLabel',
+  'agent_skos_note' => 'Agent / skos:note',
+  'agent_skos_prefLabel' => 'Agent / skos:prefLabel',
+  'aggregation_dc_rights' => 'Aggregation / dc:rights',
+  'aggregation_edm_aggregatedCHO' => 'Aggregation / edm:aggregatedCHO',
   'aggregation_edm_dataProvider' => 'Aggregation / edm:dataProvider',
+  'aggregation_edm_hasView' => 'Aggregation / edm:hasView',
+  'aggregation_edm_intermediateProvider' => 'Aggregation / edm:intermediateProvider',
   'aggregation_edm_isShownAt' => 'Aggregation / edm:isShownAt',
   'aggregation_edm_isShownBy' => 'Aggregation / edm:isShownBy',
   'aggregation_edm_object' => 'Aggregation / edm:object',
-  'aggregation_edm_hasView' => 'Aggregation / edm:hasView',
-  'aggregated' => 'All fields aggregated'
+  'aggregation_edm_provider' => 'Aggregation / edm:provider',
+  'aggregation_edm_rights' => 'Aggregation / edm:rights',
+  'aggregation_edm_ugc' => 'Aggregation / edm:ugc',
+  'concept_skos_altLabel' => 'Concept / skos:altLabel',
+  'concept_skos_broader' => 'Concept / skos:broader',
+  'concept_skos_broadMatch' => 'Concept / skos:broadMatch',
+  'concept_skos_closeMatch' => 'Concept / skos:closeMatch',
+  'concept_skos_exactMatch' => 'Concept / skos:exactMatch',
+  'concept_skos_inScheme' => 'Concept / skos:inScheme',
+  'concept_skos_narrower' => 'Concept / skos:narrower',
+  'concept_skos_narrowMatch' => 'Concept / skos:narrowMatch',
+  'concept_skos_notation' => 'Concept / skos:notation',
+  'concept_skos_note' => 'Concept / skos:note',
+  'concept_skos_prefLabel' => 'Concept / skos:prefLabel',
+  'concept_skos_related' => 'Concept / skos:related',
+  'concept_skos_relatedMatch' => 'Concept / skos:relatedMatch',
+  'identifier' => 'identifier',
+  'place_dcterms_hasPart' => 'Place / dcterms:hasPart',
+  'place_dcterms_isPartOf' => 'Place / dcterms:isPartOf',
+  'place_skos_altLabel' => 'Place / skos:altLabel',
+  'place_skos_note' => 'Place / skos:note',
+  'place_skos_prefLabel' => 'Place / skos:prefLabel',
+  'proxy_dc_conformsTo' => 'Proxy / dc:conformsTo',
+  'proxy_dc_contributor' => 'Proxy / dc:contributor',
+  'proxy_dc_coverage' => 'Proxy / dc:coverage',
+  'proxy_dc_creator' => 'Proxy / dc:creator',
+  'proxy_dc_date' => 'Proxy / dc:date',
+  'proxy_dc_description' => 'Proxy / dc:description',
+  'proxy_dc_format' => 'Proxy / dc:format',
+  'proxy_dc_identifier' => 'Proxy / dc:identifier',
+  'proxy_dc_language' => 'Proxy / dc:language',
+  'proxy_dc_publisher' => 'Proxy / dc:publisher',
+  'proxy_dc_relation' => 'Proxy / dc:relation',
+  'proxy_dc_rights' => 'Proxy / dc:rights',
+  'proxy_dc_source' => 'Proxy / dc:source',
+  'proxy_dc_subject' => 'Proxy / dc:subject',
+  'proxy_dc_title' => 'Proxy / dc:title',
+  'proxy_dc_type' => 'Proxy / dc:type',
+  'proxy_dcterms_alternative' => 'Proxy / dcterms:alternative',
+  'proxy_dcterms_created' => 'Proxy / dcterms:created',
+  'proxy_dcterms_extent' => 'Proxy / dcterms:extent',
+  'proxy_dcterms_hasFormat' => 'Proxy / dcterms:hasFormat',
+  'proxy_dcterms_hasPart' => 'Proxy / dcterms:hasPart',
+  'proxy_dcterms_hasVersion' => 'Proxy / dcterms:hasVersion',
+  'proxy_dcterms_isFormatOf' => 'Proxy / dcterms:isFormatOf',
+  'proxy_dcterms_isPartOf' => 'Proxy / dcterms:isPartOf',
+  'proxy_dcterms_isReferencedBy' => 'Proxy / dcterms:isReferencedBy',
+  'proxy_dcterms_isReplacedBy' => 'Proxy / dcterms:isReplacedBy',
+  'proxy_dcterms_isRequiredBy' => 'Proxy / dcterms:isRequiredBy',
+  'proxy_dcterms_issued' => 'Proxy / dcterms:issued',
+  'proxy_dcterms_isVersionOf' => 'Proxy / dcterms:isVersionOf',
+  'proxy_dcterms_medium' => 'Proxy / dcterms:medium',
+  'proxy_dcterms_provenance' => 'Proxy / dcterms:provenance',
+  'proxy_dcterms_references' => 'Proxy / dcterms:references',
+  'proxy_dcterms_replaces' => 'Proxy / dcterms:replaces',
+  'proxy_dcterms_requires' => 'Proxy / dcterms:requires',
+  'proxy_dcterms_spatial' => 'Proxy / dcterms:spatial',
+  'proxy_dcterms_tableOfContents' => 'Proxy / dcterms:tableOfContents',
+  'proxy_dcterms_temporal' => 'Proxy / dcterms:temporal',
+  'proxy_edm_currentLocation' => 'Proxy / edm:currentLocation',
+  'proxy_edm_europeanaProxy' => 'Proxy / edm:europeanaProxy',
+  'proxy_edm_hasMet' => 'Proxy / edm:hasMet',
+  'proxy_edm_hasType' => 'Proxy / edm:hasType',
+  'proxy_edm_incorporates' => 'Proxy / edm:incorporates',
+  'proxy_edm_isDerivativeOf' => 'Proxy / edm:isDerivativeOf',
+  'proxy_edm_isNextInSequence' => 'Proxy / edm:isNextInSequence',
+  'proxy_edm_isRelatedTo' => 'Proxy / edm:isRelatedTo',
+  'proxy_edm_isRepresentationOf' => 'Proxy / edm:isRepresentationOf',
+  'proxy_edm_isSimilarTo' => 'Proxy / edm:isSimilarTo',
+  'proxy_edm_isSuccessorOf' => 'Proxy / edm:isSuccessorOf',
+  'proxy_edm_realizes' => 'Proxy / edm:realizes',
+  'proxy_edm_type' => 'Proxy / edm:type',
+  'proxy_edm_userTag' => 'Proxy / edm:userTag',
+  'proxy_edm_wasPresentAt' => 'Proxy / edm:wasPresentAt',
+  'proxy_edm_year' => 'Proxy / edm:year',
+  'proxy_ore_ProxyFor' => 'Proxy / ore:ProxyFor',
+  'proxy_ore_ProxyIn' => 'Proxy / ore:ProxyIn',
+  'timespan_dcterms_hasPart' => 'Timespan / dcterms:hasPart',
+  'timespan_dcterms_isPartOf' => 'Timespan / dcterms:isPartOf',
+  'timespan_edm_begin' => 'Timespan / edm:begin',
+  'timespan_edm_end' => 'Timespan / edm:end',
+  'timespan_edm_isNextInSequence' => 'Timespan / edm:isNextInSequence',
+  'timespan_owl_sameAs' => 'Timespan / owl:sameAs',
+  'timespan_skos_altLabel' => 'Timespan / skos:altLabel',
+  'timespan_skos_note' => 'Timespan / skos:note',
+  'timespan_skos_prefLabel' => 'Timespan / skos:prefLabel'
 ];
 
 $title = 'Metadata Quality Assurance Framework';
@@ -262,13 +340,13 @@ if (isset($_GET['id'])) {
 }
 
 $n = 0;
-$jsonCountFileName = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.count.json';
+$jsonCountFileName = 'json/' . $type . $id . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
   $n = $stats[0]->count;
 }
 
-$jsonFileName = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.json';
+$jsonFileName = 'json/' . $type . $id . '.json';
 if (!file_exists($jsonFileName)) {
   die(sprintf("File doesn't exist: %s (collection: %s)\n", $jsonFileName, $collectionId));
 } else {
@@ -286,10 +364,10 @@ foreach ($stats as $obj) {
   $assocStat[$key] = $obj;
 }
 
-$freqFile = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.freq.json';
+$freqFile = 'json/' . $type . $id . '.freq.json';
 $freqFileExists = file_exists($freqFile);
 
-$cardinalityFile = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.cardinality.json';
+$cardinalityFile = 'json/' . $type . $id . '.cardinality.json';
 $cardinalityFileExists = file_exists($cardinalityFile);
 $cardinalityProperties = ['sum', 'mean', 'median'];
 if ($cardinalityFileExists) {
@@ -297,7 +375,7 @@ if ($cardinalityFileExists) {
   $cardinalityProperty = isset($_GET[$key]) && in_array($_GET[$key], $cardinalityProperties) ? $_GET[$key] : 'sum';
 }
 
-$frequencyTableFile = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.frequency.table.json';
+$frequencyTableFile = 'json/' . $type . $id . '.frequency.table.json';
 if (file_exists($frequencyTableFile)) {
   $frequencyTable = json_decode(file_get_contents($frequencyTableFile));
   foreach ($frequencyTable as $key => $value) {
@@ -311,14 +389,14 @@ if (file_exists($frequencyTableFile)) {
   $frequencyTable = FALSE;
 }
 
-$histFile = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.hist.json';
+$histFile = 'json/' . $type . $id . '.hist.json';
 if (file_exists($histFile)) {
   $histograms = json_decode(file_get_contents($histFile));
 } else {
   $histograms = FALSE;
 }
 
-$languageFile = $configuration['QA_R_PATH'] . '/json2/' . $type . $id . '.languages.json';
+$languageFile = 'json/' . $type . $id . '.languages.json';
 if (file_exists($languageFile)) {
   $languages = json_decode(file_get_contents($languageFile));
 } else {
