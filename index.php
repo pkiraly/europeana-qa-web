@@ -309,10 +309,123 @@ $features = array(
   'crd_concept_skos_altlabel' => 'Cardinality of Concept/skos:altLabel',
   'crd_concept_skos_note' => 'Cardinality of Concept/skos:note',
 
+  'saturation_proxy_dc_title' => 'Multilingual saturation of Proxy/dc:title',
+  'saturation_proxy_dcterms_alternative' => 'Multilingual saturation of Proxy/dcterms:alternative',
+  'saturation_proxy_dc_description' => 'Multilingual saturation of Proxy/dc:description',
+  'saturation_proxy_dc_creator' => 'Multilingual saturation of Proxy/dc:creator',
+  'saturation_proxy_dc_publisher' => 'Multilingual saturation of Proxy/dc:publisher',
+  'saturation_proxy_dc_contributor' => 'Multilingual saturation of Proxy/dc:contributor',
+  'saturation_proxy_dc_type' => 'Multilingual saturation of Proxy/dc:type',
+  'saturation_proxy_dc_identifier' => 'Multilingual saturation of Proxy/dc:identifier',
+  'saturation_proxy_dc_language' => 'Multilingual saturation of Proxy/dc:language',
+  'saturation_proxy_dc_coverage' => 'Multilingual saturation of Proxy/dc:coverage',
+  'saturation_proxy_dcterms_temporal' => 'Multilingual saturation of Proxy/dcterms:temporal',
+  'saturation_proxy_dcterms_spatial' => 'Multilingual saturation of Proxy/dcterms:spatial',
+  'saturation_proxy_dc_subject' => 'Multilingual saturation of Proxy/dc:subject',
+  'saturation_proxy_dc_date' => 'Multilingual saturation of Proxy/dc:date',
+  'saturation_proxy_dcterms_created' => 'Multilingual saturation of Proxy/dcterms:created',
+  'saturation_proxy_dcterms_issued' => 'Multilingual saturation of Proxy/dcterms:issued',
+  'saturation_proxy_dcterms_extent' => 'Multilingual saturation of Proxy/dcterms:extent',
+  'saturation_proxy_dcterms_medium' => 'Multilingual saturation of Proxy/dcterms:medium',
+  'saturation_proxy_dcterms_provenance' => 'Multilingual saturation of Proxy/dcterms:provenance',
+  'saturation_proxy_dcterms_haspart' => 'Multilingual saturation of Proxy/dcterms:hasPart',
+  'saturation_proxy_dcterms_ispartof' => 'Multilingual saturation of Proxy/dcterms:isPartOf',
+  'saturation_proxy_dc_format' => 'Multilingual saturation of Proxy/dc:format',
+  'saturation_proxy_dc_source' => 'Multilingual saturation of Proxy/dc:source',
+  'saturation_proxy_dc_rights' => 'Multilingual saturation of Proxy/dc:rights',
+  'saturation_proxy_dc_relation' => 'Multilingual saturation of Proxy/dc:relation',
+  'saturation_proxy_edm_europeanaproxy' => 'Multilingual saturation of Proxy/edm:europeanaProxy',
+  'saturation_proxy_edm_year' => 'Multilingual saturation of Proxy/edm:year',
+  'saturation_proxy_edm_usertag' => 'Multilingual saturation of Proxy/edm:userTag',
+  'saturation_proxy_ore_proxyin' => 'Multilingual saturation of Proxy/ore:ProxyIn',
+  'saturation_proxy_ore_proxyfor' => 'Multilingual saturation of Proxy/ore:ProxyFor',
+  'saturation_proxy_dc_conformsto' => 'Multilingual saturation of Proxy/dc:conformsTo',
+  'saturation_proxy_dcterms_hasformat' => 'Multilingual saturation of Proxy/dcterms:hasFormat',
+  'saturation_proxy_dcterms_hasversion' => 'Multilingual saturation of Proxy/dcterms:hasVersion',
+  'saturation_proxy_dcterms_isformatof' => 'Multilingual saturation of Proxy/dcterms:isFormatOf',
+  'saturation_proxy_dcterms_isreferencedby' => 'Multilingual saturation of Proxy/dcterms:isReferencedBy',
+  'saturation_proxy_dcterms_isreplacedby' => 'Multilingual saturation of Proxy/dcterms:isReplacedBy',
+  'saturation_proxy_dcterms_isrequiredby' => 'Multilingual saturation of Proxy/dcterms:isRequiredBy',
+  'saturation_proxy_dcterms_isversionof' => 'Multilingual saturation of Proxy/dcterms:isVersionOf',
+  'saturation_proxy_dcterms_references' => 'Multilingual saturation of Proxy/dcterms:references',
+  'saturation_proxy_dcterms_replaces' => 'Multilingual saturation of Proxy/dcterms:replaces',
+  'saturation_proxy_dcterms_requires' => 'Multilingual saturation of Proxy/dcterms:requires',
+  'saturation_proxy_dcterms_tableofcontents' => 'Multilingual saturation of Proxy/dcterms:tableOfContents',
+  'saturation_proxy_edm_currentlocation' => 'Multilingual saturation of Proxy/edm:currentLocation',
+  'saturation_proxy_edm_hasmet' => 'Multilingual saturation of Proxy/edm:hasMet',
+  'saturation_proxy_edm_hastype' => 'Multilingual saturation of Proxy/edm:hasType',
+  'saturation_proxy_edm_incorporates' => 'Multilingual saturation of Proxy/edm:incorporates',
+  'saturation_proxy_edm_isderivativeof' => 'Multilingual saturation of Proxy/edm:isDerivativeOf',
+  'saturation_proxy_edm_isrelatedto' => 'Multilingual saturation of Proxy/edm:isRelatedTo',
+  'saturation_proxy_edm_isrepresentationof' => 'Multilingual saturation of Proxy/edm:isRepresentationOf',
+  'saturation_proxy_edm_issimilarto' => 'Multilingual saturation of Proxy/edm:isSimilarTo',
+  'saturation_proxy_edm_issuccessorof' => 'Multilingual saturation of Proxy/edm:isSuccessorOf',
+  'saturation_proxy_edm_realizes' => 'Multilingual saturation of Proxy/edm:realizes',
+  'saturation_proxy_edm_waspresentat' => 'Multilingual saturation of Proxy/edm:wasPresentAt',
+
+  'saturation_aggregation_edm_rights' => 'Multilingual saturation of Aggregation/edm:rights',
+  'saturation_aggregation_edm_provider' => 'Multilingual saturation of Aggregation/edm:provider',
+  'saturation_aggregation_edm_dataprovider' => 'Multilingual saturation of Aggregation/edm:dataProvider',
+  'saturation_aggregation_dc_rights' => 'Multilingual saturation of Aggregation/dc:rights',
+  'saturation_aggregation_edm_ugc' => 'Multilingual saturation of Aggregation/edm:ugc',
+  'saturation_aggregation_edm_aggregatedcho' => 'Multilingual saturation of Aggregation/edm:aggregatedCHO',
+  'saturation_aggregation_edm_intermediateprovider' => 'Multilingual saturation of Aggregation/edm:intermediateProvider',
+
+  'saturation_place_dcterms_ispartof' => 'Multilingual saturation of Place/dcterms:isPartOf',
+  'saturation_place_dcterms_haspart' => 'Multilingual saturation of Place/dcterms:hasPart',
+  'saturation_place_skos_preflabel' => 'Multilingual saturation of Place/skos:prefLabel',
+  'saturation_place_skos_altlabel' => 'Multilingual saturation of Place/skos:altLabel',
+  'saturation_place_skos_note' => 'Multilingual saturation of Place/skos:note',
+
+  'saturation_agent_edm_begin' => 'Multilingual saturation of Agent/edm:begin',
+  'saturation_agent_edm_end' => 'Multilingual saturation of Agent/edm:end',
+  'saturation_agent_edm_hasmet' => 'Multilingual saturation of Agent/edm:hasMet',
+  'saturation_agent_edm_isrelatedto' => 'Multilingual saturation of Agent/edm:isRelatedTo',
+  'saturation_agent_owl_sameas' => 'Multilingual saturation of Agent/owl:sameAs',
+  'saturation_agent_foaf_name' => 'Multilingual saturation of Agent/foaf:name',
+  'saturation_agent_dc_date' => 'Multilingual saturation of Agent/dc:date',
+  'saturation_agent_dc_identifier' => 'Multilingual saturation of Agent/dc:identifier',
+  'saturation_agent_rdagr2_dateofbirth' => 'Multilingual saturation of Agent/rdaGr2:dateOfBirth',
+  'saturation_agent_rdagr2_placeofbirth' => 'Multilingual saturation of Agent/rdaGr2:placeOfBirth',
+  'saturation_agent_rdagr2_dateofdeath' => 'Multilingual saturation of Agent/rdaGr2:dateOfDeath',
+  'saturation_agent_rdagr2_placeofdeath' => 'Multilingual saturation of Agent/rdaGr2:placeOfDeath',
+  'saturation_agent_rdagr2_dateofestablishment' => 'Multilingual saturation of Agent/rdaGr2:dateOfEstablishment',
+  'saturation_agent_rdagr2_dateoftermination' => 'Multilingual saturation of Agent/rdaGr2:dateOfTermination',
+  'saturation_agent_rdagr2_gender' => 'Multilingual saturation of Agent/rdaGr2:gender',
+  'saturation_agent_rdagr2_professionoroccupation' => 'Multilingual saturation of Agent/rdaGr2:professionOrOccupation',
+  'saturation_agent_rdagr2_biographicalinformation' => 'Multilingual saturation of Agent/rdaGr2:biographicalInformation',
+  'saturation_agent_skos_preflabel' => 'Multilingual saturation of Agent/skos:prefLabel',
+  'saturation_agent_skos_altlabel' => 'Multilingual saturation of Agent/skos:altLabel',
+  'saturation_agent_skos_note' => 'Multilingual saturation of Agent/skos:note',
+
+  'saturation_timespan_edm_begin' => 'Multilingual saturation of Timespan/edm:begin',
+  'saturation_timespan_edm_end' => 'Multilingual saturation of Timespan/edm:end',
+  'saturation_timespan_dcterms_ispartof' => 'Multilingual saturation of Timespan/dcterms:isPartOf',
+  'saturation_timespan_dcterms_haspart' => 'Multilingual saturation of Timespan/dcterms:hasPart',
+  'saturation_timespan_edm_isnextinsequence' => 'Multilingual saturation of Timespan/edm:isNextInSequence',
+  'saturation_timespan_owl_sameas' => 'Multilingual saturation of Timespan/owl:sameAs',
+  'saturation_timespan_skos_preflabel' => 'Multilingual saturation of Timespan/skos:prefLabel',
+  'saturation_timespan_skos_altlabel' => 'Multilingual saturation of Timespan/skos:altLabel',
+  'saturation_timespan_skos_note' => 'Multilingual saturation of Timespan/skos:note',
+
+  'saturation_concept_skos_broader' => 'Multilingual saturation of Concept/skos:broader',
+  'saturation_concept_skos_narrower' => 'Multilingual saturation of Concept/skos:narrower',
+  'saturation_concept_skos_related' => 'Multilingual saturation of Concept/skos:related',
+  'saturation_concept_skos_broadmatch' => 'Multilingual saturation of Concept/skos:broadMatch',
+  'saturation_concept_skos_narrowmatch' => 'Multilingual saturation of Concept/skos:narrowMatch',
+  'saturation_concept_skos_relatedmatch' => 'Multilingual saturation of Concept/skos:relatedMatch',
+  'saturation_concept_skos_exactmatch' => 'Multilingual saturation of Concept/skos:exactMatch',
+  'saturation_concept_skos_closematch' => 'Multilingual saturation of Concept/skos:closeMatch',
+  'saturation_concept_skos_notation' => 'Multilingual saturation of Concept/skos:notation',
+  'saturation_concept_skos_inscheme' => 'Multilingual saturation of Concept/skos:inScheme',
+  'saturation_concept_skos_preflabel' => 'Multilingual saturation of Concept/skos:prefLabel',
+  'saturation_concept_skos_altlabel' => 'Multilingual saturation of Concept/skos:altLabel',
+  'saturation_concept_skos_note' => 'Multilingual saturation of Concept/skos:note',
 
   'long_subject' => 'Metadata problem - Long subject',
   'same_title_and_description' => 'Metadata problem - title and description are the same',
-  'empty_string' => 'Metadata problem - empty field'
+  'empty_string' => 'Metadata problem - empty field',
+
 );
 
 $feature = isset($_GET) && isset($_GET['feature']) ? $_GET['feature'] : 'total';
@@ -338,8 +451,12 @@ function parse_csv($t) {
 $csv = array_map('parse_csv', file($type . '.txt'));
 
 $summaryFile = 'json_cache/index-summary-' . $feature . '-' . $prefix . '.json';
+$suffix = preg_match('/^saturation_/', $feature) ? '.saturation' : '';
+
 $rows = [];
-if (!file_exists($summaryFile)) {
+if (file_exists($summaryFile)) {
+  $rows = json_decode(file_get_contents($summaryFile));
+} else {
   $counter = 1;
   foreach ($csv as $id => $row) {
     $id = $row[0];
@@ -352,7 +469,7 @@ if (!file_exists($summaryFile)) {
       $n = $stats[0]->count;
     }
 
-    $jsonFileName = $configuration['QA_R_PATH'] . '/json2/' . $prefix . $id . '.json';
+    $jsonFileName = $configuration['QA_R_PATH'] . '/json2/' . $prefix . $id . $suffix . '.json';
     if (file_exists($jsonFileName)) {
       if ($counter == 1) {
         // echo 'jsonFileName: ', $jsonFileName, "\n";
@@ -380,9 +497,8 @@ if (!file_exists($summaryFile)) {
     }
   }
   // echo 'count: ', count($rows), "\n";
+  // if ($suffix != '.saturation')
   file_put_contents($summaryFile, json_encode($rows));
-} else {
-  $rows = json_decode(file_get_contents($summaryFile));
 }
 
 include("index.tpl.php");

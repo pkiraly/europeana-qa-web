@@ -127,6 +127,25 @@
   </tbody>
 </table>
 
+
+<h2>Problem catalog</h2>
+<table id="statistics" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php foreach ($analysis->labelledResults->problemCatalog as $key => $value) { ?>
+    <tr>
+      <td><?= $key; ?></td>
+      <td><?= $value; ?></td>
+    </tr>
+<?php } ?>
+  </tbody>
+</table>
+
 <h2>Term frequencies</h2>
 <p>abbreviations</p>
 <ul type="square">
@@ -176,23 +195,62 @@
     <tr>
       <th>Field</th>
       <th>Values</th>
+      <th>Exists?</th>
+      <th>Cardinality</th>
+      <th>Languages</th>
+      <th>Multilingual<br/>saturation</th>
     </tr>
   </thead>
   <tbody>
-<?php foreach ($structure as $field => $values) { ?>
-    <tr<?php if (strpos($field, '#') === 0) { ?> class="remainder"<?php } ?>>
-      <?php if (strpos($field, '#') === 0) { ?>
-        <td><?php echo substr($field, 1); ?></td>
-      <?php } else { ?>
-        <td><?= $field ?></td>
-      <?php } ?>
-      <td>
-        <?php if (count($values) == 1) { ?>
-          <?= $values[0] ?>
-        <?php } else { ?>
+<?php foreach ($analysis->labelledResults->existence as $field => $value) { ?>
+    <tr<?php if ($value == 0) { ?> class="remainder"<?php } ?>>
+      <td><?= $field; ?></td>
+      <td><?php
+        $instances = getFieldValue($field);
+        // print json_encode($instances);
+        if (!is_array($instances)) {
+            print $instances;
+        } else {
+          if (count($instances) == 1) {
+            print $instances[0];
+          } else {
+        ?>
           <ul type="square">
-            <?php foreach ($values as $value) { ?>
-              <li><?= $value ?></li>
+            <?php foreach ($instances as $instance) { ?>
+              <li><?= $instance ?></li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
+      <?php } ?>
+      </td>
+      <td><?= ($value == 1 ? 'true' : 'false'); ?></td>
+      <td><?= $analysis->labelledResults->cardinality->{$field}; ?></td>
+      <td><?php
+        if (isset($analysis->labelledResults->languages->{$field})) {
+          $languages = [];
+          foreach ($analysis->labelledResults->languages->{$field} as $key => $count) {
+            if ($key != '_0' && $key != '_1' && $key != '_2') {
+              $languages[] = sprintf("%s (%d)", $key, $count);
+            }
+          }
+          print join(', ', $languages);
+        } ?>
+      </td>
+      <td>
+        <?php if (isset($analysis->labelledResults->languageSaturation->{$field})) { ?>
+          <ul type="square">
+            <?php foreach ($analysis->labelledResults->languageSaturation->{$field} as $instance) {
+              $saturation = [];
+              foreach ($instance as $key => $count) {
+                if ($key != 'NA') {
+                  $count = str_replace(".00", '', sprintf("%.2f", $count));
+
+                  $saturation[] = sprintf("%s (%s)", strtolower($key), $count);
+                }
+              }
+              if (!empty($saturation)) { ?>
+                <li><?php print join(', ', $saturation); ?></li>
+              <?php } ?>
             <?php } ?>
           </ul>
         <?php } ?>
@@ -201,7 +259,6 @@
 <?php } ?>
   </tbody>
 </table>
-<p>Note: The grey color denotes fields which are part of the Proxy or Aggregation, but was not checked to analyze.</p>
 
 <h2>Metadata structure as represented in the OAI-PMH service</h2>
 <pre id="code"><code class="json"><?php print json_encode($metadata, JSON_PRETTY_PRINT); ?></code></pre>

@@ -84,3 +84,8 @@ table.histogram td.legend {
 tr.remainder {
   color: #999;
 }
+
+#statistics td ul {
+  margin: 0;
+  padding: 0 0 0 10px;
+}

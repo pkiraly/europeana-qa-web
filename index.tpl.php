@@ -91,7 +91,7 @@ Note: this is a research project, the results here are experimental, they are su
     <tr>
       <td><?= $counter ?></td>
       <td><?= $obj->n ?></td>
-      <td><a href="dataset.php?id=<?= $obj->id ?>&name=<?= $obj->collectionId ?>&type=<?= $obj->type ?>"><?= $obj->collectionId ?></a></td>
+      <td><a href="dataset.php?id=<?= $obj->id ?>&name=<?= $obj->collectionId ?>&type=<?= $obj->type ?>#<?= $feature ?>"><?= $obj->collectionId ?></a></td>
       <td><?= $obj->min ?></td>
       <td><?= $obj->max ?></td>
       <td><?= $obj->range ?></td>

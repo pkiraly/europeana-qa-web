@@ -81,6 +81,20 @@ $graphs = array(
   'dc:description:avg' => array('label' => 'dc:description entorpy - average')
 );
 
+$entityMap = [
+  'Aggregation' => 'ore:Aggregation',
+  'Proxy' => 'ore:Proxy',
+  'EuropeanaAggregation' => 'edm:EuropeanaAggregation',
+  'Agent' => 'edm:Agent',
+  'Concept' => 'skos:Concept',
+  'Place' => 'edm:Place',
+  'Timespan' => 'edm:TimeSpan'
+];
+
+$fieldMap = [
+  'rdf:about' => '@about'
+];
+
 $optional_groups = [
   'mandatory' => [
     ['fields' => ['Proxy/dc:title', 'Proxy/dc:description'], 'has_value' => FALSE],
@@ -114,6 +128,7 @@ foreach ($graphs['total']['fields'] as $field) {
   $table[] = $row;
 }
 
+// print_r($metadata);
 $structure = extractStructure($metadata, $graphs['total']['fields']);
 include("record.tpl.php");
 
@@ -222,4 +237,46 @@ function extractValues($key, $values, $fields, &$structure, &$outOfStructure, &$
       $problems[] = 'other type: ' . var_export($value, TRUE);
     }
   }
+}
+
+function getFieldValue($field) {
+  global $metadata, $entityMap, $fieldMap;
+  $values = [];
+
+  list($entityName, $fieldName) = split('/', $field);
+  if (isset($entityMap[$entityName])) {
+    $entityName = $entityMap[$entityName];
+  }
+
+  if (isset($fieldMap[$fieldName])) {
+    $fieldName = $fieldMap[$fieldName];
+  }
+
+  if (isset($metadata->{$entityName})) {
+    $entities = $metadata->{$entityName};
+    foreach ($entities as $entity) {
+      if ($entityName == 'ore:Proxy' && $entity->{'edm:europeanaProxy'}[0] == 'true') {
+        continue;
+      }
+      if (isset($entity->{$fieldName})) {
+        // $values[] = $entity->{$fieldName};
+        if (!is_array($entity->{$fieldName})) {
+          $values[] = $entity->{$fieldName};
+        } else {
+          foreach ($entity->{$fieldName} as $value) {
+            if (is_string($value)) {
+              $values[] = $value;
+            } else if (is_object($value)) {
+              if (isset($value->{'@resource'})) {
+                $values[] = $value->{'@resource'} . ' (@resource)';
+              } else if (isset($value->{'@lang'})) {
+                $values[] = '"' . $value->{'#value'} . '"@' . $value->{'@lang'};
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return $values;
 }
