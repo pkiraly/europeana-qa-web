@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<div class="container">
+
 <div class="page-header">
   <h1>Record investigation</h1>
   <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
@@ -38,9 +40,19 @@
     <input type="text" name="id" value="<?php print $id ?>" size="120" />
     <input type="submit" value="Check ID"/>
   </form>
+
+  <h2>Available representations</h2>
+  <ul type="square">
+    <li>Canonical identifier: <a href="http://data.europeana.eu/item/<?php print $id; ?>" target="_blank">http://data.europeana.eu/item/<?php print $id; ?></a></li>
+    <li><a href="http://europeana.eu/portal/record/<?php print $id ?>.html" target="_blank">Europeana portal</a></li>
+    <li><a href="http://www.europeana.eu/api/v2/record/<?php print $id ?>.json?wskey=api2demo" target="_blank">REST API: full record in JSON</a></li>
+    <li><a href="http://www.europeana.eu/api/v2/record/<?php print $id ?>.jsonld?wskey=api2demo" target="_blank">REST API: full record in JSON-LD</a></li>
+    <li><a href="http://www.europeana.eu/api/v2/search.json?query=europeana_id:%22/<?php print $id ?>%22&wskey=api2demo" target="_blank">REST API: search record</a></li>
+    <li><a href="http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=http://data.europeana.eu/item/<?php print $id; ?>" target="_blank">OAI-PMH server</a></li>
+  </ul>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-12">
 <h2>Completeness of elements & functionalities</h2>
 
 <table id="fields">
@@ -178,16 +190,7 @@
 
 </div>
 
-<div class="col-md-7">
-<h2>Available representations</h2>
-<p></p>
-<ul type="square">
-  <li>Canonical identifier: <a href="http://data.europeana.eu/item/<?php print $id; ?>" target="_blank">http://data.europeana.eu/item/<?php print $id; ?></a></li>
-  <li><a href="http://europeana.eu/portal/record/<?php print $id ?>.html" target="_blank">Europeana portal</a></li>
-  <li><a href="http://www.europeana.eu/api/v2/record/<?php print $id ?>.json?wskey=api2demo" target="_blank">REST API: full record</a></li>
-  <li><a href="http://www.europeana.eu/api/v2/search.json?query=europeana_id:%22/<?php print $id ?>%22&wskey=api2demo" target="_blank">REST API: search record</a></li>
-  <li><a href="http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=http://data.europeana.eu/item/<?php print $id; ?>" target="_blank">OAI-PMH server</a></li>
-</ul>
+<div class="col-md-12">
 
 <h2>Analyzed metadata fields</h2>
 <table id="statistics" class="table table-bordered table-striped">
@@ -238,8 +241,9 @@
       </td>
       <td>
         <?php if (isset($analysis->labelledResults->languageSaturation->{$field})) { ?>
+          <em>components</em>:
           <ul type="square">
-            <?php foreach ($analysis->labelledResults->languageSaturation->{$field} as $instance) {
+            <?php foreach ($analysis->labelledResults->languageSaturation->{$field}->raw as $instance) {
               $saturation = [];
               foreach ($instance as $key => $count) {
                 if ($key != 'NA') {
@@ -253,6 +257,12 @@
               <?php } ?>
             <?php } ?>
           </ul>
+          <em>score</em>:
+          <ul type="square">
+            <li>sum: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->sum) ?></li>
+            <li>average: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->average) ?></li>
+            <li>normalized: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->normalized) ?></li>
+          </ul>
         <?php } ?>
       </td>
     </tr>
@@ -265,13 +275,16 @@
 </div>
 
 <div class="col-md-12">
-<footer>
-  <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
-</footer>
+  <footer>
+    <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
+  </footer>
+</div>
+
 </div>
 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+
 </body>
 </html>
