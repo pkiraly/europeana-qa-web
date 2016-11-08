@@ -116,6 +116,16 @@ Note: this is a research project, the results here are experimental, they are su
 
 <p><a href="download.html">download page</a></p>
 
+<?php if (!empty($problems)) { ?>
+<h2>problems</h2>
+<ul type="square">
+  <?php foreach ($problems as $problem) { ?>
+    <li><?= $problem ?>
+  <?php } ?>
+</ul>
+<?php } ?>
+
+
 <footer>
   <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>
 </footer>

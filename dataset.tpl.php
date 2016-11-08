@@ -3,13 +3,21 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $collectionId ?> | <?= $title ?></title>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
-<link rel="stylesheet" href="europeana-qa.css" />
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
+  <link rel="stylesheet" href="europeana-qa.css" />
+  <!-- choose a theme file -->
+  <link rel="stylesheet" href="jquery/theme.default.min.css">
+  <!-- load jQuery and tablesorter scripts -->
+  <script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
+  <script type="text/javascript" src="jquery/jquery.tablesorter.min.js"></script>
+
+  <!-- tablesorter widgets (optional) -->
+  <script type="text/javascript" src="jquery/jquery.tablesorter.widgets.min.js"></script>
 <style type="text/css">
 .node {
   border: solid 1px white;
@@ -37,11 +45,43 @@
   <li><a href="#n">Number of records</a></li>
   <li><a href="#frequency">Field frequency</a></li>
   <li><a href="#cardinality">Field cardinality</a></li>
-  <?php foreach ($graphs as $name => $function) { ?>
-    <li><a href="#<?= $name ?>"><?= $function['label'] ?></a></li>
-  <?php } ?>
   <li><a href="#languages">Languages</a></li>
 </ul>
+
+<table id="dataset" class="table table-condensed table-striped tablesorter">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Dataset</th>
+      <th>Minimum</th>
+      <th>Maximum</th>
+      <th>Range</th>
+      <th>Median</th>
+      <th>Mean</th>
+      <th>Standard deviation</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php
+  $counter = 1; 
+  foreach ($graphs as $metric => $info) {
+    if (isset($assocStat[$metric])) { 
+      $obj = $assocStat[$metric];
+?>
+    <tr>
+      <td><?= $counter++ ?></td>
+      <td><a href="#<?= $metric ?>"><?= $info['label'] ?></a></td>
+      <td><?= $obj->min ?></td>
+      <td><?= $obj->max ?></td>
+      <td><?= $obj->range ?></td>
+      <td><?= $obj->median ?></td>
+      <td><?= $obj->mean ?></td>
+      <td><?= $obj->{'std.dev'} ?></td>
+    </tr>
+  <?php } ?>
+<?php } ?>
+ </tbody>
+</table>
 
 <h2 id="n">Number of records</h2>
 <p><?php echo number_format($n, 0, '.', ' '); ?></p>
@@ -96,7 +136,7 @@
       <tr>
         <td class="legend">values</td>
         <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
-          <td><?= $value; ?></td>
+          <td><span title="<?= $value ?>"><?= sprintf("%.3f", $value); ?></span></td>
         <?php } ?>
       </tr>
       <tr>
@@ -108,7 +148,7 @@
       <tr>
         <td class="legend">percentage</td>
         <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
-          <td><?php printf("%.2f%%", ($frequency[0] * 100 / $n)); ?></td>
+          <td><span title="<?= $frequency[0] * 100 / $n; ?>"><?php printf("%.2f%%", ($frequency[0] * 100 / $n)); ?></span></td>
         <?php } ?>
       </tr>
     </table>
@@ -182,7 +222,12 @@
 </div>
 </div>
 
-<script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#dataset").tablesorter();
+});
+</script>
+
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php if ($freqFileExists || $cardinalityFileExists ) { ?>
   <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>

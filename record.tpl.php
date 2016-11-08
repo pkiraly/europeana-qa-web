@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Completeness</title>
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -208,28 +208,28 @@
 <?php foreach ($analysis->labelledResults->existence as $field => $value) { ?>
     <tr<?php if ($value == 0) { ?> class="remainder"<?php } ?>>
       <td><?= $field; ?></td>
-      <td><?php
-        $instances = getFieldValue($field);
-        // print json_encode($instances);
-        if (!is_array($instances)) {
-            print $instances;
-        } else {
-          if (count($instances) == 1) {
-            print $instances[0];
-          } else {
-        ?>
-          <ul type="square">
-            <?php foreach ($instances as $instance) { ?>
-              <li><?= $instance ?></li>
+      <td>
+        <?php if ($value != 0) { ?>
+          <?php $instances = getFieldValue($field); ?>
+          <?php if (!is_array($instances)) { ?>
+            <?= $instances; ?>
+          <?php } else { ?>
+            <?php if (count($instances) == 1) { ?>
+              <?= $instances[0]; ?>
+            <?php } else { ?>
+              <ul type="square">
+                <?php foreach ($instances as $instance) { ?>
+                  <li><?= $instance ?></li>
+                <?php } ?>
+              </ul>
             <?php } ?>
-          </ul>
+          <?php } ?>
         <?php } ?>
-      <?php } ?>
       </td>
       <td><?= ($value == 1 ? 'true' : 'false'); ?></td>
-      <td><?= $analysis->labelledResults->cardinality->{$field}; ?></td>
-      <td><?php
-        if (isset($analysis->labelledResults->languages->{$field})) {
+      <td><?php if ($value != 0) { ?><?= $analysis->labelledResults->cardinality->{$field}; ?><?php } ?></td>
+      <td>
+        <?php if ($value != 0 && isset($analysis->labelledResults->languages->{$field})) {
           $languages = [];
           foreach ($analysis->labelledResults->languages->{$field} as $key => $count) {
             if ($key != '_0' && $key != '_1' && $key != '_2') {
@@ -240,7 +240,7 @@
         } ?>
       </td>
       <td>
-        <?php if (isset($analysis->labelledResults->languageSaturation->{$field})) { ?>
+        <?php if ($value != 0 && isset($analysis->labelledResults->languageSaturation->{$field})) { ?>
           <em>components</em>:
           <ul type="square">
             <?php foreach ($analysis->labelledResults->languageSaturation->{$field}->raw as $instance) {
