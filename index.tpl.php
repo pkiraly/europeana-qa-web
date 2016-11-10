@@ -24,37 +24,30 @@
 <div class="container">
 <h1>Metadata Quality Assurance Framework</h1>
 
-<p>Here you can find some sample result of the first iteration of the Metadata Quality Assurance Framework. All the records come from <a href="http://europeana.eu">Europeana</a>.<br/>
+<p>This site shows the results of an experimental research. Our hypothesis is that structural features of metadata records might be indicators of the quality of the record. We measure a snapshot of <a href="http://europeana.eu">Europeana</a> created in the end of 2015. This snapshot contains more than 46 million records, however Europeana is an ever growing collection (the last year growth is 9.4%), so you can not find newer records in this snapshot. Currently we measure things related to the completeness of the record: field frequency, cardinality, metadata saturation, language coverage, and uniqueness and problem catalog. This research is running in close cooperation with Europeana Network's <a href="http://pro.europeana.eu/page/data-quality-committee">Data Quality Committee</a>. The methods applied here can be applicable to other metadata collections and the system is flexible to support that. You can find more info about the research <a href="http://pkiraly.github.io/">here</a>.<br/>
 Note: this is a research project, the results here are experimental, they are subject of change.</p>
 
-<h2>Field frequency</h2>
-
-<p>This chart shows the frequency of the analyzed fields in all records. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
-
-<div id="frequency-chart" class="chart"></div>
-
-<h2>Field cardinality</h2>
-
-<p>This chart shows the cardinality of the analyzed fields in all records.</p>
-
-<div id="cardinality-chart" class="chart"></div>
-
-<h2>Language frequency</h2>
-
-<p><a href="languages.php?field=proxy_dc_title&exclusions[]=0">Frequency of language specification in the most important fields.</a></p>
+<div class="row">
+  <div class="col-xs-4">
+    <h3>Field frequency</h3>
+    <a href="frequency.php"><img src="style/field-frequency-full.png" /></a>
+    <p><a href="frequency.php">Field frequency chart.</a></p>
+  </div>
+  <div class="col-xs-4">
+    <h3>Field cardinality</h3>
+    <a href="cardinality.php"><img src="style/field-cardinality-full.png" /></a>
+    <p><a href="cardinality.php">Field cardinality chart.</a></p>
+  </div>
+  <div class="col-xs-4">
+    <h3>Language frequency</h3>
+    <a href="languages.php?field=aggregated&exclusions[]=0"><img src="style/language-frequency-full.png" /></a>
+    <p><a href="languages.php?field=aggregated&exclusions[]=0">Frequency of language specifications.</a></p>
+  </div>
+</div>
 
 <h2>Dataset analyses</h2>
 
-<p>Meaning of the columns in the table:</p>
-
-<dl>
- <dt>Minimum</dt><dd>The lowest score</dd>
- <dt>Maximum</dt><dd>The highest score</dd>
- <dt>Range</dt><dd>The difference between minimum and maximum.</dd>
- <dt>Median</dt><dd>The median (middle) value.</dd>
- <dt>Meam</dt><dd>The mean (avarage) of the scores.</dd>
- <dt>Standard deviation</dt><dd><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> - the amount of variation of a set. Close to 0 indicates that the data points tend to be very close to the mean of the set, while a high standard deviation indicates that the data points are spread out over a wider range of values.</dd>
-</dl>
+<p>Meaning of the columns in the table: <strong>Minimum:</strong> The lowest score. <strong>Maximum:</strong> The highest score. <strong>Range:</strong> The difference between minimum and maximum. <strong>Median:</strong> The middle value. <strong>Mean:</strong> The mean (average) of the scores. <strong>Standard deviation:</strong> <a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> - the amount of variation of a set. Close to 0 indicates that the data points tend to be very close to the mean of the set, while a high standard deviation indicates that the data points are spread out over a wider range of values.</p>
 
 <form>
   <label for="feature">Select dimension: </label>
@@ -136,14 +129,6 @@ $(document).ready(function() {
   $("#dataset").tablesorter();
 });
 </script>
-
-<script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
-<script type="text/javascript">
-  var labelSource = [];
-</script>
-<script type="text/javascript" src="chart.js.php?filename=json/frequency.json&type=<?= $type ?>&target=frequency-chart&property=frequency"></script>
-<script type="text/javascript" src="chart.js.php?filename=json/cardinality.json&type=<?= $type ?>&target=cardinality-chart&property=sum"></script>
-<link rel="stylesheet" href="chart.css" />
 
 </body>
 </html>
