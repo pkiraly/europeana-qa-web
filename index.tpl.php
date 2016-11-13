@@ -28,20 +28,25 @@
 Note: this is a research project, the results here are experimental, they are subject of change.</p>
 
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-3">
     <h3>Field frequency</h3>
-    <a href="frequency.php"><img src="style/field-frequency-full.png" /></a>
+    <p><a href="frequency.php"><img src="style/field-frequency-full.png" /></a></p>
     <p><a href="frequency.php">Field frequency chart.</a></p>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-3">
     <h3>Field cardinality</h3>
-    <a href="cardinality.php"><img src="style/field-cardinality-full.png" /></a>
+    <p><a href="cardinality.php"><img src="style/field-cardinality-full.png" /></a></p>
     <p><a href="cardinality.php">Field cardinality chart.</a></p>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-3">
     <h3>Language frequency</h3>
-    <a href="languages.php?field=aggregated&exclusions[]=0"><img src="style/language-frequency-full.png" /></a>
+    <p><a href="languages.php?field=aggregated&exclusions[]=0"><img src="style/language-frequency-full.png" /></a></p>
     <p><a href="languages.php?field=aggregated&exclusions[]=0">Frequency of language specifications.</a></p>
+  </div>
+  <div class="col-xs-3">
+    <h3>Multilingual saturation</h3>
+    <p style="text-align: right;"><a href="saturation.php"><img src="style/multilingual-saturation-full.png"/></a></p>
+    <p style="text-align: right;"><a href="saturation.php">Multilingual saturation chart.</a></p>
   </div>
 </div>
 

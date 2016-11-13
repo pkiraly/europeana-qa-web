@@ -13,6 +13,10 @@ $graphs = array(
   'completeness_timespan' => ['label' => 'Completeness of Timespan'],
   'completeness_concept' => ['label' => 'Completeness of Concept'],
 
+  'saturation_sum' => ['label' => 'Multilingual saturation (cumulative)'],
+  'saturation_average' => ['label' => 'Multilingual saturation (average)'],
+  'saturation_normalized' => ['label' => 'Multilingual saturation (normalized average)'],
+
   'total' => array('label' => 'Every fields', 'fields' => array("edm:ProvidedCHO/@about", "Proxy/dc:title", "Proxy/dcterms:alternative",
   	"Proxy/dc:description", "Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:identifier",
   	"Proxy/dc:language", "Proxy/dc:coverage", "Proxy/dcterms:temporal", "Proxy/dcterms:spatial", "Proxy/dc:subject", "Proxy/dc:date",
