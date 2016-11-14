@@ -151,7 +151,7 @@ $stat = [];
 if ($collectionId == 'all') {
   if (file_exists($summaryFile)) {
     $stat = json_decode(file_get_contents($summaryFile));
-    $problems[] = sprintf("writing (%s) is not existing\n", $summaryFile);
+    // $problems[] = sprintf("reading %s...\n", $summaryFile);
   } else {
     $max = 0;
     foreach ($csv as $id => $row) {
