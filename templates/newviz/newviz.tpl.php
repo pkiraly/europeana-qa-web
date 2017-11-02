@@ -260,20 +260,24 @@
               text += '<p>This bar is proportional to the maximum cardinality value of this entity, which is of '
                    + data.fields[data.statistics.cardinalityMaxField] + '</p>';
             }
+            // frequency table
             if (data.statistics.frequencyTable[key]) {
               text += data.statistics.frequencyTable[key].html;
             }
-            if (data.statistics.histograms[key]) {
-              text += data.statistics.histograms[key].html;
-            }
+            // cardinality statistics
             if (data.statistics.cardinality[key]) {
               text += data.statistics.cardinality[key].html;
+            }
+            // cardinality histogram
+            if (data.statistics.histograms[key]) {
+              text += data.statistics.histograms[key].html;
             }
             if (data.statistics.images[key]['frequency'].exists) {
               text += data.statistics.images[key]['frequency'].html;
             }
+            // cardinality images
             if (data.statistics.images[key]['cardinality'].exists) {
-              text += data.statistics.images[key]['cardinality'].html;
+              // text += data.statistics.images[key]['cardinality'].html;
             }
             // text += '<li>' + data['fields'][key] + ' (' + key + ')</li>';
             text += '</div>'; // details

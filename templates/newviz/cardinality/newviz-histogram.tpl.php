@@ -1,4 +1,4 @@
-<h3>Histogram</h3>
+<h3>Cardinality histogram</h3>
 <table class="histogram">
   <tr>
     <td class="legend">range of values</td>

@@ -94,6 +94,7 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statist
   global $templateDir;
 
   $statistics->frequencyTableFile = '../json/' . $type . $id . '.frequency.table.json';
+  $data = new stdClass();
 
   if (file_exists($statistics->frequencyTableFile)) {
     $statistics->frequencyTable = json_decode(file_get_contents($statistics->frequencyTableFile));
@@ -104,10 +105,12 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statist
         // echo $key, ", ";
         if ($key == strtolower($entityIDField)) {
           $statistics->entityCount = $value->{'1'}[0];
+          $data->entityCount = $statistics->entityCount;
         } else if (in_array($key, $entityFields)) {
+          $data->values = $value;
           $statistics->frequencyTable->{$key} = [
             'values' => $value,
-            'html' => callTemplate($value, $templateDir . 'newviz-frequency-table.tpl.php'),
+            'html' => callTemplate($data, $templateDir . 'newviz-frequency-table.tpl.php'),
           ];
         }
       }
