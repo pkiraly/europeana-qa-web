@@ -241,7 +241,7 @@ function extractValues($key, $values, $fields, &$structure, &$outOfStructure, &$
 
 function getFieldValue($field) {
   global $metadata, $entityMap, $fieldMap;
-  $values = [];
+  $topValues = [];
 
   list($entityName, $fieldName) = split('/', $field);
   if (isset($entityMap[$entityName])) {
@@ -254,7 +254,9 @@ function getFieldValue($field) {
 
   if (isset($metadata->{$entityName})) {
     $entities = $metadata->{$entityName};
-    foreach ($entities as $entity) {
+    for ($i = 0, $len = count($entities); $i < $len; $i++) {
+      $values = [];
+      $entity = $entities[$i];
       if ($entityName == 'ore:Proxy' && $entity->{'edm:europeanaProxy'}[0] == 'true') {
         continue;
       }
@@ -262,21 +264,28 @@ function getFieldValue($field) {
         // $values[] = $entity->{$fieldName};
         if (!is_array($entity->{$fieldName})) {
           $values[] = $entity->{$fieldName};
+          $put++;
         } else {
           foreach ($entity->{$fieldName} as $value) {
             if (is_string($value)) {
               $values[] = $value;
+              $put++;
             } else if (is_object($value)) {
               if (isset($value->{'@resource'})) {
                 $values[] = $value->{'@resource'} . ' (@resource)';
+                $put++;
               } else if (isset($value->{'@lang'})) {
                 $values[] = '"' . $value->{'#value'} . '"@' . $value->{'@lang'};
+                $put++;
               }
             }
           }
         }
       }
+      if (!empty($values)) {
+        $topValues[] = $values;
+      }
     }
   }
-  return $values;
+  return $topValues;
 }

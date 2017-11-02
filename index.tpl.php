@@ -89,13 +89,13 @@ Note: this is a research project, the results here are experimental, they are su
     <tr>
       <td><?= $counter ?></td>
       <td><?= $obj->n ?></td>
-      <td><a href="dataset.php?id=<?= $obj->id ?>&name=<?= $obj->collectionId ?>&type=<?= $obj->type ?>#<?= $feature ?>"><?= $obj->collectionId ?></a></td>
+      <td><a href="<?= $datasetLink ?>?id=<?= $obj->id ?>&name=<?= $obj->collectionId ?>&type=<?= $obj->type ?>#<?= $feature ?>"><?= $obj->collectionId ?></a></td>
       <td><?= $obj->min ?></td>
       <td><?= $obj->max ?></td>
       <td><?= $obj->range ?></td>
       <td><?= $obj->median ?></td>
       <td><?= $obj->mean ?></td>
-      <td><?= $obj->{'std.dev'} ?></td>
+      <td><?= isset($obj->{'std.dev'}) ? $obj->{'std.dev'} : 'na' ?></td>
     </tr>
 <?php } ?>
  </tbody>

@@ -32,7 +32,7 @@
   <label for="field">Select field: </label>
   <select name="field" onchange="this.form.submit();">
 <?php foreach ($fields as $fieldName => $label) { ?>
-    <option value="<?= $fieldName ?>" <?php if ($fieldName == $field) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+    <option value="<?= $fieldName ?>" <?php if (strtolower($fieldName) == strtolower($field)) { ?>selected="selected"<?php } ?>><?= $label ?></option>
 <?php } ?>
   </select>
 

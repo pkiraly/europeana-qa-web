@@ -89,3 +89,89 @@ tr.remainder {
   margin: 0;
   padding: 0 0 0 10px;
 }
+
+td.field-value hr {
+  margin: 5px 0;
+}
+
+table.qa-basic-statistics td {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+table.qa-basic-statistics td.qa-label {
+  border-left: 2px solid #ccc;
+  text-transform: italic;
+}
+
+table.qa-basic-statistics td.qa-value {
+  text-align: right;
+}
+
+table.qa-basic-statistics td.qa-value span.decimals {
+  color: #ccc;
+  font-family: "courier";
+}
+
+h3 a.qa-show-details,
+h4 a.qa-show-details {
+  font-size: 70%;
+}
+
+#content h3.entity-name {
+  margin-top: 0pt;
+}
+
+div.qa-details {
+  display: none;
+}
+
+
+h3.mandatory-black i.mandatory-icon,
+h3.mandatory-blue i.mandatory-icon,
+h3.mandatory-red i.mandatory-icon,
+h3.mandatory-green i.mandatory-icon,
+h3.mandatory-plus i.mandatory-icon
+{
+  padding-right: 10px;
+  /* border-left-style: solid; */
+  /* border-left-width: 2px; */
+  /* text-decoration: underline; */
+}
+
+h3.mandatory-black {
+  color: black;
+}
+h3.mandatory-blue  {
+  color: #428bca;
+}
+h3.mandatory-red  {
+  color: red;
+}
+h3.mandatory-green {
+  color: green;
+}
+
+h3.mandatory-plus i.mandatory-icon
+{
+  color: black;
+}
+
+ul#mandatory-note {
+  padding-left: 0px;
+  padding-top: 20px;
+}
+
+ul#mandatory-note li {
+  list-style-type: none;
+}
+
+i.fa-arrow-right {
+  color: #428bca;
+}
+i.fa-circle-o {
+  color: red;
+}
+i.fa-gear {
+  color: green;
+}

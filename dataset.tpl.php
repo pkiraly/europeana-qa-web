@@ -181,7 +181,7 @@
 
   <?php if (file_exists('img/' . $type . $id . '/' . $type . $id . '-' . strtolower($name) . '.png')) { ?>
     <h3>Graphs</h3>
-    <img src="img/<?= $type . $id ?>/<?= $type . $id ?>-<?= $name ?>.png" />
+    <img src="img/<?= $type . $id ?>/<?= $type . $id ?>-<?= $name ?>.png" height="300" />
   <?php } ?>
 <?php } ?>
 

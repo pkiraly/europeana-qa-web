@@ -25,11 +25,24 @@ $features = array(
   'completeness_timespan' => 'Completeness of Timespan',
   'completeness_concept' => 'Completeness of Concept',
 
+  'saturation2_languages_per_property_in_providerproxy' => 'Multilinguality: Languages per property in provider proxy',
+  'saturation2_languages_per_property_in_europeanaproxy' => 'Multilinguality: Languages per property in Europeana proxy',
+  'saturation2_languages_per_property_in_object' => 'Multilinguality: Languages per property in object',
+  'saturation2_taggedliterals_in_providerproxy' => 'Multilinguality: Tagged literals in provider proxy',
+  'saturation2_taggedliterals_in_europeanaproxy' => 'Multilinguality: Tagged literals in Europeana proxy',
+  'saturation2_taggedliterals_in_object' => 'Multilinguality: Tagged literals in object',
+  'saturation2_distinctlanguages_in_providerproxy' => 'Multilinguality: Distinct languages in provider proxy',
+  'saturation2_distinctlanguages_in_europeanaproxy' => 'Multilinguality: Distinct languages in Europeana proxy',
+  'saturation2_distinctlanguages_in_object' => 'Multilinguality: Distinct languages in object',
+  'saturation2_taggedliterals_per_language_in_providerproxy' => 'Multilinguality: Tagged literals per language in provider proxy',
+  'saturation2_taggedliterals_per_language_in_europeanaproxy' => 'Multilinguality: Tagged literals per language in Europeana proxy',
+  'saturation2_taggedliterals_per_language_in_object' => 'Multilinguality: Tagged literals per language in object',
+
+/*
   'saturation_sum' => 'Multilingual saturation (cumulative)',
   'saturation_average' => 'Multilingual saturation (average)',
   'saturation_normalized' => 'Multilingual saturation (normalized average)',
 
-/*
   'entropy_dc_title_sum' => 'dc:title entropy - cumulative',
   'entropy_dc_title_avg' => 'dc:title entropy - average',
   'entropy_dcterms_alternative_sum' => 'dcterms:alternative entropy - cumulative',
@@ -513,13 +526,19 @@ function parse_csv($t) {
 $csv = array_map('parse_csv', file($type . '.txt'));
 
 $summaryFile = 'json_cache/index-summary-' . $feature . '-' . $prefix . '.json';
+$isSaturation2 = FALSE;
 if (preg_match('/^saturation_/', $feature)) {
   $suffix = '.saturation';
+} else if (preg_match('/^saturation2_/', $feature)) {
+  $suffix = '.saturation';
+  $isSaturation2 = TRUE;
 } else if (preg_match('/^(weighted|completeness)_/', $feature)) {
   $suffix = '.weighted-completeness';
 } else {
   $suffix = '';
 }
+
+$datasetLink = $isSaturation2 ? 'multilinguality.php' : 'dataset.php';
 
 $problems = [];
 $rows = [];

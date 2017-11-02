@@ -208,20 +208,30 @@
 <?php foreach ($analysis->labelledResults->existence as $field => $value) { ?>
     <tr<?php if ($value == 0) { ?> class="remainder"<?php } ?>>
       <td><?= $field; ?></td>
-      <td>
+      <td class="field-value">
         <?php if ($value != 0) { ?>
           <?php $instances = getFieldValue($field); ?>
           <?php if (!is_array($instances)) { ?>
             <?= $instances; ?>
           <?php } else { ?>
-            <?php if (count($instances) == 1) { ?>
-              <?= $instances[0]; ?>
-            <?php } else { ?>
-              <ul type="square">
-                <?php foreach ($instances as $instance) { ?>
-                  <li><?= $instance ?></li>
+            <?php for ($instanceCount = 0; $instanceCount < count($instances); $instanceCount++) { ?>
+              <?php $instance = $instances[$instanceCount]; ?>
+              <?php if ($instanceCount > 0) { ?>
+                <hr />
+              <?php } ?>
+              <?php if (!is_array($instance)) { ?>
+                <?= $instance; ?>
+              <?php } else { ?>
+                <?php if (count($instance) == 1) { ?>
+                  <?= $instance[0]; ?>
+                <?php } else { ?>
+                  <ul type="square">
+                    <?php foreach ($instance as $fieldValue) { ?>
+                      <li><?= $fieldValue ?></li>
+                    <?php } ?>
+                  </ul>
                 <?php } ?>
-              </ul>
+              <?php } ?>
             <?php } ?>
           <?php } ?>
         <?php } ?>
@@ -241,7 +251,7 @@
       </td>
       <td>
         <?php if ($value != 0 && isset($analysis->labelledResults->languageSaturation->{$field})) { ?>
-          <em>components</em>:
+          <em>instances</em>:
           <ul type="square">
             <?php foreach ($analysis->labelledResults->languageSaturation->{$field}->raw as $instance) {
               $saturation = [];
@@ -261,7 +271,7 @@
           <ul type="square">
             <li>sum: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->sum) ?></li>
             <li>average: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->average) ?></li>
-            <li>normalized: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->normalized) ?></li>
+            <li>normalized average: <?= sprintf("%.2f", $analysis->labelledResults->languageSaturation->{$field}->score->normalized) ?></li>
           </ul>
         <?php } ?>
       </td>
@@ -272,6 +282,7 @@
 
 <h2>Metadata structure as represented in the OAI-PMH service</h2>
 <pre id="code"><code class="json"><?php print json_encode($metadata, JSON_PRETTY_PRINT); ?></code></pre>
+
 </div>
 
 <div class="col-md-12">

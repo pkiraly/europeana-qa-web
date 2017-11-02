@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
-  <link rel="stylesheet" href="europeana-qa.css" />
+  <link rel="stylesheet" href="../../europeana-qa.css" />
   <!-- choose a theme file -->
-  <link rel="stylesheet" href="jquery/theme.default.min.css">
+  <link rel="stylesheet" href="../../jquery/theme.default.min.css">
   <!-- load jQuery and tablesorter scripts -->
   <script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
   <script type="text/javascript" src="jquery/jquery.tablesorter.min.js"></script>
@@ -35,7 +35,7 @@
 
 <div class="page-header">
   <h1>Field cardinality</h1>
-  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href="../../">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <p>This chart shows the cardinality of the analyzed fields in all records.</p>
@@ -52,7 +52,7 @@
   var labelSource = [];
 </script>
 <script type="text/javascript" src="chart.js.php?filename=json/cardinality.json&type=<?= $type ?>&target=cardinality-chart&property=sum"></script>
-<link rel="stylesheet" href="chart.css" />
+<link rel="stylesheet" href="../../chart.css" />
 
 </body>
 </html>
