@@ -52,6 +52,8 @@ function readStatistics($type, $id, $entity) {
   readCardinality($type, $id, $entityFields, $statistics);
   readFrequencyTable($type, $id, $entityIDField, $entityFields, $statistics);
   readHistogram($type, $id, $entityFields, $statistics);
+  readMinMaxRecords($type, $id, $entityFields, $statistics);
+
   readImageFiles($type, $id, $entityFields, $statistics);
   return $statistics;
 }
@@ -126,18 +128,47 @@ function readHistogram($type, $id, $entityFields, &$statistics) {
   $statistics->histFile = '../json/' . $type . $id . '.hist.json';
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
-    foreach ($histograms as $key => $value) {
+    foreach ($histograms as $key => $values) {
       $needle = str_replace('crd_', '', $key);
       if (in_array($needle, $entityFields)) {
+        $data = (object)[
+          'field' => $needle,
+          'values' => $values
+        ];
         $statistics->histograms->{$needle} = [
-          'values' => $value,
-          'html' => callTemplate($value, $templateDir . 'newviz-histogram.tpl.php'),
+          'values' => $values,
+          'html' => callTemplate($data, $templateDir . 'newviz-histogram.tpl.php'),
         ];
       }
       // unset($statistics->histograms->{$key});
     }
   } else {
     $statistics->histograms = FALSE;
+  }
+}
+
+function readMinMaxRecords($type, $id, $entityFields, &$statistics) {
+  global $templateDir;
+
+  $statistics->minMaxRecordsFile = '../json/' . $type . $id . '.json';
+  if (file_exists($statistics->minMaxRecordsFile)) {
+    $histograms = json_decode(file_get_contents($statistics->minMaxRecordsFile));
+    foreach ($histograms as $key => $value) {
+      // $statistics->minMaxKeys[] = $value->{'_row'};
+      $needle = str_replace('crd_', '', $value->{'_row'});
+      if (in_array($needle, $entityFields)) {
+        // $statistics->minMaxRecords->{$needle} = $value;
+        $statistics->minMaxRecords->{$needle} = (object)[
+          'recMin' => $value->recMin,
+          'recMax' => $value->recMax,
+        ];
+        /*
+        */
+      }
+      // unset($statistics->histograms->{$key});
+    }
+  } else {
+    $statistics->minMaxRecords = FALSE;
   }
 }
 

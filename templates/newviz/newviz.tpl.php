@@ -58,6 +58,7 @@
     }
     .table-header-rotated th {
         padding: 5px 10px;
+
     }
     .table-header-rotated td {
         text-align: center;
@@ -65,7 +66,7 @@
         border: 1px solid #ccc;
     }
     .table-header-rotated th.rotate {
-        height: 140px;
+        height: 50px;
         white-space: nowrap;
     }
     .table-header-rotated th.rotate > div {
@@ -74,8 +75,11 @@
         width: 30px;
     }
     .table-header-rotated th.rotate > div > span {
-        border-bottom: 1px solid #ccc;
+        /* border-bottom: 1px solid #ccc; */
         padding: 5px 10px;
+        left: 10px;
+        top: -55px;
+        position: relative;
     }
     .table-header-rotated th.row-header {
         padding: 0 10px;
@@ -250,6 +254,7 @@
 
             // cardinality bar
             if (data.statistics.cardinality[key]) {
+              /*
               var cardinality = data.statistics.cardinality[key];
               var cardinalityPercent = cardinality.sum / data.statistics.cardinalityMax;
               var cardinalityWidth = parseInt(300 * cardinalityPercent);
@@ -259,6 +264,7 @@
                    + '</div></div>';
               text += '<p>This bar is proportional to the maximum cardinality value of this entity, which is of '
                    + data.fields[data.statistics.cardinalityMaxField] + '</p>';
+              */
             }
             // frequency table
             if (data.statistics.frequencyTable[key]) {
@@ -279,6 +285,20 @@
             if (data.statistics.images[key]['cardinality'].exists) {
               // text += data.statistics.images[key]['cardinality'].html;
             }
+            if (data.statistics.minMaxRecords[key]) {
+              text += '<ul>'
+                   + '<li><a href="record.php?id=' + data.statistics.minMaxRecords[key].recMax + '">Best Record</a></li>'
+                   + '<li><a href="record.php?id=' + data.statistics.minMaxRecords[key].recMin + '">Worst Record</a></li>'
+                   + '</ul>'
+            }
+            text += 'Cardinality compared to <select name="comparision-selector" id="' + field.toLowerCase() + '-comparision-selector">';
+            text += '<option>--select a field--</option>';
+            for (otherField in data.fields) {
+                if (otherField != field)
+                    text += '<option value="' + otherField.toLowerCase() + '">' + data.fields[otherField] + '</option>';
+            }
+            text += '</select>';
+            text += '<div id="' + field.toLowerCase() + '-comparision-container"></div>';
             // text += '<li>' + data['fields'][key] + ' (' + key + ')</li>';
             text += '</div>'; // details
             text += '</div>'; // cell
@@ -302,6 +322,15 @@
             faClass = $("i", this).attr('class') == 'fa fa-plus-square' ? 'fa fa-minus-square' : 'fa fa-plus-square';
             $("i", this).attr('class', faClass);
             // $(this).text($(this).text() == 'Show details' ? 'Hide details' : 'Show details');
+          });
+          $('select[name=comparision-selector]').on('change', function(){
+              var thisField = this.id.replace('-comparision-selector', '');
+              var otherField = this.value;
+              var el = $('#' + otherField + '-histogram');
+              var html = "";
+              if (typeof el.html() != "undefined")
+                  html = el.clone().wrap('<div>').parent().html();
+              $('#' + thisField + '-comparision-container').html(html);
           });
         });
     }
