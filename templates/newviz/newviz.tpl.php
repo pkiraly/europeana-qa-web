@@ -85,6 +85,17 @@
         padding: 0 10px;
         border-bottom: 1px solid #ccc;
     }
+    .field-details {
+        padding-bottom: 15px;
+    }
+    table#generic td.level {
+        text-align: left;
+    }
+    table#generic td.metric {
+        width: 250px;
+        text-align: left;
+        min-width: 270px;
+    }
 </style>
 </head>
 <body>
@@ -131,12 +142,7 @@
         <div id="multilingual-score" class="tab-pane fade">
             <div class="row">
                 <h2>Multilingual score</h2>
-                <div class="col-sm-3 col-md-3 col-lg-3">
-            <p>
-
-            </p>
-                </div>
-                <div class="col-sm-9 col-md-9 col-lg-9" id="multilinguality-content"></div>
+                <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
             </div>
         </div>
     </divtab-content>
@@ -157,7 +163,12 @@
         // $("#specific-taggedliterals").tablesorter();
         // $("#specific-languages").tablesorter();
         // $("#specific-literalsperlanguage").tablesorter();
-        loadEntityCardinality('ProvidedCHO');
+        var id = document.location.hash;
+        if (id == '#multilingual-score')
+            loadMultilinguality();
+        else
+            loadEntityCardinality('ProvidedCHO');
+        $('.nav-tabs a[href="' + id + '"]').tab('show');
 
         $(".nav-tabs a").click(function() {
            $(this).tab('show');
@@ -250,7 +261,7 @@
             text += '<div class="col-sm-1 col-md-1 col-lg-1"></div>';
             text += '<div class="col-sm-11 col-md-11 col-lg-11">';
 
-            text += '<div class="qa-details" id="details-' + key + '">';
+            text += '<div class="qa-details field-details" id="details-' + key + '">';
 
             // cardinality bar
             if (data.statistics.cardinality[key]) {

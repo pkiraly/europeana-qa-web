@@ -34,10 +34,10 @@ function getGenerixPrefixes() {
 
 function getFields() {
   return [
-    'languages_per_property' => 'languages per property',
-    'taggedliterals' => 'tagged literals',
-    'distinctlanguages' => 'distinct languages',
-    'taggedliterals_per_language' => 'tagged literals per language'
+    'languages_per_property' => 'Number of language tags',
+    'taggedliterals' => 'Number of tagged literals',
+    'distinctlanguages' => 'Number of distinct language tags',
+    'taggedliterals_per_language' => 'Number of tagged literals per language'
   ];
 }
 
