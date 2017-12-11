@@ -33,15 +33,17 @@ if (isset($_GET['id'])) {
 if ($id == 'all')
   $type = '';
 
+$message = $type . $id;
+
 $n = 0;
-$jsonCountFileName = 'json/' . $type . $id . '.count.json';
+$jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
   $n = $stats[0]->count;
 }
 
 $assocStat = [];
-$saturationFile = 'json/' . $type . $id . '.saturation.json';
+$saturationFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.json';
 $saturationFileExists = file_exists($saturationFile);
 if ($saturationFileExists) {
   $saturation = json_decode(file_get_contents($saturationFile));
@@ -90,18 +92,18 @@ $specific_types = [
   'literalsperlanguage' => 'Literals per languages'
 ];
 
-$saturationHistFile = 'json/' . $type . $id . '.saturation.histogram.json';
+$saturationHistFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.histogram.json';
 if (file_exists($saturationHistFile)) {
   $histograms = (array)json_decode(file_get_contents($saturationHistFile));
 }
 
-$saturationNormalizedHistFile = 'json/' . $type . $id . '.saturation.normalized-histogram.json';
+$saturationNormalizedHistFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.normalized-histogram.json';
 if (file_exists($saturationNormalizedHistFile)) {
   $normalizedHistograms = (array)json_decode(file_get_contents($saturationNormalizedHistFile));
 }
 
 $frequencyTable = (object)[];
-$saturationFrequencyTableFile = 'json/' . $type . $id . '.saturation.frequency.table.json';
+$saturationFrequencyTableFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.frequency.table.json';
 if (file_exists($saturationFrequencyTableFile)) {
   $saturationFrequencyTable = json_decode(file_get_contents($saturationFrequencyTableFile));
   foreach ($saturationFrequencyTable as $key => $value) {
@@ -117,7 +119,7 @@ $generic_prefixes = [
 $specific_prefixes = ['provider', 'europeana'];
 
 ob_start();
-include('multilinguality.tpl.php');
+include('templates/multilinguality/multilinguality.tpl.php');
 $content = ob_get_contents();
 ob_end_clean();
 

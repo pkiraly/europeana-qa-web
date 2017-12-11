@@ -2,10 +2,17 @@
 $configuration = parse_ini_file('config.cfg');
 
 $types = [
-  'sum' => 'cumulative',
-  'average' => 'average',
-  'normalized' => 'normalized average',
+  // 'sum' => 'cumulative',
+  // 'average' => 'average',
+  // 'normalized' => 'normalized average',
+  'taggedliterals' => 'tagged literals',
+  'languages' => 'languages',
+  'literalsperlanguage' => 'literals per language',
 ];
+
+// saturation2_provider_dc_publisher_taggedliterals
+// saturation2_provider_dc_publisher_languages
+// saturation2_provider_dc_publisher_literalsperlanguage
 
 $fields = [
   'all' => 'Cumulated score',
@@ -127,22 +134,30 @@ $field = $_GET['field'];
 if (!isset($field))
   $field = 'all';
 
+if (preg_match('/^proxy_/', $field)) {
+  $normalized_field = preg_replace('/^proxy_/', 'provider_', $field);
+} else {
+  $normalized_field = $field;
+}
+
 $type = $_GET['type'];
 if (!isset($type))
-  $type = 'sum';
+  $type = 'taggedliterals'; // sum
 
 $collectionType = 'data-providers';
 $prefix = 'd';
 $suffix = '.saturation';
+
 function parse_csv($t) {
   return str_getcsv($t, ';');
 }
 $csv = array_map('parse_csv', file($collectionType . '.txt'));
 
-if ($field == 'all') {
-  $statistic = 'saturation_' . $type;
+if ($normalized_field == 'all') {
+  // $statistic = 'saturation_' . $type;
+  $statistic = 'saturation2';
 } else {
-  $statistic = 'saturation_' . $type . '_' . $field;
+  $statistic = 'saturation2_' . $normalized_field . '_' . $type;
 }
 
 $summaryFile = 'json_cache/saturation-' . strtolower($statistic) . '-' . $prefix . '.json';
@@ -154,18 +169,20 @@ if ($collectionId == 'all') {
     // $problems[] = sprintf("reading %s...\n", $summaryFile);
   } else {
     $max = 0;
+    $counter = 0;
     foreach ($csv as $id => $row) {
       $id = $row[0];
       $collectionName = $row[1];
-      $jsonFileName = $configuration['QA_R_PATH'] . '/json2/' . $prefix . $id . $suffix . '.json';
+      $jsonFileName = $configuration['QA_R_PATH'] . '/json2/' . $prefix . $id . '/' . $prefix . $id . $suffix . '.json';
       if (file_exists($jsonFileName)) {
         if ($counter == 1) {
            // echo 'jsonFileName: ', $jsonFileName, "\n";
         }
         $stats = json_decode(file_get_contents($jsonFileName));
-        $assocStat = array();
+        // $assocStat = array();
         foreach ($stats as $obj) {
           if (strtolower($obj->_row) == strtolower($statistic)) {
+            $counter++;
             $stat['values'][$prefix . $id] = ['value' => $obj->mean, 'name' => $collectionName];
             if ($obj->mean > $max)
               $max = $obj->mean;
@@ -181,8 +198,12 @@ if ($collectionId == 'all') {
     // $problems[] = sprintf("writing to %s...\n", $summaryFile);
   }
 } else {
-  $fileName = 'json/' . $collectionId . '.saturation.json';
+  $fileName = 'json/' . $collectionId . '/' . $collectionId . '.saturation.json';
   $languages = json_decode(file_get_contents($fileName));
 }
 
-include("saturation.tpl.php");
+include("templates/saturation/saturation.tpl.php");
+
+// saturation2_provider_dc_publisher_taggedliterals
+// saturation2_provider_dc_publisher_languages
+// saturation2_provider_dc_publisher_literalsperlanguage

@@ -35,7 +35,7 @@
 
 <div class="page-header">
   <h1>Language frequency</h1>
-  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <form>

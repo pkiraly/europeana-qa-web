@@ -35,7 +35,7 @@
 
 <div class="page-header">
   <h1>Language frequency</h1>
-  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <form>
@@ -139,6 +139,9 @@
     console.log(d);
   }
 </script>
+
+<p>
+</p>
 
 <footer>
   <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>

@@ -2,8 +2,8 @@
 define('LN', "\n");
 define('OAI_PMH_URL_TEMPLATE', 'http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=%s');
 define('ID_PREFIX', 'http://data.europeana.eu/item/');
-define('RECORD_API', 'http://144.76.218.178:8080/europeana-qa/record/%s.json');
-define('METRICS_API', 'http://144.76.218.178:8080/europeana-qa/%s.json');
+define('RECORD_API', 'http://144.76.218.178:8080/europeana-qa/record/%s.json?dataSource=cassandra');
+define('METRICS_API', 'http://144.76.218.178:8080/europeana-qa/%s.json?dataSource=cassandra');
 
 
 $configuration = parse_ini_file('config.cfg');

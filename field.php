@@ -171,7 +171,6 @@ if (!isset($field) || !isset($fields[$field])) {
   $field = 'identifier';
 }
 
-
 $types = [
   'data-providers' => 'Data providers',
   'datasets' => 'Data sets'
@@ -202,7 +201,7 @@ if (!file_exists($fieldSummaryFile)) {
     $id = $row[0];
     $collectionId = $row[1];
 
-    $jsonFileName = 'json/' . $prefix . $id . '.freq.json';
+    $jsonFileName = 'json/' . $prefix . $id . '/' . $prefix . $id . '.freq.json';
     if (file_exists($jsonFileName)) {
       if ($counter == 1) {
         // echo $jsonFileName, ' ', $jsonFileName;

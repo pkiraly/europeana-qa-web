@@ -43,7 +43,7 @@
 
 <div class="page-header">
   <h1>Investigation of <?php if($type == 'c'){ ?>dataset<?php } else { ?>data provider<?php } ?><br/><?= $collectionId ?></h1>
-  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <!-- div class="col-md-12" -->
@@ -203,8 +203,8 @@
 
 <?php if ($id != 'all') { ?>
     <p>
-      A record with minimal score: <a href="record.php?id=<?= $proxies[$prefix]->recMin ?>"><?= $proxies[$prefix]->recMin ?></a><br/>
-      A record with maximal score: <a href="record.php?id=<?= $proxies[$prefix]->recMax ?>"><?= $proxies[$prefix]->recMax ?></a>
+      A record with minimal score: <a href="../../record.php?id=<?= $proxies[$prefix]->recMin ?>"><?= $proxies[$prefix]->recMin ?></a><br/>
+      A record with maximal score: <a href="../../record.php?id=<?= $proxies[$prefix]->recMax ?>"><?= $proxies[$prefix]->recMax ?></a>
     </p>
 <?php } ?>
 
@@ -288,6 +288,8 @@
 <?php } ?>
 
 <?php } ?>
+
+<p>message: <?= $message ?></p>
 
 <footer>
   <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.</p>

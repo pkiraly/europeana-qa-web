@@ -128,7 +128,7 @@ $treeMapUrl = 'plainjson2tree.php?field=' . $field
             . '&showNoInstances=' . (int)$showNoInstances
             . '&collectionId=' . $collectionId;
 
-$fileName = 'json/' . $collectionId . '.languages.json';
+$fileName = 'json/' . $collectionId . '/' . $collectionId . '.languages.json';
 $languages = json_decode(file_get_contents($fileName));
 
-include("languages.tpl.php");
+include("templates/languages/languages.tpl.php");

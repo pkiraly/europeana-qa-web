@@ -18,7 +18,7 @@ $codes = [
   'resource'
 ];
 
-$fileName = 'json/' . $collectionId . '.languages.json';
+$fileName = 'json/' . $collectionId . '/' . $collectionId . '.languages.json';
 $languages = json_decode(file_get_contents($fileName));
 
 echo getTree($languages->$field, $field, $excludeZeros, $showNoInstances);

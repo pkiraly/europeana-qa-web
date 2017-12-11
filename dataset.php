@@ -676,13 +676,13 @@ if (isset($_GET['id'])) {
 }
 
 $n = 0;
-$jsonCountFileName = 'json/' . $type . $id . '.count.json';
+$jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
   $n = $stats[0]->count;
 }
 
-$jsonFileName = 'json/' . $type . $id . '.json';
+$jsonFileName = 'json/' . $type . $id . '/' . $type . $id . '.json';
 if (!file_exists($jsonFileName)) {
   die(sprintf("File doesn't exist: %s (collection: %s)\n", $jsonFileName, $collectionId));
 } else {
@@ -700,10 +700,10 @@ foreach ($stats as $obj) {
   $assocStat[$key] = $obj;
 }
 
-$freqFile = 'json/' . $type . $id . '.freq.json';
+$freqFile = 'json/' . $type . $id . '/' . $type . $id . '.freq.json';
 $freqFileExists = file_exists($freqFile);
 
-$cardinalityFile = 'json/' . $type . $id . '.cardinality.json';
+$cardinalityFile = 'json/' . $type . $id . '/' . $type . $id . '.cardinality.json';
 $cardinalityFileExists = file_exists($cardinalityFile);
 $cardinalityProperties = ['sum', 'mean', 'median'];
 if ($cardinalityFileExists) {
@@ -712,7 +712,7 @@ if ($cardinalityFileExists) {
     ? $_GET[$key] : 'sum';
 }
 
-$frequencyTableFile = 'json/' . $type . $id . '.frequency.table.json';
+$frequencyTableFile = 'json/' . $type . $id . '/' . $type . $id . '.frequency.table.json';
 if (file_exists($frequencyTableFile)) {
   $frequencyTable = json_decode(file_get_contents($frequencyTableFile));
   foreach ($frequencyTable as $key => $value) {
@@ -726,21 +726,21 @@ if (file_exists($frequencyTableFile)) {
   $frequencyTable = FALSE;
 }
 
-$histFile = 'json/' . $type . $id . '.hist.json';
+$histFile = 'json/' . $type . $id . '/' . $type . $id . '.hist.json';
 if (file_exists($histFile)) {
   $histograms = json_decode(file_get_contents($histFile));
 } else {
   $histograms = FALSE;
 }
 
-$languageFile = 'json/' . $type . $id . '.languages.json';
+$languageFile = 'json/' . $type . $id . '/' . $type . $id . '.languages.json';
 if (file_exists($languageFile)) {
   $languages = json_decode(file_get_contents($languageFile));
 } else {
   $languages = FALSE;
 }
 
-$saturationFile = 'json/' . $type . $id . '.saturation.json';
+$saturationFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.json';
 $saturationFileExists = file_exists($saturationFile);
 if ($saturationFileExists) {
   $saturation = json_decode(file_get_contents($saturationFile));
@@ -751,7 +751,7 @@ if ($saturationFileExists) {
   }
 }
 
-$saturationHistFile = 'json/' . $type . $id . '.saturation.histogram.json';
+$saturationHistFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.histogram.json';
 if (file_exists($saturationHistFile)) {
   $histograms = (object) array_merge(
     (array)$histograms,
@@ -759,7 +759,7 @@ if (file_exists($saturationHistFile)) {
   );
 }
 
-$saturationFrequencyTableFile = 'json/' . $type . $id . '.saturation.frequency.table.json';
+$saturationFrequencyTableFile = 'json/' . $type . $id . '/' . $type . $id . '.saturation.frequency.table.json';
 if (file_exists($saturationFrequencyTableFile)) {
   $saturationFrequencyTable = json_decode(file_get_contents($saturationFrequencyTableFile));
   foreach ($saturationFrequencyTable as $key => $value) {
@@ -767,7 +767,7 @@ if (file_exists($saturationFrequencyTableFile)) {
   }
 }
 
-$weightedCompletenessFile = 'json/' . $type . $id . '.weighted-completeness.json';
+$weightedCompletenessFile = 'json/' . $type . $id . '/' . $type . $id . '.weighted-completeness.json';
 $weightedCompletenessFileExists = file_exists($weightedCompletenessFile);
 if ($weightedCompletenessFileExists) {
   $weightedCompleteness = json_decode(file_get_contents($weightedCompletenessFile));
@@ -778,7 +778,7 @@ if ($weightedCompletenessFileExists) {
   }
 }
 
-$weightedCompletenessHistFile = 'json/' . $type . $id . '.weighted-completeness.histogram.json';
+$weightedCompletenessHistFile = 'json/' . $type . $id . '/' . $type . $id . '.weighted-completeness.histogram.json';
 if (file_exists($weightedCompletenessHistFile)) {
   $histograms = (object) array_merge(
     (array)$histograms,
@@ -786,7 +786,7 @@ if (file_exists($weightedCompletenessHistFile)) {
   );
 }
 
-$weightedCompletenessFrequencyTableFile = 'json/' . $type . $id . '.weighted-completeness.frequency.table.json';
+$weightedCompletenessFrequencyTableFile = 'json/' . $type . $id . '/' . $type . $id . '.weighted-completeness.frequency.table.json';
 if (file_exists($weightedCompletenessFrequencyTableFile)) {
   $weightedCompletenessFrequencyTable = json_decode(file_get_contents($weightedCompletenessFrequencyTableFile));
   foreach ($weightedCompletenessFrequencyTable as $key => $value) {
