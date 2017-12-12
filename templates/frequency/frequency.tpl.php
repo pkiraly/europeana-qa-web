@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
-  <link rel="stylesheet" href="europeana-qa.css" />
+  <link rel="stylesheet" href="../../europeana-qa.css" />
   <!-- choose a theme file -->
-  <link rel="stylesheet" href="jquery/theme.default.min.css">
+  <link rel="stylesheet" href="../../jquery/theme.default.min.css">
   <!-- load jQuery and tablesorter scripts -->
   <script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
   <script type="text/javascript" src="jquery/jquery.tablesorter.min.js"></script>
@@ -35,7 +35,7 @@
 
 <div class="page-header">
   <h1>Field frequency</h1>
-  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href="../../">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <p>This chart shows the frequency of the analyzed fields in all records. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
@@ -52,7 +52,7 @@
   var labelSource = [];
 </script>
 <script type="text/javascript" src="chart.js.php?filename=json/frequency.json&type=<?= $type ?>&target=frequency-chart&property=frequency"></script>
-<link rel="stylesheet" href="chart.css" />
+<link rel="stylesheet" href="../../chart.css" />
 
 </body>
 </html>

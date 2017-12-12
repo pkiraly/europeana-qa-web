@@ -795,7 +795,7 @@ if (file_exists($weightedCompletenessFrequencyTableFile)) {
 }
 
 ob_start();
-include('dataset.tpl.php');
+include('templates/dataset/dataset.tpl.php');
 $content = ob_get_contents();
 ob_end_clean();
 

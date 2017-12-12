@@ -6,14 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Metadata Quality Assurance Framework</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
   <link rel="stylesheet" href="europeana-qa.css" />
   <!-- choose a theme file -->
   <link rel="stylesheet" href="jquery/theme.default.min.css">
   <!-- load jQuery and tablesorter scripts -->
-  <script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
+  <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="jquery/jquery.tablesorter.min.js"></script>
 
   <!-- tablesorter widgets (optional) -->
@@ -34,27 +36,67 @@
 <div class="container">
 
 <div class="page-header">
-  <h1>Language frequency</h1>
+  <h1>Multilingual saturation</h1>
   <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
 </div>
 
-<form>
-  <input type="hidden" name="collectionId" value="<?= $collectionId ?>" />
+<ul class="nav nav-tabs" id="myTab">
+  <li<?php if ($form == 'global'): ?> class="active"<?php endif ?>><a href="#global-metrics">Global metrics</a></li>
+  <li<?php if ($form == 'field'): ?> class="active"<?php endif ?>><a href="#field-metrics">Fields metrics</a></li>
+</ul>
+<div class="tab-content">
+  <div id="global-metrics" class="tab-pane<?php if ($form == 'global'): ?> active<?php endif ?>">
+    <div class="row">
+      <form id="global">
+        <input type="hidden" name="collectionId" value="<?= $collectionId ?>" />
+        <input type="hidden" name="form" value="global" />
 
-  <label for="field">Select field: </label>
-  <select name="field" onchange="this.form.submit();">
-<?php foreach ($fields as $fieldName => $label) { ?>
-    <option value="<?= $fieldName ?>" <?php if ($fieldName == $field) { ?>selected="selected"<?php } ?>><?= $label ?></option>
-<?php } ?>
-  </select>
+        <label for="global_metric">metric: </label>
+        <select name="global_metric" onchange="this.form.submit();">
+           <?php foreach ($global_metrics as $metric => $label) { ?>
+             <option value="<?= $metric ?>" <?php if ($metric == $global_metric) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+           <?php } ?>
+        </select>
 
-  <label for="type">Type: </label>
-  <select name="type" onchange="this.form.submit();">
-<?php foreach ($types as $typeName => $label) { ?>
-    <option value="<?= $typeName ?>" <?php if ($typeName == $type) { ?>selected="selected"<?php } ?>><?= $label ?></option>
-<?php } ?>
-  </select>
-</form>
+        <label for="global_scope">in: </label>
+        <select name="global_scope" onchange="this.form.submit();">
+          <?php foreach ($global_scopes as $scope => $label) { ?>
+            <option value="<?= $scope ?>" <?php if ($scope == $global_scope) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+          <?php } ?>
+        </select>
+      </form>
+    </div>
+  </div>
+  <div id="field-metrics" class="tab-pane<?php if ($form == 'field'): ?> active<?php endif ?>">
+    <div class="row">
+      <form id="local">
+        <input type="hidden" name="collectionId" value="<?= $collectionId ?>" />
+        <input type="hidden" name="form" value="field" />
+
+        <label for="field_metric">metric: </label>
+        <select name="field_metric" onchange="this.form.submit();">
+           <?php foreach ($field_metrics as $metric => $label) { ?>
+             <option value="<?= $metric ?>" <?php if ($metric == $field_metric) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+           <?php } ?>
+         </select>
+
+         <label for="field">field: </label>
+         <select name="field" onchange="this.form.submit();">
+            <?php foreach ($fields as $fieldName => $label) { ?>
+              <option value="<?= $fieldName ?>" <?php if ($fieldName == $field) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+            <?php } ?>
+         </select>
+
+         <label for="field_scope">in: </label>
+         <select name="field_scope" onchange="this.form.submit();">
+           <?php foreach ($field_scopes as $scope => $label) { ?>
+             <option value="<?= $scope ?>" <?php if ($scope == $field_scope) { ?>selected="selected"<?php } ?>><?= $label ?></option>
+           <?php } ?>
+         </select>
+       </form>
+     </div>
+   </div>
+</div>
 
 <p>This chart shows the specified languages, and the number of records they are occured in.</p>
 
@@ -62,6 +104,9 @@
 
 <div id="chart" class="chart"></div>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
   var margin = { top: 50, right: 0, bottom: 100, left: 30 },
@@ -138,6 +183,13 @@
   function click(d) {
     console.log(d);
   }
+
+  $(document).ready(function () {
+    $(".nav-tabs a").click(function() {
+      var tab_id = $(this).attr('href');
+       $(this).tab('show');
+    });
+  });
 </script>
 
 <p>

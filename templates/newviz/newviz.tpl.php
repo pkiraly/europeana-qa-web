@@ -104,6 +104,7 @@
 
     <div class="page-header">
       <h1>Field frequency</h1>
+      <h2><?= $collectionId ?></h2>
       <h3><a href="/europeana-qa/">Metadata Quality Assurance Framework</a></h3>
     </div>
     <ul class="nav nav-tabs" id="myTab">
@@ -145,7 +146,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
             </div>
         </div>
-    </divtab-content>
+    </div>
 
     <footer>
         <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework

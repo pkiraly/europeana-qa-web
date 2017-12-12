@@ -228,4 +228,4 @@ if (!file_exists($fieldSummaryFile)) {
   file_put_contents($fieldSummaryFile, json_encode($rows));
 }
 
-include("field.tpl.php");
+include("templates/field/field.tpl.php");

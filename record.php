@@ -130,7 +130,7 @@ foreach ($graphs['total']['fields'] as $field) {
 
 // print_r($metadata);
 $structure = extractStructure($metadata, $graphs['total']['fields']);
-include("record.tpl.php");
+include("templates/record/record.tpl.php");
 
 // echo json_encode(json_decode(file_get_contents("http://www.europeana.eu/portal/record/11620/MNHNBOTANY_MNHN_FRANCE_P04617748.json")), JSON_PRETTY_PRINT);
 

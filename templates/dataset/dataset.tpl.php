@@ -35,7 +35,7 @@
 
 <div class="page-header">
   <h1>Investigation of <?php if($type == 'c'){ ?>dataset<?php } else { ?>data provider<?php } ?><br/><?= $collectionId ?></h1>
-  <h3><a href="./">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
 </div>
 
 <!-- div class="col-md-12" -->
@@ -121,9 +121,9 @@
   <table>
   <?php foreach (get_object_vars($assocStat[$name]) as $key => $value) { ?>
     <?php if ($key == 'recMin') { ?>
-      <tr><td>A record with minimal score</td><td><a href="record.php?id=<?= $value ?>"><?= $value ?></a></td>
+      <tr><td>A record with minimal score</td><td><a href="../../record.php?id=<?= $value ?>"><?= $value ?></a></td>
     <?php } else if ($key == 'recMax') { ?>
-      <tr><td>A record with maximal score</td><td><a href="record.php?id=<?= $value ?>"><?= $value ?></a></td>
+      <tr><td>A record with maximal score</td><td><a href="../../record.php?id=<?= $value ?>"><?= $value ?></a></td>
     <?php } else { ?>
       <tr><td><?= $key ?></td><td><?= $value ?></td>
     <?php } ?>
