@@ -242,7 +242,6 @@
                  + '</h3></div>';
             if (data.statistics.frequencyTable[key]) {
               var freq = data.statistics.frequencyTable[key];
-
               var zeros = (!isNaN(freq.values["0"])) ? zeros = freq.values["0"] : n;
               var nonZeros = (!isNaN(freq.values["1"])) ? freq.values["1"] : n - zeros;
               var percent = nonZeros / n;

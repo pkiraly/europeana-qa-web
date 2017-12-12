@@ -45,7 +45,8 @@ function getAssocStat() {
   global $parameters;
 
   $assocStat = [];
-  $saturationFile = '../json/' . $parameters->type . $parameters->id . '.saturation.json';
+  $saturationFile = '../json/' . $parameters->type . $parameters->id
+    . '/' . $parameters->type . $parameters->id . '.saturation.json';
   $saturationFileExists = file_exists($saturationFile);
   if ($saturationFileExists) {
     $saturation = json_decode(file_get_contents($saturationFile));

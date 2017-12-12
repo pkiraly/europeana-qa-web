@@ -60,14 +60,14 @@ function readStatistics($type, $id, $entity) {
 
 // concept_rdf_about
 function readFreqFileExistence($type, $id, $entityFields, &$statistics) {
-  $statistics->freqFile = '../json/' . $type . $id . '.freq.json';
+  $statistics->freqFile = '../json/' . $type . $id . '/' . $type . $id . '.freq.json';
   $statistics->freqFileExists = file_exists($statistics->freqFile);
 }
 
 function readCardinality($type, $id, $entityFields, &$statistics) {
   global $templateDir;
 
-  $statistics->cardinalityFile = '../json/' . $type . $id . '.cardinality.json';
+  $statistics->cardinalityFile = '../json/' . $type . $id . '/' . $type . $id . '.cardinality.json';
   $statistics->cardinalityFileExists = file_exists($statistics->cardinalityFile);
   $cardinalityProperties = ['sum', 'mean', 'median'];
   if ($statistics->cardinalityFileExists) {
@@ -95,7 +95,7 @@ function readCardinality($type, $id, $entityFields, &$statistics) {
 function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statistics) {
   global $templateDir;
 
-  $statistics->frequencyTableFile = '../json/' . $type . $id . '.frequency.table.json';
+  $statistics->frequencyTableFile = '../json/' . $type . $id . '/' . $type . $id . '.frequency.table.json';
   $data = new stdClass();
 
   if (file_exists($statistics->frequencyTableFile)) {
@@ -125,7 +125,7 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statist
 function readHistogram($type, $id, $entityFields, &$statistics) {
   global $templateDir;
 
-  $statistics->histFile = '../json/' . $type . $id . '.hist.json';
+  $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     foreach ($histograms as $key => $values) {
@@ -150,7 +150,7 @@ function readHistogram($type, $id, $entityFields, &$statistics) {
 function readMinMaxRecords($type, $id, $entityFields, &$statistics) {
   global $templateDir;
 
-  $statistics->minMaxRecordsFile = '../json/' . $type . $id . '.json';
+  $statistics->minMaxRecordsFile = '../json/' . $type . $id . '/' .  $type . $id . '.json';
   if (file_exists($statistics->minMaxRecordsFile)) {
     $histograms = json_decode(file_get_contents($statistics->minMaxRecordsFile));
     foreach ($histograms as $key => $value) {

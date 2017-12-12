@@ -25,13 +25,13 @@ if (isset($_GET['id'])) {
 }
 
 $n = 0;
-$jsonCountFileName = 'json/' . $type . $id . '.count.json';
+$jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
   $n = $stats[0]->count;
 }
 
-$jsonCountFileName = 'json/' . $type . $id . '.freq.json';
+$jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.freq.json';
 if (file_exists($jsonCountFileName)) {
   $frequencies = json_decode(file_get_contents($jsonCountFileName));
   $entityCounts = (object)[];
