@@ -29,6 +29,9 @@
   position: absolute;
   text-indent: 2px;
 }
+.tab-pane .row {
+  padding-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -162,7 +165,7 @@
           return colors[perc];
         })
         .on("click", function() {
-          document.location = 'dataset.php?id=' + collection.substr(1) + '&type=d#' + statistic; 
+          document.location = 'newviz.php?id=' + collection.substr(1) + '&type=d#multilingual-score';// + statistic;
           d3.event.stopPropagation();
         })
         .append("title")
