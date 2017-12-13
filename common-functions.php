@@ -1,7 +1,7 @@
 <?php
 
 function getOrDefault($key, $default_value) {
-  $value = $_GET[$key];
+  $value = isset($_GET[$key]) ? $_GET[$key] : $default_value;
   if (!isset($value)) {
     $value = $default_value;
   }

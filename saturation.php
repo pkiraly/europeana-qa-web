@@ -111,14 +111,13 @@ if ($form == 'global') {
 
 $summaryFile = 'json_cache/saturation-' . strtolower($statistic) . '-' . $prefix . '.json';
 
-$stat = [];
+$stat = (object)[];
 if ($collectionId == 'all') {
   if (file_exists($summaryFile)) {
     $stat = json_decode(file_get_contents($summaryFile));
     // $problems[] = sprintf("reading %s...\n", $summaryFile);
   } else {
     $max = 0;
-    $counter = 0;
     foreach ($csv as $id => $row) {
       $id = $row[0];
       $collectionName = $row[1];
@@ -132,7 +131,7 @@ if ($collectionId == 'all') {
         foreach ($stats as $obj) {
           if (strtolower($obj->_row) == strtolower($statistic)) {
             $counter++;
-            $stat['values'][$prefix . $id] = ['value' => $obj->mean, 'name' => $collectionName];
+            $stat->values->{$prefix . $id} = ['value' => $obj->mean, 'name' => $collectionName];
             if ($obj->mean > $max)
               $max = $obj->mean;
             break;
@@ -142,7 +141,7 @@ if ($collectionId == 'all') {
         // $problems[] = sprintf("jsonFileName (%s) is not existing\n", $jsonFileName);
       }
     }
-    $stat['max'] = $max;
+    $stat->max = $max;
     file_put_contents($summaryFile, json_encode($stat));
     // $problems[] = sprintf("writing to %s...\n", $summaryFile);
   }
@@ -151,4 +150,6 @@ if ($collectionId == 'all') {
   $languages = json_decode(file_get_contents($fileName));
 }
 
+$n = count(get_object_vars($stat->values));
+// $problems = [];
 include("templates/saturation/saturation.tpl.php");

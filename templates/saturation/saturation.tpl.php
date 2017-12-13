@@ -127,9 +127,12 @@ form label {
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
   var margin = { top: 50, right: 0, bottom: 100, left: 30 },
-      width = 1000 - margin.left - margin.right,
-      height = 1080 - margin.top - margin.bottom,
+      n = <?= $n ?>,
       gridSizeX = gridSizeY = 14,
+      width = 1000 - margin.left - margin.right,
+      columns = Math.ceil(width / (gridSizeX + 2)),
+      rows = Math.ceil(n / columns);
+      height = (rows * (gridSizeY + 2)) - margin.top - margin.bottom,
       max = 0,
       // red palette
       // colors = ['#fff5f0', '#fee0d2', '#fcbba1', '#fc9272', '#fb6a4a', '#ef3b2c', '#cb181d', '#a50f15', '#67000d'],
@@ -139,7 +142,6 @@ form label {
       statistic = '<?= $statistic ?>';
 
   var rowSize = Math.floor(width / gridSizeX) - 1;
-  console.log('rowSize: ' + rowSize);
 
   var svg = d3.select("#chart").append("svg")
           .attr("width", width + margin.left + margin.right)
