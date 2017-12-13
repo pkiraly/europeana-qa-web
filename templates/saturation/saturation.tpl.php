@@ -32,6 +32,10 @@
 .tab-pane .row {
   padding-top: 20px;
 }
+form label {
+  text-decoration: none;
+  font-weight: normal;
+}
 </style>
 </head>
 <body>
@@ -67,6 +71,11 @@
             <option value="<?= $scope ?>" <?php if ($scope == $global_scope) { ?>selected="selected"<?php } ?>><?= $label ?></option>
           <?php } ?>
         </select>
+        per
+        <label><input type="radio" name="prefix" value="c"
+                      onchange="this.form.submit();"<?php if ($prefix == 'c'): ?> checked="checked"<?php endif ?>>dataset</label>
+        <label><input type="radio" name="prefix" value="d"
+                      onchange="this.form.submit();"<?php if ($prefix == 'd'): ?> checked="checked"<?php endif ?>>data provider</label>
       </form>
     </div>
   </div>
@@ -96,6 +105,11 @@
              <option value="<?= $scope ?>" <?php if ($scope == $field_scope) { ?>selected="selected"<?php } ?>><?= $label ?></option>
            <?php } ?>
          </select>
+         per
+         <label><input type="radio" name="prefix" value="c"
+                       onchange="this.form.submit();"<?php if ($prefix == 'c'): ?> checked="checked"<?php endif ?>>dataset</label>
+         <label><input type="radio" name="prefix" value="d"
+                       onchange="this.form.submit();"<?php if ($prefix == 'd'): ?> checked="checked"<?php endif ?>>data provider</label>
        </form>
      </div>
    </div>

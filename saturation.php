@@ -94,8 +94,8 @@ $field = getOrDefault('field', array_keys($fields)[0]);
 $field_metric = getOrDefault('field_metric', array_keys($field_metrics)[0]);
 $field_scope = getOrDefault('field_scope', array_keys($field_scopes)[0]);
 
-$collectionType = 'data-providers';
-$prefix = 'd';
+$prefix = getOrDefault('prefix', 'd');
+$collectionType = ($prefix == 'd') ? 'data-providers' : 'datasets';
 $suffix = '.saturation';
 
 function parse_csv($t) {
