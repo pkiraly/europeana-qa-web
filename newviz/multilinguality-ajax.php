@@ -1,5 +1,6 @@
 <?php
 include_once('common.functions.php');
+include_once('../common/saturation-functions.php');
 $templateDir = '../templates/newviz/multilinguality/';
 
 $parameters = getParameters();
@@ -13,7 +14,8 @@ $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
 
 header("Content-type: application/json");
 echo json_encode([
-  'html' => $html
+  'html' => $html,
+  'data' => json_encode($data->assocStat['specific'])
 ]);
 
 function callTemplate($data, $file) {
@@ -76,6 +78,7 @@ function getAssocStat() {
       } else {
         $fields[$key] = getLabel($key);
         $specific_type = "";
+        $field = preg_replace('/_(taggedliterals|languages|literalsperlanguage)/', '', $key);
         if (preg_match('/_taggedliterals/', $key)) {
           $specific_type = 'taggedliterals';
         } else if (preg_match('/_languages/', $key)) {
@@ -84,7 +87,8 @@ function getAssocStat() {
           $specific_type = 'literalsperlanguage';
         }
 
-        $assocStat['specific'][$specific_type][$key][$prefix] = $obj;
+        // $assocStat['specific'][$specific_type][$key][$prefix] = $obj;
+        $assocStat['specific'][$field][$specific_type][$prefix] = $obj;
       }
     }
   }

@@ -46,3 +46,35 @@
   <?php } ?>
   </tbody>
 </table>
+
+<table id="fields" class="table table-condensed table-striped tablesorter">
+  <thead>
+  <tr>
+      <th rowspan="2">field</th>
+      <th colspan="2">Number of tagged literals</th>
+      <th colspan="2">Number of distinct language tags</th>
+      <th colspan="2">Number of tagged literals per language</th>
+  </tr>
+  <tr>
+      <th>Provider</th>
+      <th>Europeana</th>
+      <th>Provider</th>
+      <th>Europeana</th>
+      <th>Provider</th>
+      <th>Europeana</th>
+  </tr>
+  </thead>
+<tbody>
+<?php foreach ($data->assocStat['specific'] as $field => $metrics) { ?>
+  <tr>
+      <td><?= $field ?></td>
+
+  <?php foreach ($metrics as $metric => $objects) { ?>
+    <?php foreach ($objects as $object_name => $object) { ?>
+      <td title="<?= $object->mean; ?>"><?= conditional_format($object->mean) ?></td>
+    <?php } ?>
+  <?php } ?>
+  </tr>
+<?php } ?>
+</tbody>
+</table>
