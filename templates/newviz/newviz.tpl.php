@@ -96,6 +96,16 @@
         text-align: left;
         min-width: 270px;
     }
+
+    .node {
+      border: solid 1px white;
+      font: 10px sans-serif;
+      line-height: 12px;
+      overflow: hidden;
+      position: absolute;
+      text-indent: 2px;
+    }
+
 </style>
 </head>
 <body>
@@ -157,6 +167,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         var loaded = {'#cardinality-score': true, '#multilingual-score': false};
@@ -165,21 +177,26 @@
         // $("#specific-languages").tablesorter();
         // $("#specific-literalsperlanguage").tablesorter();
         var id = document.location.hash;
-        if (id == '#multilingual-score')
-            loadMultilinguality();
-        else
-            loadEntityCardinality('ProvidedCHO');
-        $('.nav-tabs a[href="' + id + '"]').tab('show');
+        if (id == '#multilingual-score'
+            || id == '#all-fields'
+            || id == '#individual-fields') {
+          loadMultilinguality();
+          $('.nav-tabs a[href="#multilingual-score"]').tab('show');
+        }
+        else {
+          loadEntityCardinality('ProvidedCHO');
+          $('.nav-tabs a[href="' + id + '"]').tab('show');
+        }
 
         $(".nav-tabs a").click(function() {
-           $(this).tab('show');
-           var id = this.href.substr(this.href.indexOf('#'));
-           console.log('id: ' + id);
-           if (loaded[id] === false)
-               if (id == '#multilingual-score')
-                   loadMultilinguality();
-               else
-                   loadEntityCardinality('ProvidedCHO');
+          $(this).tab('show');
+          var id = this.href.substr(this.href.indexOf('#'));
+          console.log('id: ' + id);
+          if (loaded[id] === false)
+            if (id == '#multilingual-score')
+              loadMultilinguality();
+            else
+              loadEntityCardinality('ProvidedCHO');
         });
     });
     $(function () {
@@ -192,13 +209,16 @@
         });
     });
     function loadMultilinguality() { //entity
-        console.log('loadMultilinguality');
-        entity = 'ProvidedCHO';
-        var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
-        $.get("newviz/multilinguality-ajax.php", query)
-          .done(function(data) {
-              $('#multilinguality-content').html(data.html);
-          })
+      console.log('loadMultilinguality');
+      entity = 'ProvidedCHO';
+      var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
+      $.get("newviz/multilinguality-ajax.php", query)
+        .done(function(data) {
+          $('#multilinguality-content').html(data.html);
+          $(".nav-tabs a").click(function() {
+            $(this).tab('show');
+          });
+        });
     }
 
     function loadEntityCardinality(entity) {

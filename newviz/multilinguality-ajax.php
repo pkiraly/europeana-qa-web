@@ -4,18 +4,20 @@ include_once('../common/saturation-functions.php');
 $templateDir = '../templates/newviz/multilinguality/';
 
 $parameters = getParameters();
+$collectionId = $parameters->type . $parameters->id;
 $data = (object)[
   'generic_prefixes' => getGenerixPrefixes(),
   'fields' => getFields(),
-  'assocStat' => getAssocStat()
+  'assocStat' => getSaturationStatistics(),
+  'languageDistribution' => getLanguageDistribution(),
+  'collectionId' => $collectionId
 ];
 
 $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
 
 header("Content-type: application/json");
 echo json_encode([
-  'html' => $html,
-  'data' => json_encode($data->assocStat['specific'])
+  'html' => $html
 ]);
 
 function callTemplate($data, $file) {
@@ -43,12 +45,11 @@ function getFields() {
   ];
 }
 
-function getAssocStat() {
-  global $parameters;
+function getSaturationStatistics() {
+  global $parameters, $collectionId;
 
   $assocStat = [];
-  $saturationFile = '../json/' . $parameters->type . $parameters->id
-    . '/' . $parameters->type . $parameters->id . '.saturation.json';
+  $saturationFile = sprintf('../json/%s/%s.saturation.json', $collectionId, $collectionId);
   $saturationFileExists = file_exists($saturationFile);
   if ($saturationFileExists) {
     $saturation = json_decode(file_get_contents($saturationFile));
@@ -94,6 +95,19 @@ function getAssocStat() {
   }
   return $assocStat;
 }
+
+function getLanguageDistribution() {
+  global $parameters, $collectionId;
+
+  $languageDistribution = (object)[];
+  $languageDistributionFile = sprintf('../json/%s/%s.languages.json', $collectionId, $collectionId);
+  $languageDistributionFileExists = file_exists($languageDistributionFile);
+  if ($languageDistributionFileExists) {
+    $languageDistribution = json_decode(file_get_contents($languageDistributionFile));
+  }
+  return $languageDistribution;
+}
+
 
 function getLabel($key) {
   $label = $key;

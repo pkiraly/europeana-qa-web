@@ -63,7 +63,6 @@
 
 <div id="heatmap" class="chart"></div>
 
-<script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 var margin = {top: 40, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
