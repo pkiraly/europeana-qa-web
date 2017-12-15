@@ -118,19 +118,19 @@
   <div class="page-header">
     <h1>Field frequency</h1>
     <h2><?= $collectionId ?></h2>
-    <h3><a href="/europeana-qa/">Metadata Quality Assurance Framework</a></h3>
+    <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
   </div>
 
   <form id="collection-selector">
-    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>dataset</label>
-    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>data provider</label>
+    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>search by dataset</label>
+    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>search by data provider</label>
     <br>
-    <select name="id" id="cid" onchange="submit();" disabled="disabled">
+    <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
       <?php foreach ($datasets as $cid => $name) { ?>
         <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected"<?php } ?>><?= $name ?></option>
       <?php } ?>
     </select>
-    <select name="id" id="did" onchange="submit();">
+    <select name="id" id="did" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
       <?php foreach ($dataproviders as $did => $name) { ?>
         <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected"<?php } ?>><?= $name ?></option>
       <?php } ?>
