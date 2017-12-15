@@ -41,6 +41,8 @@ if (file_exists($jsonCountFileName)) {
     }
   }
 }
+$datasets = retrieveDatasets();
+$dataproviders = retrieveDataproviders();
 
 ob_start();
 include('templates/newviz/newviz.tpl.php');
@@ -65,6 +67,24 @@ function parseId($id) {
     $type = 'c';
   }
   return [$id, $type];
+}
+
+function retrieveDatasets() {
+  return retrieveCsv('datasets.txt');
+}
+
+function retrieveDataproviders() {
+  return retrieveCsv('data-providers.txt');
+}
+
+function retrieveCsv($fileName) {
+  $list = [];
+  $content = explode("\n", file_get_contents($fileName));
+  foreach ($content as $line) {
+    list($_id, $_name) = explode(';', $line, 2);
+    $list[$_id] = $_name;
+  }
+  return $list;
 }
 
 function retrieveName($id, $type) {

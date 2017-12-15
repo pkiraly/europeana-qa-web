@@ -87,7 +87,7 @@ d3.json('<?= $treeMapUrl ?>', function(error, root) {
 
   var node = heatmap.datum(root).selectAll(".node")
       .data(treemap.nodes)
-    .enter().append("div")
+      .enter().append("div")
       .attr("class", "node")
       .call(position)
       .style("background", function(d) { return d.children ? color(d.name) : null; })
@@ -100,7 +100,7 @@ d3.json('<?= $treeMapUrl ?>', function(error, root) {
 
     node
         .data(treemap.value(value).nodes)
-      .transition()
+        .transition()
         .duration(1500)
         .call(position);
   });

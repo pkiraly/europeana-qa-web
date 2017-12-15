@@ -181,7 +181,7 @@ form label {
           return colors[perc];
         })
         .on("click", function() {
-          document.location = 'newviz.php?id=' + collection.substr(1) + '&type=d#multilingual-score';// + statistic;
+          document.location = 'newviz.php?id=' + collection.substr(1) + '&type=<?= $prefix ?>#multilingual-score';// + statistic;
           d3.event.stopPropagation();
         })
         .append("title")

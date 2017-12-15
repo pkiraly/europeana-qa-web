@@ -105,6 +105,9 @@
       position: absolute;
       text-indent: 2px;
     }
+  #collection-selector {
+    margin: 10px;
+  }
 
 </style>
 </head>
@@ -112,16 +115,32 @@
 
 <div class="container">
 
-    <div class="page-header">
-      <h1>Field frequency</h1>
-      <h2><?= $collectionId ?></h2>
-      <h3><a href="/europeana-qa/">Metadata Quality Assurance Framework</a></h3>
-    </div>
-    <ul class="nav nav-tabs" id="myTab">
-        <li class="active"><a href="#cardinality-score">Cardinality</a></li>
-        <li><a href="#multilingual-score">Multilinguality</a></li>
-    </ul>
-    <div class="tab-content">
+  <div class="page-header">
+    <h1>Field frequency</h1>
+    <h2><?= $collectionId ?></h2>
+    <h3><a href="/europeana-qa/">Metadata Quality Assurance Framework</a></h3>
+  </div>
+
+  <form id="collection-selector">
+    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>dataset</label>
+    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>data provider</label>
+    <br>
+    <select name="id" id="cid" onchange="submit();" disabled="disabled">
+      <?php foreach ($datasets as $cid => $name) { ?>
+        <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected"<?php } ?>><?= $name ?></option>
+      <?php } ?>
+    </select>
+    <select name="id" id="did" onchange="submit();">
+      <?php foreach ($dataproviders as $did => $name) { ?>
+        <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected"<?php } ?>><?= $name ?></option>
+      <?php } ?>
+    </select>
+  </form>
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#cardinality-score">Cardinality</a></li>
+    <li><a href="#multilingual-score">Multilinguality</a></li>
+  </ul>
+  <div class="tab-content">
         <div id="cardinality-score" class="tab-pane active">
             <div class="row">
                 <h2>Field Cardinality</h2>
@@ -198,6 +217,11 @@
             else
               loadEntityCardinality('ProvidedCHO');
         });
+        showType('<?= $type ?>');
+        $("input[name='type']").on('change', function () {
+          // alert($(this).val());
+          showType($(this).val());
+        })
     });
     $(function () {
         // $('#entities a.nav-link').tab('show');
@@ -208,6 +232,22 @@
             loadEntityCardinality(entity);
         });
     });
+
+    function showType(type) {
+      console.log(type);
+      var toShowId = 'cid', toHideId = 'did';
+      if (type == 'd') {
+        toShowId = 'did', toHideId = 'cid';
+      }
+      toShow = $('#' + toShowId);
+      toShow.show();
+      toShow.prop('disabled', false);
+
+      toHide = $('#' + toHideId);
+      toHide.hide();
+      toHide.prop('disabled', 'disabled');
+    }
+
     function loadMultilinguality() { //entity
       console.log('loadMultilinguality');
       entity = 'ProvidedCHO';
