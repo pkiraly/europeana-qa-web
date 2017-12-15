@@ -62,7 +62,7 @@ Note: this is a research project, the results here are experimental, they are su
 <?php } ?>
   </select>
 
-  <label for="type">groupped by </label>
+  <label for="type">grouped by </label>
   <select name="type" onchange="this.form.submit();">
 <?php foreach ($types as $name => $label) { ?>
     <option value="<?= $name ?>" <?php if ($name == $type) { ?>selected="selected"<?php } ?>><?= $label ?></option>
