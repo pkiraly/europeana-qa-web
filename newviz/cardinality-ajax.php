@@ -125,7 +125,8 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statist
 function readHistogram($type, $id, $entityFields, &$statistics) {
   global $templateDir;
 
-  $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
+  // $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
+  $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.cardinality.histogram.json';
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     foreach ($histograms as $key => $values) {
