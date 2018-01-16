@@ -175,3 +175,33 @@ i.fa-circle-o {
 i.fa-gear {
   color: green;
 }
+
+/* field patterns */
+table#field-patterns {
+  margin-top: 150px;
+}
+table#field-patterns tbody tr td,
+table#field-patterns thead tr th
+{
+  padding: 5px;
+  margin: 20x;
+}
+
+table#field-patterns tbody tr td.filled {
+  background-color: green;
+}
+
+table#field-patterns thead tr th {
+  transform: translate(8px, 0px) rotate(300deg);
+  padding: 5px 5px;
+  left: -10px;
+  top: -10px;
+  position: relative;
+  text-align: left;
+  max-width: 30px;
+  max-height: 300px;
+}
+
+table#field-patterns tbody tr.under-one td {
+  border-top: 2px solid red;
+}

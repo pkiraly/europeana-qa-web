@@ -30,3 +30,10 @@ function parseId($id) {
   return [$id, $type];
 }
 
+function callTemplate($data, $file) {
+  ob_start();
+  include($file);
+  $content = ob_get_contents();
+  ob_end_clean();
+  return $content;
+}

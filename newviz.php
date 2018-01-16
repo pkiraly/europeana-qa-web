@@ -81,6 +81,8 @@ function retrieveCsv($fileName) {
   $list = [];
   $content = explode("\n", file_get_contents($fileName));
   foreach ($content as $line) {
+    if ($line == '')
+      continue;
     list($_id, $_name) = explode(';', $line, 2);
     $list[$_id] = $_name;
   }

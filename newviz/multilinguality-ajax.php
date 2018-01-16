@@ -20,14 +20,6 @@ echo json_encode([
   'html' => $html
 ]);
 
-function callTemplate($data, $file) {
-  ob_start();
-  include($file);
-  $content = ob_get_contents();
-  ob_end_clean();
-  return $content;
-}
-
 function getGenerixPrefixes() {
   return [
     'provider' => 'In provider proxy',

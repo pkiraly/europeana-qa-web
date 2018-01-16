@@ -114,7 +114,6 @@
 <body>
 
 <div class="container">
-
   <div class="page-header">
     <h1>Field frequency</h1>
     <h2><?= $collectionId ?></h2>
@@ -139,48 +138,53 @@
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#cardinality-score">Cardinality</a></li>
     <li><a href="#multilingual-score">Multilinguality</a></li>
+    <li><a href="#record-patterns">Record patterns</a></li>
   </ul>
   <div class="tab-content">
-        <div id="cardinality-score" class="tab-pane active">
-            <div class="row">
-                <h2>Field Cardinality</h2>
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
-                    <ul id="entities" class="nav">
-                        <li class="nav-item active">
-                          <a class="nav-link active" href="#" datatype="ProvidedCHO">ProvidedCHO (<?= $entityCounts->proxy_rdf_about ?>)</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#" datatype="Agent">Agent (<?= $entityCounts->agent_rdf_about ?>)</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#" datatype="Timespan">Timespan (<?= $entityCounts->timespan_rdf_about ?>)</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#" datatype="Concept">Concept (<?= $entityCounts->concept_rdf_about ?>)</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#" datatype="Place">Place (<?= $entityCounts->place_rdf_about ?>)</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-9 col-md-9 col-lg-9" id="cardinality-content">
-                    
-                </div>
-            </div>
+    <div id="cardinality-score" class="tab-pane active">
+      <div class="row">
+        <h2>Field Cardinality</h2>
+        <div class="col-sm-3 col-md-3 col-lg-3">
+          <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
+          <ul id="entities" class="nav">
+            <li class="nav-item active">
+              <a class="nav-link active" href="#" datatype="ProvidedCHO">ProvidedCHO (<?= $entityCounts->proxy_rdf_about ?>)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" datatype="Agent">Agent (<?= $entityCounts->agent_rdf_about ?>)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" datatype="Timespan">Timespan (<?= $entityCounts->timespan_rdf_about ?>)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" datatype="Concept">Concept (<?= $entityCounts->concept_rdf_about ?>)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" datatype="Place">Place (<?= $entityCounts->place_rdf_about ?>)</a>
+            </li>
+          </ul>
         </div>
-        <div id="multilingual-score" class="tab-pane fade">
-            <div class="row">
-                <h2>Multilingual score</h2>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
-            </div>
-        </div>
+        <div class="col-sm-9 col-md-9 col-lg-9" id="cardinality-content"></div>
+      </div>
     </div>
-
-    <footer>
-        <p><a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework
-            project.</p>
-    </footer>
+    <div id="multilingual-score" class="tab-pane fade">
+      <div class="row">
+        <h2>Multilingual score</h2>
+        <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
+      </div>
+    </div>
+    <div id="record-patterns" class="tab-pane fade">
+      <div class="row">
+        <h2>Record patterns</h2>
+        <div class="col-sm-12 col-md-12 col-lg-12" id="record-patterns-content"></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>
+      <a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.
+     </p>
+  </footer>
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -189,77 +193,101 @@
 <script src="//d3js.org/d3.v3.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        var loaded = {'#cardinality-score': true, '#multilingual-score': false};
-        // $("#generic").tablesorter();
-        // $("#specific-taggedliterals").tablesorter();
-        // $("#specific-languages").tablesorter();
-        // $("#specific-literalsperlanguage").tablesorter();
-        var id = document.location.hash;
-        if (id == '#multilingual-score'
-            || id == '#all-fields'
-            || id == '#individual-fields') {
-          loadMultilinguality();
-          $('.nav-tabs a[href="#multilingual-score"]').tab('show');
-        }
-        else {
-          loadEntityCardinality('ProvidedCHO');
-          $('.nav-tabs a[href="' + id + '"]').tab('show');
-        }
+$(document).ready(function () {
+  var loaded = {
+    '#cardinality-score': false,
+    '#multilingual-score': false,
+    '#record-patterns': false
+  };
+  // $("#generic").tablesorter();
+  // $("#specific-taggedliterals").tablesorter();
+  // $("#specific-languages").tablesorter();
+  // $("#specific-literalsperlanguage").tablesorter();
+  var id = document.location.hash;
+  if (isMultilingualityPanel(id)) {
+    loadMultilinguality();
+    $('.nav-tabs a[href="#multilingual-score"]').tab('show');
+  } else if (id == '#record-patterns') {
+    loadRecordPatterns();
+    $('.nav-tabs a[href="#record-patterns"]').tab('show');
+  } else {
+    loadEntityCardinality('ProvidedCHO');
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  }
 
-        $(".nav-tabs a").click(function() {
-          $(this).tab('show');
-          var id = this.href.substr(this.href.indexOf('#'));
-          console.log('id: ' + id);
-          if (loaded[id] === false)
-            if (id == '#multilingual-score')
-              loadMultilinguality();
-            else
-              loadEntityCardinality('ProvidedCHO');
-        });
-        showType('<?= $type ?>');
-        $("input[name='type']").on('change', function () {
-          // alert($(this).val());
-          showType($(this).val());
-        })
-    });
-    $(function () {
-        // $('#entities a.nav-link').tab('show');
-        // $('#tablanguages').tab
-        $('#entities a.nav-link').click(function (event) {
-            event.preventDefault();
-            var entity = $(this).attr('datatype');
-            loadEntityCardinality(entity);
-        });
-    });
-
-    function showType(type) {
-      console.log(type);
-      var toShowId = 'cid', toHideId = 'did';
-      if (type == 'd') {
-        toShowId = 'did', toHideId = 'cid';
-      }
-      toShow = $('#' + toShowId);
-      toShow.show();
-      toShow.prop('disabled', false);
-
-      toHide = $('#' + toHideId);
-      toHide.hide();
-      toHide.prop('disabled', 'disabled');
+  $(".nav-tabs a").click(function() {
+    $(this).tab('show');
+    var id = this.href.substr(this.href.indexOf('#'));
+    // console.log('id: ' + id + ' ' + loaded[id]);
+    if (loaded[id] === false) {
+      if (isMultilingualityPanel(id))
+        loadMultilinguality();
+      else if (id == '#record-patterns')
+        loadRecordPatterns();
+      else
+        loadEntityCardinality('ProvidedCHO');
     }
+  });
 
-    function loadMultilinguality() { //entity
-      console.log('loadMultilinguality');
-      entity = 'ProvidedCHO';
-      var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
-      $.get("newviz/multilinguality-ajax.php", query)
-        .done(function(data) {
-          $('#multilinguality-content').html(data.html);
-          $(".nav-tabs a").click(function() {
-            $(this).tab('show');
-          });
-        });
-    }
+  showType('<?= $type ?>');
+  $("input[name='type']").on('change', function () {
+    showType($(this).val());
+  })
+});
+
+$(function () {
+  // $('#entities a.nav-link').tab('show');
+  // $('#tablanguages').tab
+  $('#entities a.nav-link').click(function (event) {
+    event.preventDefault();
+    var entity = $(this).attr('datatype');
+    loadEntityCardinality(entity);
+  });
+});
+
+function isMultilingualityPanel(id) {
+  return (id == '#multilingual-score' || id == '#all-fields' || id == '#individual-fields');
+}
+
+function showType(type) {
+  console.log(type);
+  var toShowId = 'cid', toHideId = 'did';
+  if (type == 'd') {
+    toShowId = 'did', toHideId = 'cid';
+  }
+  toShow = $('#' + toShowId);
+  toShow.show();
+  toShow.prop('disabled', false);
+
+  toHide = $('#' + toHideId);
+  toHide.hide();
+  toHide.prop('disabled', 'disabled');
+}
+
+function loadMultilinguality() {
+  console.log('loadMultilinguality');
+  entity = 'ProvidedCHO';
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
+  $.get("newviz/multilinguality-ajax.php", query)
+   .done(function(data) {
+      $('#multilinguality-content').html(data.html);
+      $(".nav-tabs a").click(function() {
+        $(this).tab('show');
+      });
+   });
+}
+
+function loadRecordPatterns() {
+  console.log('loadRecordPatterns');
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>};
+  $.get("newviz/record-patterns-ajax.php", query)
+   .done(function(data) {
+     $('#record-patterns-content').html(data.html);
+     $(".nav-tabs a").click(function() {
+       $(this).tab('show');
+     });
+   });
+}
 
     function loadEntityCardinality(entity) {
       var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
@@ -290,7 +318,6 @@
               else if (data.mandatory[key] == 'plus')
                 mandatoryIcon = 'plus';
             }
-
 
             text += '<div class="row">';
             text += '<div class="col-lg-5 newviz"><h3'
@@ -405,14 +432,11 @@
           });
         });
     }
+$("a.qa-show-details").click(function (event) {
+  event.preventDefault();
+  id = $(this).attr('class').replace('qa-show-details ', '#details-');
+  $(id).toggle();
+});
 </script>
-<script type="text/javascript">
-    $("a.qa-show-details").click(function (event) {
-        event.preventDefault();
-        id = $(this).attr('class').replace('qa-show-details ', '#details-');
-        $(id).toggle();
-    });
-</script>
-
 </body>
 </html>

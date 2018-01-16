@@ -2,6 +2,7 @@
 
 $configuration = parse_ini_file('../config.cfg');
 include_once('newviz-ajax-config.php');
+include_once('common.functions.php');
 
 $title = 'Metadata Quality Assurance Framework';
 $id = $entity = $type = "";
@@ -30,16 +31,6 @@ echo json_encode([
   'statistics' => $statistics,
   'mandatory' => $mandatory[$entity],
 ]);
-
-function parseId($id) {
-  $type = substr($id, 0, 1);
-  if (in_array($type, ['c', 'd'])) {
-    $id = substr($id, 1);
-  } else {
-    $type = 'c';
-  }
-  return [$id, $type];
-}
 
 function readStatistics($type, $id, $entity) {
   global $fields;
@@ -77,6 +68,8 @@ function readCardinality($type, $id, $entityFields, &$statistics) {
 
     $cardinality = json_decode(file_get_contents($statistics->cardinalityFile));
     $statistics->cardinalityMax = 0;
+    if (!isset($statistics->cardinality))
+      $statistics->cardinality = (object)[];
     foreach ($cardinality as $entry) {
       if (in_array($entry->field, $entityFields)) {
         $field = $entry->field;
@@ -129,6 +122,8 @@ function readHistogram($type, $id, $entityFields, &$statistics) {
   $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.cardinality.histogram.json';
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
+    if (!isset($statistics->histograms))
+      $statistics->histograms = (object)[];
     foreach ($histograms as $key => $values) {
       $needle = str_replace('crd_', '', $key);
       if (in_array($needle, $entityFields)) {
@@ -154,6 +149,8 @@ function readMinMaxRecords($type, $id, $entityFields, &$statistics) {
   $statistics->minMaxRecordsFile = '../json/' . $type . $id . '/' .  $type . $id . '.json';
   if (file_exists($statistics->minMaxRecordsFile)) {
     $histograms = json_decode(file_get_contents($statistics->minMaxRecordsFile));
+    if (!isset($statistics->minMaxRecords))
+      $statistics->minMaxRecords = (object)[];
     foreach ($histograms as $key => $value) {
       // $statistics->minMaxKeys[] = $value->{'_row'};
       $needle = str_replace('crd_', '', $value->{'_row'});
@@ -191,10 +188,3 @@ function readImageFiles($type, $id, $entityFields, &$statistics) {
   }
 }
 
-function callTemplate($data, $file) {
-  ob_start();
-  include($file);
-  $content = ob_get_contents();
-  ob_end_clean();
-  return $content;
-}
