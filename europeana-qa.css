@@ -205,3 +205,7 @@ table#field-patterns thead tr th {
 table#field-patterns tbody tr.under-one td {
   border-top: 2px solid red;
 }
+
+table.histogram {
+  margin-bottom: 10px;
+}

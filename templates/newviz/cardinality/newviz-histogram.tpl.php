@@ -1,4 +1,4 @@
-<h3>Cardinality histogram</h3>
+<h3>Frequency in dataset</h3>
 <table class="histogram" id="<?= $data->field; ?>-histogram">
   <tr>
     <td class="legend">range of values</td>
