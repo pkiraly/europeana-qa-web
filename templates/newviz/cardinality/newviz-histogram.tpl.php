@@ -1,4 +1,4 @@
-<h3>Frequency in dataset</h3>
+<h3>Number of field occurrences in individual records</h3>
 <table class="histogram" id="<?= $data->field; ?>-histogram">
   <tr>
     <td class="legend">range of values</td>

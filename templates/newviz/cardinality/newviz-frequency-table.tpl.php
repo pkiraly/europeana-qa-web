@@ -1,4 +1,4 @@
-<h3>Is the field available in the records?</h3>
+<h3>Number of records where the fields are available</h3>
 <table class="histogram">
   <tr>
     <td class="legend"></td>

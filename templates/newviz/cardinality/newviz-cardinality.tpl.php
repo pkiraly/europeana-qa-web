@@ -1,4 +1,4 @@
-<h3>Cardinality statistics</h3>
+<h3>Statistics for the number of field occurrences</h3>
 <table class="histogram">
   <tr>
     <td class="legend">nr of records</td>
