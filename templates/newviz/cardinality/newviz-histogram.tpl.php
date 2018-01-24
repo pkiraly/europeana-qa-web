@@ -15,7 +15,7 @@
   <tr>
     <td class="legend">percentage</td>
     <?php for($i = 0; $i < count($data->values); $i++) { ?>
-      <td><?php printf("%.2f%%", $data->values[$i]->density); ?></td>
+      <td><?php printf("%.2f%%", ($data->values[$i]->density * 100)); ?></td>
     <?php } ?>
   </tr>
 </table>
