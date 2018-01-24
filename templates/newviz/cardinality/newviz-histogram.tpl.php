@@ -7,7 +7,7 @@
     <?php } ?>
   </tr>
   <tr>
-    <td class="legend">count</td>
+    <td class="legend">nr of records</td>
     <?php for($i = 0; $i < count($data->values); $i++) { ?>
       <td><?= $data->values[$i]->count; ?></td>
     <?php } ?>
