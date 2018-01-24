@@ -54,18 +54,31 @@
 <div class="tab-content">
   <div id="individual-fields" class="tab-pane active">
     <div class="row">
-      <select id="language-distribution-selector">
-        <?php foreach ($data->languageDistribution as $field => $metrics) { ?>
-          <option value="<?= $field ?>"><?= $field ?></option>
-        <?php } ?>
-      </select>
+      <form>
+        <select id="language-distribution-selector">
+          <?php foreach ($data->languageDistribution as $field => $metrics) { ?>
+            <option value="<?= $field ?>"><?= $field ?></option>
+          <?php } ?>
+        </select>
+        <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" checked="checked" />
+        <label for="excludeZeros">Exclude records without specified language</label>
+
+        <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
+        <label for="showNoInstances">Show records without field</label>
+      </form>
+
       <div id="heatmap"></div>
       <script id="language-distribution-data" type="application/json"><?php echo json_encode($data->languageDistribution); ?></script>
       <script type="text/javascript">
         // var language_distributions = JSON.parse(document.getElementById('language-distribution-data').innerHTML);
         $('#language-distribution-selector').on('change', function () {
-          var field = $(this).val();
-          displayLanguageTreemap(field);
+          displayLanguageTreemap();
+        });
+        $('#excludeZeros').on('change', function () {
+          displayLanguageTreemap();
+        });
+        $('#showNoInstances').on('change', function () {
+          displayLanguageTreemap();
         });
 
         var margin = {top: 40, right: 10, bottom: 10, left: 10},
@@ -78,16 +91,19 @@
 
         displayLanguageTreemap('aggregated');
 
-        function getTreeMapUrl(field) {
+        function getTreeMapUrl() {
+          var field = $('#language-distribution-selector').val();
+          var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
+          var showNoInstances = $('#showNoInstances').is(':checked') ? 1 : 0;
+
           var treeMapUrl = 'plainjson2tree.php?field=' + field
-                         + '&excludeZeros=1' //  . (int)$excludeZeros
-                         + '&showNoInstances=0' // . (int)$showNoInstances
+                         + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
+                         + '&showNoInstances=' + showNoInstances // . (int)$showNoInstances
                          + '&collectionId=<?= $data->collectionId ?>';
           return treeMapUrl;
         }
 
-        function displayLanguageTreemap(field) {
-          // var data = language_distributions[field];
+        function displayLanguageTreemap() {
 
           var treemap = d3.layout.treemap()
             .size([width, height])
@@ -101,7 +117,7 @@
             .style("left", margin.left + "px")
             .style("top", margin.top + "px");
 
-          d3.json(getTreeMapUrl(field), function(error, root) {
+          d3.json(getTreeMapUrl(), function(error, root) {
             if (error) throw error;
 
             d3.selectAll('#heatmap .node').remove();
@@ -133,8 +149,18 @@
         }
 
         function label(d) {
-          return 'language code: ' + d.name + "\n"
-            + 'count: ' + d.size;
+          var text = '';
+          if (d.name == 'no language' || d.name == 'no field instance') {
+            text = d.name;
+          } else {
+            text = 'language code: ' + d.name;
+          }
+          if (d.size !== undefined) {
+            text += "\n" + 'count: ' + d.size.toString().replace(/./g, function(c, i, a) {
+              return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+            });
+          }
+          return text;
         }
       </script>
     </div>
