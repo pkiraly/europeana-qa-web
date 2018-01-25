@@ -60,17 +60,16 @@
             <option value="<?= $field ?>"><?= $field ?></option>
           <?php } ?>
         </select>
-        <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" checked="checked" />
-        <label for="excludeZeros">Exclude records without specified language</label>
+        <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" />
+        <label for="excludeZeros">Exclude records with fields without language tag</label>
 
         <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
-        <label for="showNoInstances">Show records without field</label>
+        <label for="showNoInstances">Exlude records without field</label>
       </form>
 
       <div id="heatmap"></div>
       <script id="language-distribution-data" type="application/json"><?php echo json_encode($data->languageDistribution); ?></script>
       <script type="text/javascript">
-        // var language_distributions = JSON.parse(document.getElementById('language-distribution-data').innerHTML);
         $('#language-distribution-selector').on('change', function () {
           displayLanguageTreemap();
         });
@@ -82,8 +81,8 @@
         });
 
         var margin = {top: 40, right: 10, bottom: 10, left: 10},
-          width = 960 - margin.left - margin.right,
-          height = 500 - margin.top - margin.bottom;
+          width  = 960 - margin.left - margin.right,
+          height = 500 - margin.top  - margin.bottom;
 
         var color = d3.scale.category20c();
 
@@ -94,7 +93,7 @@
         function getTreeMapUrl() {
           var field = $('#language-distribution-selector').val();
           var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
-          var showNoInstances = $('#showNoInstances').is(':checked') ? 1 : 0;
+          var showNoInstances = $('#showNoInstances').is(':checked') ? 0 : 1;
 
           var treeMapUrl = 'plainjson2tree.php?field=' + field
                          + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
@@ -104,7 +103,6 @@
         }
 
         function displayLanguageTreemap() {
-
           var treemap = d3.layout.treemap()
             .size([width, height])
             .sticky(true)
@@ -171,9 +169,10 @@
             text = 'language code: ' + d.name;
           }
           if (d.size !== undefined) {
-            text += "\n" + 'count: ' + d.size.toString().replace(/./g, function(c, i, a) {
+            var count = d.size.toString().replace(/./g, function(c, i, a) {
               return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
+            text += "\n" + 'count: ' + count;
           }
           return text;
         }
