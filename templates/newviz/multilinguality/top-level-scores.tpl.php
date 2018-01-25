@@ -136,7 +136,18 @@
                 return d.children ? color(d.name) : null;
               })
               .text(function(d) {
-                return d.children ? null : d.name;
+                if (d.children) {
+                  return null;
+                } else {
+                  if (d.name == 'no language') {
+                    text = 'literal without language tag';
+                  } else if (d.name == 'resource') {
+                    text = 'resource value (URI)';
+                  } else {
+                    text = d.name;
+                  }
+                  return text;
+                }
               });
           });
         }
@@ -150,7 +161,11 @@
 
         function label(d) {
           var text = '';
-          if (d.name == 'no language' || d.name == 'no field instance') {
+          if (d.name == 'no language') {
+            text = 'literal without language tag';
+          } else if (d.name == 'resource') {
+            text = 'resource value (URI)';
+          } else if (d.name == 'no field instance') {
             text = d.name;
           } else {
             text = 'language code: ' + d.name;
