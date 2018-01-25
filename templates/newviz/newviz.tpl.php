@@ -136,14 +136,14 @@
     </select>
   </form>
   <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#cardinality-score">Cardinality</a></li>
+    <li class="active"><a href="#cardinality-score">Frequency</a></li>
     <li><a href="#multilingual-score">Multilinguality</a></li>
     <li><a href="#record-patterns">Record patterns</a></li>
   </ul>
   <div class="tab-content">
     <div id="cardinality-score" class="tab-pane active">
       <div class="row">
-        <h2>Field Cardinality</h2>
+        <h2>Field Frequency</h2>
         <div class="col-sm-3 col-md-3 col-lg-3">
           <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
           <ul id="entities" class="nav">
@@ -389,7 +389,7 @@ function loadRecordPatterns() {
                    + '<li><a href="record.php?id=' + data.statistics.minMaxRecords[key].recMin + '">Worst Record</a></li>'
                    + '</ul>'
             }
-            text += 'Cardinality compared to <select name="comparision-selector" id="' + field.toLowerCase() + '-comparision-selector">';
+            text += 'Frequency compared to <select name="comparision-selector" id="' + field.toLowerCase() + '-comparision-selector">';
             text += '<option>--select a field--</option>';
             for (otherField in data.fields) {
                 if (otherField != field)
