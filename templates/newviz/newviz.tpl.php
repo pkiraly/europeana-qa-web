@@ -109,29 +109,43 @@
     margin: 10px;
   }
 
+  select#cid, select#did {
+    width: 500px;
+  }
+  select#cid option, select#did option {
+    overflow: hidden;
+    max-width: 300px;
+    min-width: 300px;
+    width: 300px !important;
+  }
+
 </style>
 </head>
 <body>
 
 <div class="container">
   <div class="page-header">
-    <h1>Field frequency</h1>
-    <h2><?= $collectionId ?></h2>
     <h3><a href=".">Metadata Quality Assurance Framework for Europeana</a></h3>
+    <?php if ($type == 'd') { ?>
+      <h2><?= $collectionId ?></h2>
+    <?php } ?>
   </div>
 
   <form id="collection-selector">
     <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>select a dataset</label>
     <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select a data provider</label>
-    <br>
     <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
       <?php foreach ($datasets as $cid => $name) { ?>
-        <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected"<?php } ?>><?= $name ?></option>
+        <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
+          <?= $name ?>
+        </option>
       <?php } ?>
     </select>
     <select name="id" id="did" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
       <?php foreach ($dataproviders as $did => $name) { ?>
-        <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected"<?php } ?>><?= $name ?></option>
+        <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
+          <?= $name ?>
+        </option>
       <?php } ?>
     </select>
   </form>
