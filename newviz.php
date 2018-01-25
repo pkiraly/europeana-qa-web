@@ -2,7 +2,7 @@
 
 $configuration = parse_ini_file('config.cfg');
 
-$title = 'Metadata Quality Assurance Framework';
+$title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 if (isset($_GET['id'])) {
   $id = $_GET['id'];

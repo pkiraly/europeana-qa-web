@@ -16,7 +16,7 @@ $fields = [
   'taggedliterals_per_language' => 'tagged literals per language'
 ];
 
-$title = 'Metadata Quality Assurance Framework';
+$title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 if (isset($_GET['id'])) {
   $id = $_GET['id'];

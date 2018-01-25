@@ -664,7 +664,7 @@ $fields = [
   'timespan_skos_prefLabel' => 'Timespan / skos:prefLabel'
 ];
 
-$title = 'Metadata Quality Assurance Framework';
+$title = 'Metadata Quality Assurance Framework for Europeana';
 if (isset($_GET['id'])) {
   $collectionId = $_GET['name'];
   $id = $_GET['id'];

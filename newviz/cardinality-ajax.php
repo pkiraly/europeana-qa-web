@@ -4,7 +4,7 @@ $configuration = parse_ini_file('../config.cfg');
 include_once('newviz-ajax-config.php');
 include_once('common.functions.php');
 
-$title = 'Metadata Quality Assurance Framework';
+$title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $entity = $type = "";
 if (isset($_GET['id'])) {
   $id = $_GET['id'];

@@ -17,7 +17,7 @@
 
 <div class="page-header">
   <h1>Record investigation</h1>
-  <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href=".">Metadata Quality Assurance Framework for Europeana</a></h3>
 </div>
 
 <div class="col-md-12">

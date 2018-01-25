@@ -117,12 +117,12 @@
   <div class="page-header">
     <h1>Field frequency</h1>
     <h2><?= $collectionId ?></h2>
-    <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
+    <h3><a href=".">Metadata Quality Assurance Framework for Europeana</a></h3>
   </div>
 
   <form id="collection-selector">
-    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>select by dataset</label>
-    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select by data provider</label>
+    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>select a dataset</label>
+    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select a data provider</label>
     <br>
     <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
       <?php foreach ($datasets as $cid => $name) { ?>

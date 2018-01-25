@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Metadata Quality Assurance Framework</title>
+  <title>Metadata Quality Assurance Framework for Europeana</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -44,7 +44,7 @@ form label {
 
 <div class="page-header">
   <h1>Multilingual saturation</h1>
-  <h3><a href=".">Metadata Quality Assurance Framework</a></h3>
+  <h3><a href=".">Metadata Quality Assurance Framework for Europeana</a></h3>
 </div>
 
 <ul class="nav nav-tabs" id="myTab">

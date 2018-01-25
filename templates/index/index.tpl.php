@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Metadata Quality Assurance Framework</title>
+  <title>Metadata Quality Assurance Framework for Europeana</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
@@ -22,7 +22,7 @@
 <body>
 
 <div class="container">
-<h1>Metadata Quality Assurance Framework</h1>
+<h1>Metadata Quality Assurance Framework for Europeana</h1>
 
 <p>This site shows the results of an experimental research. Our hypothesis is that structural features of metadata records might be indicators of the quality of the record. We measure a snapshot of <a href="http://europeana.eu">Europeana</a> created in the end of 2015. This snapshot contains more than 46 million records, however Europeana is an ever growing collection (the last year growth is 9.4%), so you can not find newer records in this snapshot. Currently we measure things related to the completeness of the record: field frequency, cardinality, metadata saturation, language coverage, and uniqueness and problem catalog. This research is running in close cooperation with Europeana Network's <a href="http://pro.europeana.eu/page/data-quality-committee">Data Quality Committee</a>. The methods applied here can be applicable to other metadata collections and the system is flexible to support that. You can find more info about the research <a href="http://pkiraly.github.io/">here</a>.<br/>
 Note: this is a research project, the results here are experimental, they are subject of change.</p>
