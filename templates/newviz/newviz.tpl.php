@@ -121,8 +121,8 @@
   </div>
 
   <form id="collection-selector">
-    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>search by dataset</label>
-    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>search by data provider</label>
+    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>select by dataset</label>
+    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select by data provider</label>
     <br>
     <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
       <?php foreach ($datasets as $cid => $name) { ?>
@@ -143,8 +143,8 @@
   <div class="tab-content">
     <div id="cardinality-score" class="tab-pane active">
       <div class="row">
-        <h2>Field Frequency</h2>
         <div class="col-sm-3 col-md-3 col-lg-3">
+          <h2>Field Frequency</h2>
           <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
           <ul id="entities" class="nav">
             <li class="nav-item active">
@@ -164,7 +164,20 @@
             </li>
           </ul>
         </div>
-        <div class="col-sm-9 col-md-9 col-lg-9" id="cardinality-content"></div>
+        <div class="col-sm-9 col-md-9 col-lg-9">
+          <ul id="mandatory-note">
+            <li><i class="fa fa-check mandatory-icon" aria-hidden="true"></i> = Mandatory property</li>
+            <li><i class="fa fa-arrow-right mandatory-icon" aria-hidden="true"> Blue</i>
+              = at least one of the blue properties should be present (and can be used alongside each other)</li>
+            <li><i class="fa fa-circle-o mandatory-icon" aria-hidden="true"> Red</i>
+              = at least one of the red properties should be present (and can be used alongside each other)</li>
+            <li><i class="fa fa-gear mandatory-icon" aria-hidden="true"> Green</i>
+              = at least one of the green properties should be present (and can be used alongside each other)</li>
+            <li><i class="fa fa-plus mandatory-icon" aria-hidden="true"></i>
+              = recommended property</li>
+          </ul>
+          <div id="cardinality-content"></div>
+        </div>
       </div>
     </div>
     <div id="multilingual-score" class="tab-pane fade">
@@ -403,14 +416,6 @@ function loadRecordPatterns() {
             text += '</div>'; // row
           }
           // text += '</ul>';
-
-          text += '<ul id="mandatory-note">'
-                + '<li><i class="fa fa-check mandatory-icon" aria-hidden="true"></i> = Mandatory property</li>'
-                + '<li><i class="fa fa-arrow-right mandatory-icon" aria-hidden="true"> Blue</i> = at least one of the blue properties should be present (and can be used alongside each other)</li>'
-                + '<li><i class="fa fa-circle-o mandatory-icon" aria-hidden="true"> Red</i> = at least one of the red properties should be present (and can be used alongside each other)</li>'
-                + '<li><i class="fa fa-gear mandatory-icon" aria-hidden="true"> Green</i> = at least one of the green properties should be present (and can be used alongside each other)</li>'
-                + '<li><i class="fa fa-plus mandatory-icon" aria-hidden="true"></i> = recommended property</li>'
-                + '</ul>';
 
           $('#cardinality-content').html(text);
           $('a.qa-show-details').click(function (event) {
