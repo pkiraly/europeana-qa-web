@@ -124,11 +124,11 @@
 <body>
 
 <div class="container">
+  <div class="text-right">
+    <a href=".">Go to the stable version</a>
+  </div>
   <div class="page-header">
-    <h3><a href=".">Metadata Quality Assurance Framework for Europeana</a></h3>
-    <?php if ($type == 'd') { ?>
-      <h2><?= $collectionId ?></h2>
-    <?php } ?>
+    <h3>Metadata Quality Assurance Framework for Europeana</h3>
   </div>
 
   <form id="collection-selector">
@@ -149,6 +149,11 @@
       <?php } ?>
     </select>
   </form>
+
+  <?php if ($type == 'd') { ?>
+    <h4><?= $collectionId ?></h4>
+  <?php } ?>
+
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#cardinality-score">Frequency</a></li>
     <li><a href="#multilingual-score">Multilinguality</a></li>
