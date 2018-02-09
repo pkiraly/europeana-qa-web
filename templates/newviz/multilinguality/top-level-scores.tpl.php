@@ -54,10 +54,10 @@
 <div class="tab-content">
   <div id="individual-fields" class="tab-pane active">
     <div class="row">
-      <form>
+      <form id="language-heatmap">
         <select id="language-distribution-selector">
           <?php foreach ($data->languageDistribution as $field => $metrics) { ?>
-            <option value="<?= $field ?>"><?= $field ?></option>
+            <option value="<?= $field ?>"><?= fieldLabel($field) ?></option>
           <?php } ?>
         </select>
         <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" />
@@ -66,6 +66,14 @@
         <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
         <label for="showNoInstances">Exlude records without field</label>
       </form>
+
+      <p>
+        <i class="fa fa-info-circle"></i>
+        This graphic shows you the diversity of language tags for a given field and their
+        distribution across a dataset. This visualization allows the exclusion of records
+        where the respective field is missing and/or records with the field is present but
+        without a language.
+      </p>
 
       <div id="heatmap"></div>
       <script id="language-distribution-data" type="application/json"><?php echo json_encode($data->languageDistribution); ?></script>

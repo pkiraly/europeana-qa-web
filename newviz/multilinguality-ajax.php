@@ -128,3 +128,18 @@ function conditional_format($num, $minimize = FALSE) {
   return $num;
 }
 
+function fieldLabel($key) {
+  if ($key == 'aggregated')
+    return 'All fields';
+
+  $key = str_replace('_dc_', '/dc:', $key);
+  $key = str_replace('_dcterms_', '/dcterms:', $key);
+  $key = str_replace('_edm_', '/edm:', $key);
+  $key = str_replace('_ore_', '/ore:', $key);
+  $key = str_replace('_owl_', '/owl:', $key);
+  $key = str_replace('_skos_', '/skos:', $key);
+  $key = str_replace('_foaf_', '/foaf:', $key);
+  $key = str_replace('_rdaGr2_', '/rdaGr2:', $key);
+
+  return $key;
+}

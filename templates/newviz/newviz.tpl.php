@@ -195,6 +195,13 @@
             <li><i class="fa fa-plus mandatory-icon" aria-hidden="true"></i>
               = recommended property</li>
           </ul>
+          <p>
+            <i class="fa fa-info-circle"></i>
+            The progress bars show you the number of records containing a given EDM field for a given dataset.
+            Each field can be expanded to reveal detailed statistics about the number of its instances as well
+            as the distribution of its occurrences in a given dataset. You can browse and compare the statistics
+            of each EDM field with another belonging to the same EDM class.
+          </p>
           <div id="cardinality-content"></div>
         </div>
       </div>
@@ -202,6 +209,10 @@
     <div id="multilingual-score" class="tab-pane fade">
       <div class="row">
         <h2>Multilingual score</h2>
+        <p>
+          <i class="fa fa-info-circle"></i>
+          The table shows the number of language tags and literals tagged with a language in a given data set.
+        </p>
         <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
       </div>
     </div>
@@ -358,7 +369,7 @@ function loadRecordPatterns() {
                  + (mandatory ? '<i class="fa fa-' + mandatoryIcon + ' mandatory-icon" aria-hidden="true"></i>' : '')
                  + data.fields[field]
             text += ' <a class="qa-show-details ' + key + '" href="#">'
-                 +  '<i class="fa fa-plus-square" aria-hidden="true"></i></a>'
+                 +  '<i class="fa fa-angle-down" aria-hidden="true"></i></a>'
                  + '</h3></div>';
             if (data.statistics.frequencyTable[key]) {
               var freq = data.statistics.frequencyTable[key];
@@ -441,7 +452,8 @@ function loadRecordPatterns() {
             event.preventDefault();
             id = $(this).attr('class').replace('qa-show-details ', '#details-');
             $(id).toggle();
-            faClass = $("i", this).attr('class') == 'fa fa-plus-square' ? 'fa fa-minus-square' : 'fa fa-plus-square';
+            faClass = $("i", this).attr('class') == 'fa fa-angle-down'
+              ? 'fa fa-angle-up' : 'fa fa-angle-down';
             $("i", this).attr('class', faClass);
             // $(this).text($(this).text() == 'Show details' ? 'Hide details' : 'Show details');
           });

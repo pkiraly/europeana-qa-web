@@ -209,3 +209,13 @@ table#field-patterns tbody tr.under-one td {
 table.histogram {
   margin-bottom: 10px;
 }
+
+form#language-heatmap {
+  margin-top: 10px;
+}
+
+/*
+li.nav-item.active {
+  background-color: #dfdfdf;
+}
+*/
