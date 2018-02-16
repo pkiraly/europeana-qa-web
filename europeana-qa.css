@@ -214,8 +214,7 @@ form#language-heatmap {
   margin-top: 10px;
 }
 
-/*
 li.nav-item.active {
-  background-color: #dfdfdf;
+  /* background-color: #dfdfdf; */
+  background-color: #eee;
 }
-*/
