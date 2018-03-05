@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
     <meta charset="utf-8"/>
@@ -132,22 +132,31 @@
   </div>
 
   <form id="collection-selector">
-    <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>select a dataset</label>
-    <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select a data provider</label>
-    <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
-      <?php foreach ($datasets as $cid => $name) { ?>
-        <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
-          <?= $name ?>
-        </option>
-      <?php } ?>
-    </select>
-    <select name="id" id="did" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
-      <?php foreach ($dataproviders as $did => $name) { ?>
-        <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
-          <?= $name ?>
-        </option>
-      <?php } ?>
-    </select>
+    <div class="row">
+      <div class="col-lg-4">
+        <label><input type="radio" name="type" value="c"<?php if ($type == 'c') { ?> checked="checked"<?php } ?>>select a dataset</label>
+        <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select a data provider</label>
+      </div>
+      <div class="col-lg-8">
+        <label for="fragment">filter the list</label>
+        <input type="text" name="fragment" value="<?= $fragment ?>" onkeyup="filterIds();"><br/>
+        <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
+          <?php foreach ($datasets as $cid => $name) { ?>
+            <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
+              <?= $name ?>
+            </option>
+          <?php } ?>
+        </select>
+        <select name="id" id="did" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
+          <?php foreach ($dataproviders as $did => $name) { ?>
+            <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
+              <?= $name ?>
+            </option>
+          <?php } ?>
+        </select>
+        <input type="submit" class="fa fa-search" aria-hidden="true">
+      </div>
+    </div>
   </form>
 
   <?php if ($type == 'd') { ?>
@@ -290,6 +299,24 @@ $(function () {
     loadEntityCardinality(entity);
   });
 });
+
+function filterIds() {
+  var fragment = $('input[name=fragment]').val();
+  var type = $('#collection-selector input[name=type]:checked').val();
+  var query = {'fragment': fragment, 'type': type};
+  $.get("newviz/dataset-filter-ajax.php", query)
+  .done(function(data) {
+    console.log(data.fragment);
+    console.log(data.type);
+    var selectorId = (data.type == 'c') ? 'cid' : 'did';
+    console.log(data.content);
+
+    $('#' + selectorId + ' option').remove();
+    $.each(data.content, function() {
+      $('#' + selectorId).append('<option value="' + this.value + '">' + this.name + '</option>');
+    })
+  });
+}
 
 function toggleActivation(entity) {
   if (loadedEntity != null) {

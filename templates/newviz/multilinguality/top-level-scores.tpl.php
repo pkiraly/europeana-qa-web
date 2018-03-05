@@ -2,13 +2,11 @@
   <thead>
   <tr>
     <th></th>
-    <th></th>
-    <th colspan="6">Provider Proxy</th>
-    <th colspan="6">Europeana Proxy</th>
+    <th colspan="6">Provider Proxy<br/>(original metadata)</th>
+    <th colspan="6">Europeana Proxy<br/>(Europeana enrichments)</th>
     <th colspan="6">Full object</th>
   </tr>
   <tr>
-    <th>Level</th>
     <th>Metric</th>
     <?php foreach ($data->generic_prefixes as $prefix) { ?>
       <th class="first rotate"><div><span>min</span></div></th>
@@ -27,12 +25,6 @@
     $counter++
     ?>
     <tr>
-      <?php if ($counter == 1) { ?>
-        <td class="level">property</td>
-      <?php } else if ($counter == 2) { ?>
-        <td class="level" rowspan="3">record/object</td>
-      <?php } else { ?>
-      <?php } ?>
       <td class="metric"><a href="#<?= $proxies['provider']->_row ?>"><?= $data->fields[$metric] ?></a></td>
       <?php foreach ($data->generic_prefixes as $prefix => $label) { ?>
         <td class="first"><?= conditional_format($proxies[$prefix]->min); ?></td>

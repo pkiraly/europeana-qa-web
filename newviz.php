@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
   $id = strstr($collectionId, '_', true);
   $type = 'c';
 }
+$fragment = isset($_GET['fragment']) ? $_GET['fragment'] : NULL;
 
 $n = 0;
 $jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.count.json';
@@ -41,8 +42,8 @@ if (file_exists($jsonCountFileName)) {
     }
   }
 }
-$datasets = retrieveDatasets();
-$dataproviders = retrieveDataproviders();
+$datasets = retrieveDatasets($type, $fragment);
+$dataproviders = retrieveDataproviders($type, $fragment);
 
 ob_start();
 include('templates/newviz/newviz.tpl.php');
@@ -69,22 +70,25 @@ function parseId($id) {
   return [$id, $type];
 }
 
-function retrieveDatasets() {
-  return retrieveCsv('datasets.txt');
+function retrieveDatasets($type, $fragment) {
+  return retrieveCsv('datasets.txt', ($type == 'c' ? $fragment : NULL));
 }
 
-function retrieveDataproviders() {
-  return retrieveCsv('data-providers.txt');
+function retrieveDataproviders($type, $fragment) {
+  return retrieveCsv('data-providers.txt', ($type == 'd' ? $fragment : NULL));
 }
 
-function retrieveCsv($fileName) {
+function retrieveCsv($fileName, $fragment) {
   $list = [];
   $content = explode("\n", file_get_contents($fileName));
   foreach ($content as $line) {
     if ($line == '')
       continue;
-    list($_id, $_name) = explode(';', $line, 2);
-    $list[$_id] = $_name;
+
+    if (is_null($fragment) || $fragment == '' || stristr($line, $fragment)) {
+      list($_id, $_name) = explode(';', $line, 2);
+      $list[$_id] = $_name;
+    }
   }
   return $list;
 }
