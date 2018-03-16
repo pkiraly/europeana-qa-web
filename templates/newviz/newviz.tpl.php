@@ -138,8 +138,6 @@
         <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select a data provider</label>
       </div>
       <div class="col-lg-8">
-        <label for="fragment">filter the list</label>
-        <input type="text" name="fragment" value="<?= $fragment ?>" onkeyup="filterIds();"><br/>
         <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
           <?php foreach ($datasets as $cid => $name) { ?>
             <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
@@ -154,7 +152,9 @@
             </option>
           <?php } ?>
         </select>
-        <input type="submit" class="fa fa-search" aria-hidden="true">
+        <input type="submit" class="fa fa-search" aria-hidden="true"><br/>
+        <label for="fragment">filter the list:</label>
+        <input type="text" name="fragment" value="<?= $fragment ?>" onkeyup="filterIds();">
       </div>
     </div>
   </form>
