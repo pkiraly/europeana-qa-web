@@ -138,23 +138,23 @@
         <label><input type="radio" name="type" value="d"<?php if ($type == 'd') { ?> checked="checked"<?php } ?>>select a data provider</label>
       </div>
       <div class="col-lg-8">
-        <select name="id" id="cid" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
+        <label for="fragment">filter the list:</label>
+        <input type="text" name="fragment" value="<?= $fragment ?>" onkeyup="filterIds();"><br>
+        <select name="id" id="cid" <?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
           <?php foreach ($datasets as $cid => $name) { ?>
             <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
               <?= $name ?>
             </option>
           <?php } ?>
         </select>
-        <select name="id" id="did" onchange="submit();"<?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
+        <select name="id" id="did" <?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
           <?php foreach ($dataproviders as $did => $name) { ?>
             <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
               <?= $name ?>
             </option>
           <?php } ?>
         </select>
-        <input type="submit" class="fa fa-search" aria-hidden="true"><br/>
-        <label for="fragment">filter the list:</label>
-        <input type="text" name="fragment" value="<?= $fragment ?>" onkeyup="filterIds();">
+        <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
       </div>
     </div>
   </form>
@@ -275,7 +275,6 @@ $(document).ready(function () {
   $(".nav-tabs a").click(function() {
     $(this).tab('show');
     var id = this.href.substr(this.href.indexOf('#'));
-    // console.log('id: ' + id + ' ' + loaded[id]);
     if (loaded[id] === false) {
       if (isMultilingualityPanel(id))
         loadMultilinguality();
@@ -309,10 +308,7 @@ function filterIds() {
   var query = {'fragment': fragment, 'type': type};
   $.get("newviz/dataset-filter-ajax.php", query)
   .done(function(data) {
-    console.log(data.fragment);
-    console.log(data.type);
     var selectorId = (data.type == 'c') ? 'cid' : 'did';
-    console.log(data.content);
 
     $('#' + selectorId + ' option').remove();
     $.each(data.content, function() {
@@ -334,7 +330,6 @@ function isMultilingualityPanel(id) {
 }
 
 function showType(type) {
-  console.log(type);
   var toShowId = 'cid', toHideId = 'did';
   if (type == 'd') {
     toShowId = 'did', toHideId = 'cid';
@@ -349,7 +344,6 @@ function showType(type) {
 }
 
 function loadMultilinguality() {
-  console.log('loadMultilinguality');
   var entity = 'ProvidedCHO';
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
   $.get("newviz/multilinguality-ajax.php", query)
@@ -362,7 +356,6 @@ function loadMultilinguality() {
 }
 
 function loadRecordPatterns() {
-  console.log('loadRecordPatterns');
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>};
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
@@ -378,7 +371,9 @@ function loadEntityCardinality(entity) {
   $.get("newviz/cardinality-ajax.php", query)
     .done(function(data) {
       var n = <?= $n ?>;
-      var count = data.statistics.entityCount.toLocaleString('en-US');
+      var count = data.statistics.entityCount === null
+                ? 0
+                : data.statistics.entityCount.toLocaleString('en-US');
       var text = '<h3 class="entity-name">' + data.entity + '</h3>'
                + '<p>number of records: ' + count + '</p>';
 
