@@ -162,6 +162,9 @@
   <?php if ($type == 'd') { ?>
     <h4><?= $collectionId ?></h4>
   <?php } ?>
+  <p>
+    <a href="<?= getPortalUrl($type, $collectionId) ?>" target="_blank">see it on Europeana portal</a>
+  </p>
 
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#cardinality-score">Frequency</a></li>

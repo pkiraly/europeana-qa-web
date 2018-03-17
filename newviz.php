@@ -106,3 +106,13 @@ function retrieveName($id, $type) {
   }
   return $name;
 }
+
+function getPortalUrl($type, $collectionId) {
+  $url = "https://www.europeana.eu/portal/en/search?";
+  if ($type == 'c') {
+    $url .= 'q=' . urlencode('europeana_collectionName:(' . $collectionId . ')');
+  } else if ($type == 'd') {
+    $url .= urlencode('f[DATA_PROVIDER][]') . '=' . urlencode($collectionId) . '&q=*';
+  }
+  return $url;
+}
