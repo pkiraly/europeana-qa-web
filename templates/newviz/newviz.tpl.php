@@ -377,7 +377,7 @@ function loadEntityCardinality(entity) {
       var n = <?= $n ?>;
       var count = data.statistics.entityCount.toLocaleString('en-US');
       var text = '<h3 class="entity-name">' + data.entity + '</h3>'
-               + '<p>number of entities: ' + count + '</p>';
+               + '<p>number of records: ' + count + '</p>';
 
       var key;
       for (var field in data['fields']) {
