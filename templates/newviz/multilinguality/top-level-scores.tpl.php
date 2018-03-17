@@ -55,8 +55,10 @@
         <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" />
         <label for="excludeZeros">Exclude records with fields without language tag</label>
 
+        <!--
         <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
         <label for="showNoInstances">Exlude records without field</label>
+        -->
       </form>
 
       <p>
@@ -93,7 +95,7 @@
         function getTreeMapUrl() {
           var field = $('#language-distribution-selector').val();
           var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
-          var showNoInstances = $('#showNoInstances').is(':checked') ? 0 : 1;
+          var showNoInstances = 0; //$('#showNoInstances').is(':checked') ? 0 : 1;
 
           var treeMapUrl = 'plainjson2tree.php?field=' + field
                          + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros

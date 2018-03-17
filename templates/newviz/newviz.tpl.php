@@ -142,16 +142,12 @@
         <input type="text" name="fragment" value="<?= $fragment ?>" onkeyup="filterIds();"><br>
         <select name="id" id="cid" <?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
           <?php foreach ($datasets as $cid => $name) { ?>
-            <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
-              <?= $name ?>
-            </option>
+            <option value="<?= $cid ?>"<?php if ($type == 'c' && $id == $cid) { ?> selected="selected" title="<?= $name ?>"<?php } ?>><?= $name ?></option>
           <?php } ?>
         </select>
         <select name="id" id="did" <?php if ($type != 'c') { ?> style="display:none"<?php } ?>>
           <?php foreach ($dataproviders as $did => $name) { ?>
-            <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected" title="<?= $name ?>"<?php } ?>>
-              <?= $name ?>
-            </option>
+            <option value="<?= $did ?>"<?php if ($type == 'd' && $id == $did) { ?> selected="selected" title="<?= $name ?>"<?php } ?>><?= $name ?></option>
           <?php } ?>
         </select>
         <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
