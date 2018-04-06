@@ -174,7 +174,7 @@
             var count = d.size.toString().replace(/./g, function(c, i, a) {
               return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
-            text += "\n" + 'count: ' + count;
+            text += "\n" + 'number of field instances: ' + count;
           }
           return text;
         }

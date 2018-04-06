@@ -217,6 +217,7 @@
     <div id="multilingual-score" class="tab-pane fade">
       <div class="row">
         <h2>Multilingual score</h2>
+        <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
         <p>
           <i class="fa fa-info-circle"></i>
           The table shows the number of language tags and literals tagged with a language in a given data set.
