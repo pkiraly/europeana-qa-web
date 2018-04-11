@@ -1,5 +1,6 @@
 <?php
 $configuration = parse_ini_file('config.cfg');
+include_once('newviz/common.functions.php');
 
 $field = $_GET['field'];
 if (!isset($field))
@@ -9,7 +10,7 @@ $collectionId = $_GET['collectionId'];
 if (!isset($collectionId))
   $collectionId = 'all';
 
-$excludeZeros = (isset($_GET['excludeZeros']) && $_GET['excludeZeros'] == 1) ? TRUE : FALSE;
+$excludeZeros    = (isset($_GET['excludeZeros'])    && $_GET['excludeZeros'] == 1) ? TRUE : FALSE;
 $showNoInstances = (isset($_GET['showNoInstances']) && $_GET['showNoInstances'] == 1) ? TRUE : FALSE;
 
 $codes = [
@@ -18,7 +19,7 @@ $codes = [
   'resource'
 ];
 
-$fileName = 'json/' . $collectionId . '/' . $collectionId . '.languages.json';
+$fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . '.languages.json';
 $languages = json_decode(file_get_contents($fileName));
 
 echo getTree($languages->$field, $field, $excludeZeros, $showNoInstances);

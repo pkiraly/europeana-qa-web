@@ -159,7 +159,14 @@
     <h4><?= $collectionId ?></h4>
   <?php } ?>
   <p>
-    <a href="<?= getPortalUrl($type, $collectionId) ?>" target="_blank">see it on Europeana portal</a>
+    <a href="<?= getPortalUrl($type, $collectionId) ?>" target="_blank">see it on Europeana portal</a>.
+    versions: <?php foreach ($configuration['version'] as $configured_version) { ?>
+      <?php if ($version == $configured_version) { ?>
+        <?= $configured_version ?>
+      <?php } else { ?>
+        <a href="?type=<?= $type ?>&id=<?= $id ?>&version=<?= $configured_version ?>"><?= $configured_version ?></a>
+      <?php } ?>
+    <?php } ?>
   </p>
 
   <ul class="nav nav-tabs" id="myTab">

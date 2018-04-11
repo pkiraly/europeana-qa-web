@@ -1,10 +1,13 @@
 <?php
+$configuration = parse_ini_file('../config.cfg');
 include_once('common.functions.php');
 include_once('../common/saturation-functions.php');
 $templateDir = '../templates/newviz/multilinguality/';
 
 $parameters = getParameters();
 $collectionId = $parameters->type . $parameters->id;
+$dataDir = '../' . getDataDir();
+
 $data = (object)[
   'generic_prefixes' => getGenerixPrefixes(),
   'fields' => getFields(),
@@ -38,10 +41,10 @@ function getFields() {
 }
 
 function getSaturationStatistics() {
-  global $parameters, $collectionId;
+  global $parameters, $collectionId, $dataDir;
 
   $assocStat = [];
-  $saturationFile = sprintf('../json/%s/%s.saturation.json', $collectionId, $collectionId);
+  $saturationFile = sprintf('%s/json/%s/%s.saturation.json', $dataDir, $collectionId, $collectionId);
   $saturationFileExists = file_exists($saturationFile);
   if ($saturationFileExists) {
     $saturation = json_decode(file_get_contents($saturationFile));
@@ -89,10 +92,10 @@ function getSaturationStatistics() {
 }
 
 function getLanguageDistribution() {
-  global $parameters, $collectionId;
+  global $parameters, $collectionId, $dataDir;
 
   $languageDistribution = (object)[];
-  $languageDistributionFile = sprintf('../json/%s/%s.languages.json', $collectionId, $collectionId);
+  $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $collectionId, $collectionId);
   $languageDistributionFileExists = file_exists($languageDistributionFile);
   if ($languageDistributionFileExists) {
     $languageDistribution = json_decode(file_get_contents($languageDistributionFile));

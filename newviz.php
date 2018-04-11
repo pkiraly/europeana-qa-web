@@ -1,6 +1,6 @@
 <?php
-
 $configuration = parse_ini_file('config.cfg');
+include_once('common/common-functions.php');
 
 $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
@@ -23,18 +23,24 @@ if (isset($_GET['id'])) {
   $id = strstr($collectionId, '_', true);
   $type = 'c';
 }
-$fragment = isset($_GET['fragment']) ? $_GET['fragment'] : NULL;
+$fragment = getOrDefault('fragment', NULL);
+$version  = getOrDefault('version', NULL);
+if (is_null($version) || !in_array($version, $configuration['version'])) {
+  $version = $configuration['version'][0];
+}
+
+$dataDir = 'data/' . $version;
 
 $n = 0;
-$jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.count.json';
+$jsonCountFileName = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
   $n = $stats[0]->count;
 }
 
-$jsonCountFileName = 'json/' . $type . $id . '/' . $type . $id . '.freq.json';
-if (file_exists($jsonCountFileName)) {
-  $frequencies = json_decode(file_get_contents($jsonCountFileName));
+$jsonFreqFileName = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.freq.json';
+if (file_exists($jsonFreqFileName)) {
+  $frequencies = json_decode(file_get_contents($jsonFreqFileName));
   $entityCounts = (object)[];
   foreach ($frequencies as $freq) {
     if (preg_match('/_rdf_about$/', $freq->field)) {
@@ -71,11 +77,13 @@ function parseId($id) {
 }
 
 function retrieveDatasets($type, $fragment) {
-  return retrieveCsv('datasets.txt', ($type == 'c' ? $fragment : NULL));
+  global $dataDir;
+  return retrieveCsv($dataDir . '/datasets.txt', ($type == 'c' ? $fragment : NULL));
 }
 
 function retrieveDataproviders($type, $fragment) {
-  return retrieveCsv('data-providers.txt', ($type == 'd' ? $fragment : NULL));
+  global $dataDir;
+  return retrieveCsv($dataDir . '/data-providers.txt', ($type == 'd' ? $fragment : NULL));
 }
 
 function retrieveCsv($fileName, $fragment) {

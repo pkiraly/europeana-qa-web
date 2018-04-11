@@ -1,4 +1,5 @@
 <?php
+include_once('../common/common-functions.php');
 
 function getParameters() {
   $parameters = (object)[
@@ -18,6 +19,17 @@ function getParameters() {
   }
 
   return $parameters;
+}
+
+function getDataDir() {
+  global $configuration;
+
+  $version = getOrDefault('version', NULL);
+  if (is_null($version) || !in_array($version, $configuration['version'])) {
+    $version = $configuration['version'][0];
+  }
+
+  return 'data/' . $version;
 }
 
 function parseId($id) {
