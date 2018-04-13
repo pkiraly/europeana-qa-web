@@ -60,7 +60,7 @@ function readFreqFileExistence($type, $id, $entityFields) {
   $statistics->freqFileExists = file_exists($statistics->freqFile);
 }
 
-function readCardinality($type, $id, $entityFields, &$statistics) {
+function readCardinality($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics;
 
   $statistics->cardinalityFile = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.cardinality.json';
