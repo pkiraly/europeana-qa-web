@@ -1,6 +1,7 @@
 <?php
 $configuration = parse_ini_file('config.cfg');
 include_once('newviz/common.functions.php');
+include_once('common/common-functions.php');
 
 $field = $_GET['field'];
 if (!isset($field))

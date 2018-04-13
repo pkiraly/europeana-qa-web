@@ -100,7 +100,8 @@
           var treeMapUrl = 'plainjson2tree.php?field=' + field
                          + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
                          + '&showNoInstances=' + showNoInstances // . (int)$showNoInstances
-                         + '&collectionId=<?= $data->collectionId ?>';
+                         + '&collectionId=<?= $data->collectionId ?>'
+                         + '&version=<?= $data->version ?>';
           return treeMapUrl;
         }
 

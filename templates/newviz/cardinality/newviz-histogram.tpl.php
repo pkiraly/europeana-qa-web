@@ -9,7 +9,7 @@
   <tr>
     <td class="legend">nr of records</td>
     <?php for($i = 0; $i < count($data->values); $i++) { ?>
-      <td><?= $data->values[$i]->count; ?></td>
+      <td><?= number_format($data->values[$i]->count, 0, '.', ','); ?></td>
     <?php } ?>
   </tr>
   <tr>

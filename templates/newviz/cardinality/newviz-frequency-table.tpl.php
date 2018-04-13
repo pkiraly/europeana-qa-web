@@ -9,7 +9,7 @@
   <tr>
     <td class="legend">nr of records</td>
 <?php foreach ($data->values as $value => $frequency) { ?>
-      <td><?= $frequency[0]; ?></td>
+      <td><?= number_format($frequency[0], 0, '.', ','); ?></td>
 <?php } ?>
   </tr>
   <tr>

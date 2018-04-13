@@ -1,5 +1,11 @@
 <?php
-include_once('../common/common-functions.php');
+if (file_exists('../common/common-functions.php')) {
+  include_once('../common/common-functions.php');
+} else if (file_exists('../../common/common-functions.php')) {
+  include_once('../../common/common-functions.php');
+} else if (file_exists('common/common-functions.php')) {
+  include_once('common/common-functions.php');
+}
 
 function getParameters() {
   $parameters = (object)[
@@ -22,7 +28,7 @@ function getParameters() {
 }
 
 function getDataDir() {
-  global $configuration;
+  global $configuration, $version;
 
   $version = getOrDefault('version', NULL);
   if (is_null($version) || !in_array($version, $configuration['version'])) {

@@ -9,6 +9,7 @@ $collectionId = $parameters->type . $parameters->id;
 $dataDir = '../' . getDataDir();
 
 $data = (object)[
+  'version' => $version,
   'generic_prefixes' => getGenerixPrefixes(),
   'fields' => getFields(),
   'assocStat' => getSaturationStatistics(),

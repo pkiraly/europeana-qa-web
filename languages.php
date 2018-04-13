@@ -1,5 +1,7 @@
 <?php
 $configuration = parse_ini_file('config.cfg');
+include_once('newviz/common.functions.php');
+include_once('common/common-functions.php');
 
 $fields = [
   'proxy_dc_title' => 'Proxy / dc:title',
@@ -123,12 +125,14 @@ if (!isset($field))
 $excludeZeros = in_array(0, $_GET['exclusions']);
 $showNoInstances = in_array(1, $_GET['exclusions']);
 
+
 $treeMapUrl = 'plainjson2tree.php?field=' . $field
             . '&excludeZeros=' . (int)$excludeZeros
             . '&showNoInstances=' . (int)$showNoInstances
-            . '&collectionId=' . $collectionId;
+            . '&collectionId=' . $collectionId
+            . '&version=' . $version;
 
-$fileName = 'json/' . $collectionId . '/' . $collectionId . '.languages.json';
+$fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . '.languages.json';
 $languages = json_decode(file_get_contents($fileName));
 
 include("templates/languages/languages.tpl.php");

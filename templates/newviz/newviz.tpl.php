@@ -179,7 +179,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3">
           <h2>Field Frequency</h2>
-          <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
+          <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records <?= $n ?></p>
           <ul id="entities" class="nav">
             <li class="nav-item active">
               <a class="nav-link active" href="#" datatype="ProvidedCHO">ProvidedCHO (<?= $entityCounts->proxy_rdf_about ?>)</a>
@@ -349,7 +349,7 @@ function showType(type) {
 
 function loadMultilinguality() {
   var entity = 'ProvidedCHO';
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity, 'version': '<?= $version ?>'};
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
       $('#multilinguality-content').html(data.html);
@@ -360,7 +360,7 @@ function loadMultilinguality() {
 }
 
 function loadRecordPatterns() {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>, 'version': '<?= $version ?>'};
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
      $('#record-patterns-content').html(data.html);
@@ -371,7 +371,7 @@ function loadRecordPatterns() {
 }
 
 function loadEntityCardinality(entity) {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity, 'version': '<?= $version ?>'};
   $.get("newviz/cardinality-ajax.php", query)
     .done(function(data) {
       var n = <?= $n ?>;
@@ -379,7 +379,8 @@ function loadEntityCardinality(entity) {
                 ? 0
                 : data.statistics.entityCount.toLocaleString('en-US');
       var text = '<h3 class="entity-name">' + data.entity + '</h3>'
-               + '<p>number of records: ' + count + '</p>';
+               + '<p>number of records: ' + count + '</p>'
+               + '<p>version: ' + data.version + '</p>';
 
       var key;
       for (var field in data['fields']) {

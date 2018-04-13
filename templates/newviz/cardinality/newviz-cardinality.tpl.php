@@ -7,8 +7,8 @@
     <td class="legend">mean</td>
   </tr>
   <tr>
-    <td><?= $data->count; ?></td>
-    <td><?= $data->sum; ?></td>
+    <td><?= number_format($data->count, 0, '.', ','); ?></td>
+    <td><?= number_format($data->sum, 0, '.', ','); ?></td>
     <td><?= $data->median; ?></td>
     <td><?= $data->mean; ?></td>
   </tr>

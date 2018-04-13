@@ -24,10 +24,12 @@ if (isset($_GET['entity']) && in_array($_GET['entity'], $allowedEntities)) {
 
 $dataDir = '../' . getDataDir();
 
-$statistics = readStatistics($type, $id, $entity);
+$statistics = new stdClass();
+readStatistics($type, $id, $entity);
 
 header("Content-type: application/json");
 echo json_encode([
+  'version' => $version,
   'entity' => $entity,
   'fields' => $fields[$entity],
   'statistics' => $statistics,
@@ -35,35 +37,35 @@ echo json_encode([
 ]);
 
 function readStatistics($type, $id, $entity) {
-  global $fields;
+  global $fields, $statistics;
 
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
   $entityIDField = $entity . '_rdf_about';
 
-  $statistics = new stdClass();
-  readFreqFileExistence($type, $id, $entityFields, $statistics);
-  readCardinality($type, $id, $entityFields, $statistics);
-  readFrequencyTable($type, $id, $entityIDField, $entityFields, $statistics);
-  readHistogram($type, $id, $entityFields, $statistics);
-  readMinMaxRecords($type, $id, $entityFields, $statistics);
+  readFreqFileExistence($type, $id, $entityFields);
+  readCardinality($type, $id, $entityFields);
+  readFrequencyTable($type, $id, $entityIDField, $entityFields);
+  readHistogram($type, $id, $entityFields);
+  readMinMaxRecords($type, $id, $entityFields);
 
-  readImageFiles($type, $id, $entityFields, $statistics);
+  readImageFiles($type, $id, $entityFields);
   return $statistics;
 }
 
 // concept_rdf_about
-function readFreqFileExistence($type, $id, $entityFields, &$statistics) {
-  global $dataDir;
+function readFreqFileExistence($type, $id, $entityFields) {
+  global $dataDir, $statistics;
 
   $statistics->freqFile = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.freq.json';
   $statistics->freqFileExists = file_exists($statistics->freqFile);
 }
 
 function readCardinality($type, $id, $entityFields, &$statistics) {
-  global $dataDir, $templateDir;
+  global $dataDir, $templateDir, $statistics;
 
   $statistics->cardinalityFile = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.cardinality.json';
   $statistics->cardinalityFileExists = file_exists($statistics->cardinalityFile);
+
   $cardinalityProperties = ['sum', 'mean', 'median'];
   if ($statistics->cardinalityFileExists) {
     $key = 'cardinality-property';
@@ -89,8 +91,8 @@ function readCardinality($type, $id, $entityFields, &$statistics) {
   }
 }
 
-function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statistics) {
-  global $dataDir, $templateDir;
+function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
+  global $dataDir, $templateDir, $statistics;
 
   $statistics->frequencyTableFile = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.frequency.table.json';
   $data = new stdClass();
@@ -119,11 +121,12 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields, &$statist
   }
 }
 
-function readHistogram($type, $id, $entityFields, &$statistics) {
-  global $dataDir, $templateDir;
+function readHistogram($type, $id, $entityFields) {
+  global $dataDir, $templateDir, $statistics;
 
   // $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
   $statistics->histFile = $dataDir . '/json/' . $type . $id . '/' .  $type . $id . '.cardinality.histogram.json';
+  $statistics->histFile_exists = file_exists($statistics->histFile);
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     if (!isset($statistics->histograms))
@@ -147,8 +150,8 @@ function readHistogram($type, $id, $entityFields, &$statistics) {
   }
 }
 
-function readMinMaxRecords($type, $id, $entityFields, &$statistics) {
-  global $dataDir, $templateDir;
+function readMinMaxRecords($type, $id, $entityFields) {
+  global $dataDir, $templateDir, $statistics;
 
   $statistics->minMaxRecordsFile = $dataDir . '/json/' . $type . $id . '/' .  $type . $id . '.json';
   if (file_exists($statistics->minMaxRecordsFile)) {
@@ -174,7 +177,9 @@ function readMinMaxRecords($type, $id, $entityFields, &$statistics) {
   }
 }
 
-function readImageFiles($type, $id, $entityFields, &$statistics) {
+function readImageFiles($type, $id, $entityFields) {
+  global $statistics;
+
   foreach ($entityFields as $name) {
     $fileName = sprintf('img/%s%s/%s%s-%s.png', $type, $id, $type, $id, $name);
     $statistics->images[$name]['frequency'] = [
