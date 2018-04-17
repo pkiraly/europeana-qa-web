@@ -119,6 +119,19 @@
     width: 300px !important;
   }
 
+  #all-fields-table td.numeric {
+    text-align: right;
+    padding-right: 40px;
+  }
+
+  #all-fields-table tr.secondary th {
+    text-align: center;
+  }
+
+  #all-fields-table tr.primary th.double {
+    text-align: center;
+  }
+
 </style>
 </head>
 <body>

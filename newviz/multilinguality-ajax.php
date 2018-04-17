@@ -120,10 +120,14 @@ function getLabel($key) {
   return $label;
 }
 
-function conditional_format($num, $minimize = FALSE) {
-  $num = strstr($num, '.') ? (double)$num : (int)$num;
+function conditional_format($num, $minimize = FALSE, $toDouble = FALSE, $decimals = 2) {
+  if ($toDouble) {
+    $num = (double)$num;
+  } else {
+    $num = strstr($num, '.') ? (double)$num : (int)$num;
+  }
   if (is_double($num)) {
-    $formatted = number_format($num, 2);
+    $formatted = number_format($num, $decimals);
     if ($minimize) {
       $formatted = preg_replace('/\.$/', '', preg_replace('/0+$/', '', $formatted));
     }

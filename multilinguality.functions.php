@@ -36,16 +36,20 @@ function getLabel($key) {
   return $label;
 }
 
-function conditional_format($num, $minimize = FALSE) {
-  $num = strstr($num, '.') ? (double)$num : (int)$num;
-  if (is_double($num)) {
+function conditional_format($num, $minimize = FALSE, $toDouble = FALSE) {
+  if ($toDouble) {
+    $num = (double)$num;
+  } else {
+    $num = strstr($num, '.') ? (double)$num : (int)$num;
+  }
+  if ($toDouble || is_double($num)) {
     $formatted = number_format($num, 2);
     if ($minimize) {
       $formatted = preg_replace('/\.$/', '', preg_replace('/0+$/', '', $formatted));
     }
     return $formatted;
   }
-  return $num;
+  return $msg . $num;
 }
 
 function format_histogram_range($label, $showBoth = FALSE) {

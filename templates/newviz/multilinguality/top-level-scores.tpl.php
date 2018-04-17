@@ -185,13 +185,13 @@
   <div id="all-fields" class="tab-pane">
     <table id="all-fields-table" class="table table-condensed table-striped tablesorter">
       <thead>
-      <tr>
+      <tr class="primary">
         <th rowspan="2">field</th>
-        <th colspan="2">Number of tagged literals</th>
-        <th colspan="2">Number of distinct language tags</th>
-        <th colspan="2">Number of tagged literals per language</th>
+        <th colspan="2" class="double">Number of tagged literals</th>
+        <th colspan="2" class="double">Number of distinct language tags</th>
+        <th colspan="2" class="double">Number of tagged literals per language</th>
       </tr>
-      <tr>
+      <tr class="secondary">
         <th>Provider</th>
         <th>Europeana</th>
         <th>Provider</th>
@@ -207,7 +207,13 @@
 
           <?php foreach ($metrics as $metric => $objects) { ?>
             <?php foreach ($objects as $object_name => $object) { ?>
-              <td title="<?= $object->mean; ?>"><?= conditional_format($object->mean) ?></td>
+              <td class="numeric" title="<?= $object->mean; ?>">
+              <?php if ($object->mean == 'NaN') { ?>
+                <span style="color:#999">n/a</span>
+              <?php } else {
+                echo conditional_format($object->mean, FALSE, TRUE, 4);
+              } ?>
+              </td>
             <?php } ?>
           <?php } ?>
         </tr>

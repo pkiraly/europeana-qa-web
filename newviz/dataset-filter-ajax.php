@@ -19,7 +19,7 @@ function retrieveCsv($fileName, $fragment) {
     if ($line == '')
       continue;
 
-    if (is_null($fragment) || stristr($line, $fragment)) {
+    if (is_null($fragment) || $fragment == "" || stristr($line, $fragment)) {
       list($_id, $_name) = explode(';', $line, 2);
       $list[] = ['value' => $_id, 'name' => $_name];
     }
