@@ -132,6 +132,18 @@
     text-align: center;
   }
 
+  #all-fields-table span.nan {
+    color: #999;
+  }
+
+  #all-fields {
+    padding-top: 20px;
+  }
+
+  #generic td.details, #generic th.details {
+    color: #999;
+  }
+
 </style>
 </head>
 <body>

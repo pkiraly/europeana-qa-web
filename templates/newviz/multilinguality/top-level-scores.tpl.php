@@ -9,12 +9,12 @@
   <tr>
     <th>Metric</th>
     <?php foreach ($data->generic_prefixes as $prefix) { ?>
-      <th class="first rotate"><div><span>min</span></div></th>
-      <th class="rotate"><div><span>max</span></div></th>
-      <th class="rotate"><div><span>range</span></div></th>
-      <th class="rotate"><div><span>median</span></div></th>
-      <th class="rotate"><div><span>mean</span></div></th>
-      <th class="rotate"><div><span>st.&nbsp;dev.</span></div></th>
+      <th class="first rotate"><div><span>mean</span></div></th>
+      <th class="rotate" title="standard deviation"><div><span>st.&nbsp;dev.</span></div></th>
+      <th class="rotate details"><div><span>min</span></div></th>
+      <th class="rotate details"><div><span>max</span></div></th>
+      <th class="rotate details"><div><span>range</span></div></th>
+      <th class="rotate details"><div><span>median</span></div></th>
     <?php } ?>
   </tr>
   </thead>
@@ -27,12 +27,12 @@
     <tr>
       <td class="metric"><a href="#<?= $proxies['provider']->_row ?>"><?= $data->fields[$metric] ?></a></td>
       <?php foreach ($data->generic_prefixes as $prefix => $label) { ?>
-        <td class="first"><?= conditional_format($proxies[$prefix]->min); ?></td>
-        <td><?= conditional_format($proxies[$prefix]->max); ?></td>
-        <td><?= conditional_format($proxies[$prefix]->range); ?></td>
-        <td><?= conditional_format($proxies[$prefix]->median); ?></td>
-        <td><?= conditional_format($proxies[$prefix]->mean); ?></td>
+        <td class="first"><?= conditional_format($proxies[$prefix]->mean); ?></td>
         <td><?= conditional_format($proxies[$prefix]->{'std.dev'}); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->min); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->max); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->range); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->median); ?></td>
       <?php } ?>
     </tr>
   <?php } ?>
@@ -183,6 +183,15 @@
     </div>
   </div>
   <div id="all-fields" class="tab-pane">
+
+    <p>
+      <i class="fa fa-info-circle"></i>
+      This table shows <em>average numbers</em> of tagged literals, distinct language tags and tagged literals
+      per language for both the Provider Proxy (the original metadata) and the Europeana Proxy (the
+      Europeana enrichments). <em>n/a</em> means that the particular field is not available in any record
+      in the collection.
+    </p>
+
     <table id="all-fields-table" class="table table-condensed table-striped tablesorter">
       <thead>
       <tr class="primary">
@@ -207,7 +216,17 @@
 
           <?php foreach ($metrics as $metric => $objects) { ?>
             <?php foreach ($objects as $object_name => $object) { ?>
-              <td class="numeric" title="<?= $object->mean; ?>">
+              <td class="numeric" title="<?php
+                printf("mean: %f\nstandard deviation: %f\nmin: %f (%s)\nmax: %f (%s)\nrange: %f\nmedian: %f",
+                  $object->mean,
+                  (isset($object->{'std.dev'}) ? $object->{'std.dev'} : 0),
+                  $object->min,
+                  $object->recMin,
+                  $object->max,
+                  $object->recMax,
+                  $object->range,
+                  (isset($object->median) ? $object->median : 0)
+                ); ?>">
               <?php if ($object->mean == 'NaN') { ?>
                 <span style="color:#999">n/a</span>
               <?php } else {
