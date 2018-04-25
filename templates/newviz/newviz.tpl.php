@@ -144,6 +144,10 @@
     color: #999;
   }
 
+  table.uniqueness-histogram td.udata {
+    min-width: 100px;
+  }
+
 </style>
 </head>
 <body>
@@ -198,6 +202,7 @@
     <li class="active"><a href="#cardinality-score">Frequency</a></li>
     <li><a href="#multilingual-score">Multilinguality</a></li>
     <li><a href="#record-patterns">Record patterns</a></li>
+    <li><a href="#uniqueness">Uniqueness</a></li>
   </ul>
   <div class="tab-content">
     <div id="cardinality-score" class="tab-pane active">
@@ -263,6 +268,26 @@
         <div class="col-sm-12 col-md-12 col-lg-12" id="record-patterns-content"></div>
       </div>
     </div>
+    <div id="uniqueness" class="tab-pane fade">
+      <div class="row">
+        <h2>Uniqueness</h2>
+        <p>
+          <i class="fa fa-info-circle"></i>
+          It measures the uniqueness of field values in the most important descriptive fields
+          (currently: dc:title, dcterms:alternative and dc:description). If a field value is unique
+          accross all Europeana records, then its specificity or information content is high. On the other hand
+          if the value is repeated in several hundreds or thousands of records, then we can not easily
+          make distinction between these records, so the information value is low. For example: if
+          several thousand photograph has the title "Photograph" (solely) we can not find those ones, which
+          depict a specific object. We created 6 categories: unique values, and five ranges denoted
+          by ranges. The actual ranges are different for each fields, because the different fields
+          have different distribution (title occurs almost all records). The ranges became smaller and
+          smaller towards the top categories, which means, that the difference between a unique value
+          and a duplicated value are bigger than between duplicated and triplicated etc.
+        </p>
+        <div class="col-sm-12 col-md-12 col-lg-12" id="uniqueness-content"></div>
+      </div>
+    </div>
   </div>
   <footer>
     <p>
@@ -282,7 +307,8 @@ $(document).ready(function () {
   var loaded = {
     '#cardinality-score': false,
     '#multilingual-score': false,
-    '#record-patterns': false
+    '#record-patterns': false,
+    '#uniqueness': false,
   };
   // $("#generic").tablesorter();
   // $("#specific-taggedliterals").tablesorter();
@@ -295,6 +321,9 @@ $(document).ready(function () {
   } else if (id == '#record-patterns') {
     loadRecordPatterns();
     $('.nav-tabs a[href="#record-patterns"]').tab('show');
+  } else if (id == '#uniqueness') {
+    loadUniqueness();
+    $('.nav-tabs a[href="#uniqueness"]').tab('show');
   } else {
     loadEntityCardinality('ProvidedCHO');
     loadedEntity = 'ProvidedCHO';
@@ -309,6 +338,8 @@ $(document).ready(function () {
         loadMultilinguality();
       else if (id == '#record-patterns')
         loadRecordPatterns();
+      else if (id == '#uniqueness')
+        loadUniqueness();
       else
         loadEntityCardinality('ProvidedCHO');
     }
@@ -393,6 +424,17 @@ function loadRecordPatterns() {
        $(this).tab('show');
      });
    });
+}
+
+function loadUniqueness() {
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>, 'version': '<?= $version ?>'};
+  $.get("newviz/uniqueness-ajax.php", query)
+  .done(function(data) {
+    $('#uniqueness-content').html(data.html);
+    $(".nav-tabs a").click(function() {
+      $(this).tab('show');
+    });
+  });
 }
 
 function loadEntityCardinality(entity) {
