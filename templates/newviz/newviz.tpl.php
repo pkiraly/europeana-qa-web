@@ -258,7 +258,7 @@
     </div>
     <div id="multilingual-score" class="tab-pane fade">
       <div class="row">
-        <h2>Multilingual score</h2>
+        <h2>Multilinguality metrics</h2>
         <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
         <p>
           <i class="fa fa-info-circle"></i>
