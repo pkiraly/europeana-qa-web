@@ -2,14 +2,16 @@
   <div>
     <h2><?= str_replace('_', ':', str_replace('proxy_', '', $field)) ?></h2>
     <table class="histogram uniqueness-statistics" id="<?= $field; ?>-uniqueness-statistics">
-      <caption>Basic statistics</caption>
+      <caption>Basic statistics &mdash; Note: it is an experimental table, subject of future changes</caption>
       <tr>
+        <th>n</th>
         <th>mean</th>
         <th>std. deviation</th>
         <th>minimum</th>
         <th>maximum</th>
       </tr>
       <tr>
+        <td class="udata"><?= number_format($hist->statistics[0]->n, 0, '.', ','); ?></td>
         <td class="udata"><?= $hist->statistics[0]->mean; ?></td>
         <td class="udata"><?= $hist->statistics[0]->sd; ?></td>
         <td class="udata" title="<?= $hist->statistics[0]->recMin; ?>"><a href="record.php?version=<?= $data->version ?>&id=<?= $hist->statistics[0]->recMin; ?>"><?= $hist->statistics[0]->min; ?></a></td>
@@ -30,7 +32,7 @@
         <?php } ?>
       </tr>
       <tr>
-        <td class="legend">range of occurences</td>
+        <td class="legend">repetitions</td>
         <?php for($i = 0; $i < count($hist->frequencies); $i++) { ?>
           <td class="udata"><?= $hist->frequencies[$i]->label; ?></td>
         <?php } ?>
