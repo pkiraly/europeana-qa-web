@@ -2,9 +2,9 @@
   <thead>
   <tr>
     <th></th>
-    <th colspan="6">Provider Proxy<br/>(original metadata)</th>
-    <th colspan="6">Europeana Proxy<br/>(Europeana enrichments)</th>
-    <th colspan="6">Full object</th>
+    <th colspan="5">Provider Proxy<br/>(original metadata)</th>
+    <th colspan="5">Europeana Proxy<br/>(Europeana enrichments)</th>
+    <th colspan="5">Full object</th>
   </tr>
   <tr>
     <th>Metric</th>
@@ -13,7 +13,6 @@
       <th class="rotate" title="standard deviation"><div><span>st.&nbsp;dev.</span></div></th>
       <th class="rotate details"><div><span>min</span></div></th>
       <th class="rotate details"><div><span>max</span></div></th>
-      <th class="rotate details"><div><span>range</span></div></th>
       <th class="rotate details"><div><span>median</span></div></th>
     <?php } ?>
   </tr>
@@ -32,7 +31,6 @@
         <td><?= conditional_format($proxies[$prefix]->{'std.dev'}); ?></td>
         <td class="details"><?= conditional_format($proxies[$prefix]->min); ?></td>
         <td class="details"><?= conditional_format($proxies[$prefix]->max); ?></td>
-        <td class="details"><?= conditional_format($proxies[$prefix]->range); ?></td>
         <td class="details"><?= conditional_format($proxies[$prefix]->median); ?></td>
       <?php } ?>
     </tr>
