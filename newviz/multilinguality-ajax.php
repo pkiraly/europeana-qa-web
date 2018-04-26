@@ -34,10 +34,10 @@ function getGenerixPrefixes() {
 
 function getFields() {
   return [
-    'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal',
     'taggedliterals' => 'Number of tagged literals',
     'distinctlanguages' => 'Number of distinct language tags',
-    'taggedliterals_per_language' => 'Number of tagged literals per language'
+    'taggedliterals_per_language' => 'Number of tagged literals per language',
+    'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
   ];
 }
 

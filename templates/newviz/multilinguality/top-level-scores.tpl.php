@@ -19,14 +19,15 @@
   </tr>
   </thead>
   <tbody>
-  <?php
+<?php
   $counter = 0;
-  foreach ($data->assocStat['generic'] as $metric => $proxies) {
-    $counter++
-    ?>
+  foreach ($data->fields as $metric => $label) {
+    $counter++;
+    $proxies = $data->assocStat['generic'][$metric]
+?>
     <tr>
-      <td class="metric"><a href="#<?= $proxies['provider']->_row ?>"><?= $data->fields[$metric] ?></a></td>
-      <?php foreach ($data->generic_prefixes as $prefix => $label) { ?>
+      <td class="metric"><?= $label ?></td>
+      <?php foreach ($data->generic_prefixes as $prefix => $label1) { ?>
         <td class="first"><?= conditional_format($proxies[$prefix]->mean); ?></td>
         <td><?= conditional_format($proxies[$prefix]->{'std.dev'}); ?></td>
         <td class="details"><?= conditional_format($proxies[$prefix]->min); ?></td>
