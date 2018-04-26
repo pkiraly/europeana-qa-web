@@ -144,8 +144,13 @@
     color: #999;
   }
 
-  table.uniqueness-histogram td.udata {
+  table.uniqueness-histogram td.udata,
+  table.uniqueness-statistics td.udata {
     min-width: 100px;
+  }
+
+  table.uniqueness-statistics th {
+    text-align: center;
   }
 
 </style>

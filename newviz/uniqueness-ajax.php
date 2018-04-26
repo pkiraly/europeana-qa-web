@@ -11,6 +11,7 @@ $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 $dataDir = '../' . getDataDir();
 
 $data = (object)[
+  'version' => getOrDefault('version'),
   'file' => getUniquenessFile($collectionId),
   'histogram' => getHistogram(getUniquenessFile($collectionId)),
   'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*']
