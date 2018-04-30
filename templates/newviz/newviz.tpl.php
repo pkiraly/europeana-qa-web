@@ -423,7 +423,7 @@ function showType(type) {
 function loadMultilinguality() {
   var entity = 'ProvidedCHO';
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity,
-    'version': '<?= $version ?>', 'development': <?= $development ?>
+    'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
@@ -436,7 +436,7 @@ function loadMultilinguality() {
 
 function loadRecordPatterns() {
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>,
-    'version': '<?= $version ?>', 'development': <?= $development ?>
+    'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
@@ -449,7 +449,7 @@ function loadRecordPatterns() {
 
 function loadUniqueness() {
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>,
-    'version': '<?= $version ?>', 'development': <?= $development ?>
+    'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/uniqueness-ajax.php", query)
   .done(function(data) {
@@ -462,7 +462,7 @@ function loadUniqueness() {
 
 function loadEntityCardinality(entity) {
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity,
-    'version': '<?= $version ?>', 'development': <?= $development ?>
+    'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/cardinality-ajax.php", query)
     .done(function(data) {

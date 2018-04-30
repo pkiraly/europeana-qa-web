@@ -31,19 +31,8 @@ if ($development) {
   $smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
   // standard PHP function
   $smarty->registerPlugin("modifier", "str_replace", "str_replace");
-  // custom functions
-  // $smarty->registerPlugin("modifier", "conditional_format", "conditional_format");
-  // $smarty->registerPlugin("modifier", "fieldLabel", "fieldLabel");
-
-  $pluginDirs = $smarty->getPluginsDir();
-  $dir = [];
-  foreach ($pluginDirs as $d) {
-    $dir[] = ['dir' => $d, 'exist' => file_exists($d)];
-  }
-  // $pluginDirs[] = ;
 
   $smarty->assign('data', $data);
-  // $dir = $smarty->getPluginsDir();
   $html = $smarty->fetch('top-level-scores.smarty.tpl');
 } else {
   $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
@@ -51,7 +40,6 @@ if ($development) {
 
 header("Content-type: application/json");
 echo json_encode([
-  'dir' => $dir,
   'html' => $html
 ]);
 
@@ -135,7 +123,6 @@ function getLanguageDistribution() {
   }
   return $languageDistribution;
 }
-
 
 function getLabel($key) {
   $label = $key;
