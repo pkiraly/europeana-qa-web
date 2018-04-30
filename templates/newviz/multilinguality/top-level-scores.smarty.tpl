@@ -75,14 +75,14 @@
       {strip}
       {foreach $data->assocStat['specific'] as $field => $metrics}
         <tr>
-          <td>{$field|str_replace:'_':':'}</td>
+          <td>{$field|fieldlabel}</td>
           {foreach $metrics as $metric => $objects}
             {foreach $objects as $object_name => $object}
               <td class="numeric" title="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|range: $object->range|median: {if isset($object->median)}{$object->median}{else}0{/if}">
               {if ($object->mean == 'NaN')}
                 <span style="color:#999">n/a</span>
               {else}
-                {$object->mean|conditional_format:FALSE:TRUE:4}
+                {$object->mean|conditional_format:FALSE:TRUE:3}
               {/if}
               </td>
             {/foreach}
@@ -99,7 +99,7 @@
         {strip}
         <select id="language-distribution-selector">
           {foreach $data->languageDistribution as $field => $metrics}
-            <option value="{$field}">{$field|fieldLabel}</option>
+            <option value="{$field}">{$field|fieldlabel}</option>
           {/foreach}
         </select>
         {/strip}

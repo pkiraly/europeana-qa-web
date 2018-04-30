@@ -32,14 +32,18 @@ if ($development) {
   // standard PHP function
   $smarty->registerPlugin("modifier", "str_replace", "str_replace");
   // custom functions
-  $smarty->registerPlugin("modifier", "conditional_format", "conditional_format");
-  $smarty->registerPlugin("modifier", "fieldLabel", "fieldLabel");
+  // $smarty->registerPlugin("modifier", "conditional_format", "conditional_format");
+  // $smarty->registerPlugin("modifier", "fieldLabel", "fieldLabel");
 
-  // $pluginDirs = $smarty->getPluginsDir();
+  $pluginDirs = $smarty->getPluginsDir();
+  $dir = [];
+  foreach ($pluginDirs as $d) {
+    $dir[] = ['dir' => $d, 'exist' => file_exists($d)];
+  }
   // $pluginDirs[] = ;
 
   $smarty->assign('data', $data);
-  $dir = $smarty->getPluginsDir();
+  // $dir = $smarty->getPluginsDir();
   $html = $smarty->fetch('top-level-scores.smarty.tpl');
 } else {
   $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
