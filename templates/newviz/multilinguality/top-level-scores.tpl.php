@@ -39,7 +39,7 @@
 </table>
 
 <ul class="nav nav-tabs" id="multilingual-details-tab">
-  <li class="active"><a href="#all-fields">Field-level details</a></li>
+  <li class="active"><a href="#all-fields">Field-level details for the table above</a></li>
   <li><a href="#individual-fields">Distribution of language tags per field</a></li>
 </ul>
 <div class="tab-content">
