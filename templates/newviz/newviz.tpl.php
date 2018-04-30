@@ -206,8 +206,10 @@
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#cardinality-score">Frequency</a></li>
     <li><a href="#multilingual-score">Multilinguality</a></li>
+<?php if ($development) { ?>
     <li><a href="#record-patterns">Record patterns</a></li>
     <li><a href="#uniqueness">Uniqueness</a></li>
+<?php } ?>
   </ul>
   <div class="tab-content">
     <div id="cardinality-score" class="tab-pane active">
@@ -275,6 +277,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
       </div>
     </div>
+<?php if ($development) { ?>
     <div id="record-patterns" class="tab-pane fade">
       <div class="row">
         <h2>Record patterns</h2>
@@ -301,6 +304,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12" id="uniqueness-content"></div>
       </div>
     </div>
+<?php } ?>
   </div>
   <footer>
     <p>
