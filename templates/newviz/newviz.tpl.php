@@ -262,7 +262,15 @@
         <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records</p>
         <p>
           <i class="fa fa-info-circle"></i>
-          The table shows the number of language tags and literals tagged with a language in a given data set.
+          The multilingual metrics quantify multilingual information in metadata. For now, we calculate the
+          number and diversity of language tags (e.g. @en, @fr) that are used to indicate the language of
+          metadata values. Europeana encourages the use of language tags by providers to
+
+          <ul>
+            <li>improve search and browsing functionalities across languages</li>
+            <li>to identify the language of metadata and show the preferred language version of
+              metadata to users</li>
+          </ul>
         </p>
         <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
       </div>

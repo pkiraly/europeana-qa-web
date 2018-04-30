@@ -36,7 +36,7 @@ function getFields() {
   return [
     'taggedliterals' => 'Number of tagged literals',
     'distinctlanguages' => 'Number of distinct language tags',
-    'taggedliterals_per_language' => 'Number of tagged literals per distinct language',
+    'taggedliterals_per_language' => 'Number of tagged literals per language tag',
     'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
     //                          'Average number of language tags per property for which there is at least one language-tagged literal'
   ];

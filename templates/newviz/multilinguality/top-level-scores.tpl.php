@@ -27,11 +27,11 @@
     <tr>
       <td class="metric"><?= $label ?></td>
       <?php foreach ($data->generic_prefixes as $prefix => $label1) { ?>
-        <td class="first"><?= conditional_format($proxies[$prefix]->mean); ?></td>
-        <td><?= conditional_format($proxies[$prefix]->{'std.dev'}); ?></td>
-        <td class="details"><?= conditional_format($proxies[$prefix]->min); ?></td>
-        <td class="details"><?= conditional_format($proxies[$prefix]->max); ?></td>
-        <td class="details"><?= conditional_format($proxies[$prefix]->median); ?></td>
+        <td class="first"><?= conditional_format($proxies[$prefix]->mean, FALSE, FALSE, 1); ?></td>
+        <td><?= conditional_format($proxies[$prefix]->{'std.dev'}, FALSE, FALSE, 1); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->min, FALSE, FALSE, 1); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->max, FALSE, FALSE, 1); ?></td>
+        <td class="details"><?= conditional_format($proxies[$prefix]->median, FALSE, FALSE, 1); ?></td>
       <?php } ?>
     </tr>
   <?php } ?>
@@ -39,11 +39,72 @@
 </table>
 
 <ul class="nav nav-tabs" id="multilingual-details-tab">
-    <li class="active"><a href="#individual-fields">Distribution of language tags per field</a></li>
-    <li><a href="#all-fields">All fields (averages)</a></li>
+  <li class="active"><a href="#all-fields">Field-level details</a></li>
+  <li><a href="#individual-fields">Distribution of language tags per field</a></li>
 </ul>
 <div class="tab-content">
-  <div id="individual-fields" class="tab-pane active">
+  <div id="all-fields" class="tab-pane active">
+    <p>
+      <i class="fa fa-info-circle"></i>
+      Language tags introduced by the providers or fetched by dereferencing URIs to controlled vocabularies
+      provided in the original metadata can be found in the Provider Proxy.</p>
+
+    <p>Language tags added to metadata automatically through multilingual automatic enrichment by Europeana
+      are accounted for in the Europeana Proxy.</p>
+
+    <p>The table shows the <em>mean</em> of the number of language tags and literals tagged with a language
+      per record, in the selected set.</p>
+
+    <p><em>n/a</em> means that the particular field is not available in any record
+      in the collection.</p>
+    <table id="all-fields-table" class="table table-condensed table-striped tablesorter">
+      <thead>
+      <tr class="primary">
+        <th rowspan="2">field</th>
+        <th colspan="2" class="double">Number of tagged literals</th>
+        <th colspan="2" class="double">Number of distinct language tags</th>
+        <th colspan="2" class="double">Number of tagged literals per language tag</th>
+      </tr>
+      <tr class="secondary">
+        <th>Provider</th>
+        <th>Europeana</th>
+        <th>Provider</th>
+        <th>Europeana</th>
+        <th>Provider</th>
+        <th>Europeana</th>
+      </tr>
+      </thead>
+      <tbody>
+      <?php foreach ($data->assocStat['specific'] as $field => $metrics) { ?>
+        <tr>
+          <td><?= str_replace('_', ':', $field); ?></td>
+          <?php foreach ($metrics as $metric => $objects) { ?>
+            <?php foreach ($objects as $object_name => $object) { ?>
+              <td class="numeric" title="<?php
+              printf("mean: %f\nstandard deviation: %f\nmin: %f (%s)\nmax: %f (%s)\nrange: %f\nmedian: %f",
+                $object->mean,
+                (isset($object->{'std.dev'}) ? $object->{'std.dev'} : 0),
+                $object->min,
+                $object->recMin,
+                $object->max,
+                $object->recMax,
+                $object->range,
+                (isset($object->median) ? $object->median : 0)
+              ); ?>">
+                <?php if ($object->mean == 'NaN') { ?>
+                  <span style="color:#999">n/a</span>
+                <?php } else {
+                  echo conditional_format($object->mean, FALSE, TRUE, 4);
+                } ?>
+              </td>
+            <?php } ?>
+          <?php } ?>
+        </tr>
+      <?php } ?>
+      </tbody>
+    </table>
+  </div>
+  <div id="individual-fields" class="tab-pane">
     <div class="row">
       <form id="language-heatmap">
         <select id="language-distribution-selector">
@@ -62,10 +123,9 @@
 
       <p>
         <i class="fa fa-info-circle"></i>
-        This graphic shows you the diversity of language tags for a given field and their
-        distribution across a dataset. This visualization allows the exclusion of records
-        where the respective field is missing and/or records with the field is present but
-        without a language.
+        This graphic shows you the number and diversity of language tags for a given field and
+        the number of literals that have no language tag. This visualisation allows the exclusion
+        of fields where the field is present but without a language.
       </p>
 
       <div id="heatmap"></div>
@@ -180,63 +240,5 @@
         }
       </script>
     </div>
-  </div>
-  <div id="all-fields" class="tab-pane">
-
-    <p>
-      <i class="fa fa-info-circle"></i>
-      This table shows <em>average numbers</em> of tagged literals, distinct language tags and tagged literals
-      per language for both the Provider Proxy (the original metadata) and the Europeana Proxy (the
-      Europeana enrichments). <em>n/a</em> means that the particular field is not available in any record
-      in the collection.
-    </p>
-
-    <table id="all-fields-table" class="table table-condensed table-striped tablesorter">
-      <thead>
-      <tr class="primary">
-        <th rowspan="2">field</th>
-        <th colspan="2" class="double">Number of tagged literals</th>
-        <th colspan="2" class="double">Number of distinct language tags</th>
-        <th colspan="2" class="double">Number of tagged literals per language</th>
-      </tr>
-      <tr class="secondary">
-        <th>Provider</th>
-        <th>Europeana</th>
-        <th>Provider</th>
-        <th>Europeana</th>
-        <th>Provider</th>
-        <th>Europeana</th>
-      </tr>
-      </thead>
-      <tbody>
-      <?php foreach ($data->assocStat['specific'] as $field => $metrics) { ?>
-        <tr>
-          <td><?= $field ?></td>
-
-          <?php foreach ($metrics as $metric => $objects) { ?>
-            <?php foreach ($objects as $object_name => $object) { ?>
-              <td class="numeric" title="<?php
-                printf("mean: %f\nstandard deviation: %f\nmin: %f (%s)\nmax: %f (%s)\nrange: %f\nmedian: %f",
-                  $object->mean,
-                  (isset($object->{'std.dev'}) ? $object->{'std.dev'} : 0),
-                  $object->min,
-                  $object->recMin,
-                  $object->max,
-                  $object->recMax,
-                  $object->range,
-                  (isset($object->median) ? $object->median : 0)
-                ); ?>">
-              <?php if ($object->mean == 'NaN') { ?>
-                <span style="color:#999">n/a</span>
-              <?php } else {
-                echo conditional_format($object->mean, FALSE, TRUE, 4);
-              } ?>
-              </td>
-            <?php } ?>
-          <?php } ?>
-        </tr>
-      <?php } ?>
-      </tbody>
-    </table>
   </div>
 </div>
