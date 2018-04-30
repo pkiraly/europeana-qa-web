@@ -28,14 +28,18 @@ if ($development) {
   $smarty->setCompileDir(_SMARTY . '/templates_c/');
   $smarty->setConfigDir(_SMARTY . '/configs/');
   $smarty->setCacheDir(_SMARTY . '/cache/');
+  $smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
   // standard PHP function
   $smarty->registerPlugin("modifier", "str_replace", "str_replace");
   // custom functions
   $smarty->registerPlugin("modifier", "conditional_format", "conditional_format");
   $smarty->registerPlugin("modifier", "fieldLabel", "fieldLabel");
 
+  // $pluginDirs = $smarty->getPluginsDir();
+  // $pluginDirs[] = ;
+
   $smarty->assign('data', $data);
-  $dir = $smarty->getTemplateDir();
+  $dir = $smarty->getPluginsDir();
   $html = $smarty->fetch('top-level-scores.smarty.tpl');
 } else {
   $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
