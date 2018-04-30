@@ -2,8 +2,9 @@
 $configuration = parse_ini_file('../config.cfg');
 include_once('common.functions.php');
 include_once('../common/saturation-functions.php');
-$templateDir = '../templates/newviz/multilinguality/';
+$development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 
+$templateDir = '../templates/newviz/multilinguality/';
 $parameters = getParameters();
 $collectionId = $parameters->type . $parameters->id;
 $dataDir = '../' . getDataDir();
@@ -17,10 +18,32 @@ $data = (object)[
   'collectionId' => $collectionId
 ];
 
-$html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
+if ($development) {
+  define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
+  define('_SMARTY', getcwd() . '/../libs/_smarty/');
+  require_once(SMARTY_DIR . 'Smarty.class.php');
+  $smarty = new Smarty();
+
+  $smarty->setTemplateDir(getcwd() . '/' . $templateDir);
+  $smarty->setCompileDir(_SMARTY . '/templates_c/');
+  $smarty->setConfigDir(_SMARTY . '/configs/');
+  $smarty->setCacheDir(_SMARTY . '/cache/');
+  // standard PHP function
+  $smarty->registerPlugin("modifier", "str_replace", "str_replace");
+  // custom functions
+  $smarty->registerPlugin("modifier", "conditional_format", "conditional_format");
+  $smarty->registerPlugin("modifier", "fieldLabel", "fieldLabel");
+
+  $smarty->assign('data', $data);
+  $dir = $smarty->getTemplateDir();
+  $html = $smarty->fetch('top-level-scores.smarty.tpl');
+} else {
+  $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
+}
 
 header("Content-type: application/json");
 echo json_encode([
+  'dir' => $dir,
   'html' => $html
 ]);
 

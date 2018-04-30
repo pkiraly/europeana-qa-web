@@ -422,7 +422,9 @@ function showType(type) {
 
 function loadMultilinguality() {
   var entity = 'ProvidedCHO';
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity, 'version': '<?= $version ?>'};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity,
+    'version': '<?= $version ?>', 'development': <?= $development ?>
+  };
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
       $('#multilinguality-content').html(data.html);
@@ -433,7 +435,9 @@ function loadMultilinguality() {
 }
 
 function loadRecordPatterns() {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>, 'version': '<?= $version ?>'};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>,
+    'version': '<?= $version ?>', 'development': <?= $development ?>
+  };
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
      $('#record-patterns-content').html(data.html);
@@ -444,7 +448,9 @@ function loadRecordPatterns() {
 }
 
 function loadUniqueness() {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>, 'version': '<?= $version ?>'};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>,
+    'version': '<?= $version ?>', 'development': <?= $development ?>
+  };
   $.get("newviz/uniqueness-ajax.php", query)
   .done(function(data) {
     $('#uniqueness-content').html(data.html);
@@ -455,7 +461,9 @@ function loadUniqueness() {
 }
 
 function loadEntityCardinality(entity) {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity, 'version': '<?= $version ?>'};
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity,
+    'version': '<?= $version ?>', 'development': <?= $development ?>
+  };
   $.get("newviz/cardinality-ajax.php", query)
     .done(function(data) {
       var n = <?= $n ?>;
