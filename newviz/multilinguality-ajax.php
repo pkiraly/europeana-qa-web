@@ -18,25 +18,21 @@ $data = (object)[
   'collectionId' => $collectionId
 ];
 
-if ($development) {
-  define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
-  define('_SMARTY', getcwd() . '/../libs/_smarty/');
-  require_once(SMARTY_DIR . 'Smarty.class.php');
-  $smarty = new Smarty();
+define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
+define('_SMARTY', getcwd() . '/../libs/_smarty/');
+require_once(SMARTY_DIR . 'Smarty.class.php');
+$smarty = new Smarty();
 
-  $smarty->setTemplateDir(getcwd() . '/' . $templateDir);
-  $smarty->setCompileDir(_SMARTY . '/templates_c/');
-  $smarty->setConfigDir(_SMARTY . '/configs/');
-  $smarty->setCacheDir(_SMARTY . '/cache/');
-  $smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
-  // standard PHP function
-  $smarty->registerPlugin("modifier", "str_replace", "str_replace");
+$smarty->setTemplateDir(getcwd() . '/' . $templateDir);
+$smarty->setCompileDir(_SMARTY . '/templates_c/');
+$smarty->setConfigDir(_SMARTY . '/configs/');
+$smarty->setCacheDir(_SMARTY . '/cache/');
+$smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
+// standard PHP function
+$smarty->registerPlugin("modifier", "str_replace", "str_replace");
 
-  $smarty->assign('data', $data);
-  $html = $smarty->fetch('top-level-scores.smarty.tpl');
-} else {
-  $html = callTemplate($data, $templateDir . 'top-level-scores.tpl.php');
-}
+$smarty->assign('data', $data);
+$html = $smarty->fetch('top-level-scores.smarty.tpl');
 
 header("Content-type: application/json");
 echo json_encode([
@@ -137,36 +133,4 @@ function getLabel($key) {
   }
   $label = preg_replace('/_/', ':', $label);
   return $label;
-}
-
-function conditional_format($num, $minimize = FALSE, $toDouble = FALSE, $decimals = 2) {
-  if ($toDouble) {
-    $num = (double)$num;
-  } else {
-    $num = strstr($num, '.') ? (double)$num : (int)$num;
-  }
-  if (is_double($num)) {
-    $formatted = number_format($num, $decimals);
-    if ($minimize) {
-      $formatted = preg_replace('/\.$/', '', preg_replace('/0+$/', '', $formatted));
-    }
-    return $formatted;
-  }
-  return $num;
-}
-
-function fieldLabel($key) {
-  if ($key == 'aggregated')
-    return 'All fields';
-
-  $key = str_replace('_dc_', '/dc:', $key);
-  $key = str_replace('_dcterms_', '/dcterms:', $key);
-  $key = str_replace('_edm_', '/edm:', $key);
-  $key = str_replace('_ore_', '/ore:', $key);
-  $key = str_replace('_owl_', '/owl:', $key);
-  $key = str_replace('_skos_', '/skos:', $key);
-  $key = str_replace('_foaf_', '/foaf:', $key);
-  $key = str_replace('_rdaGr2_', '/rdaGr2:', $key);
-
-  return $key;
 }
