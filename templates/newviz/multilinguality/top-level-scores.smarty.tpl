@@ -84,7 +84,7 @@
               {else}
                 <span data-toggle="popover" title="details" data-content="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|range: {$object->range}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
                 {$object->mean|conditional_format:FALSE:TRUE:3}
-                </spana>
+                </span>
               {/if}
               </td>
             {/foreach}
