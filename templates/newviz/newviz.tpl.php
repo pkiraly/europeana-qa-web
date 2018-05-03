@@ -152,6 +152,11 @@
   table.uniqueness-statistics th {
     text-align: center;
   }
+  /* popups */
+  h3.popover-title {
+    padding: 10px !important;
+
+  }
 
 </style>
 </head>

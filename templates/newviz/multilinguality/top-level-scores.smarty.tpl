@@ -128,10 +128,18 @@
         var version = '{$data->version}';
         {literal}
         $(document).ready(function(){
-          $('[data-toggle="popover"]').each(function(e) {
+          $("[data-toggle='popover']").each(function() {
+            $(this).css('cursor', 'pointer');
+          });
+          $("[data-toggle='popover']").on('show.bs.popover', function(){
+            console.log($(this).attr('data-content'));
             var content = $(this).attr('data-content');
-            content = content.replace(/\|/g, "<br>\n");
-            content = content.replace(/\((.*?)\)/g, "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\">visit record</a>");
+            content = content
+            .replace(/\|/g, "<br>\n")
+            .replace(
+              /\((.*?)\)/g,
+              "→<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\">visit record</a>"
+            );
             $(this).attr('data-content', content);
             console.log($(this).attr('data-content'));
           });
