@@ -78,11 +78,13 @@
           <td>{$field|fieldlabel}</td>
           {foreach $metrics as $metric => $objects}
             {foreach $objects as $object_name => $object}
-              <td class="numeric" title="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|range: $object->range|median: {if isset($object->median)}{$object->median}{else}0{/if}">
+              <td class="numeric">
               {if ($object->mean == 'NaN')}
                 <span style="color:#999">n/a</span>
               {else}
+                <span data-toggle="popover" title="details" data-content="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|range: {$object->range}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
                 {$object->mean|conditional_format:FALSE:TRUE:3}
+                </spana>
               {/if}
               </td>
             {/foreach}
@@ -124,6 +126,18 @@
       <script type="text/javascript">
         var collectionId = '{$data->collectionId}';
         var version = '{$data->version}';
+        {literal}
+        $(document).ready(function(){
+          $('[data-toggle="popover"]').each(function(e) {
+            var content = $(this).attr('data-content');
+            content = content.replace(/\|/g, "<br>\n");
+            content = content.replace(/\((.*?)\)/g, "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\">visit record</a>");
+            $(this).attr('data-content', content);
+            console.log($(this).attr('data-content'));
+          });
+          $('[data-toggle="popover"]').popover({html: true});
+        });
+        {/literal}
       </script>
       <script type="text/javascript" src="/europeana-qa/js/multilinguality.treemap.js">
     </div>
