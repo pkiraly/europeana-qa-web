@@ -161,14 +161,15 @@
   div.tooltip {
     position: absolute;
     text-align: left;
-    width: 400px;
-    height: 200px;
+    max-width: 400px;
+    height: auto;
     padding: 2px;
     font: 12px sans-serif;
-    background: lightsteelblue;
+    background: #eee;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
+    padding: 10px;
   }
 
 </style>
