@@ -9,12 +9,16 @@ $parameters = getParameters();
 $collectionId = $parameters->type . $parameters->id;
 $dataDir = '../' . getDataDir();
 
+$languageDistribution = getLanguageDistribution();
+$fieldsByLanguageList = getFieldsByLanguageList($languageDistribution);
+
 $data = (object)[
   'version' => $version,
   'generic_prefixes' => getGenerixPrefixes(),
   'fields' => getFields(),
   'assocStat' => getSaturationStatistics(),
-  'languageDistribution' => getLanguageDistribution(),
+  'languageDistribution' => $languageDistribution,
+  'fieldsByLanguageList' => $fieldsByLanguageList,
   'collectionId' => $collectionId
 ];
 
@@ -118,6 +122,23 @@ function getLanguageDistribution() {
     $languageDistribution = json_decode(file_get_contents($languageDistributionFile));
   }
   return $languageDistribution;
+}
+
+function getFieldsByLanguageList($languageDistribution) {
+  $byLanguage = [];
+  foreach ($languageDistribution as $field => $fieldData) {
+    if ($field != 'aggregated') {
+      foreach ($fieldData as $language => $count) {
+        if ($language != 'no field instance' && $language != 'no language') {
+          if (!isset($byLanguage[$language])) {
+            $byLanguage[$language] = [];
+          }
+          $byLanguage[$language][] = $field;
+        }
+      }
+    }
+  }
+  return $byLanguage;
 }
 
 function getLabel($key) {

@@ -158,6 +158,19 @@
 
   }
 
+  div.tooltip {
+    position: absolute;
+    text-align: left;
+    width: 400px;
+    height: 200px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
 </style>
 </head>
 <body>
