@@ -159,9 +159,11 @@
   }
 
   div.tooltip {
-    position: absolute;
+    position: relative;
     text-align: left;
-    max-width: 400px;
+    left: 980px;
+    top: 0px;
+    width: 400px;
     height: auto;
     padding: 2px;
     font: 12px sans-serif;

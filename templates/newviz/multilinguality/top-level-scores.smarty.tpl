@@ -121,7 +121,11 @@
         of fields where the field is present but without a language.
       </p>
 
-      <div id="heatmap"></div>
+      <div>
+        <div id="heatmap"></div>
+        <div id="tooltip"></div>
+      </div>
+
       <script id="fields-by-language-data" type="application/json">{$data->fieldsByLanguageList|json_encode}</script>
       <script id="language-distribution-data" type="application/json">{$data->languageDistribution|json_encode}</script>
       <script type="text/javascript">
@@ -153,26 +157,6 @@
         {/literal}
       </script>
       <script type="text/javascript" src="/europeana-qa/js/multilinguality.treemap.js">
-      <script type="text/javascript">
-        {literal}
-        $(document).ready(function(){
-          $("[data-toggle='treemap-popover']").on('show.bs.popover', function(){
-            console.log($(this).attr('data-content'));
-            var content = $(this).attr('data-content');
-            content = content
-            .replace(/\|/g, "<br>\n")
-            .replace(
-              /\((.*?)\)/g,
-              "→<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\">visit record</a>"
-            );
-            $(this).attr('data-content', content);
-            console.log($(this).attr('data-content'));
-          });
-
-          $('[data-toggle="treemap-popover"]').popover({html: true});
-        });
-        {/literal}
-      </script>
     </div>
   </div>
 </div>
