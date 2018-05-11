@@ -17,7 +17,11 @@ $data = (object)[
   'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*']
 ];
 
-$html = callTemplate($data, $templateDir . 'uniqueness-histogram.tpl.php');
+$smarty = createSmarty($templateDir);
+$smarty->assign('data', $data);
+$html = $smarty->fetch('uniqueness-histogram.smarty.tpl');
+
+// $html = callTemplate($data, $templateDir . 'uniqueness-histogram.tpl.php');
 
 header("Content-type: application/json");
 echo json_encode([

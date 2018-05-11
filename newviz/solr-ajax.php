@@ -7,7 +7,7 @@ $fq = $_GET['fq'];
 $rows = isset($_GET['rows']) ? (int)$_GET['rows'] : 0;
 
 $url = $baseUrl . '/select'
-  . '?q=' . $q
+  . '?q=' . urlencode($q)
   . '&fq=' . $fq;
 
 if ($rows > 0) {

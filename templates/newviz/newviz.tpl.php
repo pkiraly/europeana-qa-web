@@ -615,14 +615,65 @@ function loadEntityCardinality(entity) {
       $('select[name=comparision-selector]').on('change', function(){
         var thisField = this.id.replace('-comparision-selector', '');
         var otherField = this.value;
+        console.log('thisField: ' + thisField + ', otherField: ' + otherField);
         var el = $('#' + otherField + '-histogram');
         var html = "";
-        if (typeof el.html() != "undefined")
+        if (typeof el.html() != "undefined") {
           html = el.clone().wrap('<div>').parent().html();
           $('#' + thisField + '-comparision-container').html(html);
+          $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
+            processHistogramPopoverContent($(this));
+          });
+          $('[data-toggle="histogram-popover"]').popover({html: true});
+        }
       });
+
+      $("[data-toggle='histogram-popover']").each(function() {
+        $(this).css('cursor', 'pointer');
+        $(this).css('color', '#23527c');
+      });
+      $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
+        processHistogramPopoverContent($(this));
+      });
+      $('[data-toggle="histogram-popover"]').popover({html: true});
     });
 }
+
+function processHistogramPopoverContent(element) {
+  var content = element.attr('data-content');
+  if (content.substring(0, 1) != '@') {
+    content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
+  }
+  console.log(content);
+  if (content.substring(0, 1) == '@') {
+    var parts = content.substring(1).split('|');
+
+    var field = parts[0];
+    var q = field + ':' + parts[1];
+    var range = parts[2];
+    var fq = parts[3];
+    var targetId = 'histogram-range-' + field + '-' + range;
+    var html = '<span id="' + targetId + '" data-content="' + content + '"></span>';
+    element.attr('data-content', html);
+
+    var query = {'q': q, 'fq': fq, 'rows': 10};
+    $.get('newviz/solr-ajax.php', query)
+    .done(function(data){
+      var portalUrl = 'https://www.europeana.eu/portal/en/record';
+      var items = new Array();
+      for (i in data.ids) {
+        var recordId = data.ids[i];
+        var item = '<a target="_blank" href="' + portalUrl + recordId + '.json"'
+          + ' title="record id: ' + recordId + '">visit record</a>';
+        items.push('<li>' + item + '</li>');
+      }
+      var content = '<ul>' + items.join('') + '</ul>';
+      $('#' + targetId).html(content);
+    });
+  }
+}
+
+
 $("a.qa-show-details").click(function (event) {
   event.preventDefault();
   id = $(this).attr('class').replace('qa-show-details ', '#details-');

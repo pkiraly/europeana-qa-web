@@ -15,7 +15,11 @@ $data = (object)[
   'profiles' => getPatterns($collectionId, $count),
 ];
 
-$html = callTemplate($data, $templateDir . 'record-patterns.tpl.php');
+$smarty = createSmarty($templateDir);
+$smarty->assign('data', $data);
+$html = $smarty->fetch('record-patterns.smarty.tpl');
+
+// $html = callTemplate($data, $templateDir . 'record-patterns.tpl.php');
 
 header("Content-type: application/json");
 echo json_encode([

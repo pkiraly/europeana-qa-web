@@ -55,3 +55,24 @@ function callTemplate($data, $file) {
   ob_end_clean();
   return $content;
 }
+
+function createSmarty($templateDir) {
+  define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
+  define('_SMARTY', getcwd() . '/../libs/_smarty/');
+
+  require_once(SMARTY_DIR . 'Smarty.class.php');
+
+  $smarty = new Smarty();
+
+  $smarty->setTemplateDir(getcwd() . '/' . $templateDir);
+  $smarty->setCompileDir(_SMARTY . '/templates_c/');
+  $smarty->setConfigDir(_SMARTY . '/configs/');
+  $smarty->setCacheDir(_SMARTY . '/cache/');
+  $smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
+
+  // standard PHP function
+  $smarty->registerPlugin("modifier", "str_replace", "str_replace");
+  $smarty->registerPlugin("modifier", "number_format", "number_format");
+
+  return $smarty;
+}

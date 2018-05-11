@@ -22,6 +22,8 @@ $data = (object)[
   'collectionId' => $collectionId
 ];
 
+$smarty = createSmarty($templateDir);
+/*
 define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
 define('_SMARTY', getcwd() . '/../libs/_smarty/');
 require_once(SMARTY_DIR . 'Smarty.class.php');
@@ -34,6 +36,7 @@ $smarty->setCacheDir(_SMARTY . '/cache/');
 $smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
 // standard PHP function
 $smarty->registerPlugin("modifier", "str_replace", "str_replace");
+*/
 
 $smarty->assign('data', $data);
 $html = $smarty->fetch('top-level-scores.smarty.tpl');

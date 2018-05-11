@@ -24,6 +24,23 @@ if (isset($_GET['entity']) && in_array($_GET['entity'], $allowedEntities)) {
 
 $dataDir = '../' . getDataDir();
 
+$smarty = createSmarty($templateDir);
+/*
+define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
+define('_SMARTY', getcwd() . '/../libs/_smarty/');
+require_once(SMARTY_DIR . 'Smarty.class.php');
+$smarty = new Smarty();
+
+$smarty->setTemplateDir(getcwd() . '/' . $templateDir);
+$smarty->setCompileDir(_SMARTY . '/templates_c/');
+$smarty->setConfigDir(_SMARTY . '/configs/');
+$smarty->setCacheDir(_SMARTY . '/cache/');
+$smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
+// standard PHP function
+$smarty->registerPlugin("modifier", "str_replace", "str_replace");
+$smarty->registerPlugin("modifier", "number_format", "number_format");
+*/
+
 $statistics = new stdClass();
 readStatistics($type, $id, $entity);
 
@@ -61,7 +78,7 @@ function readFreqFileExistence($type, $id, $entityFields) {
 }
 
 function readCardinality($type, $id, $entityFields) {
-  global $dataDir, $templateDir, $statistics;
+  global $dataDir, $templateDir, $statistics, $smarty;
 
   $statistics->cardinalityFile = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.cardinality.json';
   $statistics->cardinalityFileExists = file_exists($statistics->cardinalityFile);
@@ -81,7 +98,9 @@ function readCardinality($type, $id, $entityFields) {
         $field = $entry->field;
         unset($entry->field);
         $statistics->cardinality->{$field} = $entry;
-        $statistics->cardinality->{$field}->html = callTemplate($entry, $templateDir . 'newviz-cardinality.tpl.php');
+        $smarty->assign('cardinality', $entry);
+        $statistics->cardinality->{$field}->html = $smarty->fetch('cardinality.smarty.tpl');
+
         if ($statistics->cardinalityMax < $entry->sum) {
           $statistics->cardinalityMax = $entry->sum;
           $statistics->cardinalityMaxField = $field;
@@ -92,7 +111,7 @@ function readCardinality($type, $id, $entityFields) {
 }
 
 function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
-  global $dataDir, $templateDir, $statistics;
+  global $dataDir, $templateDir, $statistics, $smarty;
 
   $statistics->frequencyTableFile = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.frequency.table.json';
   $data = new stdClass();
@@ -109,9 +128,12 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
           $data->entityCount = $statistics->entityCount;
         } else if (in_array($key, $entityFields)) {
           $data->values = $value;
+          $smarty->assign('frequencyTable', $data);
+          $html = $smarty->fetch('frequency-table.smarty.tpl');
+
           $statistics->frequencyTable->{$key} = [
             'values' => $value,
-            'html' => callTemplate($data, $templateDir . 'newviz-frequency-table.tpl.php'),
+            'html' => $html,
           ];
         }
       }
@@ -122,7 +144,7 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
 }
 
 function readHistogram($type, $id, $entityFields) {
-  global $dataDir, $templateDir, $statistics;
+  global $dataDir, $templateDir, $statistics, $smarty;
 
   // $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
   $statistics->histFile = $dataDir . '/json/' . $type . $id . '/' .  $type . $id . '.cardinality.histogram.json';
@@ -131,16 +153,22 @@ function readHistogram($type, $id, $entityFields) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     if (!isset($statistics->histograms))
       $statistics->histograms = (object)[];
+    $fq = sprintf("%s:%d", ($type == 'c' ? 'collection_i' : 'provider_i'), $id);
     foreach ($histograms as $key => $values) {
       $needle = str_replace('crd_', '', $key);
       if (in_array($needle, $entityFields)) {
         $data = (object)[
+          'solrField' => toSolrField($key),
+          'fq' => $fq,
           'field' => $needle,
           'values' => $values
         ];
+        $smarty->assign('histogram', $data);
+        $html = $smarty->fetch('histogram.smarty.tpl');
+
         $statistics->histograms->{$needle} = [
           'values' => $values,
-          'html' => callTemplate($data, $templateDir . 'newviz-histogram.tpl.php'),
+          'html' => $html,
         ];
       }
       // unset($statistics->histograms->{$key});
@@ -148,6 +176,26 @@ function readHistogram($type, $id, $entityFields) {
   } else {
     $statistics->histograms = FALSE;
   }
+}
+
+function toSolrField($key) {
+  $key = str_replace('proxy', 'Proxy', $key);
+  $key = str_replace('agent', 'Agent', $key);
+  $key = str_replace('concept', 'Concept', $key);
+  $key = str_replace('place', 'Place', $key);
+  $key = str_replace('timespan', 'Timespan', $key);
+  $key = str_replace('haspart', 'hasPart', $key);
+  $key = str_replace('ispartof', 'isPartOf', $key);
+  $key = str_replace('isnextinsequence', 'isNextInSequence', $key);
+  $key = str_replace('europeanaproxy', 'europeanaProxy', $key);
+  $key = str_replace('usertag', 'userTag', $key);
+  $key = str_replace('proxyin', 'ProxyIn', $key);
+  $key = str_replace('proxyfor', 'ProxyFor', $key);
+  $key = str_replace('conformsto', 'conformsTo', $key);
+  $key = str_replace('hasformat', 'hasFormat', $key);
+  $key = str_replace('hasversion', 'ProxyFor', $key);
+
+  return $key . '_f';
 }
 
 function readMinMaxRecords($type, $id, $entityFields) {
