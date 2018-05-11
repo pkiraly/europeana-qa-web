@@ -8,8 +8,8 @@ $('#showNoInstances').on('change', function () {
   displayLanguageTreemap();
 });
 
-var margin = {top: 40, right: 10, bottom: 10, left: 10},
-  width  = 960 - margin.left - margin.right,
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+  width  = 850 - margin.left - margin.right,
   height = 500 - margin.top  - margin.bottom;
 
 var color = d3.scale.category20c();

@@ -158,20 +158,27 @@
 
   }
 
-  div.tooltip {
+  div#tooltip {
     position: relative;
+    float: right;
     text-align: left;
-    left: 980px;
+    /* left: 980px; */
     top: 0px;
-    width: 400px;
+    width: 300px;
     height: auto;
-    padding: 2px;
     font: 12px sans-serif;
     background: #eee;
     border: 0px;
     border-radius: 8px;
-    pointer-events: none;
+    /* pointer-events: none; */
+    margin: 10px;
     padding: 10px;
+  }
+
+  div#tooltip ul {
+    margin-left: 0;
+    padding-left: 20px;
+    list-style-type: square
   }
 
 </style>
