@@ -1,0 +1,156 @@
+.chart {
+  width: 300px;
+  max-width: 300px;
+  background-color: #ccc;
+  border-bottom: 1px solid maroon;
+}
+.chart div {
+  background-color: #428bca;
+  color: white;
+  text-align: right;
+  padding-right: 2px;
+  font-size: 80%;
+}
+.row div h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+th.first, td.first {
+  border-left: 1px solid #cccccc;
+}
+/*
+th.statistic {
+    -webkit-transform:rotate(-90deg);
+    transform-origin: left bottom 0;
+}
+*/
+.table-header-rotated {
+  border-collapse: collapse;
+}
+.table-header-rotated td {
+  width: 30px;
+}
+.table-header-rotated th {
+  padding: 5px 10px;
+
+}
+.table-header-rotated td {
+  text-align: center;
+  padding: 10px 5px;
+  border: 1px solid #ccc;
+}
+.table-header-rotated th.rotate {
+  height: 50px;
+  white-space: nowrap;
+}
+.table-header-rotated th.rotate > div {
+  -webkit-transform: translate(25px, 51px) rotate(315deg);
+  transform: translate(25px, 51px) rotate(315deg);
+  width: 30px;
+}
+.table-header-rotated th.rotate > div > span {
+  /* border-bottom: 1px solid #ccc; */
+  padding: 5px 10px;
+  left: 10px;
+  top: -55px;
+  position: relative;
+}
+.table-header-rotated th.row-header {
+  padding: 0 10px;
+  border-bottom: 1px solid #ccc;
+}
+.field-details {
+  padding-bottom: 15px;
+}
+table#generic td.level {
+  text-align: left;
+}
+table#generic td.metric {
+  width: 250px;
+  text-align: left;
+  min-width: 270px;
+}
+
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+#collection-selector {
+  margin: 10px;
+}
+
+select#cid, select#did {
+  width: 500px;
+}
+select#cid option, select#did option {
+  overflow: hidden;
+  max-width: 300px;
+  min-width: 300px;
+  width: 300px !important;
+}
+
+#all-fields-table td.numeric {
+  text-align: right;
+  padding-right: 40px;
+}
+
+#all-fields-table tr.secondary th {
+  text-align: center;
+}
+
+#all-fields-table tr.primary th.double {
+  text-align: center;
+}
+
+#all-fields-table span.nan {
+  color: #999;
+}
+
+#all-fields {
+  padding-top: 20px;
+}
+
+#generic td.details, #generic th.details {
+  color: #999;
+}
+
+table.uniqueness-histogram td.udata,
+table.uniqueness-statistics td.udata {
+  min-width: 100px;
+}
+
+table.uniqueness-statistics th {
+  text-align: center;
+}
+
+/* popups */
+h3.popover-title {
+  padding: 10px !important;
+}
+
+div#tooltip {
+  position: relative;
+  float: right;
+  text-align: left;
+  /* left: 980px; */
+  top: 0px;
+  width: 300px;
+  height: auto;
+  font: 12px sans-serif;
+  background: #eee;
+  border: 0px;
+  border-radius: 8px;
+  /* pointer-events: none; */
+  margin: 10px;
+  padding: 10px;
+}
+
+div#tooltip ul {
+  margin-left: 0;
+  padding-left: 20px;
+  list-style-type: square
+}
