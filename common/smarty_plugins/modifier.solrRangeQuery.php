@@ -9,9 +9,9 @@
  * -------------------------------------------------------------
  */
 function smarty_modifier_solrRangeQuery($string) {
-  list($from,$to) = explode('-', $string);
-  if (isset($to)) {
-    $string = sprintf("[%s TO %s]", $from, $to);
+  $parts = explode('-', $string);
+  if (count($parts) == 2) {
+    $string = sprintf("[%s TO %s]", $parts[0], $parts[1]);
   }
 
   return $string;

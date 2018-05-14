@@ -14,7 +14,8 @@ $data = (object)[
   'version' => getOrDefault('version'),
   'file' => getUniquenessFile($collectionId),
   'histogram' => getHistogram(getUniquenessFile($collectionId)),
-  'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*']
+  'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*'],
+  'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
 ];
 
 $smarty = createSmarty($templateDir);
