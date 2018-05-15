@@ -57,8 +57,11 @@ function callTemplate($data, $file) {
 }
 
 function createSmarty($templateDir) {
-  define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
-  define('_SMARTY', getcwd() . '/../libs/_smarty/');
+  define('APPLICATION', 'europeana-qa');
+  define('APPLICATION_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . APPLICATION);
+
+  define('SMARTY_DIR', APPLICATION_DIR . '/libs/smarty-3.1.32/libs/');
+  define('_SMARTY', APPLICATION_DIR . '/libs/_smarty/');
 
   require_once(SMARTY_DIR . 'Smarty.class.php');
 
@@ -68,7 +71,7 @@ function createSmarty($templateDir) {
   $smarty->setCompileDir(_SMARTY . '/templates_c/');
   $smarty->setConfigDir(_SMARTY . '/configs/');
   $smarty->setCacheDir(_SMARTY . '/cache/');
-  $smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
+  $smarty->addPluginsDir(APPLICATION_DIR . '/common/smarty_plugins/');
 
   // standard PHP function
   $smarty->registerPlugin("modifier", "str_replace", "str_replace");

@@ -1,7 +1,9 @@
 <?php
 $configuration = parse_ini_file('config.cfg');
 include_once('common/common-functions.php');
+include_once('newviz/common.functions.php');
 
+$templateDir = 'templates/newviz';
 $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 if (isset($_GET['id'])) {
@@ -52,30 +54,25 @@ if (file_exists($jsonFreqFileName)) {
 $datasets = retrieveDatasets($type, $fragment);
 $dataproviders = retrieveDataproviders($type, $fragment);
 
-ob_start();
-include('templates/newviz/newviz.tpl.php');
-$content = ob_get_contents();
-ob_end_clean();
+$smarty = createSmarty($templateDir);
+$smarty->assign('rand', rand());
+$smarty->assign('collectionId', $collectionId);
+$smarty->assign('title', $title);
+$smarty->assign('type', $type);
+$smarty->assign('fragment', $fragment);
+$smarty->assign('id', $id);
+$smarty->assign('collectionId', $collectionId);
+$smarty->assign('portalUrl', getPortalUrl($type, $collectionId));
+$smarty->assign('version', $version);
+$smarty->assign('development', $development);
+$smarty->assign('configuration', $configuration);
 
-echo $content;
+$smarty->assign('datasets', $datasets);
+$smarty->assign('dataproviders', $dataproviders);
+$smarty->assign('entityCounts', $entityCounts);
+$smarty->assign('n', $n);
 
-/*
-if (isset($_GET['id'])) {
-  echo $content;
-} else {
-  file_put_contents($id . '.html', $content);
-}
-*/
-
-function parseId($id) {
-  $type = substr($id, 0, 1);
-  if (in_array($type, ['c', 'd'])) {
-    $id = substr($id, 1);
-  } else {
-    $type = 'c';
-  }
-  return [$id, $type];
-}
+$smarty->display('newviz.smarty.tpl');
 
 function retrieveDatasets($type, $fragment) {
   global $dataDir;

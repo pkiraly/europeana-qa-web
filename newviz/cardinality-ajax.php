@@ -49,13 +49,14 @@ foreach ($fields[$entity] as $field => $label) {
 
   if ($n->hasFrequency) {
     $freq = $statistics->frequencyTable->{$key};
+    $n->freqValues = json_encode($freq['values']);
     $n->zeros = isset($freq['values']->{'0'})
            ? (int)$freq['values']->{'0'}[0]
            : (int)$statistics->entityCount;
     $n->nonZeros = isset($freq['values']->{'1'})
            ? (int)$freq['values']->{'1'}[0]
-           : (int)$statistics->entityCount - (int)$n->zeros;
-    $n->percent = $n->nonZeros / (int)$statistics->entityCount;
+           : max($statistics->entityCount - $n->zeros, 0);
+    $n->percent = $n->nonZeros / $statistics->entityCount;
     $n->width = (int)(300 * $n->percent);
 
     $n->freqHtml = $freq['html'];
@@ -293,4 +294,3 @@ function readImageFiles($type, $id, $entityFields) {
     ];
   }
 }
-
