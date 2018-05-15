@@ -331,127 +331,14 @@ function loadUniqueness() {
 }
 
 function loadEntityCardinality(entity) {
+  var development = <?= (int)$development ?>;
   var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'entity': entity,
     'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/cardinality-ajax.php", query)
     .done(function(data) {
-      var n = <?= $n ?>;
-      var count = data.statistics.entityCount === null
-                ? 0
-                : data.statistics.entityCount.toLocaleString('en-US');
-      var text = '<h3 class="entity-name">' + data.entity + '</h3>'
-               + '<p>number of records: ' + count + '</p>'
-               + '<p>version: ' + data.version + '</p>';
+      $('#cardinality-content').html(data);
 
-      var key;
-      for (var field in data['fields']) {
-        var key = field.toLowerCase();
-        if (typeof data.statistics.frequencyTable[key] === 'undefined')
-          continue;
-
-        var mandatory = !(typeof data.mandatory[key] === 'undefined');
-        var mandatoryIcon = '';
-        if (mandatory) {
-          if (data.mandatory[key] == 'black')
-            mandatoryIcon = 'check';
-          else if (data.mandatory[key] == 'blue')
-            mandatoryIcon = 'arrow-right';
-          else if (data.mandatory[key] == 'red')
-            mandatoryIcon = 'circle-o';
-          else if (data.mandatory[key] == 'green')
-            mandatoryIcon = 'gear';
-          else if (data.mandatory[key] == 'plus')
-            mandatoryIcon = 'plus';
-        }
-
-        text += '<div class="row">';
-        text += '<div class="col-lg-5 newviz"><h3'
-             + (mandatory ? ' class="mandatory-' + data.mandatory[key] + '"' : '')
-             + '>'
-             + (mandatory ? '<i class="fa fa-' + mandatoryIcon + ' mandatory-icon" aria-hidden="true"></i>' : '')
-             + data.fields[field]
-        text += ' <a class="qa-show-details ' + key + '" href="#">'
-             +  '<i class="fa fa-angle-down" aria-hidden="true"></i></a>'
-             + '</h3></div>';
-        if (data.statistics.frequencyTable[key]) {
-          var freq = data.statistics.frequencyTable[key];
-          var zeros    = ("0" in freq.values && !isNaN(freq.values["0"])) ? freq.values["0"] : n;
-          var nonZeros = ("1" in freq.values && !isNaN(freq.values["1"])) ? freq.values["1"] : n - zeros;
-          var percent = nonZeros / n;
-          var width = parseInt(300 * percent);
-          text += '<div class="col-lg-6">';
-          text += '<div class="chart"><div style="width: ' + width + 'px;">'
-               + nonZeros.toLocaleString('en-US')
-               + '</div></div>';
-          text += '</div>';
-        }
-        // text += '<div class="col-lg-3">';
-        // text += '</div>';
-        text += '</div>';
-
-        text += '<div class="row">';
-        text += '<div class="col-sm-1 col-md-1 col-lg-1"></div>';
-        text += '<div class="col-sm-11 col-md-11 col-lg-11">';
-
-        text += '<div class="qa-details field-details" id="details-' + key + '">';
-
-        // cardinality bar
-        if (data.statistics.cardinality[key]) {
-          /*
-          var cardinality = data.statistics.cardinality[key];
-          var cardinalityPercent = cardinality.sum / data.statistics.cardinalityMax;
-          var cardinalityWidth = parseInt(300 * cardinalityPercent);
-          text += '<h3>Cardinality</h3>';
-          text += '<div class="chart"><div style="width: ' + cardinalityWidth + 'px;">'
-               + cardinality.sum.toLocaleString('en-US')
-               + '</div></div>';
-          text += '<p>This bar is proportional to the maximum cardinality value of this entity, which is of '
-               + data.fields[data.statistics.cardinalityMaxField] + '</p>';
-          */
-        }
-        // frequency table
-        if (data.statistics.frequencyTable[key]) {
-          text += data.statistics.frequencyTable[key].html;
-        }
-        // cardinality statistics
-        if (data.statistics.cardinality[key]) {
-          text += data.statistics.cardinality[key].html;
-        }
-        // cardinality histogram
-        if (data.statistics.histograms[key]) {
-          text += data.statistics.histograms[key].html;
-        }
-        if (data.statistics.images[key]['frequency'].exists) {
-          text += data.statistics.images[key]['frequency'].html;
-        }
-        // cardinality images
-        if (data.statistics.images[key]['cardinality'].exists) {
-          // text += data.statistics.images[key]['cardinality'].html;
-        }
-        if (data.statistics.minMaxRecords[key]) {
-          text += '<ul>'
-               + '<li><a href="record.php?id=' + data.statistics.minMaxRecords[key].recMax + '">Best Record</a></li>'
-               + '<li><a href="record.php?id=' + data.statistics.minMaxRecords[key].recMin + '">Worst Record</a></li>'
-               + '</ul>'
-        }
-        text += 'Frequency compared to <select name="comparision-selector" id="' + field.toLowerCase() + '-comparision-selector">';
-        text += '<option>--select a field--</option>';
-        var otherField;
-        for (otherField in data.fields) {
-          if (otherField != field)
-            text += '<option value="' + otherField.toLowerCase() + '">' + data.fields[otherField] + '</option>';
-        }
-        text += '</select>';
-        text += '<div id="' + field.toLowerCase() + '-comparision-container"></div>';
-        // text += '<li>' + data['fields'][key] + ' (' + key + ')</li>';
-        text += '</div>'; // details
-        text += '</div>'; // cell
-        text += '</div>'; // row
-      }
-      // text += '</ul>';
-
-      $('#cardinality-content').html(text);
       $('a.qa-show-details').click(function (event) {
         event.preventDefault();
         id = $(this).attr('class').replace('qa-show-details ', '#details-');

@@ -25,33 +25,76 @@ if (isset($_GET['entity']) && in_array($_GET['entity'], $allowedEntities)) {
 $dataDir = '../' . getDataDir();
 
 $smarty = createSmarty($templateDir);
-/*
-define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
-define('_SMARTY', getcwd() . '/../libs/_smarty/');
-require_once(SMARTY_DIR . 'Smarty.class.php');
-$smarty = new Smarty();
-
-$smarty->setTemplateDir(getcwd() . '/' . $templateDir);
-$smarty->setCompileDir(_SMARTY . '/templates_c/');
-$smarty->setConfigDir(_SMARTY . '/configs/');
-$smarty->setCacheDir(_SMARTY . '/cache/');
-$smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
-// standard PHP function
-$smarty->registerPlugin("modifier", "str_replace", "str_replace");
-$smarty->registerPlugin("modifier", "number_format", "number_format");
-*/
 
 $statistics = new stdClass();
 readStatistics($type, $id, $entity);
 
-header("Content-type: application/json");
-echo json_encode([
-  'version' => $version,
-  'entity' => $entity,
-  'fields' => $fields[$entity],
-  'statistics' => $statistics,
-  'mandatory' => $mandatory[$entity],
-]);
+$fieldProperties = [];
+foreach ($fields[$entity] as $field => $label) {
+  $key = strtolower($field);
+  $n = (object)[
+    'field' => $field,
+    'key' => strtolower($field),
+    'label' => $label,
+    'isMandatory' => isset($mandatory[$entity][$field]),
+    'hasFrequency' => isset($statistics->frequencyTable->{$key}),
+    'hasCardinality' => isset($statistics->cardinality->{$key}),
+    'hasHistograms' => isset($statistics->histograms->{$key}),
+    'hasMinMaxRecords' => isset($statistics->minMaxRecords->{$key}),
+  ];
+  if ($n->isMandatory) {
+    $n->mandatory = $mandatory[$entity][$field];
+    $n->mandatoryIcon = getMandatoryIcon($mandatory[$entity][$field]);
+  }
+
+  if ($n->hasFrequency) {
+    $freq = $statistics->frequencyTable->{$key};
+    $n->zeros = isset($freq['values']->{'0'})
+           ? (int)$freq['values']->{'0'}[0]
+           : (int)$statistics->entityCount;
+    $n->nonZeros = isset($freq['values']->{'1'})
+           ? (int)$freq['values']->{'1'}[0]
+           : (int)$statistics->entityCount - (int)$n->zeros;
+    $n->percent = $n->nonZeros / (int)$statistics->entityCount;
+    $n->width = (int)(300 * $n->percent);
+
+    $n->freqHtml = $freq['html'];
+  }
+  if ($n->hasCardinality) {
+    $n->cardinalityHtml = $statistics->cardinality->{$key}->html;
+  }
+  if ($n->hasHistograms) {
+    $n->histogramHtml = $statistics->histograms->{$key}['html'];
+  }
+  if ($n->hasMinMaxRecords) {
+    $n->recMax = $statistics->minMaxRecords->{$key}->recMax;
+    $n->recMin = $statistics->minMaxRecords->{$key}->recMin;
+  }
+
+  $fieldProperties[$field] = $n;
+}
+
+$smarty->assign('version', $version);
+$smarty->assign('entity', $entity);
+$smarty->assign('fields', $fieldProperties);
+$smarty->assign('statistics', $statistics);
+$smarty->assign('mandatory', $mandatory[$entity]);
+$smarty->display('frequency-per-entity.tpl');
+
+function getMandatoryIcon($key) {
+  $mandatoryIcon = '';
+  switch ($key) {
+    case 'black': $mandatoryIcon = 'check'; break;
+    case 'blue': $mandatoryIcon = 'arrow-right'; break;
+    case 'red': $mandatoryIcon = 'circle-o'; break;
+    case 'green': $mandatoryIcon = 'gear'; break;
+    case 'plus': $mandatoryIcon = 'plus'; break;
+    default:
+      $mandatoryIcon = '';
+  }
+  return $mandatoryIcon;
+}
+
 
 function readStatistics($type, $id, $entity) {
   global $fields, $statistics;
