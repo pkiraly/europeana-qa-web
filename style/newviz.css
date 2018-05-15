@@ -128,8 +128,17 @@ table.uniqueness-statistics th {
 }
 
 /* popups */
+div.popover {
+  min-width: 130px;
+}
 h3.popover-title {
   padding: 10px !important;
+}
+
+.popover-content span ul {
+  margin-left: 0;
+  padding-left: 20px;
+  list-style-type: square
 }
 
 div#tooltip {

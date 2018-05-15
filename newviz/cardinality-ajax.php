@@ -179,21 +179,27 @@ function readHistogram($type, $id, $entityFields) {
 }
 
 function toSolrField($key) {
-  $key = str_replace('proxy', 'Proxy', $key);
-  $key = str_replace('agent', 'Agent', $key);
-  $key = str_replace('concept', 'Concept', $key);
-  $key = str_replace('place', 'Place', $key);
-  $key = str_replace('timespan', 'Timespan', $key);
-  $key = str_replace('haspart', 'hasPart', $key);
-  $key = str_replace('ispartof', 'isPartOf', $key);
-  $key = str_replace('isnextinsequence', 'isNextInSequence', $key);
-  $key = str_replace('europeanaproxy', 'europeanaProxy', $key);
-  $key = str_replace('usertag', 'userTag', $key);
-  $key = str_replace('proxyin', 'ProxyIn', $key);
-  $key = str_replace('proxyfor', 'ProxyFor', $key);
-  $key = str_replace('conformsto', 'conformsTo', $key);
-  $key = str_replace('hasformat', 'hasFormat', $key);
-  $key = str_replace('hasversion', 'ProxyFor', $key);
+  $subject = [
+    'proxy', 'agent', 'concept', '_place', 'timespan', 'haspart', 'ispartof', 'isnextinsequence',
+    'europeanaproxy', 'usertag', 'proxyin', 'proxyfor', 'conformsto', 'hasformat',
+    'hasversion', 'preflabel', 'altlabel', 'hasmet', 'isrelatedto', 'biographicalinformation',
+    'dateofbirth', 'dateofdeath', 'dateOfEstablishment', 'rdagr2', 'dateoftermination', 'placeofbirth',
+    'placeofdeath', 'professionoroccupation', 'sameas', 'broadmatch', 'narrowmatch',
+    'relatedmatch', 'exactmatch', 'closematch', 'inscheme', 'isformatof', 'isreferencedby',
+    'isreplacedby', 'isrequiredby', 'isversionof', 'tableofcontents', 'currentlocation',
+    'hastype', 'isderivativeof', 'isrepresentationof', 'issimilarto', 'issuccessorof'
+  ];
+  $target  = [
+    'Proxy', 'Agent', 'Concept', '_Place', 'Timespan', 'hasPart', 'isPartOf', 'isNextInSequence',
+    'europeanaProxy', 'userTag', 'ProxyIn', 'ProxyFor', 'conformsTo', 'hasFormat',
+    'hasVersion', 'prefLabel', 'altLabel', 'hasMet', 'isRelatedTo', 'biographicalInformation',
+    'dateOfBirth', 'dateOfDeath', 'dateofestablishment', 'rdaGr2', 'dateOfTermination', 'placeOfBirth',
+    'placeOfDeath', 'professionOrOccupation', 'sameAs', 'broadMatch', 'narrowMatch',
+    'relatedMatch', 'exactMatch', 'closeMatch', 'inScheme', 'isFormatOf', 'isReferencedBy',
+    'isReplacedBy', 'isRequiredBy', 'isVersionOf', 'tableOfContents', 'currentLocation',
+    'hasType', 'isDerivativeOf', 'isRepresentationOf', 'isSimilarTo', 'isSuccessorOf'
+  ];
+  $key = str_replace($subject, $target, $key);
 
   return $key . '_f';
 }
