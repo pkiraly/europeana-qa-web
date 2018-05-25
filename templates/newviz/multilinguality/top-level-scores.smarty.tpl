@@ -82,7 +82,7 @@
               {if ($object->mean == 'NaN')}
                 <span style="color:#999">n/a</span>
               {else}
-                <span data-toggle="popover" title="details" data-content="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|range: {$object->range}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
+                <span class="pop" data-toggle="popover" title="details" data-content="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|median: {if isset($object->median)}{$object->median}{else}0{/if}">
                 {$object->mean|conditional_format:FALSE:TRUE:3}
                 </span>
               {/if}
@@ -147,7 +147,10 @@
             .replace(/\|/g, "<br>\n")
             .replace(
               /\((.*?)\)/g,
-              "→<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\">visit record</a>"
+              "visit record ("
+              + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
+              + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
+              + ")"
             );
             $(this).attr('data-content', content);
             console.log($(this).attr('data-content'));
