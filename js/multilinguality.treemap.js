@@ -163,8 +163,8 @@ function label2(d, fieldName) {
       var params = [collectionId, field.toLowerCase(), language];
       item = formatField(field)
            + ' <a href="#" class="language-field-examples"'
-           + " onclick=\"languageFieldExamples('" + params.join("','") + "')\""
-           + '>examples</a>'
+           + " onclick=\"languageFieldExamples(event,'" + params.join("','") + "')\""
+           + '>examples <i class="fa fa-angle-down" aria-hidden="true"></i></a>'
            + '<span id="ex-' + field.toLowerCase() + '"></span>'
       ;
       items.push('<li>' + item + '</li>');
@@ -199,7 +199,7 @@ function buildQuery(field, language, collectionId) {
 }
 
 function languageFieldRecordCount(collectionId, field, language) {
-  event.preventDefault();
+  // event.preventDefault();
   var query = buildQuery(field, language, collectionId);
   query.rows = 0;
   $.get("newviz/solr-ajax.php", query)
@@ -218,7 +218,7 @@ function formatNumber(inputNumber) {
               );
 }
 
-function languageFieldExamples(collectionId, field, language) {
+function languageFieldExamples(event, collectionId, field, language) {
   event.preventDefault();
   var query = buildQuery(field, language, collectionId);
   query.rows = 10;
