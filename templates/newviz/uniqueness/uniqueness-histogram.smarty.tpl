@@ -88,7 +88,6 @@ function processUniquenessPopoverContent(element) {
   if (content.substring(0, 1) != '@') {
     content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
   }
-  console.log(content);
   if (content.substring(0, 1) == '@') {
     var parts = content.substring(1).split('|');
 

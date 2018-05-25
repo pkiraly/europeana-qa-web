@@ -47,7 +47,6 @@ d3.json("<?= $filename; ?>", function(data) {
     data = filtered;
   }
   if (excludeRest == 1) {
-    console.log('exclude rest');
     filtered = [];
     for (d in data)
       if (!(data[d][property] > 0 && data[d][property] < 1))
@@ -114,7 +113,6 @@ d3.json("<?= $filename; ?>", function(data) {
     .attr("y", function(d, i) {return dy*i + 15;})
     .attr("width", left_width)
     .text(function(d) {
-      // console.log(d);
       label = d[labelSource['<?= $id ?>']];
       if (labelSource['<?= $id ?>'] == 'field') {
         label = d[labelSource['<?= $id ?>']]

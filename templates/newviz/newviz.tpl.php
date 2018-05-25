@@ -351,7 +351,6 @@ function loadEntityCardinality(entity) {
       $('select[name=comparision-selector]').on('change', function(){
         var thisField = this.id.replace('-comparision-selector', '');
         var otherField = this.value;
-        console.log('thisField: ' + thisField + ', otherField: ' + otherField);
         var el = $('#' + otherField + '-histogram');
         var html = "";
         if (typeof el.html() != "undefined") {
@@ -380,7 +379,6 @@ function processHistogramPopoverContent(element) {
   if (content.substring(0, 1) != '@') {
     content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
   }
-  console.log(content);
   if (content.substring(0, 1) == '@') {
     var parts = content.substring(1).split('|');
 

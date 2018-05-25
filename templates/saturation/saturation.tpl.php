@@ -200,7 +200,7 @@ form label {
   }
 
   function click(d) {
-    console.log(d);
+    // console.log(d);
   }
 
   $(document).ready(function () {

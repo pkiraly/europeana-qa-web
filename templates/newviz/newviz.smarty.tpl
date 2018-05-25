@@ -354,7 +354,6 @@ function loadEntityCardinality(entity) {
       $('select[name=comparision-selector]').on('change', function(){
         var thisField = this.id.replace('-comparision-selector', '');
         var otherField = this.value;
-        console.log('thisField: ' + thisField + ', otherField: ' + otherField);
         var el = $('#' + otherField + '-histogram');
         var html = "";
         if (typeof el.html() != "undefined") {
@@ -369,7 +368,7 @@ function loadEntityCardinality(entity) {
 
       $("[data-toggle='histogram-popover']").each(function() {
         $(this).css('cursor', 'pointer');
-        $(this).css('color', '#23527c');
+        $(this).css('color', '#337ab7');
       });
       $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
         processHistogramPopoverContent($(this));
@@ -383,7 +382,6 @@ function processHistogramPopoverContent(element) {
   if (content.substring(0, 1) != '@') {
     content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
   }
-  console.log(content);
   if (content.substring(0, 1) == '@') {
     var parts = content.substring(1).split('|');
 
@@ -402,8 +400,11 @@ function processHistogramPopoverContent(element) {
       var items = new Array();
       for (i in data.ids) {
         var recordId = data.ids[i];
-        var item = '<a target="_blank" href="' + portalUrl + recordId + '.json"'
-          + ' title="record id: ' + recordId + '">visit record</a>';
+        var dataLink = '<a target="_blank" href="' + portalUrl + recordId + '.json"'
+          + ' title="record id: ' + recordId + '" class="external">data</a>';
+        var portalLink = '<a target="_blank" href="' + portalUrl + recordId + '.html"'
+          + ' title="record id: ' + recordId + '" class="external">portal</a>';
+        var item = 'visit record (' + dataLink + ', ' + portalLink + ')';
         items.push('<li>' + item + '</li>');
       }
       var content = '<ul>' + items.join('') + '</ul>';

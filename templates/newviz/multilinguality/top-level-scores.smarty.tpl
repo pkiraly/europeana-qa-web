@@ -141,7 +141,6 @@
             $(this).css('cursor', 'pointer');
           });
           $("[data-toggle='popover']").on('show.bs.popover', function(){
-            console.log($(this).attr('data-content'));
             var content = $(this).attr('data-content');
             if (!content.match(/\n/)) {
               content = content
@@ -154,7 +153,6 @@
                   + ")"
                 );
               $(this).attr('data-content', content);
-              console.log($(this).attr('data-content'));
             }
           });
           $('[data-toggle="popover"]').popover({html: true});
