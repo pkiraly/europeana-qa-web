@@ -143,17 +143,19 @@
           $("[data-toggle='popover']").on('show.bs.popover', function(){
             console.log($(this).attr('data-content'));
             var content = $(this).attr('data-content');
-            content = content
-            .replace(/\|/g, "<br>\n")
-            .replace(
-              /\((.*?)\)/g,
-              "visit record ("
-              + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
-              + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
-              + ")"
-            );
-            $(this).attr('data-content', content);
-            console.log($(this).attr('data-content'));
+            if (!content.match(/\n/)) {
+              content = content
+                .replace(/\|/g, "<br>\n")
+                .replace(
+                  /\((.*?)\)/g,
+                  "visit record ("
+                  + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
+                  + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
+                  + ")"
+                );
+              $(this).attr('data-content', content);
+              console.log($(this).attr('data-content'));
+            }
           });
           $('[data-toggle="popover"]').popover({html: true});
         });
