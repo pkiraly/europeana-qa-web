@@ -114,12 +114,13 @@
         -->
       </form>
 
-      <p>
-        <i class="fa fa-info-circle"></i>
+      <p><i class="fa fa-info-circle"></i>
         This graphic shows you the number and diversity of language tags for a given field and
         the number of literals that have no language tag. This visualisation allows the exclusion
         of fields where the field is present but without a language.
       </p>
+
+      <p>Warning: loading of statistics and examples may take a while in some cases</p>
 
       <div>
         <div id="heatmap"></div>
@@ -149,7 +150,7 @@
                 .replace(/\|/g, "<br>\n")
                 .replace(
                   /\((.*?)\)/g,
-                  "(visit record "
+                  "(visit record: "
                   + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
                   + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
                   + ")"

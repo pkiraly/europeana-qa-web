@@ -20,6 +20,12 @@ function smarty_modifier_fieldlabel($string) {
     $string = str_replace('skos_', 'skos:', $string);
     $string = str_replace('foaf_', 'foaf:', $string);
     $string = str_replace('rdaGr2_', 'rdaGr2:', $string);
+    $string = str_replace('proxy_', 'provider proxy/', $string);
+    $string = str_replace('aggregation_', 'aggregation/', $string);
+    $string = str_replace('agent_', 'agent/', $string);
+    $string = str_replace('concept_', 'concept/', $string);
+    $string = str_replace('place_', 'place/', $string);
+    $string = str_replace('timespan_', 'timespan/', $string);
   }
 
   return $string;
