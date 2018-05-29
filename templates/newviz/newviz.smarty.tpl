@@ -307,7 +307,7 @@ function loadMultilinguality() {
   var query = {'id': id, 'type': type, 'entity': entity, 'version': version, 'development': development};
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
-      $('#multilinguality-content').html(data.html);
+      $('#multilinguality-content').html(data);
       $(".nav-tabs a").click(function() {
         $(this).tab('show');
       });
@@ -318,7 +318,7 @@ function loadRecordPatterns() {
   var query = {'id': id, 'type': type, 'count': count, 'version': version, 'development': development};
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
-     $('#record-patterns-content').html(data.html);
+     $('#record-patterns-content').html(data);
      $(".nav-tabs a").click(function() {
        $(this).tab('show');
      });
@@ -329,7 +329,7 @@ function loadUniqueness() {
   var query = {'id': id, 'type': type, 'count': count, 'version': version, 'development': development};
   $.get("newviz/uniqueness-ajax.php", query)
   .done(function(data) {
-    $('#uniqueness-content').html(data.html);
+    $('#uniqueness-content').html(data);
     $(".nav-tabs a").click(function() {
       $(this).tab('show');
     });
@@ -374,6 +374,7 @@ function loadEntityCardinality(entity) {
         processHistogramPopoverContent($(this));
       });
       $('[data-toggle="histogram-popover"]').popover({html: true});
+      $('[data-toggle="tooltip"]').tooltip();
     });
 }
 

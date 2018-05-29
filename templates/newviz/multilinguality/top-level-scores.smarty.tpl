@@ -82,8 +82,8 @@
               {if ($object->mean == 'NaN')}
                 <span style="color:#999">n/a</span>
               {else}
-                <span class="pop" data-toggle="popover" title="details" data-content="mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|median: {if isset($object->median)}{$object->median}{else}0{/if}">
-                {$object->mean|conditional_format:FALSE:TRUE:3}
+                <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
+                  <span data-toggle="tooltip" title="Get details">{$object->mean|conditional_format:FALSE:TRUE:3}</span>
                 </span>
               {/if}
               </td>
@@ -128,8 +128,10 @@
 
       <script id="fields-by-language-data" type="application/json">{$data->fieldsByLanguageList|json_encode}</script>
       <script id="language-distribution-data" type="application/json">{$data->languageDistribution|json_encode}</script>
+      <script id="language-fields-data" type="application/json">{$data->allFieldsList|json_encode}</script>
       <script type="text/javascript">
         var fieldsByLanguage = JSON.parse($('#fields-by-language-data').html());
+        var languageFields = JSON.parse($('#language-fields-data').html());
 
         var collectionId = '{$data->collectionId}';
         var version = '{$data->version}';
@@ -147,7 +149,7 @@
                 .replace(/\|/g, "<br>\n")
                 .replace(
                   /\((.*?)\)/g,
-                  "visit record ("
+                  "(visit record "
                   + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
                   + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
                   + ")"
@@ -156,6 +158,7 @@
             }
           });
           $('[data-toggle="popover"]').popover({html: true});
+          $('[data-toggle="tooltip"]').tooltip();
         });
         {/literal}
       </script>

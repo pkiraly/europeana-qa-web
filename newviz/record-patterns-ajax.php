@@ -17,18 +17,7 @@ $data = (object)[
 
 $smarty = createSmarty($templateDir);
 $smarty->assign('data', $data);
-$html = $smarty->fetch('record-patterns.smarty.tpl');
-
-// $html = callTemplate($data, $templateDir . 'record-patterns.tpl.php');
-
-header("Content-type: application/json");
-echo json_encode([
-  'fields_file' => getFieldsFile(),
-  'fields_file_exists' => file_exists(getFieldsFile($collectionId)),
-  'profile_file' => getProfileFile(),
-  'profile_file_exist' => file_exists(getProfileFile($collectionId)),
-  'html' => $html
-]);
+$smarty->display('record-patterns.smarty.tpl');
 
 function getFieldsFile($collectionId) {
   global $dataDir;

@@ -20,17 +20,7 @@ $data = (object)[
 
 $smarty = createSmarty($templateDir);
 $smarty->assign('data', $data);
-$html = $smarty->fetch('uniqueness-histogram.smarty.tpl');
-
-// $html = callTemplate($data, $templateDir . 'uniqueness-histogram.tpl.php');
-
-header("Content-type: application/json");
-echo json_encode([
-  'uniqueness_file' => getUniquenessFile($collectionId),
-  'uniqueness_file_exists' => file_exists(getUniquenessFile($collectionId)),
-  'html' => $html,
-  'data' => $data
-]);
+$smarty->display('uniqueness-histogram.smarty.tpl');
 
 function getUniquenessFile($collectionId) {
   global $dataDir;

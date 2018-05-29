@@ -6,7 +6,7 @@
       <td data-toggle="histogram-popover"
           data-content="@{$histogram->solrField}|{$value->label|solrRangeQuery}|{$value->label}|{$histogram->fq}"
           title="List records">
-        {$value->label}
+        <span data-toggle="tooltip" title="Get examples">{$value->label}</span>
       </td>
     {/foreach}
   </tr>

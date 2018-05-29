@@ -64,7 +64,8 @@ function displayLanguageTreemap() {
       .enter().append("div")
       .attr("class", "node")
       .call(position)
-      .style("color", '#ddd')
+      // .style("color", '#fff')
+      // .style("font-weight", 'bold')
       .style('cursor', 'pointer')
       .style("background", function(d) {
         // return d.children ? color(d.name) : null;
@@ -141,35 +142,43 @@ function label2(d, fieldName) {
   } else if (language == 'no field instance') {
     text += language;
   } else {
-    text += '<strong>language code</strong>: ' + d.name;
+    text += '<strong>language code</strong>: ' + language;
     isARealLanguageCode = true;
   }
 
   if (d.size !== undefined) {
     var count = formatNumber(d.size);
     text += "<br>\n" + '<strong>number of field instances</strong>: ' + count;
-    if (isARealLanguageCode) {
+    if (isARealLanguageCode || (language == 'no language')) { // && fieldName != 'aggregated'
       text += "<br>\n" + '<strong>number of records</strong>: '
-        + '<span id="count-' + fieldName.toLowerCase() + '"></span>';
+           +  '<span id="count-' + fieldName.toLowerCase() + '"></span>';
       languageFieldRecordCount(collectionId, fieldName.toLowerCase(), language)
     }
   }
 
-  if (fieldName == 'aggregated' && isARealLanguageCode) {
-    text += "<br>\n<strong>available in fields</strong>: ";
-    var items = new Array();
-    for (i in fieldsByLanguage[d.name]) {
-      field = fieldsByLanguage[d.name][i];
-      var params = [collectionId, field.toLowerCase(), language];
-      item = formatField(field)
-           + ' <a href="#" class="language-field-examples"'
-           + " onclick=\"languageFieldExamples(event,'" + params.join("','") + "')\""
-           + '>examples <i class="fa fa-angle-down" aria-hidden="true"></i></a>'
-           + '<span id="ex-' + field.toLowerCase() + '"></span>'
-      ;
-      items.push('<li>' + item + '</li>');
+  if (isARealLanguageCode || language == 'no language') {
+    if (fieldName == 'aggregated' && language != 'no language') {
+      text += "<br>\n<strong>available in fields</strong>: ";
+      var items = new Array();
+      for (i in fieldsByLanguage[d.name]) {
+        field = fieldsByLanguage[d.name][i];
+        var params = [collectionId, field.toLowerCase(), language];
+        item = formatField(field)
+             + ' <a href="#" class="language-field-examples"'
+             + " onclick=\"languageFieldExamples(event,'" + params.join("','") + "')\""
+             + '>examples <i class="fa fa-angle-down" aria-hidden="true"></i></a>'
+             + '<span id="ex-' + field.toLowerCase() + '"></span>'
+        ;
+        items.push('<li>' + item + '</li>');
+      }
+      text += '<ul>' + items.join('') + '</ul>';
+    } else {
+      var params = [collectionId, fieldName, language];
+      text += '<br><a href="#" class="language-field-examples"'
+           +  " onclick=\"languageFieldExamples(event,'" + params.join("','") + "')\""
+           +  '>examples <i class="fa fa-angle-down" aria-hidden="true"></i></a>'
+           +  '<span id="ex-' + fieldName.toLowerCase() + '"></span>'
     }
-    text += '<ul>' + items.join('') + '</ul>';
   }
   return text;
 }
@@ -185,8 +194,20 @@ function formatField(field) {
 }
 
 function buildQuery(field, language, collectionId) {
-  var langField = (field == 'aggregated') ? 'languages_ss' : 'lang_' + field + '_ss';
-  var q = langField + ':"' + language + '"';
+  if (language == 'no language') {
+    if (field == 'aggregated') {
+      var fields = [];
+      for (i in languageFields) {
+        fields.push('lang_' + languageFields[i].toLowerCase() + '__0_i:[1 TO *]');
+      }
+      var q = fields.join(' OR ');
+    } else {
+      var q = 'lang_' + field + '__0_i:[1 TO *]';
+    }
+  } else {
+    var langField = (field == 'aggregated') ? 'languages_ss' : 'lang_' + field + '_ss';
+    var q = langField + ':"' + language + '"';
+  }
 
   var typeField = collectionId.substring(0, 1) == 'c'
     ? 'collection_i'

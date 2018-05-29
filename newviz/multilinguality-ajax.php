@@ -11,6 +11,7 @@ $dataDir = '../' . getDataDir();
 
 $languageDistribution = getLanguageDistribution();
 $fieldsByLanguageList = getFieldsByLanguageList($languageDistribution);
+$allFieldsList = getAllFields($languageDistribution);
 
 $data = (object)[
   'version' => $version,
@@ -19,32 +20,14 @@ $data = (object)[
   'assocStat' => getSaturationStatistics(),
   'languageDistribution' => $languageDistribution,
   'fieldsByLanguageList' => $fieldsByLanguageList,
+  'allFieldsList' => $allFieldsList,
   'collectionId' => $collectionId
 ];
 
 $smarty = createSmarty($templateDir);
-/*
-define('SMARTY_DIR', getcwd() . '/../libs/smarty-3.1.32/libs/');
-define('_SMARTY', getcwd() . '/../libs/_smarty/');
-require_once(SMARTY_DIR . 'Smarty.class.php');
-$smarty = new Smarty();
-
-$smarty->setTemplateDir(getcwd() . '/' . $templateDir);
-$smarty->setCompileDir(_SMARTY . '/templates_c/');
-$smarty->setConfigDir(_SMARTY . '/configs/');
-$smarty->setCacheDir(_SMARTY . '/cache/');
-$smarty->addPluginsDir(getcwd() . '/../common/smarty_plugins/');
-// standard PHP function
-$smarty->registerPlugin("modifier", "str_replace", "str_replace");
-*/
 
 $smarty->assign('data', $data);
-$html = $smarty->fetch('top-level-scores.smarty.tpl');
-
-header("Content-type: application/json");
-echo json_encode([
-  'html' => $html
-]);
+$smarty->display('top-level-scores.smarty.tpl');
 
 function getGenerixPrefixes() {
   return [
@@ -142,6 +125,16 @@ function getFieldsByLanguageList($languageDistribution) {
     }
   }
   return $byLanguage;
+}
+
+function getAllFields($languageDistribution) {
+  $fields = [];
+  foreach ($languageDistribution as $field => $fieldData) {
+    if ($field != 'aggregated') {
+      $fields[] = $field;
+    }
+  }
+  return $fields;
 }
 
 function getLabel($key) {

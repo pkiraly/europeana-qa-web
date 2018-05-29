@@ -236,6 +236,8 @@ $(document).ready(function () {
   $("input[name='type']").on('change', function () {
     showType($(this).val());
   })
+
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 $(function () {
@@ -371,6 +373,7 @@ function loadEntityCardinality(entity) {
         processHistogramPopoverContent($(this));
       });
       $('[data-toggle="histogram-popover"]').popover({html: true});
+      $('[data-toggle="tooltip"]').tooltip();
     });
 }
 
