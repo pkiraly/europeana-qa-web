@@ -1,5 +1,6 @@
 $('#language-distribution-selector').on('change', function () {
   displayLanguageTreemap();
+  $('#tooltip').html("");
 });
 $('#excludeZeros').on('change', function () {
   displayLanguageTreemap();
@@ -54,6 +55,21 @@ function displayLanguageTreemap() {
 
   d3.json(getTreeMapUrl(), function(error, root) {
     if (error) throw error;
+
+    var hasChildren = false;
+    for (i in root.children) {
+      child = root.children[i];
+      if (typeof child.size != "undefined"
+        || (typeof child.children != "undefined" && child.children.length > 0)) {
+        hasChildren = true;
+        break;
+      }
+    }
+
+    if (!hasChildren) {
+      $('#tooltip').html('<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: maroon"></i>'
+                         + ' In this dataset ' + formatField(root.name) + ' is not used');
+    }
 
     d3.selectAll('#heatmap .node').remove();
 

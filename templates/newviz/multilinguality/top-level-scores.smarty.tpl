@@ -120,7 +120,13 @@
         of fields where the field is present but without a language.
       </p>
 
-      <p>Warning: loading of statistics and examples may take a while in some cases</p>
+      <p>
+        Warnings:
+        <ul>
+          <li>Loading of statistics and examples may take a while in some cases.</li>
+          <li>When a field is not used in the dataset, it is still possible to select it, but the display will then show nothing</li>
+        </ul>
+      </p>
 
       <div>
         <div id="heatmap"></div>
