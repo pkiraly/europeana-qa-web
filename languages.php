@@ -125,7 +125,6 @@ if (!isset($field))
 $excludeZeros = in_array(0, $_GET['exclusions']);
 $showNoInstances = in_array(1, $_GET['exclusions']);
 
-
 $treeMapUrl = 'plainjson2tree.php?field=' . $field
             . '&excludeZeros=' . (int)$excludeZeros
             . '&showNoInstances=' . (int)$showNoInstances

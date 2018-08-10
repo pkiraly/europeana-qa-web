@@ -27,7 +27,7 @@ $data = (object)[
 $smarty = createSmarty($templateDir);
 
 $smarty->assign('data', $data);
-$smarty->display('top-level-scores.smarty.tpl');
+$smarty->display('multilinguality.smarty.tpl');
 
 function getGenerixPrefixes() {
   return [

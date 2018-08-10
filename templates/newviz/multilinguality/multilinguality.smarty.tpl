@@ -36,11 +36,11 @@
   {/strip}
 </table>
 <ul class="nav nav-tabs" id="multilingual-details-tab">
-  <li class="active"><a href="#all-fields">Field-level details for the table above</a></li>
-  <li><a href="#individual-fields">Distribution of language tags per field</a></li>
+  <li class="active"><a href="#multilingual-score-general">Field-level details for the table above</a></li>
+  <li><a href="#multilingual-score-languages">Distribution of language tags per field</a></li>
 </ul>
 <div class="tab-content">
-  <div id="all-fields" class="tab-pane active">
+  <div id="multilingual-score-general" class="tab-pane active">
     <p>
       <i class="fa fa-info-circle"></i>
       Language tags introduced by the providers or fetched by dereferencing URIs to controlled vocabularies
@@ -54,7 +54,7 @@
 
     <p><em>n/a</em> means that the particular field is not available in any record
       in the collection.</p>
-    <table id="all-fields-table" class="table table-condensed table-striped tablesorter">
+    <table id="multilingual-score-general-table" class="table table-condensed table-striped tablesorter">
       <thead>
       <tr class="primary">
         <th rowspan="2">field</th>
@@ -95,7 +95,7 @@
       {/strip}
     </table>
   </div>
-  <div id="individual-fields" class="tab-pane">
+  <div id="multilingual-score-languages" class="tab-pane">
     <div class="row">
       <form id="language-heatmap">
         {strip}

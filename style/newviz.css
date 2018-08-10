@@ -94,24 +94,24 @@ select#cid option, select#did option {
   width: 300px !important;
 }
 
-#all-fields-table td.numeric {
+#multilingual-score-general-table td.numeric {
   text-align: right;
   padding-right: 40px;
 }
 
-#all-fields-table tr.secondary th {
+#multilingual-score-general-table tr.secondary th {
   text-align: center;
 }
 
-#all-fields-table tr.primary th.double {
+#multilingual-score-general-table tr.primary th.double {
   text-align: center;
 }
 
-#all-fields-table span.nan {
+#multilingual-score-general-table span.nan {
   color: #999;
 }
 
-#all-fields {
+#multilingual-score-general {
   padding-top: 20px;
 }
 
@@ -172,6 +172,11 @@ a.external {
   padding-right: 13px;
 }
 
-table#all-fields-table td.numeric span.pop {
+table#multilingual-score-general-table td.numeric span.pop {
   color: #337ab7;
+}
+
+div.most-frequent-values em {
+  font-size: 80%;
+  color: #999;
 }

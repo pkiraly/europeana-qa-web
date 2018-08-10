@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{$collectionId} | {$title}</title>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css"/>
-    <!--
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css"/>
-    <script src="https://use.fontawesome.com/feff23b961.js"></script>
-    <link rel="stylesheet" href="europeana-qa.css?a={$rand}" type="text/css"/>
-    <link rel="stylesheet" href="chart.css?a={$rand}" type="text/css"/>
-    <link rel="stylesheet" href="style/newviz.css?a={$rand}" type="text/css"/>
-    <!-- choose a theme file -->
-    <link rel="stylesheet" href="jquery/theme.default.min.css">
-    <!-- load jQuery and tablesorter scripts -->
-    <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{$collectionId} | {$title}</title>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css"/>
+  <script src="https://use.fontawesome.com/feff23b961.js"></script>
+  <link rel="stylesheet" href="europeana-qa.css?a={$rand}" type="text/css"/>
+  <link rel="stylesheet" href="chart.css?a={$rand}" type="text/css"/>
+  <link rel="stylesheet" href="style/newviz.css?a={$rand}" type="text/css"/>
+  <!-- choose a theme file -->
+  <link rel="stylesheet" href="jquery/theme.default.min.css">
+  <!-- load jQuery and tablesorter scripts -->
+  <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 
@@ -93,20 +88,20 @@
           <h2>Field Frequency</h2>
           <p>Dataset: {$entityCounts->proxy_rdf_about} records {$n}</p>
           <ul id="entities" class="nav">
-            <li class="nav-item active">
-              <a class="nav-link active" href="#" datatype="ProvidedCHO">ProvidedCHO ({$entityCounts->proxy_rdf_about})</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO ({$entityCounts->proxy_rdf_about})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" datatype="Agent">Agent ({$entityCounts->agent_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent ({$entityCounts->agent_rdf_about})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" datatype="Timespan">Timespan ({$entityCounts->timespan_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan ({$entityCounts->timespan_rdf_about})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" datatype="Concept">Concept ({$entityCounts->concept_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept ({$entityCounts->concept_rdf_about})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" datatype="Place">Place ({$entityCounts->place_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place ({$entityCounts->place_rdf_about})</a>
             </li>
           </ul>
         </div>
@@ -200,12 +195,20 @@ var id = '{$id}';
 var version = '{$version}';
 var development = {(int)$development};
 var count = {$n};
+var collectionId = '{$collectionId}';
 
 {literal}
 $(document).ready(function () {
   var loaded = {
     '#cardinality-score': false,
+    '#cardinality-score-providedcho': false,
+    '#cardinality-score-agent': false,
+    '#cardinality-score-concept': false,
+    '#cardinality-score-place': false,
+    '#cardinality-score-timespan': false,
     '#multilingual-score': false,
+    '#multilingual-score-general': false,
+    '#multilingual-score-languages': false,
     '#record-patterns': false,
     '#uniqueness': false,
   };
@@ -223,9 +226,42 @@ $(document).ready(function () {
   } else if (id == '#uniqueness') {
     loadUniqueness();
     $('.nav-tabs a[href="#uniqueness"]').tab('show');
+  } else if (id == '#cardinality-score-providedcho') {
+    loadedEntity = 'ProvidedCHO';
+    loadEntityCardinality(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  } else if (id == '#cardinality-score-providedcho') {
+    loadedEntity = 'ProvidedCHO';
+    loadEntityCardinality(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  } else if (id == '#cardinality-score-providedcho') {
+    loadedEntity = 'ProvidedCHO';
+    loadEntityCardinality(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  } else if (id == '#cardinality-score-agent') {
+    loadedEntity = 'Agent';
+    loadEntityCardinality(loadedEntity);
+    toggleActivation(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  } else if (id == '#cardinality-score-concept') {
+    loadedEntity = 'Concept';
+    loadEntityCardinality(loadedEntity);
+    toggleActivation(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  } else if (id == '#cardinality-score-place') {
+    loadedEntity = 'Place';
+    loadEntityCardinality(loadedEntity);
+    toggleActivation(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
+  } else if (id == '#cardinality-score-timespan') {
+    loadedEntity = 'Timespan';
+    loadEntityCardinality(loadedEntity);
+    toggleActivation(loadedEntity);
+    $('.nav-tabs a[href="' + id + '"]').tab('show');
   } else {
     loadEntityCardinality('ProvidedCHO');
     loadedEntity = 'ProvidedCHO';
+    toggleActivation(loadedEntity);
     $('.nav-tabs a[href="' + id + '"]').tab('show');
   }
 
@@ -256,6 +292,8 @@ $(function () {
   $('#entities a.nav-link').click(function (event) {
     event.preventDefault();
     var entity = $(this).attr('datatype');
+    var href = $(this).attr('href');
+    window.location.hash = href;
     toggleActivation(entity);
     loadEntityCardinality(entity);
   });
@@ -285,7 +323,7 @@ function toggleActivation(entity) {
 }
 
 function isMultilingualityPanel(id) {
-  return (id == '#multilingual-score' || id == '#all-fields' || id == '#individual-fields');
+  return (id == '#multilingual-score' || id == '#multilingual-score-general' || id == '#multilingual-score-languages');
 }
 
 function showType(type) {
@@ -308,9 +346,14 @@ function loadMultilinguality() {
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
       $('#multilinguality-content').html(data);
-      $(".nav-tabs a").click(function() {
+      $(".nav-tabs a").click(function(e) {
+        e.preventDefault();
+        window.location.hash = $(this).attr('href');
         $(this).tab('show');
       });
+      var id = window.location.hash;
+      var selector = '#multilingual-details-tab a[href = "' + id + '"]';
+      $(selector).tab('show');
    });
 }
 
@@ -375,7 +418,42 @@ function loadEntityCardinality(entity) {
       });
       $('[data-toggle="histogram-popover"]').popover({html: true});
       $('[data-toggle="tooltip"]').tooltip();
+
+      $("a.most-frequent-values").click(function(event) {
+        event.preventDefault();
+        var field = $(this).attr('class').replace('most-frequent-values ', '');
+        showMostFrequentValues(field);
+      });
+
     });
+}
+
+function showMostFrequentValues(field) {
+  var url = getMostFrequentValuesUrl(field);
+  $.get(url)
+    .done(function(data) {
+      var text = [];
+      for (i in data.facets[0].fields) {
+        var facet = data.facets[0].fields[i];
+        text.push(facet.label + ' <em>(' + facet.count + ')</em>');
+      }
+      var targetId = '#most-frequent-values-' + field;
+      $(targetId).html(text.join(', '));
+    });
+
+}
+
+function getMostFrequentValuesUrl(field) {
+  var url = 'https://www.europeana.eu/api/v2/search.json?wskey=api2demo&rows=0&profile=facets'
+          + '&facet=' + field + '&f.' + field + '.facet.limit=100'
+          + '&query=' + getMostFrequentValuesQuery();
+  return url;
+}
+
+function getMostFrequentValuesQuery() {
+  var key = (type == 'd') ? 'DATA_PROVIDER' : 'europeana_collectionName';
+  var value = '%22' + collectionId + '%22'
+  return key + ':' + value;
 }
 
 function processHistogramPopoverContent(element) {

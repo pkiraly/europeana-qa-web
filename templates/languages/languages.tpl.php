@@ -61,8 +61,10 @@
 </ul>
 </p>
 
+
 <div id="heatmap" class="chart"></div>
 
+<script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
 <script>
 var margin = {top: 40, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
@@ -82,8 +84,14 @@ var heatmap = d3.select("#heatmap")
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-d3.json('<?= $treeMapUrl ?>', function(error, root) {
-  if (error) throw error;
+d3.json('<?= $treeMapUrl ?>', function(root, error) {
+  if (error) {
+    console.log("error");
+    console.log(error);
+    console.log("root");
+    console.log(root);
+    throw error;
+  }
 
   var node = heatmap.datum(root).selectAll(".node")
       .data(treemap.nodes)

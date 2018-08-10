@@ -51,7 +51,7 @@
 <script type="text/javascript">
   var labelSource = [];
 </script>
-<script type="text/javascript" src="chart.js.php?filename=json/cardinality.json&type=<?= $type ?>&target=cardinality-chart&property=sum"></script>
+<script type="text/javascript" src="chart.js.php?filename=data/v2018-03/json/cardinality.json&type=<?= $type ?>&target=cardinality-chart&property=sum"></script>
 <link rel="stylesheet" href="chart.css" />
 
 </body>

@@ -3,7 +3,6 @@ $configuration = parse_ini_file('config.cfg');
 include_once('common/common-functions.php');
 include_once('newviz/common.functions.php');
 
-$templateDir = 'templates/newviz';
 $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 if (isset($_GET['id'])) {
@@ -35,6 +34,7 @@ $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $dataDir = 'data/' . $version;
 
 $n = 0;
+$errors = [];
 $jsonCountFileName = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
@@ -50,11 +50,14 @@ if (file_exists($jsonFreqFileName)) {
       $entityCounts->{$freq->field} = number_format($freq->count, 0, '.', ' ');
     }
   }
+} else {
+  $errors[] = sprintf("file %s is not existing", $jsonFreqFileName);
 }
+
 $datasets = retrieveDatasets($type, $fragment);
 $dataproviders = retrieveDataproviders($type, $fragment);
 
-$smarty = createSmarty($templateDir);
+$smarty = createSmarty('templates/newviz');
 $smarty->assign('rand', rand());
 $smarty->assign('collectionId', $collectionId);
 $smarty->assign('title', $title);
@@ -71,6 +74,8 @@ $smarty->assign('datasets', $datasets);
 $smarty->assign('dataproviders', $dataproviders);
 $smarty->assign('entityCounts', $entityCounts);
 $smarty->assign('n', $n);
+$smarty->assign('filePath', getRootPath());
+$smarty->assign('errors', $errors);
 
 $smarty->display('newviz.smarty.tpl');
 

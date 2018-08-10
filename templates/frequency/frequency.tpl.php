@@ -51,7 +51,7 @@
 <script type="text/javascript">
   var labelSource = [];
 </script>
-<script type="text/javascript" src="chart.js.php?filename=json/frequency.json&type=<?= $type ?>&target=frequency-chart&property=frequency"></script>
+<script type="text/javascript" src="chart.js.php?filename=data/v2018-03/json/frequency.json&type=<?= $type ?>&target=frequency-chart&property=frequency"></script>
 <link rel="stylesheet" href="chart.css" />
 
 </body>

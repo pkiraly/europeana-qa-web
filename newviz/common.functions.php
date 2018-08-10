@@ -1,10 +1,9 @@
 <?php
-if (file_exists('../common/common-functions.php')) {
-  include_once('../common/common-functions.php');
-} else if (file_exists('../../common/common-functions.php')) {
-  include_once('../../common/common-functions.php');
-} else if (file_exists('common/common-functions.php')) {
-  include_once('common/common-functions.php');
+
+include_once getRootPath() . '/common/common-functions.php';
+
+function getRootPath() {
+  return realpath(__DIR__. '/../');
 }
 
 function getParameters() {

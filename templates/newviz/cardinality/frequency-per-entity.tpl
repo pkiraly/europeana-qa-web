@@ -42,6 +42,13 @@
           </ul>
         {/if}
 
+        {if ($development)}
+          <div class="most-frequent-values">
+            <a href="#" class="most-frequent-values {$field->key}">Show the most frequent values</a>
+            <div id="most-frequent-values-{$field->key}"></div>
+          </div>
+        {/if}
+
         {strip}
         Frequency compared to <select name="comparision-selector" id="{$field->key}-comparision-selector">
         <option>--select a field--</option>

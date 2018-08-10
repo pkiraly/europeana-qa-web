@@ -218,3 +218,15 @@ li.nav-item.active {
   /* background-color: #dfdfdf; */
   background-color: #eee;
 }
+
+table#dataset td {
+  text-align: right;
+}
+
+table#dataset td.text {
+  text-align: left;
+}
+
+table#dataset td.sep {
+  border-left: solid 1px #ccc;
+}

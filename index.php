@@ -589,4 +589,4 @@ if (file_exists($summaryFile)) {
   file_put_contents($summaryFile, json_encode($rows));
 }
 
-include("templates/index/index.tpl.php");
+include("templates/v1.0/index/index.tpl.php");

@@ -1,6 +1,6 @@
 <?php
 
-$baseUrl = 'http://localhost:8983/solr/qa-2018-03';
+$baseUrl = 'http://localhost:8984/solr/qa-2018-03';
 
 $q = $_GET['q'];
 $fq = $_GET['fq'];

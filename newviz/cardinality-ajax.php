@@ -75,6 +75,9 @@ foreach ($fields[$entity] as $field => $label) {
   $fieldProperties[$field] = $n;
 }
 
+$development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
+$smarty->assign('development', $development);
+$smarty->assign('type', $type);
 $smarty->assign('version', $version);
 $smarty->assign('entity', $entity);
 $smarty->assign('fields', $fieldProperties);
