@@ -53,10 +53,24 @@
           {/foreach}
         </select>
         {/strip}
+        <input type="hidden" name="development" value="{$development}"/>
         <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+
+        {if $development}
+          {strip}
+            {foreach $intersections as $item}
+              <label>
+                <input type="radio" name="intersection" value="{$item->file}"
+                      {if $item->file == $intersection} checked="checked"{/if}/>
+                {$item->name} ({$item->count|number_format:0:'.':' '})
+              </label><br/>
+            {/foreach}
+          {/strip}
+        {/if}
       </div>
     </div>
   </form>
+
 
   {if ($type == 'd')}
     <h4>{$collectionId}</h4>

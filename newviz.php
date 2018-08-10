@@ -30,8 +30,10 @@ if (is_null($version) || !in_array($version, $configuration['version'])) {
   $version = $configuration['version'][0];
 }
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
+$intersection = getOrDefault('intersection', NULL);
 
 $dataDir = 'data/' . $version;
+
 
 $n = 0;
 $errors = [];
@@ -77,6 +79,11 @@ $smarty->assign('n', $n);
 $smarty->assign('filePath', getRootPath());
 $smarty->assign('errors', $errors);
 
+if ($development) {
+  $smarty->assign('intersections', getIntersections($type, $id));
+  $smarty->assign('intersection', $intersection);
+}
+
 $smarty->display('newviz.smarty.tpl');
 
 function retrieveDatasets($type, $fragment) {
@@ -105,8 +112,10 @@ function retrieveCsv($fileName, $fragment) {
 }
 
 function retrieveName($id, $type) {
+  global $version;
+
   $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
-  $content = explode("\n", file_get_contents($file));
+  $content = explode("\n", file_get_contents('data/' . $version . '/' . $file));
   $name = FALSE;
   foreach ($content as $line) {
     list($_id, $_name) = explode(';', $line, 2);
@@ -126,4 +135,19 @@ function getPortalUrl($type, $collectionId) {
     $url .= urlencode('f[DATA_PROVIDER][]') . '=' . urlencode($collectionId) . '&q=*';
   }
   return $url;
+}
+
+function getIntersections($type, $id) {
+  global $dataDir;
+  $other_type = $type == 'c' ? 'd' : 'c';
+  $file = $dataDir . '/intersections.json';
+  $data = json_decode(file_get_contents($file));
+  $list = $data->$type->$id;
+  $rows = [];
+  foreach ($list as $_id => $item) {
+    $item->id = $_id;
+    $item->name = retrieveName($_id, $other_type);
+    $rows[] = $item;
+  }
+  return $rows;
 }
