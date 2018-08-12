@@ -230,3 +230,7 @@ table#dataset td.text {
 table#dataset td.sep {
   border-left: solid 1px #ccc;
 }
+
+#intersections label {
+  font-weight: unset;
+}

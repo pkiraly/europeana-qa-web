@@ -55,19 +55,32 @@
         {/strip}
         <input type="hidden" name="development" value="{$development}"/>
         <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
-
-        {if $development}
-          {strip}
-            {foreach $intersections as $item}
-              <label>
-                <input type="radio" name="intersection" value="{$item->file}"
-                      {if $item->file == $intersection} checked="checked"{/if}/>
-                {$item->name} ({$item->count|number_format:0:'.':' '})
-              </label><br/>
-            {/foreach}
-          {/strip}
-        {/if}
       </div>
+    </div>
+
+    <div class="row" id="intersections">
+      {assign var=total value=count($intersections)}
+      {if $total > 6}
+        {assign var=unit_size value=ceil($total / 3)}
+      {else}
+        {assign var=unit_size value="0"}
+        <div class="col-lg-4">&nbsp;</div>
+        <div class="col-lg-8">
+      {/if}
+      {strip}
+        {foreach $intersections as $i => $item}
+          {if $unit_size > 0 && $i % $unit_size == 0}
+            {if $i != 0}</div>{/if}
+            <div class="col-lg-4">
+          {/if}
+          <label>
+            <input type="radio" name="intersection" value="{$item->file}"
+                  {if $item->file == $intersection} checked="checked"{/if}/>
+            {$item->name} ({$item->count|number_format:0:'.':' '})
+          </label><br/>
+        {/foreach}
+        </div>
+      {/strip}
     </div>
   </form>
 
@@ -210,6 +223,7 @@ var version = '{$version}';
 var development = {(int)$development};
 var count = {$n};
 var collectionId = '{$collectionId}';
+var intersection = {if is_null($intersection)}null{else}'{$intersection}'{/if};
 
 {literal}
 $(document).ready(function () {
@@ -295,10 +309,16 @@ $(document).ready(function () {
   });
 
   showType(type);
-  $("input[name='type']").on('change', function () {
+  $("input[name='type']").on('change', function(){
     showType($(this).val());
   })
+
+  $("form#collection-selector select[name='id']").on('change', function(){
+    var selectedId = $(this).val();
+    updateIntercestionSelector(selectedId);
+  })
 });
+
 
 $(function () {
   // $('#entities a.nav-link').tab('show');
@@ -316,17 +336,65 @@ $(function () {
 function filterIds() {
   var fragment = $('input[name=fragment]').val();
   var type = $('#collection-selector input[name=type]:checked').val();
-  var query = {'fragment': fragment, 'type': type};
+  console.log(type);
+  var query = {'fragment': fragment, 'type': type, 'version': version};
   $.get("newviz/dataset-filter-ajax.php", query)
-  .done(function(data) {
-    var selectorId = (data.type == 'c') ? 'cid' : 'did';
+   .done(function(data) {
+     var selectorId = (type == 'c') ? 'cid' : 'did';
+     console.log('#' + selectorId);
+     // $('#' + selectorId + ' option').remove();
+     $('#' + selectorId).empty();
 
-    $('#' + selectorId + ' option').remove();
-    $.each(data.content, function() {
-      $('#' + selectorId).append('<option value="' + this.value + '">' + this.name + '</option>');
-    })
-  });
+     var first = "";
+     $.each(data.content, function() {
+       if (first == "")
+         first = this.value;
+       $('#' + selectorId).append(
+         '<option value="' + this.value + '">' + this.name + '</option>'
+       );
+     });
+     console.log($('#' + selectorId).html());
+     updateIntercestionSelector(first);
+   });
 }
+
+function updateIntercestionSelector(selectedId) {
+  var selectedType = $("input[name='type']:checked").val();
+  var query = {'type': selectedType, 'id': selectedId, 'version': version};
+  $.get("newviz/intersections-ajax.php", query)
+    .done(function(data) {
+      if (data.length > 0) {
+        $('#intersections').html('');
+        var radios = [];
+
+        var total = data.length;
+        var unit_size = (total > 6) ? Math.ceil(total / 3) : 0;
+        if (unit_size == 0)
+          radios.push('<div class="col-lg-4">&nbsp;</div><div class="col-lg-8">');
+
+        for (i in data) {
+          var item = data[i];
+          if (unit_size > 0 && i % unit_size == 0) {
+            if (i != 0)
+              radios.push('</div>');
+            radios.push('<div class="col-lg-4">');
+          }
+
+          var radioEl = "<label>";
+          radioEl += '<input type="radio" name="intersection" value="' + item.file + '"/>';
+          radioEl += item.name + ' (' + item.count + ')';
+          radioEl += '</label><br/>';
+          radios.push(radioEl);
+        }
+        radios.push('</div>');
+        $('#intersections').html(radios.join(''));
+      } else {
+        $('#intersections').html('');
+      }
+    });
+}
+
+
 
 function toggleActivation(entity) {
   if (loadedEntity != null) {
@@ -356,7 +424,10 @@ function showType(type) {
 
 function loadMultilinguality() {
   var entity = 'ProvidedCHO';
-  var query = {'id': id, 'type': type, 'entity': entity, 'version': version, 'development': development};
+  var query = {
+    'id': id, 'type': type, 'intersection': intersection,
+    'entity': entity, 'version': version, 'development': development
+  };
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
       $('#multilinguality-content').html(data);
@@ -372,7 +443,10 @@ function loadMultilinguality() {
 }
 
 function loadRecordPatterns() {
-  var query = {'id': id, 'type': type, 'count': count, 'version': version, 'development': development};
+  var query = {
+    'id': id, 'type': type, 'intersection': intersection,
+    'count': count, 'version': version, 'development': development
+  };
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
      $('#record-patterns-content').html(data);
@@ -383,7 +457,10 @@ function loadRecordPatterns() {
 }
 
 function loadUniqueness() {
-  var query = {'id': id, 'type': type, 'count': count, 'version': version, 'development': development};
+  var query = {
+    'id': id, 'type': type, 'intersection': intersection,
+    'count': count, 'version': version, 'development': development
+  };
   $.get("newviz/uniqueness-ajax.php", query)
   .done(function(data) {
     $('#uniqueness-content').html(data);
@@ -394,7 +471,10 @@ function loadUniqueness() {
 }
 
 function loadEntityCardinality(entity) {
-  var query = {'id': id, 'type': type, 'entity': entity, 'version': version, 'development': development};
+  var query = {
+    'id': id, 'type': type, 'intersection': intersection,
+    'entity': entity, 'version': version, 'development': development
+  };
   $.get("newviz/cardinality-ajax.php", query)
     .done(function(data) {
       $('#cardinality-content').html(data);
@@ -454,7 +534,6 @@ function showMostFrequentValues(field) {
       var targetId = '#most-frequent-values-' + field;
       $(targetId).html(text.join(', '));
     });
-
 }
 
 function getMostFrequentValuesUrl(field) {

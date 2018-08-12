@@ -5,6 +5,10 @@ include_once('newviz/common.functions.php');
 
 $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
+
+$version  = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$dataDir = 'data/' . $version;
+
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
@@ -20,30 +24,36 @@ if (isset($_GET['id'])) {
     $collectionId = retrieveName($id, $type);
   }
 } else {
-  $collectionId = $argv[1];
-  $id = strstr($collectionId, '_', true);
+  if (isset($argv)) {
+    $collectionId = $argv[1];
+    $id = strstr($collectionId, '_', true);
+  }
   $type = 'c';
 }
 $fragment = getOrDefault('fragment', NULL);
-$version  = getOrDefault('version', NULL);
-if (is_null($version) || !in_array($version, $configuration['version'])) {
-  $version = $configuration['version'][0];
-}
+$intersection = getOrDefault('intersection', NULL);
+
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $intersection = getOrDefault('intersection', NULL);
 
-$dataDir = 'data/' . $version;
+if (empty($id)) {
+  $datasets = retrieveDatasets($type, $fragment);
+  foreach ($datasets as $id => $collectionId) {
+    break;
+  }
+}
 
+$filePrefix = is_null($intersection) || $intersection == 'all' ? $type . $id : $intersection;
 
 $n = 0;
 $errors = [];
-$jsonCountFileName = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.count.json';
+$jsonCountFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.count.json';
 if (file_exists($jsonCountFileName)) {
   $stats = json_decode(file_get_contents($jsonCountFileName));
   $n = $stats[0]->count;
 }
 
-$jsonFreqFileName = $dataDir . '/json/' . $type . $id . '/' . $type . $id . '.freq.json';
+$jsonFreqFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.freq.json';
 if (file_exists($jsonFreqFileName)) {
   $frequencies = json_decode(file_get_contents($jsonFreqFileName));
   $entityCounts = (object)[];
@@ -79,10 +89,8 @@ $smarty->assign('n', $n);
 $smarty->assign('filePath', getRootPath());
 $smarty->assign('errors', $errors);
 
-if ($development) {
-  $smarty->assign('intersections', getIntersections($type, $id));
-  $smarty->assign('intersection', $intersection);
-}
+$smarty->assign('intersections', getIntersections($type, $id));
+$smarty->assign('intersection', $intersection);
 
 $smarty->display('newviz.smarty.tpl');
 
@@ -112,16 +120,21 @@ function retrieveCsv($fileName, $fragment) {
 }
 
 function retrieveName($id, $type) {
-  global $version;
+  global $dataDir;
 
-  $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
-  $content = explode("\n", file_get_contents('data/' . $version . '/' . $file));
+  if (!isset($content)) {
+    $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
+    $content = explode("\n", file_get_contents($dataDir . '/' . $file));
+  }
+
   $name = FALSE;
   foreach ($content as $line) {
-    list($_id, $_name) = explode(';', $line, 2);
-    if ($_id == $id) {
-      $name = $_name;
-      break;
+    if (strlen($line) > 0) {
+      list($_id, $_name) = explode(';', $line, 2);
+      if ($_id == $id) {
+        $name = $_name;
+        break;
+      }
     }
   }
   return $name;
@@ -143,11 +156,16 @@ function getIntersections($type, $id) {
   $file = $dataDir . '/intersections.json';
   $data = json_decode(file_get_contents($file));
   $list = $data->$type->$id;
-  $rows = [];
+  $rows = [(object)['id' => 'all', 'name'=> 'all', 'file'=> 'all']];
+  $all_count = 0;
   foreach ($list as $_id => $item) {
     $item->id = $_id;
     $item->name = retrieveName($_id, $other_type);
+    if ($type == 'c' && $item->name === FALSE)
+      $item->name = 'unspecified';
     $rows[] = $item;
+    $all_count += $item->count;
   }
+  $rows[0]->count = $all_count;
   return $rows;
 }

@@ -1,13 +1,24 @@
 <?php
-$configuration = parse_ini_file('../config.cfg');
-include_once('common.functions.php');
-include_once('../common/saturation-functions.php');
+
+$root = realpath(__DIR__. '/../');
+$script = str_replace($root, '', __FILE__);
+
+$configuration = parse_ini_file($root . '/config.cfg');
+include_once($root . '/newviz/common.functions.php');
+include_once($root . '/common/saturation-functions.php');
+
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 
-$templateDir = '../templates/newviz/multilinguality/';
 $parameters = getParameters();
+$version = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$intersection = getOrDefault('intersection', NULL);
+if (empty($intersection))
+  $intersection = NULL;
+
 $collectionId = $parameters->type . $parameters->id;
-$dataDir = '../' . getDataDir();
+$dataDir = $root . '/' . getDataDir();
+
+$filePrefix = (is_null($intersection) || $intersection == 'all') ? $collectionId : $intersection;
 
 $languageDistribution = getLanguageDistribution();
 $fieldsByLanguageList = getFieldsByLanguageList($languageDistribution);
@@ -24,6 +35,7 @@ $data = (object)[
   'collectionId' => $collectionId
 ];
 
+$templateDir = '../templates/newviz/multilinguality/';
 $smarty = createSmarty($templateDir);
 
 $smarty->assign('data', $data);
@@ -48,10 +60,10 @@ function getFields() {
 }
 
 function getSaturationStatistics() {
-  global $parameters, $collectionId, $dataDir;
+  global $parameters, $collectionId, $dataDir, $filePrefix;
 
   $assocStat = [];
-  $saturationFile = sprintf('%s/json/%s/%s.saturation.json', $dataDir, $collectionId, $collectionId);
+  $saturationFile = sprintf('%s/json/%s/%s.saturation.json', $dataDir, $filePrefix, $filePrefix);
   $saturationFileExists = file_exists($saturationFile);
   if ($saturationFileExists) {
     $saturation = json_decode(file_get_contents($saturationFile));
@@ -99,10 +111,10 @@ function getSaturationStatistics() {
 }
 
 function getLanguageDistribution() {
-  global $parameters, $collectionId, $dataDir;
+  global $parameters, $collectionId, $dataDir, $filePrefix;
 
   $languageDistribution = (object)[];
-  $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $collectionId, $collectionId);
+  $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $filePrefix, $filePrefix);
   $languageDistributionFileExists = file_exists($languageDistributionFile);
   if ($languageDistributionFileExists) {
     $languageDistribution = json_decode(file_get_contents($languageDistributionFile));
