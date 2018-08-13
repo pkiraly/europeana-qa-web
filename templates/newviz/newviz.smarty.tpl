@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="style/newviz.css?a={$rand}" type="text/css"/>
   <!-- choose a theme file -->
   <link rel="stylesheet" href="jquery/theme.default.min.css">
+  <link rel="icon" type="image/png" href="https://europeana-style-production.cdnedge.bluemix.net/v0.4.29/images/favicons/favicon-32x32.png?ver=alpha" sizes="32x32">
   <!-- load jQuery and tablesorter scripts -->
   <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
 </head>

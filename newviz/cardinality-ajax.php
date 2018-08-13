@@ -31,7 +31,8 @@ if (isset($_GET['entity']) && in_array($_GET['entity'], $allowedEntities)) {
   $entity = $_GET['entity'];
 }
 
-$dataDir = $root . '/' . getDataDir();
+// $dataDir = $root . '/' . getDataDir();
+$dataDir = $configuration['DATA_PATH'] . '/' . $version;
 $smarty = createSmarty($templateDir);
 
 $statistics = new stdClass();

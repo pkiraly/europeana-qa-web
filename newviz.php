@@ -7,7 +7,7 @@ $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 
 $version  = getOrDefault('version', $configuration['version'][0], $configuration['version']);
-$dataDir = 'data/' . $version;
+$dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
