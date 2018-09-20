@@ -1,14 +1,16 @@
 <?php
 
-$configuration = parse_ini_file('../config.cfg');
-include_once('common.functions.php');
-$templateDir = '../templates/newviz/uniqueness/';
+$root = realpath(__DIR__. '/../');
+$script = str_replace($root, '', __FILE__);
+
+$configuration = parse_ini_file($root . '/config.cfg');
+include_once($root . '/newviz/common.functions.php');
 
 $parameters = getParameters();
 $collectionId = $parameters->type . $parameters->id;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 
-$dataDir = '../' . getDataDir();
+$dataDir = getDataDir();
 
 $data = (object)[
   'version' => getOrDefault('version'),
@@ -18,7 +20,7 @@ $data = (object)[
   'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
 ];
 
-$smarty = createSmarty($templateDir);
+$smarty = createSmarty('../templates/newviz/uniqueness/');
 $smarty->assign('data', $data);
 $smarty->display('uniqueness-histogram.smarty.tpl');
 

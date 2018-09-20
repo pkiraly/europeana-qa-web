@@ -395,8 +395,6 @@ function updateIntercestionSelector(selectedId) {
     });
 }
 
-
-
 function toggleActivation(entity) {
   if (loadedEntity != null) {
     $("a[datatype=" + loadedEntity + "]").parent().removeClass('active');

@@ -87,10 +87,12 @@
     </thead>
     <tbody>
     {foreach $rows as $counter => $obj}
-      <tr>
+      <tr class="in-all">
         <td class="text">{$counter}</td>
         <td class="text">{$obj->n}</td>
-        <td class="text"><a href="{$datasetLink}?id={$obj->id}&name={$obj->collectionId}&type={$obj->type}#multilingual-score">{$obj->collectionId}</a></td>
+        <td class="text collection-label">
+          <a href="{$datasetLink}?id={$obj->id}&name={$obj->collectionId}&type={$obj->type}#multilingual-score">{$obj->collectionId}</a>
+        </td>
         <td class="sep">{$obj->saturation2_taggedliterals_in_providerproxy|conditional_format:FALSE:FALSE:1}</td>
         <td>{$obj->saturation2_taggedliterals_in_europeanaproxy|conditional_format:FALSE:FALSE:1}</td>
         <td>{$obj->saturation2_taggedliterals_in_object|conditional_format:FALSE:FALSE:1}</td>
@@ -125,15 +127,17 @@
     <tbody>
       {foreach $rows as $counter => $obj}
         <tr>
-          <td>{$counter}</td>
-          <td>{$obj->n}</td>
-          <td><a href="{$datasetLink}?id={$obj->id}&name={$obj->collectionId}&type={$obj->type}#multilingual-score">{$obj->collectionId}</a></td>
+          <td class="text">{$counter}</td>
+          <td class="text">{$obj->n}</td>
+          <td class="text collection-label">
+            <a href="{$datasetLink}?id={$obj->id}&name={$obj->collectionId}&type={$obj->type}#multilingual-score">{$obj->collectionId}</a>
+          </td>
           <td>{$obj->mean}</td>
           <td>{if isset($obj->{'std.dev'})}{$obj->{'std.dev'}}{else}'na'{/if}</td>
           <td>{$obj->min}</td>
           <td>{$obj->max}</td>
-          <td>{$obj->range}</td>
-          <td>{$obj->median}</td>
+          <td>{if isset($obj->range)}{$obj->range}{else}na{/if}</td>
+          <td>{if isset($obj->median)}{$obj->median}{else}na{/if}</td>
         </tr>
       {/foreach}
     </tbody>

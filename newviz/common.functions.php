@@ -30,13 +30,10 @@ function getDataDir() {
   global $configuration, $version;
 
   if (!isset($version)) {
-    $version = getOrDefault('version', NULL);
-    if (is_null($version) || !in_array($version, $configuration['version'])) {
-      $version = $configuration['version'][0];
-    }
+    $version = getOrDefault('version', $configuration['version'][0], $configuration['version']);
   }
 
-  return 'data/' . $version;
+  return $configuration['DATA_PATH'] . '/' . $version;
 }
 
 function parseId($id) {

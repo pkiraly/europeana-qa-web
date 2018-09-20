@@ -16,7 +16,7 @@ if (empty($intersection))
   $intersection = NULL;
 
 $collectionId = $parameters->type . $parameters->id;
-$dataDir = $root . '/' . getDataDir();
+$dataDir = getDataDir();
 
 $filePrefix = (is_null($intersection) || $intersection == 'all') ? $collectionId : $intersection;
 

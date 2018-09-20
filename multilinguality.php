@@ -1,6 +1,7 @@
 <?php
 define('LN', "\n");
-define('DEFAULT_FEATURE', 'weighted_completeness2');
+define('DEFAULT_FEATURE', 'all');
+
 $configuration = parse_ini_file('config.cfg');
 include_once('common/common-functions.php');
 include_once('newviz/common.functions.php');
@@ -21,17 +22,12 @@ $features = [
   'saturation2_taggedliterals_per_language_in_object' => 'Tagged literals per language in object',
 ];
 
+$version  = getOrDefault('version', $configuration['version'][0], $configuration['version']);
 
-$version  = getOrDefault('version', NULL);
-if (is_null($version) || !in_array($version, $configuration['version']))
-  $version = $configuration['version'][0];
+$dataDir = getDataDir();
+error_log('dataDir: ' . $dataDir);
 
-$dataDir = 'data/' . $version . '/json';
-
-$feature = isset($_GET) && isset($_GET['feature']) ? $_GET['feature'] : DEFAULT_FEATURE;
-if (!isset($feature) || !isset($features[$feature])) {
-  $feature = DEFAULT_FEATURE;
-}
+$feature = getOrDefault('feature', DEFAULT_FEATURE, array_keys($features));
 
 $types = [
   'data-providers' => 'Data providers',
@@ -44,27 +40,20 @@ $statistics = [
 ];
 
 $type = getOrDefault('type', 'data-providers');
-if (!isset($type) || !isset($types[$type]))
-  $type = 'data-providers';
-
 $statistic = getOrDefault('statistic', 'mean');
-if (!isset($statistic) || !isset($statistics[$statistic]))
-  $statistic = 'mean';
-
-$prefix = $type == 'datasets' ? 'c' : 'd';
-
-// $csv = array_map('str_getcsv', file('collection-names.csv'));
+$prefix = ($type == 'datasets') ? 'c' : 'd';
 
 function parse_csv($t) {
   return str_getcsv($t, ';');
 }
-$csv = array_map('parse_csv', file($type . '.txt'));
+$csv = array_map('parse_csv', file($dataDir . '/' . $type . '.txt'));
 
 if ($feature == 'all') {
   $summaryFile = sprintf('json_cache/%s-multilinguality-%s-%s-%s.json', $version, $feature, $prefix, $statistic);
 } else {
   $summaryFile = sprintf('json_cache/%s-multilinguality-%s-%s.json', $version, $feature, $prefix);
 }
+error_log('summaryFile: ' . $summaryFile);
 $suffix = '.saturation';
 $isSaturation2 = true;
 
@@ -78,19 +67,33 @@ if (file_exists($summaryFile)) {
   // $errors[] = sprintf('Summary file: %s, size: %d', $summaryFile, $stat['size']);
   $rows = json_decode(file_get_contents($summaryFile));
 } else {
+  set_time_limit(0);
   $counter = 1;
+  $to_replace = [chr(0x82), chr(0x83), '', '', 'Ã'];
+  $aggregation = (object)[
+    'n' => 0,
+    'id' => 'all',
+    'collectionId' => 'all',
+    'type' => $prefix
+  ];
+
   foreach ($csv as $id => $row) {
     $id = $row[0];
+    // error_log('id: ' . $id);
     $collectionId = $row[1];
 
+    if (preg_match('/Landesbibliothek, Darmstadt/', $collectionId)) {
+      $collectionId = 'Universitäts- und Landesbibliothek, Darmstadt';
+    }
+
     $n = 0;
-    $jsonCountFileName = $dataDir . '/' . $prefix . $id . '/' . $prefix . $id . '.count.json';
+    $jsonCountFileName = $dataDir . '/json/' . $prefix . $id . '/' . $prefix . $id . '.count.json';
     if (file_exists($jsonCountFileName)) {
       $stats = json_decode(file_get_contents($jsonCountFileName));
       $n = $stats[0]->count;
     }
 
-    $jsonFileName = $dataDir . '/' . $prefix . $id . '/' . $prefix . $id . $suffix . '.json';
+    $jsonFileName = $dataDir . '/json/' . $prefix . $id . '/' . $prefix . $id . $suffix . '.json';
     if (file_exists($jsonFileName)) {
       if ($counter == 1) {
         // echo 'jsonFileName: ', $jsonFileName, "\n";
@@ -107,18 +110,41 @@ if (file_exists($summaryFile)) {
         if ($feature == 'all') {
           if (in_array($obj->_row, array_keys($features))) {
             $obj2->{$obj->_row} = $obj->$statistic;
-          } else {
-            if ($obj->_row == $feature) {
-              unset($obj->recMin);
-              unset($obj->recMax);
-              unset($obj->_row);
-              $obj->n = $n;
-              $obj->id = $id;
-              $obj->type = $prefix;
-              $obj->collectionId = $collectionId;
-              $rows[$counter++] = $obj;
-              break;
+          }
+        } else {
+          if ($obj->_row == $feature) {
+            unset($obj->recMin);
+            unset($obj->recMax);
+            unset($obj->_row);
+            $obj->n = $n;
+            $obj->id = $id;
+            $obj->type = $prefix;
+            $obj->collectionId = $collectionId;
+            $rows[$counter++] = $obj;
+
+            $prev_n = $aggregation->n;
+            $aggregation->n += $obj->n;
+            if (!isset($aggregation->min) || $aggregation->min > $obj->min)
+              $aggregation->min = $obj->min;
+            if (!isset($aggregation->max) || $aggregation->max < $obj->max)
+              $aggregation->max = $obj->max;
+            if (!isset($aggregation->mean)) {
+              $aggregation->mean = $obj->mean;
+            } else {
+              $aggregation->mean = (($aggregation->mean * ($aggregation->n - $obj->n)) + ($obj->mean * $obj->n)) / $aggregation->n;
             }
+
+            if (isset($obj->{'std.dev'})) {
+              if (!isset($aggregation->{'std.dev'})) {
+                $aggregation->{'std.dev'} = $obj->{'std.dev'};
+              } else {
+                $aggr_avg = $aggregation->{'std.dev'} * $prev_n;
+                $obj_avg = $obj->{'std.dev'} * $obj->n;
+                $aggregation->{'std.dev'} = ($aggr_avg + $obj_avg) / $aggregation->n;
+              }
+            }
+
+            break;
           }
         }
       }
@@ -133,6 +159,9 @@ if (file_exists($summaryFile)) {
       // $errors[] = sprintf("jsonFileName (%s) is not existing\n", $jsonFileName);
     }
   }
+  $aggregation->mean = number_format($aggregation->mean, 4);
+  $aggregation->{'std.dev'} = number_format($aggregation->{'std.dev'}, 4);
+  $rows[$counter++] = $aggregation;
   // echo 'count: ', count($rows), "\n";
   // if ($suffix != '.weighted-completeness' && $suffix != '.saturation')
   file_put_contents($summaryFile, json_encode($rows));

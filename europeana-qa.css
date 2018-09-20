@@ -231,6 +231,18 @@ table#dataset td.sep {
   border-left: solid 1px #ccc;
 }
 
+table#dataset td.collection-label {
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: unset;
+}
+
+table#dataset tr.in-all td.collection-label {
+  width: 50%;
+}
+
 #intersections label {
   font-weight: unset;
 }
+
