@@ -10,7 +10,7 @@ include_once($root . '/common/saturation-functions.php');
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 
 $parameters = getParameters();
-$version = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $intersection = getOrDefault('intersection', NULL);
 if (empty($intersection))
   $intersection = NULL;

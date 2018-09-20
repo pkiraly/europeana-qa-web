@@ -9,7 +9,7 @@ include_once($root . '/newviz/common.functions.php');
 
 $id = getOrDefault('id', NULL);
 $type = getOrDefault('type', NULL);
-$version = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 
 if (is_null($id) || is_null($type) || !in_array($type, ['c', 'd']) || is_null($version)) {
   $content = [];

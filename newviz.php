@@ -6,7 +6,7 @@ include_once('newviz/common.functions.php');
 $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 
-$version  = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$version  = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 if (isset($_GET['id'])) {
@@ -152,6 +152,8 @@ function getPortalUrl($type, $collectionId) {
 
 function getIntersections($type, $id) {
   global $dataDir;
+
+
   $other_type = $type == 'c' ? 'd' : 'c';
   $file = $dataDir . '/intersections.json';
   $data = json_decode(file_get_contents($file));

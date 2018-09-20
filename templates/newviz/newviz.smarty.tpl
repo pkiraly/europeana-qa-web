@@ -54,6 +54,7 @@
           {/foreach}
         </select>
         {/strip}
+        <input type="hidden" name="version" value="{$version}"/>
         <input type="hidden" name="development" value="{$development}"/>
         <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
       </div>
@@ -98,6 +99,7 @@
         {else}
           <a href="?type={$type}&id={$id}&version={$configured_version}">{$configured_version}</a>
         {/if}
+        &nbsp;
       {/foreach}
   </p>
 
@@ -114,7 +116,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3">
           <h2>Field Frequency</h2>
-          <p>Dataset: {$entityCounts->proxy_rdf_about} records {$n}</p>
+          <p>Dataset: {$entityCounts->proxy_rdf_about} records</p>
           <ul id="entities" class="nav">
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO ({$entityCounts->proxy_rdf_about})</a>
@@ -564,7 +566,7 @@ function processHistogramPopoverContent(element) {
     var html = '<span id="' + targetId + '" data-content="' + content + '"></span>';
     element.attr('data-content', html);
 
-    var query = {'q': q, 'fq': fq, 'rows': 10};
+    var query = {'q': q, 'fq': fq, 'rows': 10, 'version': version};
     $.get('newviz/solr-ajax.php', query)
     .done(function(data){
       var portalUrl = 'https://www.europeana.eu/portal/en/record';

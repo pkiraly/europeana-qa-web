@@ -222,7 +222,7 @@ function buildQuery(field, language, collectionId) {
   collectionId = collectionId.substring(1);
   var fq = typeField + ':' + collectionId;
 
-  var query = {'q': q, 'fq': fq};
+  var query = {'q': q, 'fq': fq, 'version': version};
   return query;
 }
 

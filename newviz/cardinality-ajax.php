@@ -18,7 +18,7 @@ if (isset($_GET['type'])) {
 } else {
   list($id, $type) = parseId($id);
 }
-$version = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $intersection = getOrDefault('intersection', NULL);
 
 $filePrefix = (is_null($intersection) || empty($intersection) || $intersection == 'all')
@@ -40,7 +40,7 @@ readStatistics($type, $id, $entity);
 $fieldProperties = [];
 foreach ($fields[$entity] as $field => $label) {
   $key = strtolower($field);
-  $n = (object)[
+  $properties = (object)[
     'field' => $field,
     'key' => strtolower($field),
     'label' => $label,
@@ -50,37 +50,37 @@ foreach ($fields[$entity] as $field => $label) {
     'hasHistograms' => isset($statistics->histograms->{$key}),
     'hasMinMaxRecords' => isset($statistics->minMaxRecords->{$key}),
   ];
-  if ($n->isMandatory) {
-    $n->mandatory = $mandatory[$entity][$field];
-    $n->mandatoryIcon = getMandatoryIcon($mandatory[$entity][$field]);
+  if ($properties->isMandatory) {
+    $properties->mandatory = $mandatory[$entity][$field];
+    $properties->mandatoryIcon = getMandatoryIcon($mandatory[$entity][$field]);
   }
 
-  if ($n->hasFrequency) {
+  if ($properties->hasFrequency) {
     $freq = $statistics->frequencyTable->{$key};
-    $n->freqValues = json_encode($freq['values']);
-    $n->zeros = isset($freq['values']->{'0'})
+    $properties->freqValues = json_encode($freq['values']);
+    $properties->zeros = isset($freq['values']->{'0'})
            ? (int)$freq['values']->{'0'}[0]
            : (int)$statistics->entityCount;
-    $n->nonZeros = isset($freq['values']->{'1'})
+    $properties->nonZeros = isset($freq['values']->{'1'})
            ? (int)$freq['values']->{'1'}[0]
-           : max($statistics->entityCount - $n->zeros, 0);
-    $n->percent = $n->nonZeros / $statistics->entityCount;
-    $n->width = (int)(300 * $n->percent);
+           : max($statistics->entityCount - $properties->zeros, 0);
+    $properties->percent = $properties->nonZeros / $statistics->entityCount;
+    $properties->width = (int)(300 * $properties->percent);
 
-    $n->freqHtml = $freq['html'];
+    $properties->freqHtml = $freq['html'];
   }
-  if ($n->hasCardinality) {
-    $n->cardinalityHtml = $statistics->cardinality->{$key}->html;
+  if ($properties->hasCardinality) {
+    $properties->cardinalityHtml = $statistics->cardinality->{$key}->html;
   }
-  if ($n->hasHistograms) {
-    $n->histogramHtml = $statistics->histograms->{$key}['html'];
+  if ($properties->hasHistograms) {
+    $properties->histogramHtml = $statistics->histograms->{$key}['html'];
   }
-  if ($n->hasMinMaxRecords) {
-    $n->recMax = $statistics->minMaxRecords->{$key}->recMax;
-    $n->recMin = $statistics->minMaxRecords->{$key}->recMin;
+  if ($properties->hasMinMaxRecords) {
+    $properties->recMax = $statistics->minMaxRecords->{$key}->recMax;
+    $properties->recMin = $statistics->minMaxRecords->{$key}->recMin;
   }
 
-  $fieldProperties[$field] = $n;
+  $fieldProperties[$field] = $properties;
 }
 
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
@@ -129,7 +129,9 @@ function readFreqFileExistence($type, $id, $entityFields) {
   global $dataDir, $statistics, $filePrefix;
 
   $statistics->freqFile = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.freq.json';
+  error_log('LOG freqFile: ' . $statistics->freqFile);
   $statistics->freqFileExists = file_exists($statistics->freqFile);
+  error_log('LOG freqFile exists: ' . (int)$statistics->freqFileExists);
 }
 
 function readCardinality($type, $id, $entityFields) {
@@ -204,6 +206,7 @@ function readHistogram($type, $id, $entityFields) {
   // $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
   $statistics->histFile = $dataDir . '/json/' . $filePrefix . '/' .  $filePrefix . '.cardinality.histogram.json';
   $statistics->histFile_exists = file_exists($statistics->histFile);
+  error_log(sprintf("LOG histFile (%s) exists? %d\n", $statistics->histFile, $statistics->histFile_exists));
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     if (!isset($statistics->histograms))

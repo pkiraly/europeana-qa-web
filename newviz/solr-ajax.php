@@ -1,6 +1,9 @@
 <?php
 
-$baseUrl = 'http://localhost:8984/solr/qa-2018-03';
+$baseUrl = 'http://localhost:8984/solr/';
+$version = isset($_GET['version']) ? preg_replace('/^v/', '', $_GET['version']) : '2018-03';
+$version = 'qa-' . $version;
+$baseUrl .= $version;
 
 $q = $_GET['q'];
 $fq = $_GET['fq'];

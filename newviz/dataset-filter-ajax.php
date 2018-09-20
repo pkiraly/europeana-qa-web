@@ -9,7 +9,7 @@ include_once($root . '/common/common-functions.php');
 $fragment = getOrDefault('fragment', NULL);
 $type = getOrDefault('type', 'c', ['c', 'd']);
 $fileName = ($type == 'c') ? 'datasets.txt' : 'data-providers.txt';
-$version = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 
 $dataDir = $root . '/data/' . $version;
 $content = retrieveCsv($fileName, $fragment);

@@ -22,7 +22,7 @@ $features = [
   'saturation2_taggedliterals_per_language_in_object' => 'Tagged literals per language in object',
 ];
 
-$version  = getOrDefault('version', $configuration['version'][0], $configuration['version']);
+$version  = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 
 $dataDir = getDataDir();
 error_log('dataDir: ' . $dataDir);
