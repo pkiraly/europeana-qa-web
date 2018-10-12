@@ -15,7 +15,7 @@ if (is_null($id) || is_null($type) || !in_array($type, ['c', 'd']) || is_null($v
   $content = [];
 }
 
-$dataDir = $root . '/data/' . $version;
+$dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 $content = getIntersections($type, $id);
 

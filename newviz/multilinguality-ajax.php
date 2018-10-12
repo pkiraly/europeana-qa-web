@@ -10,15 +10,22 @@ include_once($root . '/common/saturation-functions.php');
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 
 $parameters = getParameters();
-$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+$version = getOrDefault(
+  'version',
+  $configuration['DEFAULT_VERSION'],
+  $configuration['version']
+);
 $intersection = getOrDefault('intersection', NULL);
 if (empty($intersection))
   $intersection = NULL;
 
 $collectionId = $parameters->type . $parameters->id;
 $dataDir = getDataDir();
+error_log($dataDir);
 
-$filePrefix = (is_null($intersection) || $intersection == 'all') ? $collectionId : $intersection;
+$filePrefix = (is_null($intersection) || $intersection == 'all')
+  ? $collectionId
+  : $intersection;
 
 $languageDistribution = getLanguageDistribution();
 $fieldsByLanguageList = getFieldsByLanguageList($languageDistribution);
@@ -55,7 +62,6 @@ function getFields() {
     'distinctlanguages' => 'Number of distinct language tags',
     'taggedliterals_per_language' => 'Number of tagged literals per language tag',
     'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
-    //                          'Average number of language tags per property for which there is at least one language-tagged literal'
   ];
 }
 
@@ -106,6 +112,8 @@ function getSaturationStatistics() {
         $assocStat['specific'][$field][$specific_type][$prefix] = $obj;
       }
     }
+  } else {
+    error_log("Saturation file does not exist: " . $saturationFile);
   }
   return $assocStat;
 }

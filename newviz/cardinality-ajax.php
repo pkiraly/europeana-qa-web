@@ -18,7 +18,8 @@ if (isset($_GET['type'])) {
 } else {
   list($id, $type) = parseId($id);
 }
-$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'],
+  $configuration['version']);
 $intersection = getOrDefault('intersection', NULL);
 
 $filePrefix = (is_null($intersection) || empty($intersection) || $intersection == 'all')
@@ -128,22 +129,25 @@ function readStatistics($type, $id, $entity) {
 function readFreqFileExistence($type, $id, $entityFields) {
   global $dataDir, $statistics, $filePrefix;
 
-  $statistics->freqFile = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.freq.json';
-  error_log('LOG freqFile: ' . $statistics->freqFile);
+  $statistics->freqFile = $dataDir . '/json/' . $filePrefix . '/'
+    . $filePrefix . '.freq.json';
+  // error_log('LOG freqFile: ' . $statistics->freqFile);
   $statistics->freqFileExists = file_exists($statistics->freqFile);
-  error_log('LOG freqFile exists: ' . (int)$statistics->freqFileExists);
+  // error_log('LOG freqFile exists: ' . (int)$statistics->freqFileExists);
 }
 
 function readCardinality($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics, $smarty, $filePrefix;
 
-  $statistics->cardinalityFile = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.cardinality.json';
+  $statistics->cardinalityFile = $dataDir . '/json/' . $filePrefix . '/'
+    . $filePrefix . '.cardinality.json';
   $statistics->cardinalityFileExists = file_exists($statistics->cardinalityFile);
 
   $cardinalityProperties = ['sum', 'mean', 'median'];
   if ($statistics->cardinalityFileExists) {
     $key = 'cardinality-property';
-    $statistics->cardinalityProperty = isset($_GET[$key]) && in_array($_GET[$key], $cardinalityProperties)
+    $statistics->cardinalityProperty = isset($_GET[$key])
+                                       && in_array($_GET[$key], $cardinalityProperties)
       ? $_GET[$key] : 'sum';
 
     $cardinality = json_decode(file_get_contents($statistics->cardinalityFile));
@@ -156,7 +160,8 @@ function readCardinality($type, $id, $entityFields) {
         unset($entry->field);
         $statistics->cardinality->{$field} = $entry;
         $smarty->assign('cardinality', $entry);
-        $statistics->cardinality->{$field}->html = $smarty->fetch('cardinality.smarty.tpl');
+        $statistics->cardinality->{$field}->html =
+          $smarty->fetch('cardinality.smarty.tpl');
 
         if ($statistics->cardinalityMax < $entry->sum) {
           $statistics->cardinalityMax = $entry->sum;
@@ -170,11 +175,14 @@ function readCardinality($type, $id, $entityFields) {
 function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
   global $dataDir, $templateDir, $statistics, $smarty, $filePrefix;
 
-  $statistics->frequencyTableFile = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.frequency.table.json';
+  $statistics->frequencyTableFile = $dataDir . '/json/' . $filePrefix . '/'
+    . $filePrefix . '.frequency.table.json';
   $data = new stdClass();
 
   if (file_exists($statistics->frequencyTableFile)) {
-    $statistics->frequencyTable = json_decode(file_get_contents($statistics->frequencyTableFile));
+    $statistics->frequencyTable = json_decode(
+      file_get_contents($statistics->frequencyTableFile)
+    );
     foreach ($statistics->frequencyTable as $key => $value) {
       if ($key != strtolower($key)) {
         unset($statistics->frequencyTable->$key);
@@ -204,9 +212,11 @@ function readHistogram($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics, $smarty, $filePrefix;
 
   // $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
-  $statistics->histFile = $dataDir . '/json/' . $filePrefix . '/' .  $filePrefix . '.cardinality.histogram.json';
+  $statistics->histFile = $dataDir . '/json/' . $filePrefix . '/'
+    .  $filePrefix . '.cardinality.histogram.json';
   $statistics->histFile_exists = file_exists($statistics->histFile);
-  error_log(sprintf("LOG histFile (%s) exists? %d\n", $statistics->histFile, $statistics->histFile_exists));
+  // error_log(sprintf("LOG histFile (%s) exists? %d\n",
+  //   $statistics->histFile, $statistics->histFile_exists));
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     if (!isset($statistics->histograms))
@@ -238,24 +248,28 @@ function readHistogram($type, $id, $entityFields) {
 
 function toSolrField($key) {
   $subject = [
-    'proxy', 'agent', 'concept', '_place', 'timespan', 'haspart', 'ispartof', 'isnextinsequence',
-    'europeanaproxy', 'usertag', 'proxyin', 'proxyfor', 'conformsto', 'hasformat',
-    'hasversion', 'preflabel', 'altlabel', 'hasmet', 'isrelatedto', 'biographicalinformation',
-    'dateofbirth', 'dateofdeath', 'dateOfEstablishment', 'rdagr2', 'dateoftermination', 'placeofbirth',
+    'proxy', 'agent', 'concept', '_place', 'timespan', 'haspart', 'ispartof',
+    'isnextinsequence', 'europeanaproxy', 'usertag', 'proxyin', 'proxyfor',
+    'conformsto', 'hasformat', 'hasversion', 'preflabel', 'altlabel', 'hasmet',
+    'isrelatedto', 'biographicalinformation', 'dateofbirth', 'dateofdeath',
+    'dateOfEstablishment', 'rdagr2', 'dateoftermination', 'placeofbirth',
     'placeofdeath', 'professionoroccupation', 'sameas', 'broadmatch', 'narrowmatch',
-    'relatedmatch', 'exactmatch', 'closematch', 'inscheme', 'isformatof', 'isreferencedby',
-    'isreplacedby', 'isrequiredby', 'isversionof', 'tableofcontents', 'currentlocation',
-    'hastype', 'isderivativeof', 'isrepresentationof', 'issimilarto', 'issuccessorof'
+    'relatedmatch', 'exactmatch', 'closematch', 'inscheme', 'isformatof',
+    'isreferencedby', 'isreplacedby', 'isrequiredby', 'isversionof',
+    'tableofcontents', 'currentlocation', 'hastype', 'isderivativeof',
+    'isrepresentationof', 'issimilarto', 'issuccessorof'
   ];
   $target  = [
-    'Proxy', 'Agent', 'Concept', '_Place', 'Timespan', 'hasPart', 'isPartOf', 'isNextInSequence',
-    'europeanaProxy', 'userTag', 'ProxyIn', 'ProxyFor', 'conformsTo', 'hasFormat',
-    'hasVersion', 'prefLabel', 'altLabel', 'hasMet', 'isRelatedTo', 'biographicalInformation',
-    'dateOfBirth', 'dateOfDeath', 'dateofestablishment', 'rdaGr2', 'dateOfTermination', 'placeOfBirth',
+    'Proxy', 'Agent', 'Concept', '_Place', 'Timespan', 'hasPart', 'isPartOf',
+    'isNextInSequence', 'europeanaProxy', 'userTag', 'ProxyIn', 'ProxyFor',
+    'conformsTo', 'hasFormat', 'hasVersion', 'prefLabel', 'altLabel', 'hasMet',
+    'isRelatedTo', 'biographicalInformation', 'dateOfBirth', 'dateOfDeath',
+    'dateofestablishment', 'rdaGr2', 'dateOfTermination', 'placeOfBirth',
     'placeOfDeath', 'professionOrOccupation', 'sameAs', 'broadMatch', 'narrowMatch',
-    'relatedMatch', 'exactMatch', 'closeMatch', 'inScheme', 'isFormatOf', 'isReferencedBy',
-    'isReplacedBy', 'isRequiredBy', 'isVersionOf', 'tableOfContents', 'currentLocation',
-    'hasType', 'isDerivativeOf', 'isRepresentationOf', 'isSimilarTo', 'isSuccessorOf'
+    'relatedMatch', 'exactMatch', 'closeMatch', 'inScheme', 'isFormatOf',
+    'isReferencedBy', 'isReplacedBy', 'isRequiredBy', 'isVersionOf',
+    'tableOfContents', 'currentLocation', 'hasType', 'isDerivativeOf',
+    'isRepresentationOf', 'isSimilarTo', 'isSuccessorOf'
   ];
   $key = str_replace($subject, $target, $key);
 
@@ -265,7 +279,8 @@ function toSolrField($key) {
 function readMinMaxRecords($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics, $filePrefix;
 
-  $statistics->minMaxRecordsFile = $dataDir . '/json/' . $filePrefix . '/' .  $filePrefix . '.json';
+  $statistics->minMaxRecordsFile = $dataDir . '/json/' . $filePrefix . '/'
+    .  $filePrefix . '.json';
   if (file_exists($statistics->minMaxRecordsFile)) {
     $histograms = json_decode(file_get_contents($statistics->minMaxRecordsFile));
     if (!isset($statistics->minMaxRecords))

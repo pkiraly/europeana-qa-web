@@ -247,64 +247,64 @@ $(document).ready(function () {
   // $("#specific-taggedliterals").tablesorter();
   // $("#specific-languages").tablesorter();
   // $("#specific-literalsperlanguage").tablesorter();
-  var id = document.location.hash;
-  if (isMultilingualityPanel(id)) {
+  var tabId = document.location.hash;
+  if (isMultilingualityPanel(tabId)) {
     loadMultilinguality();
     $('.nav-tabs a[href="#multilingual-score"]').tab('show');
-  } else if (id == '#record-patterns') {
+  } else if (tabId == '#record-patterns') {
     loadRecordPatterns();
     $('.nav-tabs a[href="#record-patterns"]').tab('show');
-  } else if (id == '#uniqueness') {
+  } else if (tabId == '#uniqueness') {
     loadUniqueness();
     $('.nav-tabs a[href="#uniqueness"]').tab('show');
-  } else if (id == '#cardinality-score-providedcho') {
+  } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
-  } else if (id == '#cardinality-score-providedcho') {
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+  } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
-  } else if (id == '#cardinality-score-providedcho') {
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+  } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
-  } else if (id == '#cardinality-score-agent') {
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+  } else if (tabId == '#cardinality-score-agent') {
     loadedEntity = 'Agent';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
-  } else if (id == '#cardinality-score-concept') {
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+  } else if (tabId == '#cardinality-score-concept') {
     loadedEntity = 'Concept';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
-  } else if (id == '#cardinality-score-place') {
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+  } else if (tabId == '#cardinality-score-place') {
     loadedEntity = 'Place';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
-  } else if (id == '#cardinality-score-timespan') {
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+  } else if (tabId == '#cardinality-score-timespan') {
     loadedEntity = 'Timespan';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
   } else {
     loadEntityCardinality('ProvidedCHO');
     loadedEntity = 'ProvidedCHO';
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + id + '"]').tab('show');
+    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
   }
 
   $(".nav-tabs a").click(function() {
     $(this).tab('show');
-    var id = this.href.substr(this.href.indexOf('#'));
-    if (loaded[id] === false) {
-      if (isMultilingualityPanel(id))
+    var tabId = this.href.substr(this.href.indexOf('#'));
+    if (loaded[tabId] === false) {
+      if (isMultilingualityPanel(tabId))
         loadMultilinguality();
-      else if (id == '#record-patterns')
+      else if (tabId == '#record-patterns')
         loadRecordPatterns();
-      else if (id == '#uniqueness')
+      else if (tabId == '#uniqueness')
         loadUniqueness();
       else
         loadEntityCardinality('ProvidedCHO');
@@ -405,8 +405,10 @@ function toggleActivation(entity) {
   loadedEntity = entity;
 }
 
-function isMultilingualityPanel(id) {
-  return (id == '#multilingual-score' || id == '#multilingual-score-general' || id == '#multilingual-score-languages');
+function isMultilingualityPanel(tabId) {
+  return (tabId == '#multilingual-score'
+       || tabId == '#multilingual-score-general'
+       || tabId == '#multilingual-score-languages');
 }
 
 function showType(type) {
@@ -437,8 +439,8 @@ function loadMultilinguality() {
         window.location.hash = $(this).attr('href');
         $(this).tab('show');
       });
-      var id = window.location.hash;
-      var selector = '#multilingual-details-tab a[href = "' + id + '"]';
+      var tabId = window.location.hash;
+      var selector = '#multilingual-details-tab a[href = "' + tabId + '"]';
       $(selector).tab('show');
    });
 }
@@ -448,6 +450,8 @@ function loadRecordPatterns() {
     'id': id, 'type': type, 'intersection': intersection,
     'count': count, 'version': version, 'development': development
   };
+  console.log("query: ");
+  console.log(query);
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
      $('#record-patterns-content').html(data);
@@ -482,8 +486,8 @@ function loadEntityCardinality(entity) {
 
       $('a.qa-show-details').click(function (event) {
         event.preventDefault();
-        id = $(this).attr('class').replace('qa-show-details ', '#details-');
-        $(id).toggle();
+        var tabId = $(this).attr('class').replace('qa-show-details ', '#details-');
+        $(tabId).toggle();
         faClass = $("i", this).attr('class') == 'fa fa-angle-down'
           ? 'fa fa-angle-up' : 'fa fa-angle-down';
         $("i", this).attr('class', faClass);
@@ -588,8 +592,8 @@ function processHistogramPopoverContent(element) {
 
 $("a.qa-show-details").click(function (event) {
   event.preventDefault();
-  id = $(this).attr('class').replace('qa-show-details ', '#details-');
-  $(id).toggle();
+  var tabId = $(this).attr('class').replace('qa-show-details ', '#details-');
+  $(tabId).toggle();
 });
 {/literal}
 </script>

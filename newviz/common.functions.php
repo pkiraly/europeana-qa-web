@@ -30,7 +30,11 @@ function getDataDir() {
   global $configuration, $version;
 
   if (!isset($version)) {
-    $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+    $version = getOrDefault(
+      'version',
+      $configuration['DEFAULT_VERSION'],
+      $configuration['version']
+    );
   }
 
   return $configuration['DATA_PATH'] . '/' . $version;

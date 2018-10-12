@@ -179,16 +179,95 @@ i.fa-gear {
 /* field patterns */
 table#field-patterns {
   margin-top: 150px;
+  border-collapse: inherit;
+  border-spacing: 3px;
 }
+
 table#field-patterns tbody tr td,
 table#field-patterns thead tr th
 {
   padding: 5px;
-  margin: 20x;
+  margin: 20px;
+}
+
+table#field-patterns tbody tr.barchart {
+  vertical-align: bottom;
+}
+
+table#field-patterns tbody tr.barchart td.bar div {
+  background-color: #cccccc;
+  width: 20px;
+  margin: auto;
+  border-left: 1px solid maroon;
+  border-bottom: 1px solid maroon;
 }
 
 table#field-patterns tbody tr td.filled {
   background-color: green;
+  border-left: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
+
+table#field-patterns tbody tr td.profile-filled {
+  background-color: lawngreen;
+  border-left: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
+
+table#field-patterns tbody tr td.semi-filled {
+  background-color: yellow;
+  border-left: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
+
+table#field-patterns tbody tr td.cluster,
+table#field-patterns tbody tr td.length {
+  min-width: 50px;
+}
+
+table#field-patterns tbody tr.profile td {
+  color: #999999;
+}
+
+table#field-patterns tbody tr.profile td.profile-filled {
+  color: #999999;
+}
+
+table#field-patterns tbody.jakob tr td.filled,
+table#field-patterns tbody.jakob tr td.profile-filled {
+  background-color: black;
+}
+
+table#field-patterns tbody.jakob tr td.semi-filled {
+  background-color: black;
+}
+
+table#field-patterns tbody.jakob tr.profile td {
+  color: black;
+}
+
+table#field-patterns tbody.jakob tr.profile td.profile-id {
+  border-left: 2px solid #cccccc;
+}
+
+table#field-patterns tbody.jakob tr.spacer,
+table#field-patterns tbody.jakob tr.spacer td {
+  height: 6px;
+  padding: 0;
+}
+
+table#field-patterns tbody.jakob tr td.opener a {
+  color: #000000;
+}
+
+table#field-patterns tbody.jakob tr.in-between,
+table#field-patterns tbody.jakob tr.in-between td {
+  height: 3px;
+  padding: 0;
+}
+
+table#field-patterns tbody tr.profile-hidden {
+  display: none;
 }
 
 table#field-patterns thead tr th {
@@ -199,11 +278,30 @@ table#field-patterns thead tr th {
   position: relative;
   text-align: left;
   max-width: 30px;
-  max-height: 300px;
+  max-height: 500px;
 }
 
-table#field-patterns tbody tr.under-one td {
-  border-top: 2px solid red;
+table#field-patterns thead tr th span.count {
+  color: #cccccc;
+}
+
+table#field-patterns tbody tr.under-one {
+  display: none;
+}
+
+table#field-patterns tbody tr.show-more td {
+  padding-top: 10px;
+  text-align: center;
+}
+
+table#field-patterns tbody tr.show-more a,
+table#field-patterns tbody tr.show-more a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+table#field-patterns tbody tr.draw-line td {
+  /* border-top: 2px solid red; */
 }
 
 table.histogram {
@@ -245,4 +343,3 @@ table#dataset tr.in-all td.collection-label {
 #intersections label {
   font-weight: unset;
 }
-

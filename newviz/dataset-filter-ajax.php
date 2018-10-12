@@ -11,7 +11,7 @@ $type = getOrDefault('type', 'c', ['c', 'd']);
 $fileName = ($type == 'c') ? 'datasets.txt' : 'data-providers.txt';
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 
-$dataDir = $root . '/data/' . $version;
+$dataDir = $configuration['DATA_PATH'] . '/' . $version;
 $content = retrieveCsv($fileName, $fragment);
 
 header("Content-type: application/json");
