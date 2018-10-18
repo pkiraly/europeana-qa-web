@@ -67,7 +67,11 @@
       {/foreach}
       <td colspan="4"></td>
     </tr>
+    {assign var=has_hidden_cluster value=false}
     {foreach $data->profiles as $cluster}
+      {if $cluster['underOne']}
+        {assign var=has_hidden_cluster value=true}
+      {/if}
       <tr class="profile profile-hidden profile-{$cluster['id']} spacer">
         <td colspan="{$data->fields|count+6}"class="noborder"></td>
       </tr>
@@ -136,15 +140,17 @@
       {/if}
     {/foreach}
     {strip}
-    <tr class="show-more">
-      <td colspan="{$data->fields|count+6}" class="noborder">
-        <a class="qa-show-infrequent-patterns" href="#"
-           title="display infrequent patterns">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-          &nbsp; <span class="show-more-label">Show infrequent patterns!</span>
-        </a>
-      </td>
-    </tr>
+      {if $has_hidden}
+        <tr class="show-more">
+          <td colspan="{$data->fields|count+6}" class="noborder">
+            <a class="qa-show-infrequent-patterns" href="#"
+               title="display infrequent patterns">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              &nbsp; <span class="show-more-label">Show infrequent patterns!</span>
+            </a>
+          </td>
+        </tr>
+      {/if}
     {/strip}
   </tbody>
 </table>

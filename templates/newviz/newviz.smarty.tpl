@@ -225,7 +225,7 @@ var id = '{$id}';
 var version = '{$version}';
 var development = {(int)$development};
 var count = {$n};
-var collectionId = '{$collectionId}';
+var collectionId = '{str_replace("'", "\\'", $collectionId)}';
 var intersection = {if is_null($intersection)}null{else}'{$intersection}'{/if};
 
 {literal}
@@ -577,11 +577,14 @@ function processHistogramPopoverContent(element) {
       var items = new Array();
       for (i in data.ids) {
         var recordId = data.ids[i];
-        var dataLink = '<a target="_blank" href="' + portalUrl + recordId + '.json"'
-          + ' title="record id: ' + recordId + '" class="external">data</a>';
-        var portalLink = '<a target="_blank" href="' + portalUrl + recordId + '.html"'
-          + ' title="record id: ' + recordId + '" class="external">portal</a>';
-        var item = 'visit record (' + dataLink + ', ' + portalLink + ')';
+        var links = new Array();
+        links.push('<a target="_blank" href="' + portalUrl + recordId + '.json"'
+          + ' title="record id: ' + recordId + '" class="external">data</a>');
+        links.push('<a target="_blank" href="' + portalUrl + recordId + '.html"'
+          + ' title="record id: ' + recordId + '" class="external">portal</a>');
+        links.push('<a href="record.php?id=' + recordId + '&version=' + version + '"'
+          + ' title="record id: ' + recordId + '">QA</a>');
+        var item = 'visit record (' + links.join(', ') + ')';
         items.push('<li>' + item + '</li>');
       }
       var content = '<ul>' + items.join('') + '</ul>';

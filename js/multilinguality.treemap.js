@@ -257,9 +257,11 @@ function languageFieldExamples(event, collectionId, field, language) {
      var items = new Array();
      for (i in data.ids) {
        id = data.ids[i];
-       dataLink = '<a target="_blank" href="' + portalUrl + id + '.json" class="external">data</a>';
-       portalLink = '<a target="_blank" href="' + portalUrl + id + '.html" class="external">portal</a>';
-       item = 'visit record (' + dataLink + ', ' + portalLink + ')';
+       var links = new Array();
+       links.push('<a target="_blank" href="' + portalUrl + id + '.json" class="external">data</a>');
+       links.push('<a target="_blank" href="' + portalUrl + id + '.html" class="external">portal</a>');
+       links.push('<a href="record.php?id=' + id + '&version=' + version + '"' + ' title="record id: ' + id + '">QA</a>');
+       item = 'visit record (' + links.join(', ') + ')';
        items.push('<li>' + item + '</li>');
      }
      var content = '<ul>' + items.join('') + '</ul>';

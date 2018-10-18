@@ -85,9 +85,18 @@ tr.remainder {
   color: #999;
 }
 
-#statistics td ul {
+table#statistics td ul {
   margin: 0;
   padding: 0 0 0 10px;
+}
+
+table#statistics td.field-value {
+  overflow: auto;
+  max-width: 500px;
+}
+
+table#statistics td table.multilinguality td {
+  vertical-align: top;
 }
 
 td.field-value hr {
