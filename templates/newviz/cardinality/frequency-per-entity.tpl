@@ -37,8 +37,8 @@
 
         {if $field->hasMinMaxRecords}
           <ul>
-            <li><a href="record.php?id={$field->recMax}">Best Record</a></li>
-            <li><a href="record.php?id={$field->recMin}">Worst Record</a></li>
+            <li><a href="record.php?id={$field->recMax}&version={$version}">Best Record</a></li>
+            <li><a href="record.php?id={$field->recMin}&version={$version}">Worst Record</a></li>
           </ul>
         {/if}
 
