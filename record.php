@@ -21,6 +21,9 @@ if (strpos($id, ID_PREFIX) !== FALSE) {
   $id = str_replace(ID_PREFIX, '', $id);
 }
 
+$version  = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+$dataDir = $configuration['DATA_PATH'] . '/' . $version;
+
 $metadata = json_decode(file_get_contents(sprintf(RECORD_API, $id)));
 
 $subdimensions = [
@@ -30,7 +33,7 @@ $subdimensions = [
 
 $graphs = [
   'total' => [
-    'label' => 'Completeness',
+    'label' => 'Completeness of all fields',
     'fields' => [
       "ProvidedCHO/rdf:about", "Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
       "Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type", "Proxy/dc:identifier",
@@ -57,6 +60,7 @@ $graphs = [
   ],
   'descriptiveness' => [
     'label' => 'Descriptiveness',
+    'description' => 'how much information has the metadata to describe what the object is about',
     'fields' => [
       "Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
     	"Proxy/dc:creator", "Proxy/dc:language", "Proxy/dc:subject", "Proxy/dcterms:extent",
@@ -65,6 +69,7 @@ $graphs = [
   ],
   'searchability' => [
     'label' => 'Searchability',
+    'description' => 'the fields most heavily used in searches',
     'fields' => [
       "Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
     	"Proxy/dc:creator", "Proxy/dc:publisher", "Proxy/dc:contributor", "Proxy/dc:type",
@@ -76,6 +81,7 @@ $graphs = [
   ],
   'contextualization' => [
     'label' => 'Contextualization',
+    'description' => 'the bases for finding connected entities (persons, places, times, etc.) in the record',
     'fields' => [
       "Proxy/dc:description", "Proxy/dc:creator", "Proxy/dc:type", "Proxy/dc:coverage",
       "Proxy/dcterms:temporal", "Proxy/dcterms:spatial", "Proxy/dc:subject",
@@ -85,6 +91,7 @@ $graphs = [
   ],
   'identification' => [
     'label' => 'Identification',
+    'description' => 'for unambiguously identifying the object',
     'fields' => [
       "Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
     	"Proxy/dc:type", "Proxy/dc:identifier", "Proxy/dc:date", "Proxy/dcterms:created",
@@ -93,6 +100,7 @@ $graphs = [
   ],
   'browsing' => [
     'label' => 'Browsing',
+    'description' => 'for the browsing features at the portal',
     'fields' => [
       "Proxy/dc:creator", "Proxy/dc:type", "Proxy/dc:coverage", "Proxy/dcterms:temporal",
     	"Proxy/dcterms:spatial", "Proxy/dc:date", "Proxy/dcterms:hasPart", "Proxy/dcterms:isPartOf",
@@ -102,6 +110,7 @@ $graphs = [
   ],
   'viewing' => [
     'label' => 'Viewing',
+    'description' => 'for the displaying at the portal',
     'fields' => [
       "Aggregation/edm:isShownAt", "Aggregation/edm:isShownBy", "Aggregation/edm:object",
     	"Aggregation/edm:hasView"
@@ -109,6 +118,7 @@ $graphs = [
   ],
   'reusability' => [
     'label' => 'Re-usability',
+    'description' => 'for reusing the metadata records in other systems',
     'fields' => [
       "Proxy/dc:publisher", "Proxy/dc:date", "Proxy/dcterms:created",
     	"Proxy/dcterms:issued", "Proxy/dcterms:extent", "Proxy/dcterms:medium",
@@ -119,6 +129,7 @@ $graphs = [
   ],
   'multilinguality' => [
     'label' => 'Multilinguality',
+    'description' => 'for multilingual aspects, to be understandable for all European citizen',
     'fields' => [
       "Proxy/dc:title", "Proxy/dcterms:alternative", "Proxy/dc:description",
     	"Proxy/dc:language", "Proxy/dc:subject"
@@ -155,11 +166,21 @@ $optional_groups = [
     [
       'fields' => ['Proxy/dc:type', 'Proxy/dc:subject', 'Proxy/dc:coverage', 'Proxy/dcterms:temporal', 'Proxy/dcterms:spatial'],
       'has_value' => FALSE
+    ],
+    [
+      'fields' => ['Aggregation/edm:isShownAt', 'Aggregation/edm:isShownBy'],
+      'has_value' => FALSE
     ]
   ]
 ];
 
-$version = isset($_GET['version']) ? preg_replace('/^v/', '', $_GET['version']) : '2018-08';
+$multilinguality_labels = [
+  'taggedliterals' => 'Number of tagged literals',
+  'distinctlanguages' => 'Number of distinct language tags',
+  'taggedliterals_per_language' => 'Number of tagged literals per language tag',
+  'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
+];
+
 $rawMetrics = getMetricsFromSolr($id, $version);
 $metrics = reorganizeMetrics($rawMetrics);
 
@@ -180,7 +201,7 @@ foreach ($graphs['total']['fields'] as $field) {
       continue;
     if (in_array($field, $object['fields'])) {
       if ($key == 'mandatory' && $color != 'green')
-        $row[] = $has_alternatives[$field] ? 'gray' : 'red';
+        $row[] = isset($has_alternatives[$field]) ? 'gray' : 'red';
       else
         $row[] = $color;
     } else {
@@ -198,6 +219,8 @@ $structure = array_merge($structure, extractEntities($metadata, $problems));
 $smarty = createSmarty('templates/record');
 $smarty->assign('rand', rand());
 $smarty->assign('id', $id);
+$smarty->assign('title', 'Record view');
+$smarty->assign('stylesheets', ['chart.css', 'style/newviz.css']);
 $smarty->assign('version', $version);
 $smarty->assign('metrics', $metrics);
 $smarty->assign('table', $table);
@@ -206,6 +229,9 @@ $smarty->assign('subdimensions', $subdimensions);
 $smarty->assign('metadata', $metadata);
 $smarty->assign('structure', $structure);
 $smarty->assign('problems', $problems);
+$smarty->assign('collection', retrieveName($metrics->identifiers['collection'], 'c'));
+$smarty->assign('provider', retrieveName($metrics->identifiers['provider'], 'd'));
+$smarty->assign('multilinguality_labels', $multilinguality_labels);
 $smarty->display('record.smarty.tpl');
 
 function hasAlternative($optional_groups, $metrics) {
@@ -399,6 +425,9 @@ function getFieldValue($field) {
 function getMetricsFromSolr($id, $version) {
   global $solrPort;
 
+  if (substr($version, 0, 1) == 'v')
+    $version = substr($version, 1);
+
   $response = json_decode(file_get_contents(getSolrMetricsUrl($id, $version)));
 
   return $response->response->docs[0];
@@ -482,3 +511,23 @@ function problemCatalog($key) {
   return $key;
 }
 
+function retrieveName($id, $type) {
+  global $dataDir;
+
+  if (!isset($content)) {
+    $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
+    $content = explode("\n", file_get_contents($dataDir . '/' . $file));
+  }
+
+  $name = FALSE;
+  foreach ($content as $line) {
+    if (strlen($line) > 0) {
+      list($_id, $_name) = explode(';', $line, 2);
+      if ($_id == $id) {
+        $name = $_name;
+        break;
+      }
+    }
+  }
+  return $name;
+}

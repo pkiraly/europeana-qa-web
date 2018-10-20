@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{$collectionId} | {$title}</title>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css"/>
-  <script src="https://use.fontawesome.com/feff23b961.js"></script>
-  <link rel="stylesheet" href="europeana-qa.css?a={$rand}" type="text/css"/>
-  <link rel="stylesheet" href="chart.css?a={$rand}" type="text/css"/>
-  <link rel="stylesheet" href="style/newviz.css?a={$rand}" type="text/css"/>
-  <!-- choose a theme file -->
-  <link rel="stylesheet" href="jquery/theme.default.min.css">
-  <link rel="icon" type="image/png" href="https://europeana-style-production.cdnedge.bluemix.net/v0.4.29/images/favicons/favicon-32x32.png?ver=alpha" sizes="32x32">
-  <!-- load jQuery and tablesorter scripts -->
-  <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
-</head>
+{include file="../common/html-header.smarty.tpl"}
 <body>
 
 <div class="container">
@@ -90,27 +68,37 @@
   {if ($type == 'd')}
     <h4>{$collectionId}</h4>
   {/if}
-  <p>
-    <a href="{$portalUrl}" target="_blank">see it on Europeana portal</a>.
-    versions:
+
+  <div class="row">
+    <div class="col-lg-8">
+      <a href="{$portalUrl}" target="_blank">see it on Europeana portal</a>.
+      versions:
       {foreach $configuration['version'] as $configured_version}
         {if ($version == $configured_version)}
           {$configured_version}
         {else}
-          <a href="?type={$type}&id={$id}&version={$configured_version}">{$configured_version}</a>
+          <a href="?type={$type}&id={$id}&version={$configured_version}&development={$development}">{$configured_version}</a>
         {/if}
-        &nbsp;
       {/foreach}
-  </p>
+    </div>
+    <div class="col-lg-4 text-right">
+      {if $development}
+        <a href="?type={$type}&id={$id}&version={$version}&development=0">back to normal version</a>
+      {else}
+        <a href="?type={$type}&id={$id}&version={$version}&development=1">development version</a>
+      {/if}
+    </div>
+  </div>
 
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#cardinality-score">Frequency</a></li>
     <li><a href="#multilingual-score">Multilinguality</a></li>
-{if ($development)}
-    <li><a href="#record-patterns">Record patterns</a></li>
-    <li><a href="#uniqueness">Uniqueness</a></li>
-{/if}
+    {if ($development)}
+      <li><a href="#record-patterns">Record patterns</a></li>
+      <li><a href="#uniqueness">Uniqueness</a></li>
+    {/if}
   </ul>
+
   <div class="tab-content">
     <div id="cardinality-score" class="tab-pane active">
       <div class="row">
@@ -207,9 +195,7 @@
 {/if}
   </div>
   <footer>
-    <p>
-      <a href="http://pkiraly.github.io/">What is this?</a> &ndash; about the Metadata Quality Assurance Framework project.
-     </p>
+    {include file="../common/footer.smarty.tpl"}
   </footer>
 </div>
 
