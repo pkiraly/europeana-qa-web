@@ -17,15 +17,17 @@
   <p>versions:</p>
   <ul type="square">
     {foreach $versions as $v}
-      {if $v != 'v2015-12'}
-        <li>
-          {if $version == $v}
-            {$v}
-          {else}
-            <a href="download.php?version={$v}">{$v}</a>
-          {/if}
-        </li>
-      {/if}
+      <li>
+        {if $version == $v}
+          {$v}
+        {elseif $v == 'v2015-12'}
+          <a href="https://hdl.handle.net/21.11101/EAEA0-826A-2D06-1569-0"
+             target="_blank" class="external">{$v}</a>
+          (this version is archived in Humanities Data Centre, Göttingen)
+        {else}
+          <a href="download.php?version={$v}">{$v}</a>
+        {/if}
+      </li>
     {/foreach}
   </ul>
   <table id="dataset" class="table table-condensed table-striped tablesorter">
