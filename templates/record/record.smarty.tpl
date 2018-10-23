@@ -174,13 +174,8 @@
         {/foreach}
         </tbody>
       </table>
-
     </div>
-
   </div>
-
-
-
 
 <h2>Statistics</h2>
 
@@ -216,7 +211,6 @@
       </tbody>
     </table>
   {/if}
-
 </div>
 
 <div class="col-md-12">
@@ -265,16 +259,16 @@
             <table class="multilinguality">
               <tbody>
                 <tr>
-                  <td>tagged literals</td>
-                  <td>{$multilinguality['taggedliterals']}</td>
+                  <td class="label">tagged literals</td>
+                  <td class="value">{$multilinguality['taggedliterals']}</td>
                 </tr>
                 <tr>
-                  <td>number of languages</td>
-                  <td>{$multilinguality['languages']}</td>
+                  <td class="label">number of languages</td>
+                  <td class="value">{$multilinguality['languages']}</td>
                 </tr>
                 <tr>
-                  <td>literals per language</td>
-                  <td>{$multilinguality['literalsperlanguage']}</td>
+                  <td class="label">literals per language</td>
+                  <td class="value">{$multilinguality['literalsperlanguage']}</td>
                 </tr>
               </tbody>
             </table>

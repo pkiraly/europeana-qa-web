@@ -99,6 +99,14 @@ table#statistics td table.multilinguality td {
   vertical-align: top;
 }
 
+table#statistics td table.multilinguality td.label {
+  color: #999999;
+}
+
+table#statistics td table.multilinguality td.value {
+  text-align: right;
+}
+
 td.field-value hr {
   margin: 5px 0;
 }
