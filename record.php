@@ -274,6 +274,10 @@ function extractStructure($metadata, $fields) {
   }
   $aggregation = $metadata->{'ore:Aggregation'}[0];
   $providedCHO = $metadata->{'edm:ProvidedCHO'}[0];
+  $europeanaProxyFields = [];
+  foreach ($fields as $field) {
+    $europeanaProxyFields[] = preg_replace('/^Proxy/', 'EuropeanaProxy', $field);
+  }
 
   $structure['edm:ProvidedCHO/rdf:about'] = [$providedCHO->{'@about'}];
   foreach ($proxy as $field => $values) {
@@ -281,10 +285,11 @@ function extractStructure($metadata, $fields) {
       $field == 'rdf:about';
     extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
+
   foreach ($europeanaProxy as $field => $values) {
     if ($field == '@about')
       $field == 'rdf:about';
-    extractValues('EuropeanaProxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+    extractValues('EuropeanaProxy/' . $field, $values, $europeanaProxyFields, $structure, $outOfStructure, $problems);
   }
   foreach ($aggregation as $field => $values) {
     extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
