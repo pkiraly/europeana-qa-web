@@ -213,8 +213,10 @@ foreach ($graphs['total']['fields'] as $field) {
 
 // print_r($metadata);
 $structure = extractStructure($metadata, $graphs['total']['fields']);
+error_log('keys1: ' . json_encode(array_keys($structure)));
 $problems = [];
 $structure = array_merge($structure, extractEntities($metadata, $problems));
+error_log('keys2: ' . json_encode(array_keys($structure)));
 
 $smarty = createSmarty('templates/record');
 $smarty->assign('rand', rand());

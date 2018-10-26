@@ -246,6 +246,7 @@
           {/if}
         {/if}
       {else}
+        {assign var="europeanaProxyName" value=""}
         {if isset($structure[$field])}
           {assign var="hasValue" value="1"}
           {assign var="sourceValue" value=$structure[$field]}
