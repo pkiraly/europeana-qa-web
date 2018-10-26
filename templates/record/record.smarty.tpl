@@ -233,8 +233,9 @@
       {assign var="hasEuropeanaProxyValue" value="0"}
       {assign var="hasValue" value="0"}
       {if preg_match('/^Proxy\//', $field)}
+        <span>
         {assign var="europeanaProxyName" value=str_replace('Proxy/', 'EuropeanaProxy/', $field)}
-        {if $value != 0}{
+        {if $value != 0}
           {if isset($structure[$field])}
             {assign var="hasValue" value="1"}
             {assign var="sourceValue" value=$structure[$field]}
@@ -244,14 +245,13 @@
             {assign var="europeanaProxyValue" value=$structure[$europeanaProxyName]}
           {/if}
         {/if}
+        </span>
       {else}
-        <span>
         {assign var="europeanaProxyName" value=""}
         {if isset($structure[$field])}
           {assign var="hasValue" value="1"}
           {assign var="sourceValue" value=$structure[$field]}
         {/if}
-        </span>
       {/if}
       <tr{if $value == 0} class="remainder"{/if}>
         <td>{$field}</td>
