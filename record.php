@@ -283,7 +283,7 @@ function extractStructure($metadata, $fields) {
   foreach ($proxy as $field => $values) {
     if ($field == '@about')
       $field == 'rdf:about';
-    extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+    // extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
 
   foreach ($europeanaProxy as $field => $values) {
@@ -292,7 +292,7 @@ function extractStructure($metadata, $fields) {
     extractValues('EuropeanaProxy/' . $field, $values, $europeanaProxyFields, $structure, $outOfStructure, $problems);
   }
   foreach ($aggregation as $field => $values) {
-    extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+    // extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
 
   $goodOrder = [];
