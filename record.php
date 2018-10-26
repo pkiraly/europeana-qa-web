@@ -21,8 +21,9 @@ if (strpos($id, ID_PREFIX) !== FALSE) {
   $id = str_replace(ID_PREFIX, '', $id);
 }
 
-$version  = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $dataDir = $configuration['DATA_PATH'] . '/' . $version;
+$development = getOrDefault('development', 0, [0, 1]);
 
 $metadata = json_decode(file_get_contents(sprintf(RECORD_API, $id)));
 
@@ -222,6 +223,7 @@ $smarty->assign('id', $id);
 $smarty->assign('title', 'Record view');
 $smarty->assign('stylesheets', ['chart.css', 'style/newviz.css']);
 $smarty->assign('version', $version);
+$smarty->assign('development', $development);
 $smarty->assign('metrics', $metrics);
 $smarty->assign('table', $table);
 $smarty->assign('graphs', $graphs);
