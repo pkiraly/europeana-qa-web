@@ -312,6 +312,7 @@ function extractStructure($metadata, $fields) {
   }
 
   # $structure['problems'] = $problems;
+  error_log('keys0: ' . json_encode(array_keys($structure)));
   return $structure;
 }
 
