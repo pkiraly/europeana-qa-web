@@ -276,7 +276,8 @@ function extractStructure($metadata, $fields) {
   $providedCHO = $metadata->{'edm:ProvidedCHO'}[0];
   $europeanaProxyFields = [];
   foreach ($fields as $field) {
-    $europeanaProxyFields[] = preg_replace('/^Proxy/', 'EuropeanaProxy', $field);
+    if (preg_match('/^Proxy/', $field))
+      $europeanaProxyFields[] = preg_replace('/^Proxy/', 'EuropeanaProxy', $field);
   }
 
   $structure['edm:ProvidedCHO/rdf:about'] = [$providedCHO->{'@about'}];
