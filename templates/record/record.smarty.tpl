@@ -234,14 +234,14 @@
       {assign var="hasValue" value="0"}
       {if preg_match('/^Proxy\//', $field)}
         {assign var="europeanaProxyName" value=str_replace('Proxy/', 'EuropeanaProxy/', $field)}
-        {if $value != 0 && isset($structure[$europeanaProxyName])}
-          {assign var="hasValue" value="1"}
-          {assign var="hasEuropeanaProxyValue" value="1"}
-          {assign var="sourceValue" value=$structure[$europeanaProxyName]}
-        {else}
+        {if $value != 0}{
           {if isset($structure[$field])}
             {assign var="hasValue" value="1"}
             {assign var="sourceValue" value=$structure[$field]}
+          {/if}
+          {if isset($structure[$europeanaProxyName])}
+            {assign var="hasEuropeanaProxyValue" value="1"}
+            {assign var="europeanaProxyValue" value=$structure[$europeanaProxyName]}
           {/if}
         {/if}
       {else}
@@ -302,18 +302,18 @@
         <tr>
           <td>{$europeanaProxyName}</td>
           <td class="field-value">
-            {if count($sourceValue) == 1}
-              {$sourceValue[0]}
+            {if count($europeanaProxyValue) == 1}
+              {$europeanaProxyValue[0]}
             {else}
               <ul type="square">
-                {foreach $sourceValue as $fieldValue}
+                {foreach $europeanaProxyValue as $fieldValue}
                   <li>{$fieldValue}</li>
                 {/foreach}
               </ul>
             {/if}
           </td>
           <td>true</td>
-          <td>{count($sourceValue)}</td>
+          <td>{count($europeanaProxyValue)}</td>
           <td></td>
           <td>
             {assign var="multilingualityField" value=strtolower(str_replace('Proxy/', '', $field))}
