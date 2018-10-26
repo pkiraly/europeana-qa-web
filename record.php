@@ -296,6 +296,7 @@ function extractStructure($metadata, $fields) {
   }
   error_log('europeanaProxyFields: ' . json_encode($europeanaProxyFields));
   error_log('structure: ' . json_encode($structure));
+  error_log('keys00: ' . json_encode(array_keys($structure)));
   foreach ($aggregation as $field => $values) {
     // extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
@@ -306,7 +307,7 @@ function extractStructure($metadata, $fields) {
       $goodOrder[$field] = $structure[$field];
     }
   }
-  $structure = $goodOrder;
+  // $structure = $goodOrder;
   foreach ($outOfStructure as $key => $value) {
     // $structure['#' . $key] = $value;
   }
