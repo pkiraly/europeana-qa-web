@@ -292,6 +292,8 @@ function extractStructure($metadata, $fields) {
       $field == 'rdf:about';
     extractValues('EuropeanaProxy/' . $field, $values, $europeanaProxyFields, $structure, $outOfStructure, $problems);
   }
+  error_log('europeanaProxyFields: ' . json_encode($europeanaProxyFields));
+  error_log('structure: ' . json_encode($structure));
   foreach ($aggregation as $field => $values) {
     // extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
@@ -304,7 +306,7 @@ function extractStructure($metadata, $fields) {
   }
   $structure = $goodOrder;
   foreach ($outOfStructure as $key => $value) {
-    $structure['#' . $key] = $value;
+    // $structure['#' . $key] = $value;
   }
 
   # $structure['problems'] = $problems;
@@ -398,6 +400,7 @@ function getFieldValue($field) {
     $fieldName = $fieldMap[$fieldName];
   }
 
+  $put = 0;
   if (isset($metadata->{$entityName})) {
     $entities = $metadata->{$entityName};
     for ($i = 0, $len = count($entities); $i < $len; $i++) {
