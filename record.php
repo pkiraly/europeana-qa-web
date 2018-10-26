@@ -213,10 +213,8 @@ foreach ($graphs['total']['fields'] as $field) {
 
 // print_r($metadata);
 $structure = extractStructure($metadata, $graphs['total']['fields']);
-error_log('keys1: ' . json_encode(array_keys($structure)));
 $problems = [];
 $structure = array_merge($structure, extractEntities($metadata, $problems));
-error_log('keys2: ' . json_encode(array_keys($structure)));
 
 $smarty = createSmarty('templates/record');
 $smarty->assign('rand', rand());
@@ -286,7 +284,7 @@ function extractStructure($metadata, $fields) {
   foreach ($proxy as $field => $values) {
     if ($field == '@about')
       $field == 'rdf:about';
-    // extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+    extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
 
   foreach ($europeanaProxy as $field => $values) {
@@ -294,11 +292,8 @@ function extractStructure($metadata, $fields) {
       $field == 'rdf:about';
     extractValues('EuropeanaProxy/' . $field, $values, $europeanaProxyFields, $structure, $outOfStructure, $problems);
   }
-  error_log('europeanaProxyFields: ' . json_encode($europeanaProxyFields));
-  error_log('structure: ' . json_encode($structure));
-  error_log('keys00: ' . json_encode(array_keys($structure)));
   foreach ($aggregation as $field => $values) {
-    // extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+    extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
 
   $goodOrder = [];
@@ -307,13 +302,13 @@ function extractStructure($metadata, $fields) {
       $goodOrder[$field] = $structure[$field];
     }
   }
+  // TODO: check if it needs
   // $structure = $goodOrder;
   foreach ($outOfStructure as $key => $value) {
-    // $structure['#' . $key] = $value;
+    $structure['#' . $key] = $value;
   }
 
   # $structure['problems'] = $problems;
-  error_log('keys0: ' . json_encode(array_keys($structure)));
   return $structure;
 }
 

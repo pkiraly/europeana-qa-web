@@ -50,7 +50,6 @@
   {if !empty($problems)}
     <pre>{$problems|print_r}</pre>
   {/if}
-  <pre>{$structure|print_r}</pre>
 
   <div class="row">
     <div class="col-md-6">
@@ -178,7 +177,7 @@
     </div>
   </div>
 
-<h2>Statistics</h2>
+  <h2>Statistics</h2>
 
   {if isset($analysis) && isset($analysis->termsCollection)}
     <h3>Term frequencies</h3>
