@@ -260,6 +260,7 @@ function extractStructure($metadata, $fields) {
   $outOfStructure = [];
   $problems = [];
   $proxy = null;
+  $europeanaProxy = null;
   foreach ($metadata->{'ore:Proxy'} as $pxy) {
     if (
         (is_bool($pxy->{'edm:europeanaProxy'}) && $pxy->{'edm:europeanaProxy'} === false)
@@ -267,6 +268,8 @@ function extractStructure($metadata, $fields) {
         (is_array($pxy->{'edm:europeanaProxy'}) && $pxy->{'edm:europeanaProxy'}[0] == "false")
     ) {
       $proxy = $pxy;
+    } else {
+      $europeanaProxy = $pxy;
     }
   }
   $aggregation = $metadata->{'ore:Aggregation'}[0];
@@ -277,6 +280,11 @@ function extractStructure($metadata, $fields) {
     if ($field == '@about')
       $field == 'rdf:about';
     extractValues('Proxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
+  }
+  foreach ($europeanaProxy as $field => $values) {
+    if ($field == '@about')
+      $field == 'rdf:about';
+    extractValues('EuropeanaProxy/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
   }
   foreach ($aggregation as $field => $values) {
     extractValues('Aggregation/' . $field, $values, $fields, $structure, $outOfStructure, $problems);
@@ -341,8 +349,8 @@ function extractEntities($metadata, &$problems) {
 
 function extractValues($key, $values, $fields, &$structure, &$outOfStructure, &$problems) {
   static $ignorableFields = [
-    'Proxy/@about', 'Proxy/edm:europeanaProxy', 'Proxy/ore:proxyFor', 'Proxy/ore:proxyIn', 'Aggregation/@about',
-    'Aggregation/edm:aggregatedCHO'
+    'Proxy/@about', 'Proxy/edm:europeanaProxy', 'Proxy/ore:proxyFor', 'Proxy/ore:proxyIn',
+    'Aggregation/@about', 'Aggregation/edm:aggregatedCHO'
   ];
 
   if (in_array($key, $fields)) {

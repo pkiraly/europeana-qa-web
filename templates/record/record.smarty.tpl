@@ -230,18 +230,35 @@
   <tbody>
     {foreach $metrics->existence as $field => $value}
       {assign var="lowerField" value=strtolower($field)}
+      {assign var="hasEuropeanaProxyValue" value="0"}
+      {assign var="hasValue" value="0"}
+      {if preg_match('/^Proxy\//', $field)}
+        {assign var="europeanaProxyName" value=str_replace('Proxy/', 'EuropeanaProxy/', $field)}
+        {if $value != 0 && isset($structure[$europeanaProxyName])}
+          {assign var="hasValue" value="1"}
+          {assign var="hasEuropeanaProxyValue" value="1"}
+          {assign var="sourceValue" value=$structure[$europeanaProxyName]}
+        {else}
+          {if isset($structure[$field])}
+            {assign var="hasValue" value="1"}
+            {assign var="sourceValue" value=$structure[$field]}
+          {/if}
+        {/if}
+      {/if}
       <tr{if $value == 0} class="remainder"{/if}>
         <td>{$field}</td>
         <td class="field-value">
-          {if $value != 0 && isset($structure[$field])}
-            {if count($structure[$field]) == 1}
-              {$structure[$field][0]}
-            {else}
-              <ul type="square">
-                {foreach $structure[$field] as $fieldValue}
-                  <li>{$fieldValue}</li>
-                {/foreach}
-              </ul>
+          {if $value != 0}
+            {if isset($structure[$field]) || isset($structure[$europeanaProxyName])}
+              {if count($sourceValue) == 1}
+                {$sourceValue[0]}
+              {else}
+                <ul type="square">
+                  {foreach $sourceValue as $fieldValue}
+                    <li>{$fieldValue}</li>
+                  {/foreach}
+                </ul>
+              {/if}
             {/if}
           {/if}
         </td>
@@ -275,6 +292,47 @@
           {/if}
         </td>
       </tr>
+      {if $hasEuropeanaProxyValue == 1}
+        <tr>
+          <td>{$europeanaProxyName}</td>
+          <td class="field-value">
+            {if count($sourceValue) == 1}
+              {$sourceValue[0]}
+            {else}
+              <ul type="square">
+                {foreach $sourceValue as $fieldValue}
+                  <li>{$fieldValue}</li>
+                {/foreach}
+              </ul>
+            {/if}
+          </td>
+          <td>true</td>
+          <td>{count($sourceValue)}</td>
+          <td></td>
+          <td>
+            {assign var="multilingualityField" value=strtolower(str_replace('Proxy/', '', $field))}
+            {if $value != 0 && isset($metrics->multilinguality->fields['europeana'][$multilingualityField])}
+              {assign var="multilinguality" value=$metrics->multilinguality->fields['europeana'][$multilingualityField]}
+              <table class="multilinguality">
+                <tbody>
+                <tr>
+                  <td class="label">tagged literals</td>
+                  <td class="value">{$multilinguality['taggedliterals']}</td>
+                </tr>
+                <tr>
+                  <td class="label">number of languages</td>
+                  <td class="value">{$multilinguality['languages']}</td>
+                </tr>
+                <tr>
+                  <td class="label">literals per language</td>
+                  <td class="value">{$multilinguality['literalsperlanguage']}</td>
+                </tr>
+                </tbody>
+              </table>
+            {/if}
+          </td>
+        </tr>
+      {/if}
     {/foreach}
   </tbody>
 </table>
