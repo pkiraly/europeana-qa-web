@@ -50,6 +50,7 @@
   {if !empty($problems)}
     <pre>{$problems|print_r}</pre>
   {/if}
+  <pre>{$structure|print_r}</pre>
 
   <div class="row">
     <div class="col-md-6">
