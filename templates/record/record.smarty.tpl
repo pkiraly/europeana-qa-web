@@ -245,6 +245,11 @@
             {assign var="sourceValue" value=$structure[$field]}
           {/if}
         {/if}
+      {else}
+        {if isset($structure[$field])}
+          {assign var="hasValue" value="1"}
+          {assign var="sourceValue" value=$structure[$field]}
+        {/if}
       {/if}
       <tr{if $value == 0} class="remainder"{/if}>
         <td>{$field}</td>
