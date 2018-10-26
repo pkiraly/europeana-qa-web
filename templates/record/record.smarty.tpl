@@ -229,10 +229,10 @@
   </thead>
   <tbody>
     {foreach $metrics->existence as $field => $value}
-      <span>
       {assign var="lowerField" value=strtolower($field)}
       {assign var="hasEuropeanaProxyValue" value="0"}
       {assign var="hasValue" value="0"}
+      <span>
       {if preg_match('/^Proxy\//', $field)}
         {assign var="europeanaProxyName" value=str_replace('Proxy/', 'EuropeanaProxy/', $field)}
         {if $value != 0}{
