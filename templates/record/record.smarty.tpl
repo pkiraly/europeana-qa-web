@@ -229,6 +229,7 @@
   </thead>
   <tbody>
     {foreach $metrics->existence as $field => $value}
+      <span>
       {assign var="lowerField" value=strtolower($field)}
       {assign var="hasEuropeanaProxyValue" value="0"}
       {assign var="hasValue" value="0"}
@@ -251,6 +252,7 @@
           {assign var="sourceValue" value=$structure[$field]}
         {/if}
       {/if}
+      </span>
       <tr{if $value == 0} class="remainder"{/if}>
         <td>{$field}</td>
         <td class="field-value">
