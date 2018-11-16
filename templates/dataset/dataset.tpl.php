@@ -84,7 +84,7 @@
 </table>
 
 <h2 id="n">Number of records</h2>
-<p><?php echo number_format($n, 0, '.', ' '); ?></p>
+<p><?php echo number_format($count, 0, '.', ' '); ?></p>
 
 <?php if ($freqFileExists) { ?>
   <h2 id="frequency">Field frequency</h2>
@@ -148,7 +148,7 @@
       <tr>
         <td class="legend">percentage</td>
         <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
-          <td><span title="<?= $frequency[0] * 100 / $n; ?>"><?php printf("%.2f%%", ($frequency[0] * 100 / $n)); ?></span></td>
+          <td><span title="<?= $frequency[0] * 100 / $count; ?>"><?php printf("%.2f%%", ($frequency[0] * 100 / $count)); ?></span></td>
         <?php } ?>
       </tr>
     </table>

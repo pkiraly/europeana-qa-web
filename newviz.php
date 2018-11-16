@@ -11,6 +11,7 @@ $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
+  error_log("id: " . $id);
 
   if (isset($_GET['type'])) {
     $type = $_GET['type'];
@@ -30,6 +31,8 @@ if (isset($_GET['id'])) {
   }
   $type = 'c';
 }
+error_log("id: " . $id);
+
 $fragment = getOrDefault('fragment', NULL);
 $intersection = getOrDefault('intersection', NULL);
 
@@ -43,27 +46,27 @@ if (empty($id)) {
   }
 }
 
-$filePrefix = is_null($intersection) || $intersection == 'all' ? $type . $id : $intersection;
+$filePrefix = ($id == 'all')
+  ? $id
+  : (
+    (is_null($intersection) || $intersection == 'all')
+    ? $type . $id
+    : $intersection
+  );
+error_log("id: " . $id);
+error_log("filePrefix: " . $filePrefix);
 
-$n = 0;
+
+$count = 0;
 $errors = [];
-$jsonCountFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.count.json';
-if (file_exists($jsonCountFileName)) {
-  $stats = json_decode(file_get_contents($jsonCountFileName));
-  $n = $stats[0]->count;
-}
+$entityCounts = (object)[];
 
-$jsonFreqFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.freq.json';
-if (file_exists($jsonFreqFileName)) {
-  $frequencies = json_decode(file_get_contents($jsonFreqFileName));
-  $entityCounts = (object)[];
-  foreach ($frequencies as $freq) {
-    if (preg_match('/_rdf_about$/', $freq->field)) {
-      $entityCounts->{$freq->field} = number_format($freq->count, 0, '.', ' ');
-    }
-  }
+if ($id == 'all' && $version == 'v2018-08') {
+  $count = getCountFromCsv($filePrefix, $errors);
+  $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
 } else {
-  $errors[] = sprintf("file %s is not existing", $jsonFreqFileName);
+  $count = getCountFromRGeneratedJson($filePrefix, $errors);
+  $entityCounts = getEntityCountsFromRGeneratedJson($filePrefix, $errors);
 }
 
 $datasets = retrieveDatasets($type, $fragment);
@@ -86,7 +89,7 @@ $smarty->assign('configuration', $configuration);
 $smarty->assign('datasets', $datasets);
 $smarty->assign('dataproviders', $dataproviders);
 $smarty->assign('entityCounts', $entityCounts);
-$smarty->assign('n', $n);
+$smarty->assign('count', $count);
 $smarty->assign('filePath', getRootPath());
 $smarty->assign('errors', $errors);
 
@@ -154,6 +157,9 @@ function getPortalUrl($type, $collectionId) {
 function getIntersections($type, $id) {
   global $dataDir;
 
+  if ($id == 'all') {
+    return [];
+  }
 
   $other_type = $type == 'c' ? 'd' : 'c';
   $file = $dataDir . '/intersections.json';
@@ -171,4 +177,111 @@ function getIntersections($type, $id) {
   }
   $rows[0]->count = $all_count;
   return $rows;
+}
+
+/**
+ * @param $dataDir
+ * @param $filePrefix
+ * @param $errors
+ * @return array
+ */
+function getCountFromRGeneratedJson($filePrefix, &$errors) {
+  global $dataDir;
+
+  $jsonCountFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.count.json';
+  if (file_exists($jsonCountFileName)) {
+    $stats = json_decode(file_get_contents($jsonCountFileName));
+    $count = $stats[0]->count;
+  } else {
+    $msg = sprintf("file %s is not existing", $jsonCountFileName);
+    $errors[] = $msg;
+    error_log($msg);
+  }
+  return $count;
+}
+
+/**
+ * @param $dataDir
+ * @param $filePrefix
+ * @param $errors
+ * @return array
+ */
+function getCountFromCsv($filePrefix, &$errors) {
+  $count = 0;
+  $completeness = readCompleteness($filePrefix, $errors);
+  if (!empty($completeness))
+    $count = $completeness['ProvidedCHO_rdf_about']['count'];
+
+  error_log("count: " . $count);
+  return $count;
+}
+
+/**
+ * @param $filePrefix
+ * @param $errors
+ * @param $dataDir
+ * @return array
+ */
+function readCompleteness($filePrefix, &$errors) {
+  global $dataDir;
+  static $completeness;
+
+  if (!isset($completeness)) {
+    $completeness = [];
+    $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.completeness.csv';
+    if (file_exists($completenessFileName)) {
+      $keys = ["mean", "min", "max", "count", "median"];
+      foreach (file($completenessFileName) as $line) {
+        $values = str_getcsv($line);
+        array_shift($values);
+        $field = array_shift($values);
+        $assoc = array_combine($keys, $values);
+        $completeness[$field] = $assoc;
+      }
+    } else {
+      $msg = sprintf("file %s is not existing", $completenessFileName);
+      $errors[] = $msg;
+      error_log($msg);
+    }
+  }
+
+  return $completeness;
+}
+
+/**
+ * @param $dataDir
+ * @param $filePrefix
+ * @param $errors
+ * @return array
+ */
+function getEntityCountsFromRGeneratedJson($filePrefix, &$errors) {
+  global $dataDir;
+
+  $jsonFreqFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.freq.json';
+  if (file_exists($jsonFreqFileName)) {
+    $frequencies = json_decode(file_get_contents($jsonFreqFileName));
+    $entityCounts = (object)[];
+    foreach ($frequencies as $freq) {
+      if (preg_match('/_rdf_about$/', $freq->field)) {
+        $entityCounts->{$freq->field} = number_format($freq->count, 0, '.', ' ');
+      }
+    }
+  } else {
+    $msg = sprintf("file %s is not existing", $jsonFreqFileName);
+    $errors[] = $msg;
+    error_log($msg);
+  }
+  return $entityCounts;
+}
+
+function getEntityCountsFromCsv($filePrefix, $count, &$errors) {
+  $entityCounts = (object)[];
+  $completeness = readCompleteness($filePrefix, $errors);
+  foreach ($completeness as $field => $values) {
+    if (preg_match('/_rdf_about$/', $field)) {
+      $entityCounts->{strtolower($field)} = number_format($values['mean'] * $count, 0, '.', ' ');
+    }
+  }
+  error_log(json_encode($entityCounts));
+  return $entityCounts;
 }

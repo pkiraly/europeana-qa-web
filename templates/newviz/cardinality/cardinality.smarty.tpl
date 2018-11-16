@@ -10,6 +10,6 @@
     <td>{$cardinality->count|number_format:0:'.':','}</td>
     <td>{$cardinality->sum|number_format:0:'.':','}</td>
     <td>{$cardinality->median}</td>
-    <td>{$cardinality->mean}</td>
+    <td>{$cardinality->mean|number_format:2}</td>
   </tr>
 </table>

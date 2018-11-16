@@ -86,7 +86,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3">
           <h2>Field Frequency</h2>
-          <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records <?= $n ?></p>
+          <p>Dataset: <?= $entityCounts->proxy_rdf_about ?> records <?= $count ?></p>
           <ul id="entities" class="nav">
             <li class="nav-item active">
               <a class="nav-link active" href="#" datatype="ProvidedCHO">ProvidedCHO (<?= $entityCounts->proxy_rdf_about ?>)</a>
@@ -307,7 +307,7 @@ function loadMultilinguality() {
 }
 
 function loadRecordPatterns() {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>,
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $count ?>,
     'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/record-patterns-ajax.php", query)
@@ -320,7 +320,7 @@ function loadRecordPatterns() {
 }
 
 function loadUniqueness() {
-  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $n ?>,
+  var query = {'id': '<?= $id ?>', 'type': '<?= $type ?>', 'count': <?= $count ?>,
     'version': '<?= $version ?>', 'development': <?= (int)$development ?>
   };
   $.get("newviz/uniqueness-ajax.php", query)

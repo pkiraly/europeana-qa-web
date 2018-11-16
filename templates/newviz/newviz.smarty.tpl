@@ -210,7 +210,7 @@ var type = '{$type}';
 var id = '{$id}';
 var version = '{$version}';
 var development = {(int)$development};
-var count = {$n};
+var count = {$count};
 var collectionId = '{str_replace("'", "\\'", $collectionId)}';
 var intersection = {if is_null($intersection)}null{else}'{$intersection}'{/if};
 
