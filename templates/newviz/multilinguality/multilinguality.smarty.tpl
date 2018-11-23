@@ -159,7 +159,7 @@
                   "(visit record: "
                   + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
                   + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
-                  + ", <a href=\"record.php?id=$1&version=" + version + "\">QA</a>"
+                  + ", <a href=\"record.php?id=$1&version=" + version + "\">details</a>"
                   + ")"
                 );
               $(this).attr('data-content', content);

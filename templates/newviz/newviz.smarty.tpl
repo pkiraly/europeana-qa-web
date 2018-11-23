@@ -569,7 +569,7 @@ function processHistogramPopoverContent(element) {
         links.push('<a target="_blank" href="' + portalUrl + recordId + '.html"'
           + ' title="record id: ' + recordId + '" class="external">portal</a>');
         links.push('<a href="record.php?id=' + recordId + '&version=' + version + '"'
-          + ' title="record id: ' + recordId + '">QA</a>');
+          + ' title="record id: ' + recordId + '">details</a>');
         var item = 'visit record (' + links.join(', ') + ')';
         items.push('<li>' + item + '</li>');
       }
