@@ -165,7 +165,7 @@ function label2(d, fieldName) {
 
   if (isARealLanguageCode || language == 'no language') {
     if (fieldName == 'aggregated' && language != 'no language') {
-      text += "<br>\n<strong>available in fields</strong>: ";
+      text += "<br>\n<strong>present in fields</strong>: ";
       var items = new Array();
       for (i in fieldsByLanguage[d.name]) {
         field = fieldsByLanguage[d.name][i];

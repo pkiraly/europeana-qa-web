@@ -89,7 +89,7 @@
 <?php if ($freqFileExists) { ?>
   <h2 id="frequency">Field frequency</h2>
 
-  <p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
+  <p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is present in every records, 0 means that this field is never present. The numbers are rounded to 2 decimals.</p>
 
   <div id="frequency-chart" class="chart"></div>
 <?php } ?>

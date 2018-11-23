@@ -1,10 +1,10 @@
-<h3>Number of records where the fields are available</h3>
+<h3>Number of records where the fields are present</h3>
 <table class="histogram">
   <tr>
     <td class="legend"></td>
     {foreach $frequencyTable->values as $value => $frequency}
       <!-- val: {$value}, freq: {$frequency} -->
-      <td><span title="{$value}">{if ($value == 0)}not available{else}available{/if}</span></td>
+      <td><span title="{$value}">{if ($value == 0)}not present{else}present{/if}</span></td>
     {/foreach}
   </tr>
   <tr>

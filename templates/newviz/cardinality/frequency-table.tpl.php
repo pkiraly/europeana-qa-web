@@ -1,9 +1,9 @@
-<h3>Number of records where the fields are available</h3>
+<h3>Number of records where the fields are present</h3>
 <table class="histogram">
   <tr>
     <td class="legend"></td>
 <?php foreach ($data->values as $value => $frequency) { ?>
-    <td><span title="<?= $value ?>"><?= ($value == 0) ? 'not available' : 'available' ?></span></td>
+    <td><span title="<?= $value ?>"><?= ($value == 0) ? 'not present' : 'present' ?></span></td>
 <?php } ?>
   </tr>
   <tr>
