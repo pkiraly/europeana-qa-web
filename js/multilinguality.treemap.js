@@ -5,7 +5,7 @@ $('#language-distribution-selector').on('change', function () {
 $('#excludeZeros').on('change', function () {
   displayLanguageTreemap();
 });
-$('#showNoInstances').on('change', function () {
+$('#showNoOccurences').on('change', function () {
   displayLanguageTreemap();
 });
 
@@ -29,11 +29,11 @@ displayLanguageTreemap('aggregated');
 function getTreeMapUrl() {
   var field = $('#language-distribution-selector').val();
   var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
-  var showNoInstances = 0; //$('#showNoInstances').is(':checked') ? 0 : 1;
+  var showNoOccurences = 0; //$('#showNoOccurences').is(':checked') ? 0 : 1;
 
   var treeMapUrl = 'plainjson2tree.php?field=' + field
     + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
-    + '&showNoInstances=' + showNoInstances // . (int)$showNoInstances
+    + '&showNoOccurences=' + showNoOccurences // . (int)$showNoOccurences
     + '&collectionId=' + collectionId
     + '&version=' + version;
   return treeMapUrl;

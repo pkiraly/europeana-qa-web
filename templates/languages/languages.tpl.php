@@ -50,8 +50,8 @@
 
   <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" <?php if ($excludeZeros) { ?>checked="checked"<?php } ?> onchange="this.form.submit();" />
   <label for="excludeZeros">Exclude records without specified language</label>
-  <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" <?php if ($showNoInstances) { ?>checked="checked"<?php } ?> onchange="this.form.submit();" />
-  <label for="showNoInstances">Show records without field</label>
+  <input type="checkbox" name="exclusions[]" value="1" id="showNoOccurences" <?php if ($showNoOccurences) { ?>checked="checked"<?php } ?> onchange="this.form.submit();" />
+  <label for="showNoOccurences">Show records without field</label>
 </form>
 
 <p>This chart shows the specified languages, and the number of records they are occured in.

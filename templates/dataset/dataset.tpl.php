@@ -101,7 +101,7 @@
   
   <p>
     Select statistics:
-    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'sum') ?>#cardinality">number of field instances</a>]
+    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'sum') ?>#cardinality">number of field occurrence</a>]
     [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'mean') ?>#cardinality">average</a>]
     [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'median') ?>#cardinality">median</a>]
   </p>
@@ -192,8 +192,8 @@
   <input type="hidden" name="targetId" value="#language-treemap" />
   <input type="checkbox" name="excludeZeros" value="0" id="excludeZeros"/>
   <label for="excludeZeros">Exclude records without specified language</label>
-  <input type="checkbox" name="showNoInstances" value="1" id="showNoInstances"/>
-  <label for="showNoInstances">Show records without field</label>
+  <input type="checkbox" name="showNoOccurences" value="1" id="showNoOccurences"/>
+  <label for="showNoOccurences">Show records without field</label>
 </form>
 <div id="language-treemap"></div>
 <table>

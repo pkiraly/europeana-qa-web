@@ -120,7 +120,7 @@
           <p>
             <i class="fa fa-info-circle"></i>
             The progress bars show you the number of records containing a given EDM field for a given dataset.
-            Each field can be expanded to reveal detailed statistics about the number of its instances as well
+            Each field can be expanded to reveal detailed statistics about the number of its occurrences as well
             as the distribution of its occurrences in a given dataset. You can browse and compare the statistics
             of each EDM field with another belonging to the same EDM class.
           </p>

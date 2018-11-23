@@ -2,7 +2,7 @@
 <table class="histogram">
   <tr>
     <td class="legend">nr of records</td>
-    <td class="legend">nr of instances</td>
+    <td class="legend">nr of occurrences</td>
     <td class="legend">median</td>
     <td class="legend">mean</td>
   </tr>

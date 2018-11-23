@@ -55,7 +55,7 @@
     <p>The table shows the <em>mean</em> of the number of language tags and literals tagged with a language
       per record, in the selected set.</p>
 
-    <p><em>n/a</em> means that the particular field is not available in any record
+    <p><em>n/a</em> means that the particular field is not present in any record
       in the collection.</p>
     <table id="all-fields-table" class="table table-condensed table-striped tablesorter">
       <thead>
@@ -116,8 +116,8 @@
         <label for="excludeZeros">Exclude records with fields without language tag</label>
 
         <!--
-        <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
-        <label for="showNoInstances">Exlude records without field</label>
+        <input type="checkbox" name="exclusions[]" value="1" id="showNoOccurences" />
+        <label for="showNoOccurences">Exlude records without field</label>
         -->
       </form>
 
@@ -137,7 +137,7 @@
         $('#excludeZeros').on('change', function () {
           displayLanguageTreemap();
         });
-        $('#showNoInstances').on('change', function () {
+        $('#showNoOccurences').on('change', function () {
           displayLanguageTreemap();
         });
 
@@ -154,11 +154,11 @@
         function getTreeMapUrl() {
           var field = $('#language-distribution-selector').val();
           var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
-          var showNoInstances = 0; //$('#showNoInstances').is(':checked') ? 0 : 1;
+          var showNoOccurences = 0; //$('#showNoOccurences').is(':checked') ? 0 : 1;
 
           var treeMapUrl = 'plainjson2tree.php?field=' + field
                          + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
-                         + '&showNoInstances=' + showNoInstances // . (int)$showNoInstances
+                         + '&showNoOccurences=' + showNoOccurences // . (int)$showNoOccurences
                          + '&collectionId=<?= $data->collectionId ?>'
                          + '&version=<?= $data->version ?>';
           return treeMapUrl;
@@ -226,7 +226,7 @@
           } else if (d.name == 'resource') {
             text = 'resource value (URI)';
           } else if (d.name == 'no field instance') {
-            text = d.name;
+            text = 'no field occurence'; // d.name;
           } else {
             text = 'language code: ' + d.name;
           }
@@ -234,7 +234,7 @@
             var count = d.size.toString().replace(/./g, function(c, i, a) {
               return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
-            text += "\n" + 'number of field instances: ' + count;
+            text += "\n" + 'number of field occurrences: ' + count;
           }
           return text;
         }

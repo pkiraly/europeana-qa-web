@@ -3,8 +3,8 @@ function formUpdated(element) {
   field = element.field.value;
   targetId = element.targetId.value;
   excludeZeros = element.excludeZeros.checked;
-  showNoInstances = element.showNoInstances.checked;
-  updateData(collectionId, field, targetId, excludeZeros, showNoInstances);
+  showNoOccurences = element.showNoOccurences.checked;
+  updateData(collectionId, field, targetId, excludeZeros, showNoOccurences);
   return false;
 }
 
@@ -12,17 +12,17 @@ function updateData(collectionId, field, targetId) {
   updateData(collectionId, field, targetId, false, false);
 }
 
-function updateData(collectionId, field, targetId, excludeZeros, showNoInstances) {
+function updateData(collectionId, field, targetId, excludeZeros, showNoOccurences) {
 
   $('#tree-form input[name=field]').val(field);
   
   excludeZeros = (typeof excludeZeros !== 'undefined') ? excludeZeros : false;
-  showNoInstances = (typeof showNoInstances !== 'undefined') ? showNoInstances : false;
+  showNoOccurences = (typeof showNoOccurences !== 'undefined') ? showNoOccurences : false;
 
   var url = 'plainjson2tree.php?collectionId=' + collectionId
           + '&field=' + field
           + '&excludeZeros=' + (excludeZeros ? 1 : 0)
-          + '&showNoInstances=' + (showNoInstances ? 1 : 0);
+          + '&showNoOccurences=' + (showNoOccurences ? 1 : 0);
   
   var margin = {top: 10, right: 10, bottom: 10, left: 10},
       width = 960, // - margin.left - margin.right,

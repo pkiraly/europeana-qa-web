@@ -12,7 +12,7 @@ if (!isset($collectionId))
   $collectionId = 'all';
 
 $excludeZeros    = (isset($_GET['excludeZeros'])    && $_GET['excludeZeros'] == 1) ? TRUE : FALSE;
-$showNoInstances = (isset($_GET['showNoInstances']) && $_GET['showNoInstances'] == 1) ? TRUE : FALSE;
+$showNoOccurences = (isset($_GET['showNoOccurences']) && $_GET['showNoOccurences'] == 1) ? TRUE : FALSE;
 
 $codes = [
   'no language',
@@ -23,7 +23,7 @@ $codes = [
 $fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . '.languages.json';
 $languages = json_decode(file_get_contents($fileName));
 
-echo getTree($languages->$field, $field, $excludeZeros, $showNoInstances);
+echo getTree($languages->$field, $field, $excludeZeros, $showNoOccurences);
 // echo json_encode($languages->$field);
 
 /*
@@ -32,7 +32,7 @@ foreach ($languages as $key => $source) {
 }
 */
 
-function getTree($source, $key, $excludeZeros, $showNoInstances) {
+function getTree($source, $key, $excludeZeros, $showNoOccurences) {
   $result = [
     'name' => $key,
     'children' => []
@@ -47,8 +47,8 @@ function getTree($source, $key, $excludeZeros, $showNoInstances) {
   }
   unset($source->{'no language'});
 
-  if ($showNoInstances && isset($source->{'no field instance'})) {
-    $result['children'][] = ['name' => 'no field instance', 'size' => $source->{'no field instance'}];
+  if ($showNoOccurences && isset($source->{'no field instance'})) {
+    $result['children'][] = ['name' => 'no field occurence', 'size' => $source->{'no field instance'}];
   }
   unset($source->{'no field instance'});
 

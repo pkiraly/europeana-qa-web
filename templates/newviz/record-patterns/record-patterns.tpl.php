@@ -10,9 +10,9 @@
     The order is the same as in the EDM documentation. It does not contain the fields
     which are not present in any of the records (within the dataset). If a cell is green,
     the field is present, otherwise not.</li>
-  <li><em>#fields</em> - the number of fields available in the pattern</li>
-  <li><em>occurence</em> - the number of records in which this pattern is available</li>
-  <li><em>percent</em> - the percent of records compared to the whole dataset in which this pattern is available</li>
+  <li><em>#fields</em> - the number of fields present in the pattern</li>
+  <li><em>occurence</em> - the number of records in which this pattern is present</li>
+  <li><em>percent</em> - the percent of records compared to the whole dataset in which this pattern is present</li>
 </ul>
 <table id="field-patterns">
   <thead>

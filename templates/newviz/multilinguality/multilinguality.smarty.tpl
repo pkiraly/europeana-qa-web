@@ -52,7 +52,7 @@
     <p>The table shows the <em>mean</em> of the number of language tags and literals tagged with a language
       per record, in the selected set.</p>
 
-    <p><em>n/a</em> means that the particular field is not available in any record
+    <p><em>n/a</em> means that the particular field is not present in any record
       in the collection.</p>
     <table id="multilingual-score-general-table" class="table table-condensed table-striped tablesorter">
       <thead>
@@ -109,8 +109,8 @@
         <label for="excludeZeros">Exclude records with fields without language tag</label>
 
         <!--
-        <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
-        <label for="showNoInstances">Exlude records without field</label>
+        <input type="checkbox" name="exclusions[]" value="1" id="showNoOccurences" />
+        <label for="showNoOccurences">Exlude records without field</label>
         -->
       </form>
 
