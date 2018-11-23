@@ -15,6 +15,11 @@
     Europeana database.
   </p>
 
+  <p>
+    Warning: this pages uses live data from the Europeana API, which maybe slightly different from
+    the status of the same record at the time of calculation.
+  </p>
+
   <p>Check a specific Europeana record by entering its ID.</p>
   <form>
     <input type="text" name="id" value="{$id}" size="120" />
@@ -158,6 +163,7 @@
       <p>Languages in the object: {$metrics->languages->global|join:", "}</p>
 
       <h3>Problem catalog</h3>
+      <p>Warning: this is work in progress!</p>
       <table id="statistics" class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -221,7 +227,6 @@
     <tr>
       <th>Field</th>
       <th>Values</th>
-      <th>Exists?</th>
       <th>Cardinality</th>
       <th>Languages</th>
       <th>Multilingual<br/>saturation</th>
@@ -252,7 +257,7 @@
         {/if}
       {/if}
       <tr{if $value == 0} class="remainder"{/if}>
-        <td>{$field}</td>
+        <td class="field-name">{$field}</td>
         <td class="field-value">
           {if $value != 0}
             {if isset($structure[$field]) || isset($structure[$europeanaProxyName])}
@@ -268,30 +273,33 @@
             {/if}
           {/if}
         </td>
-        <td>{if $value == 1}true{else}false{/if}</td>
-        <td>{if $value == 1}{$metrics->cardinality[$field]}{/if}</td>
-        <td>
-          {if $value == 1 && isset($metrics->languages->fields[$lowerField])}
-            {$metrics->languages->fields[$lowerField]|join:", "}
+        <td class="cardinality">{if $value == 1}{$metrics->cardinality[$field]}{/if}</td>
+        <td class="languages">
+          {if $value == 1}
+            {if isset($metrics->languages->fields[$lowerField])}
+              {$metrics->languages->fields[$lowerField]|join:", "}
+            {else}
+              none
+            {/if}
           {/if}
         </td>
-        <td>
+        <td class="multilinguality">
           {assign var="multilingualityField" value=strtolower(str_replace('Proxy/', '', $field))}
           {if $value != 0 && isset($metrics->multilinguality->fields['provider'][$multilingualityField])}
             {assign var="multilinguality" value=$metrics->multilinguality->fields['provider'][$multilingualityField]}
             <table class="multilinguality">
               <tbody>
                 <tr>
-                  <td class="label">tagged literals</td>
-                  <td class="value">{$multilinguality['taggedliterals']}</td>
+                  <td class="m-label">tagged literals</td>
+                  <td class="m-value">{$multilinguality['taggedliterals']}</td>
                 </tr>
                 <tr>
-                  <td class="label">number of languages</td>
-                  <td class="value">{$multilinguality['languages']}</td>
+                  <td class="m-label">number of languages</td>
+                  <td class="m-value">{$multilinguality['languages']}</td>
                 </tr>
                 <tr>
-                  <td class="label">literals per language</td>
-                  <td class="value">{$multilinguality['literalsperlanguage']}</td>
+                  <td class="m-label">literals per language</td>
+                  <td class="m-value">{$multilinguality['literalsperlanguage']}</td>
                 </tr>
               </tbody>
             </table>
@@ -300,7 +308,7 @@
       </tr>
       {if $hasEuropeanaProxyValue == 1}
         <tr>
-          <td>{$europeanaProxyName}</td>
+          <td class="field-name">{$europeanaProxyName}</td>
           <td class="field-value">
             {if count($europeanaProxyValue) == 1}
               {$europeanaProxyValue[0]}
@@ -312,26 +320,25 @@
               </ul>
             {/if}
           </td>
-          <td>true</td>
-          <td>{count($europeanaProxyValue)}</td>
-          <td></td>
-          <td>
+          <td class="cardinality">{count($europeanaProxyValue)}</td>
+          <td class="languages"></td>
+          <td class="multilinguality">
             {assign var="multilingualityField" value=strtolower(str_replace('Proxy/', '', $field))}
             {if $value != 0 && isset($metrics->multilinguality->fields['europeana'][$multilingualityField])}
               {assign var="multilinguality" value=$metrics->multilinguality->fields['europeana'][$multilingualityField]}
               <table class="multilinguality">
                 <tbody>
                 <tr>
-                  <td class="label">tagged literals</td>
-                  <td class="value">{$multilinguality['taggedliterals']}</td>
+                  <td class="m-label">tagged literals</td>
+                  <td class="m-value">{$multilinguality['taggedliterals']}</td>
                 </tr>
                 <tr>
-                  <td class="label">number of languages</td>
-                  <td class="value">{$multilinguality['languages']}</td>
+                  <td class="m-label">number of languages</td>
+                  <td class="m-value">{$multilinguality['languages']}</td>
                 </tr>
                 <tr>
-                  <td class="label">literals per language</td>
-                  <td class="value">{$multilinguality['literalsperlanguage']}</td>
+                  <td class="m-label">literals per language</td>
+                  <td class="m-value">{$multilinguality['literalsperlanguage']}</td>
                 </tr>
                 </tbody>
               </table>

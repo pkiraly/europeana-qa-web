@@ -95,15 +95,22 @@ table#statistics td.field-value {
   max-width: 500px;
 }
 
-table#statistics td table.multilinguality td {
-  vertical-align: top;
+table#statistics td table.multilinguality {
+  margin: 0;
 }
 
-table#statistics td table.multilinguality td.label {
+table#statistics td table.multilinguality td {
+  vertical-align: top;
+  /* border-bottom: 1px solid #d9d9d9; */
+  padding-right: 5px;
+  font-size: 80%;
+}
+
+table#statistics td table.multilinguality td.m-label {
   color: #999999;
 }
 
-table#statistics td table.multilinguality td.value {
+table#statistics td table.multilinguality td.m-value {
   text-align: right;
 }
 
