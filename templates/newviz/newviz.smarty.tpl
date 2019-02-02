@@ -435,17 +435,18 @@ $(document).ready(function () {
     }
   });
 
-  showType(type);
-  $("input[name='type']").on('change', function(){
-    showType($(this).val());
-  })
+  if (!development) {
+    showType(type);
+    $("input[name='type']").on('change', function () {
+      showType($(this).val());
+    })
+  }
 
   $("form#collection-selector select[name='id']").on('change', function(){
     var selectedId = $(this).val();
     updateIntercestionSelector(selectedId);
   })
 });
-
 
 $(function () {
   // $('#entities a.nav-link').tab('show');

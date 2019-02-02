@@ -39,12 +39,8 @@ $filePrefix = ($id == 'all')
   );
 
 $handler = 'json-v1';
-if ($version == 'v2018-08') {
-  if ($id == 'all') {
-    $handler = 'csv-v1';
-  } else if ($development) {
-    $handler = 'csv-v2-proxy-based';
-  }
+if ($version == 'v2018-08' && $development) {
+  $handler = 'csv-v2-proxy-based';
 }
 
 error_log("filePrefix: " . $filePrefix);
@@ -192,7 +188,7 @@ function readStatistics($type, $id, $entity, $filePrefix) {
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
   $entityIDField = $entity . '_rdf_about';
 
-  if ($id == 'all' && $version == 'v2018-08') {
+  if ($id == 'all' && $version == 'v2018-08' && !$development) {
     readFromCsv($filePrefix, $entityFields, strtolower($entityIDField));
   } else if ($development && $version == 'v2018-08') {
     $entityIDField = strtolower('PROVIDER_Proxy_rdf_about');
@@ -604,7 +600,7 @@ function readCompleteness($filePrefix, &$errors) {
     $completenessFileName = $dataDir
       . '/json/' . $filePrefix
       . '/' . $filePrefix . $suffix;
-    // error_log('completenessFileName: ' . $completenessFileName);
+    error_log('completenessFileName: ' . $completenessFileName);
     if (file_exists($completenessFileName)) {
       $keys = ["mean", "min", "max", "count", "median"];
       foreach (file($completenessFileName) as $line) {
