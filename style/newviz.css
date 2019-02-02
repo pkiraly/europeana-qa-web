@@ -1,10 +1,17 @@
-.chart {
-  width: 300px;
-  max-width: 300px;
+.chart, .chart-half {
   background-color: #ccc;
   border-bottom: 1px solid maroon;
 }
-.chart div {
+.chart {
+  width: 300px;
+  max-width: 300px;
+}
+.chart-half {
+  width: 200px;
+  max-width: 200px;
+}
+
+.chart div, .chart-half div {
   background-color: #428bca;
   color: white;
   text-align: right;

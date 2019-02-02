@@ -31,7 +31,6 @@ if (isset($_GET['id'])) {
   }
   $type = 'c';
 }
-error_log("id: " . $id);
 
 $fragment = getOrDefault('fragment', NULL);
 $intersection = getOrDefault('intersection', NULL);
@@ -39,7 +38,7 @@ $intersection = getOrDefault('intersection', NULL);
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $intersection = getOrDefault('intersection', NULL);
 
-if (empty($id)) {
+if ($id == '') {
   $datasets = retrieveDatasets($type, $fragment);
   foreach ($datasets as $id => $collectionId) {
     break;
@@ -49,19 +48,23 @@ if (empty($id)) {
 $filePrefix = ($id == 'all')
   ? $id
   : (
-    (is_null($intersection) || $intersection == 'all')
-    ? $type . $id
-    : $intersection
-  );
-error_log("id: " . $id);
-error_log("filePrefix: " . $filePrefix);
-
+      (is_null($intersection) || $intersection == 'all')
+      ? (
+          in_array($type, ['cn', 'l', 'pd', 'p', 'cd'])
+            ? $type . '-' . $id
+            : $type . $id
+        )
+      : $intersection
+    );
 
 $count = 0;
 $errors = [];
 $entityCounts = (object)[];
 
 if ($id == 'all' && $version == 'v2018-08') {
+  $count = getCountFromCsv($filePrefix, $errors);
+  $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
+} else if ($development && $version == 'v2018-08') {
   $count = getCountFromCsv($filePrefix, $errors);
   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
 } else {
@@ -96,6 +99,12 @@ $smarty->assign('errors', $errors);
 $smarty->assign('intersections', getIntersections($type, $id));
 $smarty->assign('intersection', $intersection);
 
+if ($development) {
+  $smarty->assign('languages', retrieveLanguages($type, $fragment));
+  $smarty->assign('countries', retrieveCountries($type, $fragment));
+  $smarty->assign('providers', retrieveProviders($type, $fragment));
+}
+
 $smarty->display('newviz.smarty.tpl');
 
 function retrieveDatasets($type, $fragment) {
@@ -108,7 +117,23 @@ function retrieveDataproviders($type, $fragment) {
   return retrieveCsv($dataDir . '/data-providers.txt', ($type == 'd' ? $fragment : NULL));
 }
 
+function retrieveLanguages($type, $fragment) {
+  global $dataDir;
+  return retrieveCsv($dataDir . '/languages.csv', ($type == 'd' ? $fragment : NULL));
+}
+
+function retrieveCountries($type, $fragment) {
+  global $dataDir;
+  return retrieveCsv($dataDir . '/countries.csv', ($type == 'd' ? $fragment : NULL));
+}
+
+function retrieveProviders($type, $fragment) {
+  global $dataDir;
+  return retrieveCsv($dataDir . '/providers.csv', ($type == 'd' ? $fragment : NULL));
+}
+
 function retrieveCsv($fileName, $fragment) {
+  error_log('retrieveCsv: ' . $fileName);
   $list = [];
   $content = explode("\n", file_get_contents($fileName));
   foreach ($content as $line) {
@@ -157,7 +182,7 @@ function getPortalUrl($type, $collectionId) {
 function getIntersections($type, $id) {
   global $dataDir;
 
-  if ($id == 'all') {
+  if ($id == 'all' || !in_array($type, ['c', 'd'])) {
     return [];
   }
 
@@ -207,12 +232,15 @@ function getCountFromRGeneratedJson($filePrefix, &$errors) {
  * @return array
  */
 function getCountFromCsv($filePrefix, &$errors) {
+  global $development;
+
   $count = 0;
   $completeness = readCompleteness($filePrefix, $errors);
-  if (!empty($completeness))
-    $count = $completeness['ProvidedCHO_rdf_about']['count'];
+  if (!empty($completeness)) {
+    $field = $development ? 'PROVIDER_Proxy_rdf_about' : 'ProvidedCHO_rdf_about';
+    $count = $completeness[$field]['count'];
+  }
 
-  error_log("count: " . $count);
   return $count;
 }
 
@@ -223,12 +251,13 @@ function getCountFromCsv($filePrefix, &$errors) {
  * @return array
  */
 function readCompleteness($filePrefix, &$errors) {
-  global $dataDir;
+  global $dataDir, $development;
   static $completeness;
 
   if (!isset($completeness)) {
     $completeness = [];
-    $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . '.completeness.csv';
+    $suffix = $development ? '.proxy-based-completeness.csv' : '.completeness.csv';
+    $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . $suffix;
     if (file_exists($completenessFileName)) {
       $keys = ["mean", "min", "max", "count", "median"];
       foreach (file($completenessFileName) as $line) {
@@ -282,6 +311,5 @@ function getEntityCountsFromCsv($filePrefix, $count, &$errors) {
       $entityCounts->{strtolower($field)} = number_format($values['mean'] * $count, 0, '.', ' ');
     }
   }
-  error_log(json_encode($entityCounts));
   return $entityCounts;
 }

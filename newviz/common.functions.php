@@ -40,9 +40,19 @@ function getDataDir() {
   return $configuration['DATA_PATH'] . '/' . $version;
 }
 
+/**
+ * prefixes
+ * c - dataset
+ * d - dataProvider
+ * cd - [dataset] - [dataProvider]
+ * pd - [provider] - [dataProvider]
+ * p - provider
+ * cn - country
+ * l - language
+ */
 function parseId($id) {
   $type = substr($id, 0, 1);
-  if (in_array($type, ['c', 'd'])) {
+  if (in_array($type, ['c', 'd', 'pd', 'p', 'cn', 'l', 'a'])) {
     $id = substr($id, 1);
   } else {
     $type = 'c';

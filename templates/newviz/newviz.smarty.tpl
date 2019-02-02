@@ -9,60 +9,182 @@
     <h3>Metadata Quality Assurance Framework for Europeana</h3>
   </div>
 
-  <form id="collection-selector">
-    <div class="row">
-      <div class="col-lg-4">
-        <label><input type="radio" name="type" value="c"{if ($type == 'c')} checked="checked"{/if}>select a dataset</label>
-        <label><input type="radio" name="type" value="d"{if ($type == 'd')} checked="checked"{/if}>select a data provider</label>
-      </div>
-      <div class="col-lg-8">
-        <label for="fragment">filter the list:</label>
-        <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
-        {strip}
-        <select name="id" id="cid" {if ($type != 'c')} style="display:none"{/if}>
-          {foreach $datasets as $cid => $name}
-            <option value="{$cid}"{if ($type == 'c' && $id == $cid)} selected="selected" title="{$name}"{/if}>{$name}</option>
-          {/foreach}
-        </select>
-        {/strip}
-        {strip}
-        <select name="id" id="did" {if ($type != 'c')} style="display:none"{/if}>
-          {foreach $dataproviders as $did => $name}
-            <option value="{$did}"{if ($type == 'd' && $id == $did)} selected="selected" title="{$name}"{/if}>{$name}</option>
-          {/foreach}
-        </select>
-        {/strip}
-        <input type="hidden" name="version" value="{$version}"/>
-        <input type="hidden" name="development" value="{$development}"/>
-        <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
-      </div>
-    </div>
+    {if ($development)}
+      <ul class="nav nav-tabs" id="formTab">
+        <li{if $type == 'c'} class="active"{/if}><a href="#by-dataset-form">by dataset</a></li>
+        <li{if $type == 'd'} class="active"{/if}><a href="#by-dataprovider-form">by data provider</a></li>
+        <li{if $type == 'p'} class="active"{/if}><a href="#by-provider-form">by provider</a></li>
+        <li{if $type == 'cn'} class="active"{/if}><a href="#by-country-form">by country</a></li>
+        <li{if $type == 'l'} class="active"{/if}><a href="#by-language-form">by language</a></li>
+        <li{if $type == 'a'} class="active"{/if}><a href="#whole-form">whole</a></li>
+      </ul>
 
-    <div class="row" id="intersections">
-      {assign var=total value=count($intersections)}
-      {if $total > 6}
-        {assign var=unit_size value=ceil($total / 3)}
-      {else}
-        {assign var=unit_size value="0"}
-        <div class="col-lg-4">&nbsp;</div>
-        <div class="col-lg-8">
-      {/if}
-      {strip}
-        {foreach $intersections as $i => $item}
-          {if $unit_size > 0 && $i % $unit_size == 0}
-            {if $i != 0}</div>{/if}
-            <div class="col-lg-4">
-          {/if}
-          <label>
-            <input type="radio" name="intersection" value="{$item->file}"
-                  {if $item->file == $intersection} checked="checked"{/if}/>
-            {$item->name} ({$item->count|number_format:0:'.':' '})
-          </label><br/>
-        {/foreach}
+      <div class="tab-content form-selector">
+        <div id="by-dataset-form" class="tab-pane{if $type == 'c'} active{/if}">
+          <div class="row">
+            <form id="collection-selector">
+
+              <input type="hidden" name="type" value="c">
+              <label for="fragment">filter the list:</label>
+              <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+              {strip}
+                <select name="id" id="cid">
+                  {foreach $datasets as $cid => $name}
+                    <option value="{$cid}"{if ($type == 'c' && $id == $cid)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                  {/foreach}
+                </select>
+              {/strip}
+              <input type="hidden" name="version" value="{$version}"/>
+              <input type="hidden" name="development" value="{$development}"/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            </form>
+          </div>
         </div>
-      {/strip}
-    </div>
-  </form>
+        <div id="by-dataprovider-form" class="tab-pane{if $type == 'd'} active{/if}">
+          <div class="row">
+            <form id="collection-selector">
+
+              <input type="hidden" name="type" value="d">
+              <label for="fragment">filter the list:</label>
+              <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+              {strip}
+                <select name="id" id="did">
+                  {foreach $dataproviders as $did => $name}
+                    <option value="{$did}"{if ($type == 'd' && $id == $did)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                  {/foreach}
+                </select>
+              {/strip}
+              <input type="hidden" name="version" value="{$version}"/>
+              <input type="hidden" name="development" value="{$development}"/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            </form>
+          </div>
+        </div>
+        <div id="by-provider-form" class="tab-pane{if $type == 'p'} active{/if}">
+          <div class="row">
+            <form id="collection-selector">
+
+              <input type="hidden" name="type" value="p">
+              <label for="fragment">filter the list:</label>
+              <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+              {strip}
+                <select name="id" id="pid">
+                  {foreach $providers as $pid => $name}
+                    <option value="{$pid}"{if ($type == 'p' && $id == $pid)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                  {/foreach}
+                </select>
+              {/strip}
+              <input type="hidden" name="version" value="{$version}"/>
+              <input type="hidden" name="development" value="{$development}"/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            </form>
+          </div>
+        </div>
+        <div id="by-country-form" class="tab-pane{if $type == 'cn'} active{/if}">
+          <div class="row">
+            <form id="collection-selector">
+
+              <input type="hidden" name="type" value="cn">
+              {strip}
+                <select name="id" id="cnid">
+                  {foreach $countries as $cnid => $name}
+                    <option value="{$cnid}"{if ($type == 'cn' && $id == $cnid)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                  {/foreach}
+                </select>
+              {/strip}
+              <input type="hidden" name="version" value="{$version}"/>
+              <input type="hidden" name="development" value="{$development}"/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            </form>
+          </div>
+        </div>
+        <div id="by-language-form" class="tab-pane{if $type == 'l'} active{/if}">
+          <div class="row">
+            <form id="collection-selector">
+
+              <input type="hidden" name="type" value="l">
+              {strip}
+                <select name="id" id="cnid">
+                  {foreach $languages as $lid => $name}
+                    <option value="{$lid}"{if ($type == 'l' && $id == $lid)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                  {/foreach}
+                </select>
+              {/strip}
+              <input type="hidden" name="version" value="{$version}"/>
+              <input type="hidden" name="development" value="{$development}"/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            </form>
+          </div>
+        </div>
+        <div id="whole-form" class="tab-pane{if $type == 'a'} active{/if}">
+          <div class="row">
+            <form id="collection-selector">
+
+              <input type="hidden" name="type" value="a">
+              <input type="hidden" name="id" value="all">
+              <input type="hidden" name="version" value="{$version}"/>
+              <input type="hidden" name="development" value="{$development}"/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            </form>
+          </div>
+        </div>
+      </div>
+    {else}
+      <form id="collection-selector">
+        <div class="row">
+          <div class="col-lg-4">
+            <label><input type="radio" name="type" value="c"{if ($type == 'c')} checked="checked"{/if}>select a dataset</label>
+            <label><input type="radio" name="type" value="d"{if ($type == 'd')} checked="checked"{/if}>select a data provider</label>
+          </div>
+          <div class="col-lg-8">
+            <label for="fragment">filter the list:</label>
+            <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+            {strip}
+              <select name="id" id="cid" {if ($type != 'c')} style="display:none"{/if}>
+                {foreach $datasets as $cid => $name}
+                  <option value="{$cid}"{if ($type == 'c' && $id == $cid)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                {/foreach}
+              </select>
+            {/strip}
+            {strip}
+              <select name="id" id="did" {if ($type != 'c')} style="display:none"{/if}>
+                {foreach $dataproviders as $did => $name}
+                  <option value="{$did}"{if ($type == 'd' && $id == $did)} selected="selected" title="{$name}"{/if}>{$name}</option>
+                {/foreach}
+              </select>
+            {/strip}
+            <input type="hidden" name="version" value="{$version}"/>
+            <input type="hidden" name="development" value="{$development}"/>
+            <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+          </div>
+        </div>
+
+        <div class="row" id="intersections">
+          {assign var=total value=count($intersections)}
+          {if $total > 6}
+            {assign var=unit_size value=ceil($total / 3)}
+          {else}
+            {assign var=unit_size value="0"}
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-8">
+          {/if}
+          {strip}
+            {foreach $intersections as $i => $item}
+              {if $unit_size > 0 && $i % $unit_size == 0}
+                {if $i != 0}</div>{/if}
+                <div class="col-lg-4">
+              {/if}
+              <label>
+                <input type="radio" name="intersection" value="{$item->file}"
+                      {if $item->file == $intersection} checked="checked"{/if}/>
+                {$item->name} ({$item->count|number_format:0:'.':' '})
+              </label><br/>
+            {/foreach}
+            </div>
+          {/strip}
+        </div>
+      </form>
+    {/if}
 
 
   {if ($type == 'd')}
@@ -104,22 +226,31 @@
       <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3">
           <h2>Field Frequency</h2>
-          <p>Dataset: {$entityCounts->proxy_rdf_about} records</p>
+          <p>Dataset: {if $development}{$entityCounts->provider_proxy_rdf_about}{else}{$entityCounts->proxy_rdf_about}{/if} records</p>
           <ul id="entities" class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO ({$entityCounts->proxy_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO
+                {if $development}
+                  ({$entityCounts->provider_proxy_rdf_about}/{$entityCounts->europeana_proxy_rdf_about})
+                {else}
+                  ({$entityCounts->proxy_rdf_about})
+                {/if}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent ({$entityCounts->agent_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent
+                ({if $development}{$entityCounts->provider_agent_rdf_about}/{$entityCounts->europeana_agent_rdf_about}{else}{$entityCounts->agent_rdf_about}{/if})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan ({$entityCounts->timespan_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan
+                ({if $development}{$entityCounts->provider_timespan_rdf_about}/{$entityCounts->europeana_timespan_rdf_about}{else}{$entityCounts->timespan_rdf_about}{/if})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept ({$entityCounts->concept_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept
+                ({if $development}{$entityCounts->provider_concept_rdf_about}/{$entityCounts->europeana_concept_rdf_about}{else}{$entityCounts->concept_rdf_about}{/if})</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place ({$entityCounts->place_rdf_about})</a>
+              <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place
+                ({if $development}{$entityCounts->provider_place_rdf_about}/{$entityCounts->europeana_place_rdf_about}{else}{$entityCounts->place_rdf_about}{/if})</a>
             </li>
           </ul>
         </div>
@@ -149,7 +280,12 @@
     <div id="multilingual-score" class="tab-pane fade">
       <div class="row">
         <h2>Multilinguality metrics</h2>
-        <p>Dataset: {$entityCounts->proxy_rdf_about} records</p>
+        <p>Dataset:
+          {if $development && $version == 'v2018-08'}
+            {$entityCounts->provider_proxy_rdf_about}
+          {else}
+            {$entityCounts->proxy_rdf_about}
+          {/if} records</p>
         <p>
           <i class="fa fa-info-circle"></i>
           The multilingual metrics quantify multilingual information in metadata. For now, we calculate the
@@ -276,13 +412,15 @@ $(document).ready(function () {
     toggleActivation(loadedEntity);
     $('.nav-tabs a[href="' + tabId + '"]').tab('show');
   } else {
+    console.log('else branch 4 ' + tabId);
     loadEntityCardinality('ProvidedCHO');
     loadedEntity = 'ProvidedCHO';
     toggleActivation(loadedEntity);
     $('.nav-tabs a[href="' + tabId + '"]').tab('show');
   }
 
-  $(".nav-tabs a").click(function() {
+  $(".nav-tabs a").click(function(event) {
+    event.preventDefault();
     $(this).tab('show');
     var tabId = this.href.substr(this.href.indexOf('#'));
     if (loaded[tabId] === false) {

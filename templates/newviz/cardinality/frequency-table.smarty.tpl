@@ -1,4 +1,6 @@
-<h3>Number of records where the fields are present</h3>
+{if $displayTitle}
+  <h3>Number of records where the fields are present</h3>
+{/if}
 <table class="histogram">
   <tr>
     <td class="legend"></td>
