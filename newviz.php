@@ -305,11 +305,30 @@ function getEntityCountsFromRGeneratedJson($filePrefix, &$errors) {
 
 function getEntityCountsFromCsv($filePrefix, $count, &$errors) {
   $entityCounts = (object)[];
-  $completeness = readCompleteness($filePrefix, $errors);
-  foreach ($completeness as $field => $values) {
-    if (preg_match('/_rdf_about$/', $field)) {
-      $entityCounts->{strtolower($field)} = number_format($values['mean'] * $count, 0, '.', ' ');
+  $source = 'histogram';
+
+  if ($source == 'completeness') {
+    $completeness = readCompleteness($filePrefix, $errors);
+    foreach ($completeness as $field => $values) {
+      if (preg_match('/_rdf_about$/', $field)) {
+        $entityCounts->{strtolower($field)} = number_format($values['count'], 0, '.', ' ');
+        // $entityCounts->{strtolower($field)} = number_format($values['mean'] * $count, 0, '.', ' ');
+      }
+    }
+  } else if ($source == 'histogram') {
+    $histogram = readHistogramFormCsv($filePrefix, $errors);
+    foreach ($histogram as $field => $values) {
+      if (preg_match('/_rdf_about$/', $field)) {
+        $count = 0;
+        foreach ($values as $i => $value) {
+          if ($value->min > 0 && $value->max > 0) {
+            $count += $value->count;
+          }
+        }
+        $entityCounts->{strtolower($field)} = number_format($count, 0, '.', ' ');
+      }
     }
   }
+
   return $entityCounts;
 }

@@ -226,7 +226,12 @@
       <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3">
           <h2>Field Frequency</h2>
-          <p>Dataset: {if $development}{$entityCounts->provider_proxy_rdf_about}{else}{$entityCounts->proxy_rdf_about}{/if} records</p>
+          <p>Dataset:
+            {if $development}
+              {$entityCounts->provider_proxy_rdf_about}
+            {else}
+              {$entityCounts->proxy_rdf_about}
+            {/if} records</p>
           <ul id="entities" class="nav">
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO
@@ -238,19 +243,35 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent
-                ({if $development}{$entityCounts->provider_agent_rdf_about}/{$entityCounts->europeana_agent_rdf_about}{else}{$entityCounts->agent_rdf_about}{/if})</a>
+                {if $development}
+                  ({$entityCounts->provider_agent_rdf_about}/{$entityCounts->europeana_agent_rdf_about})
+                {else}
+                  ({$entityCounts->agent_rdf_about})
+                {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan
-                ({if $development}{$entityCounts->provider_timespan_rdf_about}/{$entityCounts->europeana_timespan_rdf_about}{else}{$entityCounts->timespan_rdf_about}{/if})</a>
+                {if $development}
+                  ({$entityCounts->provider_timespan_rdf_about}/{$entityCounts->europeana_timespan_rdf_about})
+                {else}
+                  ({$entityCounts->timespan_rdf_about})
+                {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept
-                ({if $development}{$entityCounts->provider_concept_rdf_about}/{$entityCounts->europeana_concept_rdf_about}{else}{$entityCounts->concept_rdf_about}{/if})</a>
+                {if $development}
+                  ({$entityCounts->provider_concept_rdf_about}/{$entityCounts->europeana_concept_rdf_about})
+                {else}
+                  ({$entityCounts->concept_rdf_about})
+                {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place
-                ({if $development}{$entityCounts->provider_place_rdf_about}/{$entityCounts->europeana_place_rdf_about}{else}{$entityCounts->place_rdf_about}{/if})</a>
+                {if $development}
+                  ({$entityCounts->provider_place_rdf_about}/{$entityCounts->europeana_place_rdf_about})
+                {else}
+                  ({$entityCounts->place_rdf_about})
+                {/if}</a>
             </li>
           </ul>
         </div>

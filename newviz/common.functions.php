@@ -91,3 +91,45 @@ function createSmarty($templateDir) {
 
   return $smarty;
 }
+
+function readHistogramFormCsv($filePrefix, &$errors) {
+  global $dataDir, $development;
+  static $histogram;
+
+  if (!isset($histogram)) {
+    $histogram = [];
+    $suffix = $development
+      ? '.proxy-based-completeness-histogram.csv'
+      : '.completeness-histogram.csv';
+    $histogramFileName = $dataDir
+      . '/json/' . $filePrefix
+      . '/' . $filePrefix . $suffix;
+    // error_log('histogramFileName: ' . $histogramFileName);
+    if (file_exists($histogramFileName)) {
+      $keys = ["id", "field", "entries"];
+      foreach (file($histogramFileName) as $line) {
+        $values = str_getcsv($line);
+        $values = array_combine($keys, $values);
+        $field = strtolower($values['field']);
+        $raw_entries = explode(';', $values['entries']);
+        $entries = [];
+        foreach ($raw_entries as $raw) {
+          list($min_max, $count) = explode(':', $raw);
+          list($min, $max) = explode('-', $min_max);
+          $entries[] = (object)[
+            'min' => $min,
+            'max' => $max,
+            'count' => $count
+          ];
+        }
+        $histogram[$field] = $entries;
+      }
+    } else {
+      $msg = sprintf("file %s is not existing", $histogramFileName);
+      $errors[] = $msg;
+      error_log($msg);
+    }
+  }
+
+  return $histogram;
+}

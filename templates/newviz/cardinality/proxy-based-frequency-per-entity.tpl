@@ -4,8 +4,8 @@
 
 <div class="row">
   <div class="col-lg-5"><h4>field</h4></div>
-  <div class="col-lg-3"><h4>provider proxy</h4></div>
-  <div class="col-lg-4"><h4>Europeana proxy</h4></div>
+  <div class="col-lg-3"><h4>original metadata</h4></div>
+  <div class="col-lg-4"><h4>Europeana enrichment</h4></div>
 </div>
 
 {foreach $fields as $field}
@@ -35,10 +35,10 @@
       <div class="qa-details field-details" id="details-{$field->key}">
         <div class="row">
           <div class="col-md-6 col-lg-6">
-            <h4>provider proxy</h4>
+            <h4>original metadata</h4>
           </div>
           <div class="col-md-6 col-lg-6">
-            <h4>Europeana proxy</h4>
+            <h4>Europeana enrichment</h4>
           </div>
         </div>
 
@@ -71,11 +71,11 @@
 
 
           <div class="row">
-            <h5>provider proxy</h5>
+            <h5>original metadata</h5>
             {$field->histogramHtml->provider}
           </div>
           <div class="row">
-            <h5>Europeana proxy</h5>
+            <h5>Europeana enrichment</h5>
             {$field->histogramHtml->europeana}
           </div>
         {/if}

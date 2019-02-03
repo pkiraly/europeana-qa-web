@@ -188,9 +188,7 @@ function readStatistics($type, $id, $entity, $filePrefix) {
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
   $entityIDField = $entity . '_rdf_about';
 
-  if ($id == 'all' && $version == 'v2018-08' && !$development) {
-    readFromCsv($filePrefix, $entityFields, strtolower($entityIDField));
-  } else if ($development && $version == 'v2018-08') {
+  if ($version == 'v2018-08' && $development) {
     $entityIDField = strtolower('PROVIDER_Proxy_rdf_about');
     readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField);
   } else {
@@ -325,43 +323,24 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField) {
         error_log(sprintf('Field %s is not in completeness', $qualifiedField));
       }
 
-      if ($filePrefix == 'all') {
-        if (isset($completeness['crd_' . $field])) {
-          $stat = $completeness['crd_' . $field];
-          $cardinality = (object)[
-            'count' => $completeness[$field]['mean'] * $statistics->entityCount,
-            'sum' => $stat['mean'] * $statistics->entityCount,
-            'median' => -1,
-            'mean' => $stat['mean']
-          ];
-          $smarty->assign('cardinality', $cardinality);
-          $smarty->assign('displayMedian', FALSE);
-          $smarty->assign('displayTitle', TRUE);
-          $cardinality->html = $smarty->fetch('cardinality.smarty.tpl');
-          $statistics->cardinality->{$field} = $cardinality;
-        } else {
-          error_log(sprintf('Field crd_%s is not in completeness', $field));
+      if (isset($completeness[$qualifiedField])) {
+        $stat = $completeness[$qualifiedField];
+        $cardinality = (object)[
+          'count' => $frequencyTable->values[1],
+          'sum' => $stat['mean'] * $statistics->entityCount,
+          'median' => -1,
+          'mean' => $stat['mean']
+        ];
+        $smarty->assign('cardinality', $cardinality);
+        $smarty->assign('displayMedian', FALSE);
+        $smarty->assign('displayTitle', FALSE);
+        $cardinality->html = $smarty->fetch('cardinality.smarty.tpl');
+        if (!isset($statistics->cardinality->{$field})) {
+          $statistics->cardinality->{$field} = (object)[];
         }
+        $statistics->cardinality->{$field}->{$proxy} = $cardinality;
       } else {
-        if (isset($completeness[$qualifiedField])) {
-          $stat = $completeness[$qualifiedField];
-          $cardinality = (object)[
-            'count' => $frequencyTable->values[1],
-            'sum' => $stat['mean'] * $statistics->entityCount,
-            'median' => -1,
-            'mean' => $stat['mean']
-          ];
-          $smarty->assign('cardinality', $cardinality);
-          $smarty->assign('displayMedian', FALSE);
-          $smarty->assign('displayTitle', FALSE);
-          $cardinality->html = $smarty->fetch('cardinality.smarty.tpl');
-          if (!isset($statistics->cardinality->{$field})) {
-            $statistics->cardinality->{$field} = (object)[];
-          }
-          $statistics->cardinality->{$field}->{$proxy} = $cardinality;
-        } else {
-          error_log(sprintf('Field crd_%s is not in completeness', $field));
-        }
+        error_log(sprintf('Field crd_%s is not in completeness', $field));
       }
 
       if (isset($histogram[$qualifiedField])) {
@@ -618,48 +597,6 @@ function readCompleteness($filePrefix, &$errors) {
   }
 
   return $completeness;
-}
-
-function readHistogramFormCsv($filePrefix, &$errors) {
-  global $dataDir, $development;
-  static $histogram;
-
-  if (!isset($histogram)) {
-    $histogram = [];
-    $suffix = $development
-      ? '.proxy-based-completeness-histogram.csv'
-      : '.completeness-histogram.csv';
-    $histogramFileName = $dataDir
-      . '/json/' . $filePrefix
-      . '/' . $filePrefix . $suffix;
-    // error_log('histogramFileName: ' . $histogramFileName);
-    if (file_exists($histogramFileName)) {
-      $keys = ["id", "field", "entries"];
-      foreach (file($histogramFileName) as $line) {
-        $values = str_getcsv($line);
-        $values = array_combine($keys, $values);
-        $field = strtolower($values['field']);
-        $raw_entries = explode(';', $values['entries']);
-        $entries = [];
-        foreach ($raw_entries as $raw) {
-          list($min_max, $count) = explode(':', $raw);
-          list($min, $max) = explode('-', $min_max);
-          $entries[] = (object)[
-            'min' => $min,
-            'max' => $max,
-            'count' => $count
-          ];
-        }
-        $histogram[$field] = $entries;
-      }
-    } else {
-      $msg = sprintf("file %s is not existing", $histogramFileName);
-      $errors[] = $msg;
-      error_log($msg);
-    }
-  }
-
-  return $histogram;
 }
 
 function clearJson($values) {
