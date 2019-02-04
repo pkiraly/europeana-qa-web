@@ -180,3 +180,7 @@ div.most-frequent-values em {
   font-size: 80%;
   color: #999;
 }
+
+div#intersections {
+  margin-left: 20px;
+}

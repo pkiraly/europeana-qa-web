@@ -133,3 +133,83 @@ function readHistogramFormCsv($filePrefix, &$errors) {
 
   return $histogram;
 }
+
+function getIntersections($type, $id) {
+  global $dataDir, $development;
+
+  if ($id == 'all' || !in_array($type, ['c', 'd', 'p'])) {
+    return [];
+  }
+
+  if ($development) {
+    $other_types = ($type == 'c' || $type == 'p') ? ['d'] : ['c', 'p'];
+    $file = $dataDir . '/proxy-based-intersections.json';
+  } else {
+    $other_type = ($type == 'c') ? 'd' : 'c';
+    $file = $dataDir . '/intersections.json';
+  }
+
+  $data = json_decode(file_get_contents($file));
+  $list = $data->$type->$id;
+  // error_log('list: ' . json_encode($list));
+  $rows = [(object)['id' => 'all', 'name'=> 'all', 'file'=> 'all']];
+  $all_count = 0;
+  if ($development) {
+    $rows = (object)['list' => (object)[]];
+    foreach ($list as $other_type => $original_items) {
+      $items = [];
+      foreach ($original_items as $_id => $item) {
+        $item->id = $_id;
+        $item->name = retrieveName($_id, $other_type);
+        if ($type == 'c' && $item->name === FALSE)
+          $item->name = 'unspecified';
+        $items[] = $item;
+        // $rows->{$other_types}[] = $item;
+        $all_count += $item->count;
+      }
+      $rows->list->{$other_type} = (object)[
+        'items' => $items,
+        'count' => count($items)
+      ];
+    }
+    // $rows->list = $list;
+    $rows->all_count = $all_count;
+  } else {
+    foreach ($list as $_id => $item) {
+      $item->id = $_id;
+      $item->name = retrieveName($_id, $other_type);
+      if ($type == 'c' && $item->name === FALSE)
+        $item->name = 'unspecified';
+      $rows[] = $item;
+      $all_count += $item->count;
+    }
+    $rows[0]->count = $all_count;
+  }
+  error_log('getIntersections: ' . json_encode($rows));
+  return $rows;
+}
+
+function retrieveName($id, $type) {
+  global $dataDir;
+
+  $files = [
+    'c' => 'datasets.txt',
+    'd' => 'data-providers.txt',
+    'p' => 'providers.csv',
+  ];
+
+  if (!isset($content)) {
+    $file = $files[$type];
+    $content = explode("\n", file_get_contents($dataDir . '/' . $file));
+  }
+
+  $name = FALSE;
+  foreach ($content as $line) {
+    list($_id, $_name) = explode(';', $line, 2);
+    if ($_id == $id) {
+      $name = $_name;
+      break;
+    }
+  }
+  return $name;
+}

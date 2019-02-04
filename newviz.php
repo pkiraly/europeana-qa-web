@@ -96,6 +96,7 @@ $smarty->assign('count', $count);
 $smarty->assign('filePath', getRootPath());
 $smarty->assign('errors', $errors);
 
+$smarty->assign('intersectionLabels', ['c' => 'datasets', 'd' => 'data providers', 'p' => 'providers']);
 $smarty->assign('intersections', getIntersections($type, $id));
 $smarty->assign('intersection', $intersection);
 
@@ -148,27 +149,6 @@ function retrieveCsv($fileName, $fragment) {
   return $list;
 }
 
-function retrieveName($id, $type) {
-  global $dataDir;
-
-  if (!isset($content)) {
-    $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
-    $content = explode("\n", file_get_contents($dataDir . '/' . $file));
-  }
-
-  $name = FALSE;
-  foreach ($content as $line) {
-    if (strlen($line) > 0) {
-      list($_id, $_name) = explode(';', $line, 2);
-      if ($_id == $id) {
-        $name = $_name;
-        break;
-      }
-    }
-  }
-  return $name;
-}
-
 function getPortalUrl($type, $collectionId) {
   $url = "https://www.europeana.eu/portal/en/search?";
   if ($type == 'c') {
@@ -177,31 +157,6 @@ function getPortalUrl($type, $collectionId) {
     $url .= urlencode('f[DATA_PROVIDER][]') . '=' . urlencode($collectionId) . '&q=*';
   }
   return $url;
-}
-
-function getIntersections($type, $id) {
-  global $dataDir;
-
-  if ($id == 'all' || !in_array($type, ['c', 'd'])) {
-    return [];
-  }
-
-  $other_type = $type == 'c' ? 'd' : 'c';
-  $file = $dataDir . '/intersections.json';
-  $data = json_decode(file_get_contents($file));
-  $list = $data->$type->$id;
-  $rows = [(object)['id' => 'all', 'name'=> 'all', 'file'=> 'all']];
-  $all_count = 0;
-  foreach ($list as $_id => $item) {
-    $item->id = $_id;
-    $item->name = retrieveName($_id, $other_type);
-    if ($type == 'c' && $item->name === FALSE)
-      $item->name = 'unspecified';
-    $rows[] = $item;
-    $all_count += $item->count;
-  }
-  $rows[0]->count = $all_count;
-  return $rows;
 }
 
 /**
