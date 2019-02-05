@@ -72,8 +72,8 @@ if ($id == 'all' && $version == 'v2018-08') {
   $entityCounts = getEntityCountsFromRGeneratedJson($filePrefix, $errors);
 }
 
-$datasets = retrieveDatasets($type, $fragment);
-$dataproviders = retrieveDataproviders($type, $fragment);
+$datasets = retrieveDatasets($type, ($type == 'c' ? $fragment : ''));
+$dataproviders = retrieveDataproviders($type, ($type == 'd' ? $fragment : ''));
 
 $smarty = createSmarty('templates/newviz');
 $smarty->assign('rand', rand());
@@ -101,9 +101,9 @@ $smarty->assign('intersections', getIntersections($type, $id));
 $smarty->assign('intersection', $intersection);
 
 if ($development) {
-  $smarty->assign('languages', retrieveLanguages($type, $fragment));
-  $smarty->assign('countries', retrieveCountries($type, $fragment));
-  $smarty->assign('providers', retrieveProviders($type, $fragment));
+  $smarty->assign('languages', retrieveLanguages($type, ($type == 'l' ? $fragment : '')));
+  $smarty->assign('countries', retrieveCountries($type, ($type == 'cn' ? $fragment : '')));
+  $smarty->assign('providers', retrieveProviders($type, ($type == 'p' ? $fragment : '')));
 }
 
 $smarty->display('newviz.smarty.tpl');

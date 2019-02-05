@@ -26,7 +26,7 @@
 
               <input type="hidden" name="type" value="c">
               <label for="fragment">filter the list:</label>
-              <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+              <input type="text" name="fragment" value="{if $type == 'c'}{$fragment}{/if}" onkeyup="filterIds(this.form);"><br>
               {strip}
                 <select name="id" id="cid">
                   {foreach $datasets as $cid => $name}
@@ -46,7 +46,7 @@
 
               <input type="hidden" name="type" value="d">
               <label for="fragment">filter the list:</label>
-              <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+              <input type="text" name="fragment" value="{if $type == 'd'}{$fragment}{/if}" onkeyup="filterIds(this.form);"><br>
               {strip}
                 <select name="id" id="did">
                   {foreach $dataproviders as $did => $name}
@@ -66,7 +66,7 @@
 
               <input type="hidden" name="type" value="p">
               <label for="fragment">filter the list:</label>
-              <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+              <input type="text" name="fragment" value="{if $type == 'p'}{$fragment}{/if}" onkeyup="filterIds(this.form);"><br>
               {strip}
                 <select name="id" id="pid">
                   {foreach $providers as $pid => $name}
@@ -166,7 +166,7 @@
           </div>
           <div class="col-lg-8">
             <label for="fragment">filter the list:</label>
-            <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds();"><br>
+            <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds(this.form);"><br>
             {strip}
               <select name="id" id="cid" {if ($type != 'c')} style="display:none"{/if}>
                 {foreach $datasets as $cid => $name}
@@ -529,14 +529,23 @@ function watchIntersections() {
   }
 }
 
-function filterIds() {
-  var fragment = $('input[name=fragment]').val();
-  var type = $('#collection-selector input[name=type]:checked').val();
+function filterIds(oForm) {
+  var selectorId = (type == 'c') ? 'cid' : 'did';
+
+  if (development) {
+    var type = $('input[name=type]', $(oForm)).val();
+    var fragment = $('input[name=fragment]', $(oForm)).val();
+  } else {
+    var type = $('#collection-selector input[name=type]:checked').val();
+    var fragment = $('input[name=fragment]').val();
+  }
+
   console.log(type);
+  var selectorIndex = {c: 'cid', d: 'did', p: 'pid'};
   var query = {'fragment': fragment, 'type': type, 'version': version};
   $.get("newviz/dataset-filter-ajax.php", query)
    .done(function(data) {
-     var selectorId = (type == 'c') ? 'cid' : 'did';
+     var selectorId = selectorIndex[type]; //(type == 'c') ? 'cid' : 'did';
      console.log('#' + selectorId);
      // $('#' + selectorId + ' option').remove();
      $('#' + selectorId).empty();
