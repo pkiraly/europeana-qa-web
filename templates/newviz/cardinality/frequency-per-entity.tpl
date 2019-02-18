@@ -45,6 +45,7 @@
         {if ($development)}
           <div class="most-frequent-values">
             <a href="#" class="most-frequent-values {$field->key}">Show the most frequent values</a>
+            <p>Warning: due to the way values are stored in Europeana's search index, the values here can be split in individual words.</p>
             <div id="most-frequent-values-{$field->key}"></div>
           </div>
         {/if}
