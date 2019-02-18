@@ -93,14 +93,20 @@ foreach ($fields[$entity] as $field => $label) {
 
       foreach ($proxies as $proxy) {
         $freq = $statistics->frequencyTable->{$key}->{$proxy};
-        $zeros = $statistics->histograms->{$key}->{$proxy}['values'][0];
+
+        $histogram_entries = $statistics->histograms->{$key}->{$proxy}['values'];
+        if ($histogram_entries[0]->min == '0.0' && $histogram_entries[0]->max == '0.0') {
+          $zeros = $histogram_entries[0]->count;
+        } else {
+          $zeros = 0;
+        }
 
         $values = is_array($freq['values'])
           ? json_decode(json_encode((object)$freq['values']))
           : $freq['values'];
         $properties->freqValues->{$proxy} = json_encode($values);
-        $properties->zeros->{$proxy} = $zeros->count;
-        $properties->nonZeros->{$proxy} = $statistics->entityCount - $zeros->count;
+        $properties->zeros->{$proxy} = $zeros;
+        $properties->nonZeros->{$proxy} = $statistics->entityCount - $zeros;
         $properties->percent->{$proxy} = $properties->nonZeros->{$proxy}
           / $statistics->entityCount;
         $properties->width->{$proxy} = (int)(200 * $properties->percent->{$proxy});
@@ -293,7 +299,11 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField) {
       if (!isset($histogram[$qualifiedField])) {
         error_log('No histogram for ' . $qualifiedField);
       } else {
-        $zeros = $histogram[$qualifiedField][0]->count;
+        if ($histogram[$qualifiedField][0]->min == '0.0' && $histogram[$qualifiedField][0]->max == '0.0') {
+          $zeros = $histogram[$qualifiedField][0]->count;
+        } else {
+          $zeros = 0;
+        }
       }
       if (isset($completeness[$qualifiedField])) {
         $frequencyTable = (object)[
