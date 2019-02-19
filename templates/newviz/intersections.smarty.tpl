@@ -1,6 +1,6 @@
   {foreach $intersections->list as $type => $items}
-    <div class="row">
-      <p><strong>{$intersectionLabels[$type]} ({$items->count}):</strong></p>
+    <div class="row intersections-{$type}">
+      <legend>{$intersectionLabels[$type]} ({$items->count}):</legend>
       {for $j=0 to 2}
         <div class="col-lg-4">
           {for $i=$j to $items->count-1 step 3}

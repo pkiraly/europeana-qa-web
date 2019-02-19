@@ -136,8 +136,8 @@
           <input type="hidden" name="development" value="{$development}"/>
           <div id="intersections">
             {foreach $intersections->list as $type => $items}
-              <div class="row">
-                <p><strong>{$intersectionLabels[$type]} ({$items->count}):</strong></p>
+              <div class="row intersections-{$type}">
+                <legend>{$intersectionLabels[$type]} ({$items->count}):</legend>
                 {for $j=0 to 2}
                   <div class="col-lg-4">
                     {for $i=$j to $items->count-1 step 3}
@@ -263,41 +263,31 @@
           <ul id="entities" class="nav">
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO
-                {if $development}
-                  ({$entityCounts->provider_proxy_rdf_about}/{$entityCounts->europeana_proxy_rdf_about})
-                {else}
+                {if !$development}
                   ({$entityCounts->proxy_rdf_about})
                 {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent
-                {if $development}
-                  ({$entityCounts->provider_agent_rdf_about}/{$entityCounts->europeana_agent_rdf_about})
-                {else}
+                {if !$development}
                   ({$entityCounts->agent_rdf_about})
                 {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan
-                {if $development}
-                  ({$entityCounts->provider_timespan_rdf_about}/{$entityCounts->europeana_timespan_rdf_about})
-                {else}
+                {if !$development}
                   ({$entityCounts->timespan_rdf_about})
                 {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept
-                {if $development}
-                  ({$entityCounts->provider_concept_rdf_about}/{$entityCounts->europeana_concept_rdf_about})
-                {else}
+                {if !$development}
                   ({$entityCounts->concept_rdf_about})
                 {/if}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place
-                {if $development}
-                  ({$entityCounts->provider_place_rdf_about}/{$entityCounts->europeana_place_rdf_about})
-                {else}
+                {if !$development}
                   ({$entityCounts->place_rdf_about})
                 {/if}</a>
             </li>
@@ -394,7 +384,7 @@ var loadedEntity = null;
 var type = '{$type}';
 var id = '{$id}';
 var version = '{$version}';
-var development = {(int)$development};
+var development = {(int) $development};
 var count = {$count};
 var collectionId = '{str_replace("'", "\\'", $collectionId)}';
 var intersection = {if is_null($intersection)}null{else}'{$intersection}'{/if};
@@ -515,16 +505,33 @@ $(function () {
 
 function watchIntersections() {
   if (development) {
+    var types = ['c', 'd', 'p'];
     $('#intersections input[name=intersection]').on('click', function () {
       var intersection = $(this).val();
+      var isCdp = intersection.match(/^cdp/) != null;
       var activeTab = $('.tab-pane.active').attr('id');
       var activeType = $('#' + activeTab + ' input[name=type]').val();
       var activeId = $('#' + activeTab + ' select[name=id]').val();
-      console.log(intersection + ', ' + activeTab + ', ' + activeType + ', ' + activeId);
-      var oForm = $(this).closest('form');
-      $('input[name=type]', oForm).val(activeType);
-      $('input[name=id]', oForm).val(activeId);
-      oForm.submit();
+      if (!isCdp) {
+        var parentClass = $(this).parent().parent().parent().attr('class');
+        var subtype = parentClass.replace("row intersections-", "");
+
+        var otherType;
+        for (i in types) {
+          if (types[i] != activeType && types[i] != subtype) {
+            otherType = types[i];
+            break;
+          }
+        }
+        console.log('subtype: ' + subtype + ', otherType: ' + otherType + ', isCdp: ' + isCdp);
+        updateIntercestionSelector(activeType, activeId, subtype, otherType, intersection)
+      } else {
+        console.log('intersection: ' + intersection + ', activeTab: ' + activeTab + ', activeType: ' + activeType + ', activeId: ' + activeId);
+        var oForm = $(this).closest('form');
+        $('input[name=type]', oForm).val(activeType);
+        $('input[name=id]', oForm).val(activeId);
+        oForm.submit();
+      }
     })
   }
 }
@@ -563,12 +570,19 @@ function filterIds(oForm) {
    });
 }
 
-function updateIntercestionSelector(selectedType, selectedId) {
+function updateIntercestionSelector(selectedType, selectedId, subType, targetType, intersection) {
   // var selectedType = $("input[name='type']:checked").val();
   var query = {'type': selectedType, 'id': selectedId, 'version': version, 'development': development};
+  if (typeof(subType) != 'undefined' && typeof(intersection) != 'undefined') {
+    query.subType = subType;
+    query.targetType = targetType;
+    query.intersection = intersection;
+  }
+
   if (development) {
     query.format = 'html';
   }
+
   $.get("newviz/intersections-ajax.php", query)
     .done(function(data) {
       if (data.length > 0) {

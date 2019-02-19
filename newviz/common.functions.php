@@ -134,47 +134,59 @@ function readHistogramFormCsv($filePrefix, &$errors) {
   return $histogram;
 }
 
-function getIntersections($type, $id) {
+function getIntersections($type, $id, $subType = NULL, $targetType = NULL, $intersection = NULL) {
   global $dataDir, $development;
 
   if ($id == 'all' || !in_array($type, ['c', 'd', 'p'])) {
     return [];
   }
 
+  $subId = null;
   if ($development) {
     $other_types = ($type == 'c' || $type == 'p') ? ['d'] : ['c', 'p'];
     $file = $dataDir . '/proxy-based-intersections.json';
+    if (!is_null($intersection) && !is_null($subType)) {
+      $subId = extractSubId($intersection, $subType);
+    }
   } else {
     $other_type = ($type == 'c') ? 'd' : 'c';
     $file = $dataDir . '/intersections.json';
   }
 
   $data = json_decode(file_get_contents($file));
+
   $list = $data->$type->$id;
-  // error_log('list: ' . json_encode($list));
-  $rows = [(object)['id' => 'all', 'name'=> 'all', 'file'=> 'all']];
+  if (!is_null($subId)) {
+    if (isset($list->$subType->$subId->$targetType)) {
+      $list = (object)[$targetType => $list->$subType->$subId->$targetType];
+    } else {
+      return [];
+    }
+  }
+  error_log(json_encode($list));
+
   $all_count = 0;
   if ($development) {
     $rows = (object)['list' => (object)[]];
     foreach ($list as $other_type => $original_items) {
       $items = [];
       foreach ($original_items as $_id => $item) {
-        $item->id = $_id;
-        $item->name = retrieveName($_id, $other_type);
-        if ($type == 'c' && $item->name === FALSE)
-          $item->name = 'unspecified';
-        $items[] = $item;
-        // $rows->{$other_types}[] = $item;
-        $all_count += $item->count;
+        $entry = $item->entry;
+        $entry->id = $_id;
+        $entry->name = retrieveName($_id, $other_type);
+        if ($type == 'c' && $entry->name === FALSE)
+          $entry->name = 'unspecified';
+        $items[] = $entry;
+        $all_count += $entry->count;
       }
       $rows->list->{$other_type} = (object)[
         'items' => $items,
         'count' => count($items)
       ];
     }
-    // $rows->list = $list;
     $rows->all_count = $all_count;
   } else {
+    $rows = [(object)['id' => 'all', 'name'=> 'all', 'file'=> 'all']];
     foreach ($list as $_id => $item) {
       $item->id = $_id;
       $item->name = retrieveName($_id, $other_type);
@@ -187,6 +199,16 @@ function getIntersections($type, $id) {
   }
   error_log('getIntersections: ' . json_encode($rows));
   return $rows;
+}
+
+function extractSubId($intersection, $subType) {
+  list($types, $id1, $id2) = explode('-', $intersection);
+  if ($subType == $types[0]) {
+    return $id1;
+  } else if ($subType == $types[1]) {
+    return $id2;
+  }
+  return NULL;
 }
 
 function retrieveName($id, $type) {
@@ -213,3 +235,4 @@ function retrieveName($id, $type) {
   }
   return $name;
 }
+

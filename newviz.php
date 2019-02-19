@@ -71,6 +71,7 @@ if ($id == 'all' && $version == 'v2018-08') {
   $count = getCountFromRGeneratedJson($filePrefix, $errors);
   $entityCounts = getEntityCountsFromRGeneratedJson($filePrefix, $errors);
 }
+error_log('count: ' . $count);
 
 $datasets = retrieveDatasets($type, ($type == 'c' ? $fragment : ''));
 $dataproviders = retrieveDataproviders($type, ($type == 'd' ? $fragment : ''));
@@ -214,7 +215,7 @@ function readCompleteness($filePrefix, &$errors) {
     $suffix = $development ? '.proxy-based-completeness.csv' : '.completeness.csv';
     $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . $suffix;
     if (file_exists($completenessFileName)) {
-      $keys = ["mean", "min", "max", "count", "median"];
+      $keys = ["mean", "min", "max", "count", "sum", "median"];
       foreach (file($completenessFileName) as $line) {
         $values = str_getcsv($line);
         array_shift($values);

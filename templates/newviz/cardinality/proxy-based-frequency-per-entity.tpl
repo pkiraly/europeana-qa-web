@@ -1,5 +1,15 @@
 <h3 class="entity-name">{$entity}</h3>
-<p>number of records: {$statistics->entityCount|number_format:0:'.':','}</p>
+{if $development}
+  <p>
+    <em>number of records</em>:
+    {if $entity != 'ProvidedCHO'}linked from{/if} original metadata:
+    {$statistics->entityCount['provider']|number_format:0:'.':','},
+    {if $entity != 'ProvidedCHO'}linked from{/if} Europeana enrichment:
+    {$statistics->entityCount['europeana']|number_format:0:'.':','}
+  </p>
+{else}
+  <p>number of records: {$statistics->entityCount|number_format:0:'.':','}</p>
+{/if}
 <p>version: {$version}</p>
 
 <div class="row">

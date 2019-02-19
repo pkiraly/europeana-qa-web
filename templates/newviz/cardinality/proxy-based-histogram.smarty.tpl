@@ -37,7 +37,7 @@
   <tr>
     <td class="legend">percentage</td>
     {foreach $histogram as $value}
-      {assign var=percentage value=$value->count / $entityCount * 100}
+      {assign var=percentage value=$value->count / $proxyCount * 100}
       <td title="{$percentage}">{$percentage|string_format:"%.2f%%"}</td>
     {/foreach}
   </tr>
