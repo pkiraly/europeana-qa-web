@@ -134,19 +134,18 @@ function readHistogramFormCsv($filePrefix, &$errors) {
   return $histogram;
 }
 
-function getIntersections($type, $id, $subType = NULL, $targetType = NULL, $intersection = NULL) {
+function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = NULL, $intersection = NULL) {
   global $dataDir, $development;
 
   if ($id == 'all' || !in_array($type, ['c', 'd', 'p'])) {
     return [];
   }
 
-  $subId = null;
   if ($development) {
     $other_types = ($type == 'c' || $type == 'p') ? ['d'] : ['c', 'p'];
     $file = $dataDir . '/proxy-based-intersections.json';
-    if (!is_null($intersection) && !is_null($subType)) {
-      $subId = extractSubId($intersection, $subType);
+    if (is_null($id2) && !is_null($intersection) && !is_null($type2)) {
+      $id2 = extractSubId($intersection, $type2);
     }
   } else {
     $other_type = ($type == 'c') ? 'd' : 'c';
@@ -156,9 +155,9 @@ function getIntersections($type, $id, $subType = NULL, $targetType = NULL, $inte
   $data = json_decode(file_get_contents($file));
 
   $list = $data->$type->$id;
-  if (!is_null($subId)) {
-    if (isset($list->$subType->$subId->$targetType)) {
-      $list = (object)[$targetType => $list->$subType->$subId->$targetType];
+  if (!is_null($id2)) {
+    if (isset($list->$type2->$id2->$targetType)) {
+      $list = (object)[$targetType => $list->$type2->$id2->$targetType];
     } else {
       return [];
     }
@@ -173,6 +172,7 @@ function getIntersections($type, $id, $subType = NULL, $targetType = NULL, $inte
       foreach ($original_items as $_id => $item) {
         $entry = $item->entry;
         $entry->id = $_id;
+        $entry->type = $other_type;
         $entry->name = retrieveName($_id, $other_type);
         if ($type == 'c' && $entry->name === FALSE)
           $entry->name = 'unspecified';

@@ -12,7 +12,8 @@ $type = getOrDefault('type', NULL);
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $format = getOrDefault('format', 'json', ['json', 'html']);
-$subType = getOrDefault('subType', NULL);
+$type2 = getOrDefault('type2', NULL);
+$id2 = getOrDefault('id2', NULL);
 $targetType = getOrDefault('targetType', NULL);
 $intersection = getOrDefault('intersection', NULL);
 
@@ -23,7 +24,7 @@ if (is_null($id) || is_null($type) || !in_array($type, ['c', 'd', 'p']) || is_nu
 
 $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
-$intersections = getIntersections($type, $id, $subType, $targetType, $intersection);
+$intersections = getIntersections($type, $id, $type2, $id2, $targetType, $intersection);
 
 if ($format == 'json') {
   header("Content-type: application/json");

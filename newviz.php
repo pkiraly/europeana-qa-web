@@ -37,6 +37,10 @@ $intersection = getOrDefault('intersection', NULL);
 
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $intersection = getOrDefault('intersection', NULL);
+$type2 = getOrDefault('type2', NULL);
+$id2 = getOrDefault('id2', NULL);
+$type3 = getOrDefault('type3', NULL);
+$id3 = getOrDefault('id3', NULL);
 
 if ($id == '') {
   $datasets = retrieveDatasets($type, $fragment);
@@ -100,6 +104,11 @@ $smarty->assign('errors', $errors);
 $smarty->assign('intersectionLabels', ['c' => 'datasets', 'd' => 'data providers', 'p' => 'providers']);
 $smarty->assign('intersections', getIntersections($type, $id));
 $smarty->assign('intersection', $intersection);
+
+$smarty->assign('type2', $type2);
+$smarty->assign('id2', $id2);
+$smarty->assign('type3', $type3);
+$smarty->assign('id3', $id3);
 
 if ($development) {
   $smarty->assign('languages', retrieveLanguages($type, ($type == 'l' ? $fragment : '')));
