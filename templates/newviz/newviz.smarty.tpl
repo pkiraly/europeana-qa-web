@@ -130,16 +130,20 @@
       </div>
       <div class="row" id="intersections-container">
         <form id="collection-selector">
-          <input type="hidden" name="type" value="a">
-          <input type="hidden" name="id" value="all">
           <input type="hidden" name="version" value="{$version}"/>
           <input type="hidden" name="development" value="{$development}"/>
+          <input type="hidden" name="type" value="a">
+          <input type="hidden" name="id" value="all">
+          <input type="hidden" name="intersection" value="{$intersection}">
+          <input type="hidden" name="fragment" value="{$fragment}">
           <input type="hidden" name="type2" value="{$type2}">
           <input type="hidden" name="id2" value="{$id2}">
           <input type="hidden" name="type3" value="{$type3}">
           <input type="hidden" name="id3" value="{$id3}">
           <div id="intersections">
+            {assign var=intersectioCounter value=0}
             {foreach $intersections->list as $type => $items}
+              {assign var=intersectioCounter value=($intersectioCounter + 1)}
               <div class="row intersections-{$type}">
                 <legend>{$intersectionLabels[$type]} ({$items->count}):</legend>
                 {for $j=0 to 2}
@@ -149,7 +153,7 @@
                         {assign var=item value=$items->items[$i]}
                         <label>
                         {if !is_object($item)}{$item|json_encode}{/if}
-                        <input type="radio" name="intersection" value="{$item->file}" data-type="{$type}" data-id="{$item->id}" data-intersection="{$item->file}" data-count="{$item->count|number_format:0:'.':' '}"
+                        <input type="radio" name="intersection-{$intersectioCounter}" value="{$item->file}" data-type="{$type}" data-id="{$item->id}" data-intersection="{$item->file}" data-count="{$item->count|number_format:0:'.':' '}"
                           {if ((isset($intersection) && $item->file == $intersection)
                             || ($type2 == $type && $id2 == $item->id)
                             || ($type3 == $type && $id3 == $item->id))} checked="checked"{/if}/>
@@ -161,6 +165,7 @@
               </div>
             {/foreach}
           </div>
+          <input type="button" class="btn pull-right" id="reset-intersections" value="clear selections">
         </form>
       </div>
 
@@ -495,6 +500,9 @@ $(document).ready(function () {
   })
 
   watchIntersections();
+  $('#reset-intersections').on('click', function () {
+    resetIntersections();
+  })
 });
 
 $(function () {
@@ -513,10 +521,9 @@ $(function () {
 function watchIntersections() {
   if (development) {
     var types = ['c', 'd', 'p'];
-    $('#intersections input[name=intersection]').on('click', function () {
+    $('#intersections input[name^="intersection-"]').on('click', function () {
       var current = $(this);
       var intersection = current.val();
-      console.log('clicked on ' + intersection);
       var isCdp = intersection.match(/^cdp/) != null;
       var activeTab = $('.tab-pane.active').attr('id');
       var activeType = $('#' + activeTab + ' input[name=type]').val();
@@ -535,17 +542,15 @@ function watchIntersections() {
             break;
           }
         }
-        console.log('type2: ' + type2 + ', targetType: ' + targetType
-          + ', isCdp: ' + isCdp + ', intersection: ' + intersection
-          + ', id2: ' + id2);
         updateIntercestionSelector(activeType, activeId, type2, id2, targetType, intersection)
       } else {
-        console.log('intersection: ' + intersection + ', activeTab: ' + activeTab + ', activeType: ' + activeType + ', activeId: ' + activeId);
+        // console.log('intersection: ' + intersection + ', activeTab: ' + activeTab + ', activeType: ' + activeType + ', activeId: ' + activeId);
+        $('input[name=intersection]', oForm).val(intersection);
         $('input[name=type]', oForm).val(activeType);
         $('input[name=id]', oForm).val(activeId);
         $('input[name=type3]', oForm).val(current.attr('data-type'));
         $('input[name=id3]', oForm).val(current.attr('data-id'));
-
+        $('input[name=fragment]', oForm).val($('#' + activeTab + ' input[name=fragment]').val());
         oForm.submit();
       }
       console.log('watchIntersections::hey');
@@ -587,8 +592,22 @@ function filterIds(oForm) {
    });
 }
 
-function updateIntercestionSelector(selectedType, selectedId, type2, id2, targetType, intersection, ) {
-  // var selectedType = $("input[name='type']:checked").val();
+function resetIntersections() {
+  $('input[name^="intersection-"]').each(function() {
+    resetIntersection($(this));
+  });
+}
+
+function resetIntersection(current) {
+  current.removeAttr('checked');
+  current.removeAttr('disabled');
+  current.parent().removeClass('disabled');
+  current.parent().removeClass('selectable');
+  current.siblings('span.count').html(current.attr('data-count'));
+  current.val(current.attr('data-value'));
+}
+
+function updateIntercestionSelector(selectedType, selectedId, type2, id2, targetType, intersection) {
   var query = {'type': selectedType, 'id': selectedId, 'version': version, 'development': development};
   if (development) {
     query.format = 'html';
@@ -606,35 +625,26 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
   console.log(query);
   $.get("newviz/intersections-ajax.php", query)
     .done(function(data) {
-      // if (data.length > 0) {
       var triggerWatcher = true;
       if (development) {
-        console.log('development');
         if (query.format == 'html') {
           $('#intersections').html(data);
         } else {
           triggerWatcher = false;
-          console.log("targetType: " + query.targetType);
-          // $('#intersections').html(data);
           var items = data.list[query.targetType].items;
-          console.log('items');
-          console.log(items);
-          $('input[name=intersection][data-type=' + query.targetType + ']').each(function() {
+          var nf = Intl.NumberFormat();
+          $('input[name^="intersection-"][data-type=' + query.targetType + ']').each(function() {
             var current = $(this);
-            current.removeAttr('disabled');
-            current.parent().removeClass('disabled');
-            current.parent().removeClass('selectable');
-            current.siblings('span.count').html(current.attr('data-count'));
+            resetIntersection(current);
             if (current.attr('data-type') == query.targetType) {
               var found = false;
               for (i in items) {
                 var item = items[i];
                 if (current.attr('data-id') == item.id) {
                   found = true;
-                  console.log('found');
                   current.attr('data-value', current.val());
                   current.val(item.file);
-                  current.siblings('span.count').html(item.count);
+                  current.siblings('span.count').html(nf.format(item.count).replace(',', ' '));
                   current.parent().addClass('selectable')
                   break;
                 }
@@ -646,9 +656,7 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
             }
           });
         }
-        // $('#intersections').html(data);
       } else {
-        console.log('not development');
         $('#intersections').html('');
         var radios = [];
 
@@ -675,7 +683,6 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
         $('#intersections').html(radios.join(''));
       }
       if (triggerWatcher) {
-        console.log('updateIntercestionSelector->watchIntersections()');
         watchIntersections();
       }
       // } else {
