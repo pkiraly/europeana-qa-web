@@ -49,6 +49,8 @@ if ($id == '') {
   }
 }
 
+// getIntersections($type, $id, $type2, $id2, $type3, $intersection) {
+
 $filePrefix = ($id == 'all')
   ? $id
   : (

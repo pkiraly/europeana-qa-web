@@ -395,6 +395,10 @@
 var loadedEntity = null;
 var type = '{$type}';
 var id = '{$id}';
+var type2 = '{$type2}';
+var id2 = '{$id2}';
+var type3 = '{$type3}';
+var id3 = '{$id3}';
 var version = '{$version}';
 var development = {(int) $development};
 var count = {$count};
@@ -503,6 +507,9 @@ $(document).ready(function () {
   $('#reset-intersections').on('click', function () {
     resetIntersections();
   })
+  if (type2 != '' && id2 != '') {
+    updateIntercestionSelector(type, id, type2, id2, type3, id3, intersection);
+  }
 });
 
 $(function () {
@@ -542,7 +549,7 @@ function watchIntersections() {
             break;
           }
         }
-        updateIntercestionSelector(activeType, activeId, type2, id2, targetType, intersection)
+        updateIntercestionSelector(activeType, activeId, type2, id2, targetType, null, intersection)
       } else {
         // console.log('intersection: ' + intersection + ', activeTab: ' + activeTab + ', activeType: ' + activeType + ', activeId: ' + activeId);
         $('input[name=intersection]', oForm).val(intersection);
@@ -607,7 +614,7 @@ function resetIntersection(current) {
   current.val(current.attr('data-value'));
 }
 
-function updateIntercestionSelector(selectedType, selectedId, type2, id2, targetType, intersection) {
+function updateIntercestionSelector(selectedType, selectedId, type2, id2, targetType, targetId, intersection) {
   var query = {'type': selectedType, 'id': selectedId, 'version': version, 'development': development};
   if (development) {
     query.format = 'html';
@@ -644,8 +651,12 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
                   found = true;
                   current.attr('data-value', current.val());
                   current.val(item.file);
-                  current.siblings('span.count').html(nf.format(item.count).replace(',', ' '));
-                  current.parent().addClass('selectable')
+                  var count = nf.format(item.count).replace(',', ' ') + ' out of ' + current.attr('data-count');
+                  current.siblings('span.count').html(count);
+                  current.parent().addClass('selectable');
+                  if (targetId != null && current.attr('data-id') == targetId) {
+                    current.prop('checked', true);
+                  }
                   break;
                 }
               }
