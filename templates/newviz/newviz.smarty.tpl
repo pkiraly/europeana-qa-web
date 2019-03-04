@@ -142,22 +142,33 @@
           <input type="hidden" name="id3" value="{$id3}">
           <div id="intersections">
             {assign var=intersectioCounter value=0}
-            {foreach $intersections->list as $type => $items}
+            {foreach $intersections->list as $currentType => $items}
               {assign var=intersectioCounter value=($intersectioCounter + 1)}
-              <div class="row intersections-{$type}">
-                <legend>{$intersectionLabels[$type]} ({$items->count}):</legend>
+              <div class="row intersections-{$currentType}">
+                <legend>{$intersectionLabels[$currentType]} ({$items->count}):</legend>
                 {for $j=0 to 2}
                   <div class="col-lg-4">
                     {for $i=$j to $items->count-1 step 3}
                       {strip}
                         {assign var=item value=$items->items[$i]}
+                        {if ((isset($intersection) && $item->file == $intersection)
+                          || ($type2 == $currentType && $id2 == $item->id)
+                          || ($type3 == $currentType && $id3 == $item->id))}
+                          {assign var=selected value=1}
+                        {else}
+                          {assign var=selected value=0}
+                        {/if}
                         <label>
                         {if !is_object($item)}{$item|json_encode}{/if}
-                        <input type="radio" name="intersection-{$intersectioCounter}" value="{$item->file}" data-type="{$type}" data-id="{$item->id}" data-intersection="{$item->file}" data-count="{$item->count|number_format:0:'.':' '}"
-                          {if ((isset($intersection) && $item->file == $intersection)
-                            || ($type2 == $type && $id2 == $item->id)
-                            || ($type3 == $type && $id3 == $item->id))} checked="checked"{/if}/>
-                        {$item->name} (<span class="count">{$item->count|number_format:0:'.':' '}</span>)
+                        <input type="radio" name="intersection-{$intersectioCounter}" value="{$item->file}"
+                               data-type="{$currentType}" data-id="{$item->id}" data-intersection="{$item->file}" data-count="{$item->count|number_format:0:'.':' '}"
+                          {if ($selected == 1)} checked="checked"{/if}/>
+                        {$item->name} (<span class="count">
+                            {if ($selected == 1)}
+                              {$count|number_format:0:'.':' '} out of {$item->count|number_format:0:'.':' '}
+                            {else}
+                              {$item->count|number_format:0:'.':' '}
+                            {/if}</span>)
                       </label><br/>{/strip}
                     {/for}
                   </div>
@@ -651,12 +662,13 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
                   found = true;
                   current.attr('data-value', current.val());
                   current.val(item.file);
-                  var count = nf.format(item.count).replace(',', ' ') + ' out of ' + current.attr('data-count');
-                  current.siblings('span.count').html(count);
-                  current.parent().addClass('selectable');
+                  var countMsg = nf.format(item.count).replace(',', ' ') + ' out of ' + current.attr('data-count');
                   if (targetId != null && current.attr('data-id') == targetId) {
                     current.prop('checked', true);
+                    countMsg = nf.format(count).replace(',', ' ') + ' out of ' + current.attr('data-count');
                   }
+                  current.siblings('span.count').html(countMsg);
+                  current.parent().addClass('selectable');
                   break;
                 }
               }
