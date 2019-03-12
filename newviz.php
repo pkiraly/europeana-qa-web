@@ -41,6 +41,7 @@ $type2 = getOrDefault('type2', NULL);
 $id2 = getOrDefault('id2', NULL);
 $type3 = getOrDefault('type3', NULL);
 $id3 = getOrDefault('id3', NULL);
+$source = getOrDefault('source', 'json', ['json', 'csv']);
 
 if ($id == '') {
   $datasets = retrieveDatasets($type, $fragment);
@@ -111,6 +112,8 @@ $smarty->assign('type2', $type2);
 $smarty->assign('id2', $id2);
 $smarty->assign('type3', $type3);
 $smarty->assign('id3', $id3);
+
+$smarty->assign('source', $source);
 
 if ($development) {
   $smarty->assign('languages', retrieveLanguages($type, ($type == 'l' ? $fragment : '')));

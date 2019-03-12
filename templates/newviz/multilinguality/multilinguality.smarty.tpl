@@ -8,7 +8,7 @@
   </tr>
   <tr>
     <th>Metric</th>
-    {foreach $data->generic_prefixes as $prefix}
+    {foreach $data->genericPrefixes as $prefix}
       <th class="first rotate"><div><span>mean</span></div></th>
       <th class="rotate" title="standard deviation"><div><span>st.&nbsp;dev.</span></div></th>
       <th class="rotate details"><div><span>min</span></div></th>
@@ -19,13 +19,13 @@
   </thead>
   {strip}
   <tbody>
-    {foreach $data->fields as $metric => $label}
+    {foreach $data->genericMetrics as $metric => $label}
       {assign var=proxies value=$data->assocStat['generic'][$metric]}
       <tr>
         <td class="metric">{$label}</td>
-        {foreach $data->generic_prefixes as $prefix => $label1}
+        {foreach $data->genericPrefixes as $prefix => $label1}
           <td class="first">{$proxies[$prefix]->mean|conditional_format:FALSE:FALSE:1}</td>
-          <td>{$proxies[$prefix]->{'std.dev'}|conditional_format:FALSE:FALSE:1}</td>
+          <td>{if isset($proxies[$prefix]->{'std.dev'})}{$proxies[$prefix]->{'std.dev'}|conditional_format:FALSE:FALSE:1}{/if}</td>
           <td class="details">{$proxies[$prefix]->min|conditional_format:FALSE:FALSE:1}</td>
           <td class="details">{$proxies[$prefix]->max|conditional_format:FALSE:FALSE:1}</td>
           <td class="details">{$proxies[$prefix]->median|conditional_format:FALSE:FALSE:1}</td>
@@ -54,6 +54,7 @@
 
     <p><em>n/a</em> means that the particular field is not present in any record
       in the collection.</p>
+
     <table id="multilingual-score-general-table" class="table table-condensed table-striped tablesorter">
       <thead>
       <tr class="primary">
@@ -76,16 +77,17 @@
       {foreach $data->assocStat['specific'] as $field => $metrics}
         <tr>
           <td>{$field|fieldlabel}</td>
-          {foreach $metrics as $metric => $objects}
-            {foreach $objects as $object_name => $object}
+          {foreach $data->specificMetrics as $metric => $metricLabel}
+            {foreach $data->specificPrefixes as $prefix => $prefixLabel}
               <td class="numeric">
-              {if ($object->mean == 'NaN')}
-                <span style="color:#999">n/a</span>
-              {else}
-                <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
-                  <span data-toggle="tooltip" title="Get details">{$object->mean|conditional_format:FALSE:TRUE:3}</span>
-                </span>
-              {/if}
+                {if (!isset($metrics[$metric][$prefix]) || $metrics[$metric][$prefix]->mean == 'NaN')}
+                  <span style="color:#999">n/a</span>
+                {else}
+                  {assign var=object value=$metrics[$metric][$prefix]}
+                  <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min} ({if isset($object->recMin)}{$object->recMin}{/if})|max: {$object->max} ({if isset($object->recMax)}{$object->recMax}{/if})|mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
+                    <span data-toggle="tooltip" title="Get details">{$object->mean|conditional_format:FALSE:TRUE:3}</span>
+                  </span>
+                {/if}
               </td>
             {/foreach}
           {/foreach}

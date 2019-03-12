@@ -8,6 +8,8 @@ include_once($root . '/newviz/common.functions.php');
 include_once($root . '/common/saturation-functions.php');
 
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
+$source = getOrDefault('source', 'json', ['json', 'csv']);
+error_log('$source: ' . $source);
 
 $parameters = getParameters();
 $version = getOrDefault(
@@ -19,9 +21,13 @@ $intersection = getOrDefault('intersection', NULL);
 if (empty($intersection))
   $intersection = NULL;
 
-$collectionId = $parameters->type . $parameters->id;
+$collectionId = in_array($parameters->type, ['cn', 'l', 'pd', 'p', 'cd'])
+  ? $parameters->type . '-' . $parameters->id
+  : $parameters->type . $parameters->id;
+
 $dataDir = getDataDir();
-error_log($dataDir);
+error_log('dataDir: ' . $dataDir);
+error_log('collectionId: ' . $collectionId);
 
 $filePrefix = (is_null($intersection) || $intersection == 'all')
   ? $collectionId
@@ -33,8 +39,10 @@ $allFieldsList = getAllFields($languageDistribution);
 
 $data = (object)[
   'version' => $version,
-  'generic_prefixes' => getGenerixPrefixes(),
-  'fields' => getFields(),
+  'genericPrefixes' => getPrefixes('generic'),
+  'specificPrefixes' => getPrefixes('specific'),
+  'genericMetrics' => getGenericMetrics(),
+  'specificMetrics' => getSpecificMetrics(),
   'assocStat' => getSaturationStatistics(),
   'languageDistribution' => $languageDistribution,
   'fieldsByLanguageList' => $fieldsByLanguageList,
@@ -48,24 +56,49 @@ $smarty = createSmarty($templateDir);
 $smarty->assign('data', $data);
 $smarty->display('multilinguality.smarty.tpl');
 
-function getGenerixPrefixes() {
-  return [
+function getPrefixes($type) {
+  $values = [
     'provider' => 'In provider proxy',
     'europeana' => 'In Europeana proxy',
     'object' => 'In object'
   ];
+  if ($type == 'specific') {
+    unset($values['object']);
+  }
+  return $values;
 }
 
-function getFields() {
-  return [
+function getGenericMetrics() {
+  $fields = [
     'taggedliterals' => 'Number of tagged literals',
     'distinctlanguages' => 'Number of distinct language tags',
     'taggedliterals_per_language' => 'Number of tagged literals per language tag',
     'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
   ];
+  return $fields;
+}
+
+function getSpecificMetrics() {
+  $fields = [
+    'taggedliterals' => 'Number of tagged literals',
+    'languages' => 'Number of distinct language tags',
+    'literalsperlanguage' => 'Number of tagged literals per language tag',
+  ];
+  return $fields;
 }
 
 function getSaturationStatistics() {
+  global $source;
+
+  if ($source == 'csv') {
+    $assocStat = getSaturationStatisticsFromCsv();
+  } else {
+    $assocStat = getSaturationStatisticsFromJson();
+  }
+  return $assocStat;
+}
+
+function getSaturationStatisticsFromJson() {
   global $parameters, $collectionId, $dataDir, $filePrefix;
 
   $assocStat = [];
@@ -116,6 +149,90 @@ function getSaturationStatistics() {
     error_log("Saturation file does not exist: " . $saturationFile);
   }
   return $assocStat;
+}
+
+function getSaturationStatisticsFromCsv() {
+  global $parameters, $collectionId, $dataDir, $filePrefix;
+
+  // id,    field,                            mean, min, max, count, median
+  // p-142, provider_dc_title_taggedLiterals, 0.0,  0.0, 0.0, 549,   0.0
+  $assocStat = [];
+  $saturationFile = sprintf('%s/json/%s/%s.multilinguality.csv', $dataDir, $filePrefix, $filePrefix);
+  if (file_exists($saturationFile)) {
+    $keys = ["mean", "min", "max", "count", "median"]; // "sum",
+    foreach (file($saturationFile) as $line) {
+      $values = str_getcsv($line);
+      array_shift($values); // id
+      $field = array_shift($values);
+      $assoc = (object)array_combine($keys, $values);
+      $fieldInfo = getFieldInfo(strtolower($field));
+      if ($fieldInfo->type != 'skippable') {
+        if ($fieldInfo->type == 'generic') {
+          $assocStat['generic'][$fieldInfo->key][$fieldInfo->prefix] = $assoc;
+        } else if ($fieldInfo->type == 'specific') {
+          $assocStat['specific'][$fieldInfo->edmField][$fieldInfo->specificType][$fieldInfo->prefix] = $assoc;
+        }
+      }
+    }
+  } else {
+    $msg = sprintf("file %s is not existing", $saturationFile);
+    $errors[] = $msg;
+    error_log($msg);
+  }
+
+  // error_log('getSaturationStatisticsFromCsv: ' . json_encode($assocStat['specific']));
+  return $assocStat;
+}
+
+function getFieldInfo($field) {
+  static $skippable = ["dataset", "dataProvider", "provider", "country", "language"];
+
+  if (in_array($field, $skippable)) {
+    $type = 'skippable';
+  } else if (preg_match('/^europeana_/', $field)) {
+    $key = preg_replace('/^europeana_/', '', $field);
+    $type = 'specific';
+    $prefix = 'europeana';
+  } else if (preg_match('/^provider_/', $field)) {
+    $key = preg_replace('/^provider_/', '', $field);
+    $type = 'specific';
+    $prefix = 'provider';
+  } else {
+    $type = 'generic';
+    if (preg_match('/inproviderproxy$/', $field)) {
+      $prefix = 'provider';
+    } else if (preg_match('/ineuropeanaproxy$/', $field)) {
+      $prefix = 'europeana';
+    } else if (preg_match('/inobject$/', $field)) {
+      $prefix = 'object';
+    }
+    $key = preg_replace('/(per)(property|language)/', '_$1_$2',
+      preg_replace('/in(providerproxy|europeanaproxy|object)$/', '', $field)
+    );
+  }
+
+  if ($type == 'specific') {
+    // $fields[$key] = getLabel($key);
+    $specificType = "";
+    $edmField = preg_replace('/_(taggedliterals|languages|literalsperlanguage)/', '', $key);
+    if (preg_match('/_taggedliterals/', $key)) {
+      $specificType = 'taggedliterals';
+    } else if (preg_match('/_languages/', $key)) {
+      $specificType = 'languages';
+    } else if (preg_match('/_literalsperlanguage/', $key)) {
+      $specificType = 'literalsperlanguage';
+    }
+  }
+
+  $fieldInfo = (object)[
+    'type' => $type,
+    'prefix' => (isset($prefix) ? $prefix : ''),
+    'key' => (isset($key) ? $key : ''),
+    'edmField' => (isset($edmField) ? $edmField : ''),
+    'specificType' => (isset($specificType) ? $specificType : ''),
+  ];
+
+  return $fieldInfo;
 }
 
 function getLanguageDistribution() {

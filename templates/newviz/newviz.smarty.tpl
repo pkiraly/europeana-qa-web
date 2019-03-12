@@ -415,6 +415,7 @@ var development = {(int) $development};
 var count = {$count};
 var collectionId = '{str_replace("'", "\\'", $collectionId)}';
 var intersection = {if is_null($intersection)}null{else}'{$intersection}'{/if};
+var source = '{$source}';
 
 {literal}
 $(document).ready(function () {
@@ -746,7 +747,8 @@ function loadMultilinguality() {
   var entity = 'ProvidedCHO';
   var query = {
     'id': id, 'type': type, 'intersection': intersection,
-    'entity': entity, 'version': version, 'development': development
+    'entity': entity, 'version': version, 'development': development,
+    'source': source
   };
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
