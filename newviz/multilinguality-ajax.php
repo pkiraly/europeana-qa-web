@@ -159,7 +159,7 @@ function getSaturationStatisticsFromCsv() {
   $assocStat = [];
   $saturationFile = sprintf('%s/json/%s/%s.multilinguality.csv', $dataDir, $filePrefix, $filePrefix);
   if (file_exists($saturationFile)) {
-    $keys = ["mean", "min", "max", "count", "median"]; // "sum",
+    $keys = ["mean", "min", "max", "count", "std.dev", "median"]; // "sum",
     foreach (file($saturationFile) as $line) {
       $values = str_getcsv($line);
       array_shift($values); // id

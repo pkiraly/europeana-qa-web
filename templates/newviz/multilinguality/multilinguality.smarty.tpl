@@ -25,7 +25,7 @@
         <td class="metric">{$label}</td>
         {foreach $data->genericPrefixes as $prefix => $label1}
           <td class="first">{$proxies[$prefix]->mean|conditional_format:FALSE:FALSE:1}</td>
-          <td>{if isset($proxies[$prefix]->{'std.dev'})}{$proxies[$prefix]->{'std.dev'}|conditional_format:FALSE:FALSE:1}{/if}</td>
+          <td>{if isset($proxies[$prefix]->{'std.dev'})}{$proxies[$prefix]->{'std.dev'}|conditional_format:FALSE:FALSE:1}{else}0{/if}</td>
           <td class="details">{$proxies[$prefix]->min|conditional_format:FALSE:FALSE:1}</td>
           <td class="details">{$proxies[$prefix]->max|conditional_format:FALSE:FALSE:1}</td>
           <td class="details">{$proxies[$prefix]->median|conditional_format:FALSE:FALSE:1}</td>
