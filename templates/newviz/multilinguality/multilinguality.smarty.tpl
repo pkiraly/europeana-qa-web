@@ -84,7 +84,7 @@
                   <span style="color:#999">n/a</span>
                 {else}
                   {assign var=object value=$metrics[$metric][$prefix]}
-                  <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min} ({if isset($object->recMin)}{$object->recMin}{/if})|max: {$object->max} ({if isset($object->recMax)}{$object->recMax}{/if})|mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
+                  <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min|conditional_format:FALSE:FALSE:3} ({if isset($object->recMin)}{$object->recMin}{/if})|max: {$object->max|conditional_format:FALSE:FALSE:3} ({if isset($object->recMax)}{$object->recMax}{/if})|mean: {$object->mean|conditional_format:FALSE:FALSE:3}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}|conditional_format:FALSE:FALSE:3}{else}0{/if}|median: {if isset($object->median)}{$object->median|conditional_format:FALSE:FALSE:3}{else}0{/if}">
                     <span data-toggle="tooltip" title="Get details">{$object->mean|conditional_format:FALSE:TRUE:3}</span>
                   </span>
                 {/if}

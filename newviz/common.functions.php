@@ -214,10 +214,15 @@ function extractSubId($intersection, $subType) {
 function retrieveName($id, $type) {
   global $dataDir;
 
+  if ($type == 'a')
+    return 'all Europeana';
+
   $files = [
     'c' => 'datasets.txt',
     'd' => 'data-providers.txt',
     'p' => 'providers.csv',
+    'cn' => 'countries.csv',
+    'l' => 'languages.csv',
   ];
 
   if (!isset($content)) {

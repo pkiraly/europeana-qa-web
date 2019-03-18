@@ -9,7 +9,7 @@ include_once($root . '/common/saturation-functions.php');
 
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $source = getOrDefault('source', 'json', ['json', 'csv']);
-error_log('$source: ' . $source);
+// error_log('$source: ' . $source);
 
 $parameters = getParameters();
 $version = getOrDefault(
@@ -23,7 +23,9 @@ if (empty($intersection))
 
 $collectionId = in_array($parameters->type, ['cn', 'l', 'pd', 'p', 'cd'])
   ? $parameters->type . '-' . $parameters->id
-  : $parameters->type . $parameters->id;
+  : ($parameters->type == 'a'
+    ? $parameters->id
+    : $parameters->type . $parameters->id);
 
 $dataDir = getDataDir();
 error_log('dataDir: ' . $dataDir);
@@ -69,12 +71,23 @@ function getPrefixes($type) {
 }
 
 function getGenericMetrics() {
-  $fields = [
-    'taggedliterals' => 'Number of tagged literals',
-    'distinctlanguages' => 'Number of distinct language tags',
-    'taggedliterals_per_language' => 'Number of tagged literals per language tag',
-    'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
-  ];
+  global $development;
+
+  if ($development) {
+    $fields = [
+      'taggedliterals' => 'Number of tagged literals',
+      'distinctlanguagecount' => 'Number of distinct language tags',
+      'taggedliterals_per_language' => 'Number of tagged literals per language tag',
+      'numberoflanguages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
+    ];
+  } else {
+    $fields = [
+      'taggedliterals' => 'Number of tagged literals',
+      'distinctlanguages' => 'Number of distinct language tags',
+      'taggedliterals_per_language' => 'Number of tagged literals per language tag',
+      'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
+    ];
+  }
   return $fields;
 }
 
@@ -88,9 +101,9 @@ function getSpecificMetrics() {
 }
 
 function getSaturationStatistics() {
-  global $source;
+  global $development;
 
-  if ($source == 'csv') {
+  if ($development) {
     $assocStat = getSaturationStatisticsFromCsv();
   } else {
     $assocStat = getSaturationStatisticsFromJson();
@@ -154,10 +167,13 @@ function getSaturationStatisticsFromJson() {
 function getSaturationStatisticsFromCsv() {
   global $parameters, $collectionId, $dataDir, $filePrefix;
 
-  // id,    field,                            mean, min, max, count, median
-  // p-142, provider_dc_title_taggedLiterals, 0.0,  0.0, 0.0, 549,   0.0
+  error_log('getSaturationStatisticsFromCsv');
+
+  // id,    field,                            mean, min, max, count, std.dev, median
+  // p-142, provider_dc_title_taggedLiterals, 0.0,  0.0, 0.0, 549,   0.0,     0.0
   $assocStat = [];
   $saturationFile = sprintf('%s/json/%s/%s.multilinguality.csv', $dataDir, $filePrefix, $filePrefix);
+  error_log('saturationFile: ' . $saturationFile);
   if (file_exists($saturationFile)) {
     $keys = ["mean", "min", "max", "count", "std.dev", "median"]; // "sum",
     foreach (file($saturationFile) as $line) {
@@ -179,8 +195,7 @@ function getSaturationStatisticsFromCsv() {
     $errors[] = $msg;
     error_log($msg);
   }
-
-  // error_log('getSaturationStatisticsFromCsv: ' . json_encode($assocStat['specific']));
+  // error_log('getSaturationStatisticsFromCsv: ' . json_encode($assocStat['generic']));
   return $assocStat;
 }
 
