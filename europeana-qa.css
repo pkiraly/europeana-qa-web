@@ -366,6 +366,7 @@ table#dataset tr.in-all td.collection-label {
 
 #intersections label {
   font-weight: unset;
+  font-size: 90%;
 }
 
 #intersections label.disabled {
@@ -374,6 +375,28 @@ table#dataset tr.in-all td.collection-label {
 
 #intersections label.selectable {
   color: #9B410E;
+}
+
+#intersections legend {
+  font-size: 90%;
+  margin: 0;
+}
+
+#intersections div.row intersections-d,
+#intersections div.row intersections-p {
+  margin: 0;
+}
+
+#intersections-container,
+div.form-selector,
+form#collection-selector {
+  margin: 0;
+  padding: 0;
+}
+
+div.tab-pane div.row {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 a.external {
@@ -387,6 +410,6 @@ a.external {
  *
  */
 .form-selector div.tab-pane div.row {
-  margin: 20px;
+  margin: 20px 20px 5px 20px;
 }
 

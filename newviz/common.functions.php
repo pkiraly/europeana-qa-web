@@ -93,12 +93,12 @@ function createSmarty($templateDir) {
 }
 
 function readHistogramFormCsv($filePrefix, &$errors) {
-  global $dataDir, $development;
+  global $dataDir, $development, $version;
   static $histogram;
 
   if (!isset($histogram)) {
     $histogram = [];
-    $suffix = $development
+    $suffix = $development && $version == 'v2018-08'
       ? '.proxy-based-completeness-histogram.csv'
       : '.completeness-histogram.csv';
     $histogramFileName = $dataDir
@@ -125,7 +125,7 @@ function readHistogramFormCsv($filePrefix, &$errors) {
         $histogram[$field] = $entries;
       }
     } else {
-      $msg = sprintf("file %s is not existing", $histogramFileName);
+      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $histogramFileName);
       $errors[] = $msg;
       error_log($msg);
     }

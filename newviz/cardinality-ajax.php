@@ -40,7 +40,7 @@ $filePrefix = ($id == 'all')
   );
 
 $handler = 'json-v1';
-if ($version == 'v2018-08' && $development) {
+if ($development && ($version == 'v2018-08' || $version == 'v2019-03')) {
   $handler = 'csv-v2-proxy-based';
 }
 
@@ -189,7 +189,7 @@ function readStatistics($type, $id, $entity, $filePrefix) {
 
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
 
-  if ($version == 'v2018-08' && $development) {
+  if ($development && ($version == 'v2018-08' || $version == 'v2019-03')) {
     $proxyIDField = strtolower('PROVIDER_Proxy_rdf_about');
     $entityIDField = ($entity == 'ProvidedCHO' ? 'Proxy' : $entity) . '_rdf_about';
 
@@ -576,12 +576,12 @@ function readImageFiles($type, $id, $entityFields) {
  * @return array
  */
 function readCompleteness($filePrefix, &$errors) {
-  global $dataDir, $development;
+  global $dataDir, $development, $version;
   static $completeness;
 
   if (!isset($completeness)) {
     $completeness = [];
-    $suffix = $development
+    $suffix = $development && $version == 'v2018-08'
       ? '.proxy-based-completeness.csv'
       : '.completeness.csv';
     $completenessFileName = $dataDir
@@ -589,7 +589,9 @@ function readCompleteness($filePrefix, &$errors) {
       . '/' . $filePrefix . $suffix;
     error_log('completenessFileName: ' . $completenessFileName);
     if (file_exists($completenessFileName)) {
-      $keys = ["mean", "min", "max", "count", "sum", "median"];
+      $keys = ($version == 'v2018-08')
+        ? ["mean", "min", "max", "count", "sum", "median"]
+        : ["mean", "min", "max", "count", "sum", "stddev", "median"];
       foreach (file($completenessFileName) as $line) {
         $values = str_getcsv($line);
         array_shift($values);
@@ -598,7 +600,7 @@ function readCompleteness($filePrefix, &$errors) {
         $completeness[strtolower($field)] = $assoc;
       }
     } else {
-      $msg = sprintf("file %s is not existing", $completenessFileName);
+      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $completenessFileName);
       $errors[] = $msg;
       error_log($msg);
     }

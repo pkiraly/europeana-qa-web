@@ -68,10 +68,10 @@ $count = 0;
 $errors = [];
 $entityCounts = (object)[];
 
-if ($id == 'all' && $version == 'v2018-08') {
+if ($id == 'all' && ($version == 'v2018-08' || $version == 'v2019-03')) {
   $count = getCountFromCsv($filePrefix, $errors);
   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
-} else if ($development && $version == 'v2018-08') {
+} else if ($development && ($version == 'v2018-08' || $version == 'v2019-03')) {
   $count = getCountFromCsv($filePrefix, $errors);
   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
 } else {
@@ -221,24 +221,33 @@ function getCountFromCsv($filePrefix, &$errors) {
  * @return array
  */
 function readCompleteness($filePrefix, &$errors) {
-  global $dataDir, $development;
+  global $dataDir, $development, $version;
   static $completeness;
 
   if (!isset($completeness)) {
     $completeness = [];
-    $suffix = $development ? '.proxy-based-completeness.csv' : '.completeness.csv';
+    $suffix = ($development && $version == 'v2018-08')
+      ? '.proxy-based-completeness.csv' : '.completeness.csv';
     $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . $suffix;
     if (file_exists($completenessFileName)) {
-      $keys = ["mean", "min", "max", "count", "sum", "median"];
+      $keys = ($version == 'v2018-08')
+        ? ["mean", "min", "max", "count", "sum", "median"]
+        : ["mean", "min", "max", "count", "sum", "stddev", "median"];
       foreach (file($completenessFileName) as $line) {
         $values = str_getcsv($line);
         array_shift($values);
         $field = array_shift($values);
+        if (count($keys) != count($values)) {
+          $msg = sprintf("%s:%d different counts: %d vs %d - values: %s",
+            __FILE__, __LINE__,
+            count($keys), count($values), join(', ', $values));
+          error_log($msg);
+        }
         $assoc = array_combine($keys, $values);
         $completeness[$field] = $assoc;
       }
     } else {
-      $msg = sprintf("file %s is not existing", $completenessFileName);
+      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $completenessFileName);
       $errors[] = $msg;
       error_log($msg);
     }

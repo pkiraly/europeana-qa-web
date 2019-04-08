@@ -11,12 +11,30 @@
 
     {if ($development)}
       <ul class="nav nav-tabs" id="formTab">
-        <li{if $type == 'c'} class="active"{/if}><a href="#by-dataset-form">by dataset</a></li>
-        <li{if $type == 'd'} class="active"{/if}><a href="#by-dataprovider-form">by data provider</a></li>
-        <li{if $type == 'p'} class="active"{/if}><a href="#by-provider-form">by provider</a></li>
-        <li{if $type == 'cn'} class="active"{/if}><a href="#by-country-form">by country</a></li>
-        <li{if $type == 'l'} class="active"{/if}><a href="#by-language-form">by language</a></li>
-        <li{if $type == 'a'} class="active"{/if}><a href="#whole-form">whole</a></li>
+        <li{if $type == 'c'} class="active"{/if}>
+          <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'c'}true{else}false{/if}"
+             href="#by-dataset-form" aria-controls="by-dataset-form">by dataset</a>
+        </li>
+        <li{if $type == 'd'} class="active"{/if}>
+          <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'd'}true{else}false{/if}"
+             href="#by-dataprovider-form" aria-controls="by-dataprovider-form">by data provider</a>
+        </li>
+        <li{if $type == 'p'} class="active"{/if}>
+          <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'p'}true{else}false{/if}"
+             href="#by-provider-form" aria-controls="by-provider-form">by provider</a>
+        </li>
+        <li{if $type == 'cn'} class="active"{/if}>
+          <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'cn'}true{else}false{/if}"
+             href="#by-country-form" aria-controls="by-country-form">by country</a>
+        </li>
+        <li{if $type == 'l'} class="active"{/if}>
+          <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'l'}true{else}false{/if}"
+             href="#by-language-form" aria-controls="by-language-form">by language</a>
+        </li>
+        <li{if $type == 'a'} class="active"{/if}>
+          <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'a'}true{else}false{/if}"
+             href="#whole-form" aria-controls="whole-form">whole</a>
+        </li>
       </ul>
 
       <div class="tab-content form-selector">
@@ -36,7 +54,7 @@
               {/strip}
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
-              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
           </div>
         </div>
@@ -56,7 +74,7 @@
               {/strip}
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
-              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
           </div>
         </div>
@@ -76,7 +94,7 @@
               {/strip}
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
-              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
           </div>
         </div>
@@ -94,7 +112,7 @@
               {/strip}
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
-              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
           </div>
         </div>
@@ -112,7 +130,7 @@
               {/strip}
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
-              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
           </div>
         </div>
@@ -123,7 +141,7 @@
               <input type="hidden" name="id" value="all">
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
-              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+              <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
           </div>
         </div>
@@ -208,7 +226,7 @@
             {/strip}
             <input type="hidden" name="version" value="{$version}"/>
             <input type="hidden" name="development" value="{$development}"/>
-            <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display"><br/>
+            <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
           </div>
         </div>
 
@@ -345,7 +363,7 @@
       <div class="row">
         <h2>Multilinguality metrics</h2>
         <p>Dataset:
-          {if $development && $version == 'v2018-08'}
+          {if $development && ($version == 'v2018-08' || $version == 'v2019-03')}
             {$entityCounts->provider_proxy_rdf_about}
           {else}
             {$entityCounts->proxy_rdf_about}
@@ -524,6 +542,12 @@ $(document).ready(function () {
   if (type2 != '' && id2 != '') {
     updateIntercestionSelector(type, id, type2, id2, type3, id3, intersection);
   }
+
+  $('a[data-toggle="intersection"]').on('shown.bs.tab', function (event) {
+    // var activeId = $(event.target).attr('href'); // newly activated tab
+    // var previousId = $(event.relatedTarget.attr('href'); // previous active tab
+    $('#intersections').html('');
+  })
 });
 
 $(function () {
@@ -814,6 +838,7 @@ function loadEntityCardinality(entity) {
         $("i", this).attr('class', faClass);
         // $(this).text($(this).text() == 'Show details' ? 'Hide details' : 'Show details');
       });
+
       $('select[name=comparision-selector]').on('change', function(){
         var thisField = this.id.replace('-comparision-selector', '');
         var otherField = this.value;
@@ -833,9 +858,11 @@ function loadEntityCardinality(entity) {
         $(this).css('cursor', 'pointer');
         $(this).css('color', '#337ab7');
       });
+
       $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
         processHistogramPopoverContent($(this));
       });
+
       $('[data-toggle="histogram-popover"]').popover({html: true});
       $('[data-toggle="tooltip"]').tooltip();
 
