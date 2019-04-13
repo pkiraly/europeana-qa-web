@@ -9,6 +9,7 @@
     <h3>Metadata Quality Assurance Framework for Europeana</h3>
   </div>
 
+  <div id="form-container">
     {if ($development)}
       <ul class="nav nav-tabs" id="formTab">
         <li{if $type == 'c'} class="active"{/if}>
@@ -256,7 +257,7 @@
         </div>
       </form>
     {/if}
-
+  </div>{* /form-container *}
 
   {if ($type == 'd')}
     <h4>{$collectionId}</h4>
@@ -283,135 +284,139 @@
     </div>
   </div>
 
-  <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#cardinality-score">Frequency</a></li>
-    <li><a href="#multilingual-score">Multilinguality</a></li>
-    {if ($development)}
-      <li><a href="#record-patterns">Record patterns</a></li>
-      <li><a href="#uniqueness">Uniqueness</a></li>
-    {/if}
-  </ul>
+  <div id="main-content-container">
+    <ul class="nav nav-tabs" id="contentTab">
+      <li class="active"><a href="#cardinality-score">Frequency</a></li>
+      <li><a href="#multilingual-score">Multilinguality</a></li>
+      {if ($development)}
+        <li><a href="#record-patterns">Record patterns</a></li>
+        <li><a href="#uniqueness">Uniqueness</a></li>
+      {/if}
+    </ul>
 
-  <div class="tab-content">
-    <div id="cardinality-score" class="tab-pane active">
-      <div class="row">
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <h2>Field Frequency</h2>
+    <div class="tab-content">
+      <div id="cardinality-score" class="tab-pane active">
+        <div class="row">
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <h2>Field Frequency</h2>
+            <p>Dataset:
+              {if $development}
+                {$entityCounts->provider_proxy_rdf_about}
+              {else}
+                {$entityCounts->proxy_rdf_about}
+              {/if} records
+            </p>
+            <ul id="entities" class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO
+                  {if !$development}
+                    ({$entityCounts->proxy_rdf_about})
+                  {/if}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent
+                  {if !$development}
+                    ({$entityCounts->agent_rdf_about})
+                  {/if}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan
+                  {if !$development}
+                    ({$entityCounts->timespan_rdf_about})
+                  {/if}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept
+                  {if !$development}
+                    ({$entityCounts->concept_rdf_about})
+                  {/if}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place
+                  {if !$development}
+                    ({$entityCounts->place_rdf_about})
+                  {/if}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-9 col-md-9 col-lg-9">
+            <ul id="mandatory-note">
+              <li><i class="fa fa-check mandatory-icon" aria-hidden="true"></i> = Mandatory property</li>
+              <li><i class="fa fa-arrow-right mandatory-icon" aria-hidden="true"> Blue</i>
+                = at least one of the blue properties should be present (and can be used alongside each other)</li>
+              <li><i class="fa fa-circle-o mandatory-icon" aria-hidden="true"> Red</i>
+                = at least one of the red properties should be present (and can be used alongside each other)</li>
+              <li><i class="fa fa-gear mandatory-icon" aria-hidden="true"> Green</i>
+                = at least one of the green properties should be present (and can be used alongside each other)</li>
+              <li><i class="fa fa-plus mandatory-icon" aria-hidden="true"></i>
+                = recommended property</li>
+            </ul>
+            <p>
+              <i class="fa fa-info-circle"></i>
+              The progress bars show you the number of records containing a given EDM field for a given dataset.
+              Each field can be expanded to reveal detailed statistics about the number of its occurrences as well
+              as the distribution of its occurrences in a given dataset. You can browse and compare the statistics
+              of each EDM field with another belonging to the same EDM class.
+            </p>
+            <div id="cardinality-content"></div>
+          </div>
+        </div>
+      </div>
+      <div id="multilingual-score" class="tab-pane fade">
+        <div class="row">
+          <h2>Multilinguality metrics</h2>
           <p>Dataset:
-            {if $development}
+            {if $development && ($version == 'v2018-08' || $version == 'v2019-03')}
               {$entityCounts->provider_proxy_rdf_about}
             {else}
               {$entityCounts->proxy_rdf_about}
             {/if} records</p>
-          <ul id="entities" class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO
-                {if !$development}
-                  ({$entityCounts->proxy_rdf_about})
-                {/if}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent
-                {if !$development}
-                  ({$entityCounts->agent_rdf_about})
-                {/if}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan
-                {if !$development}
-                  ({$entityCounts->timespan_rdf_about})
-                {/if}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept
-                {if !$development}
-                  ({$entityCounts->concept_rdf_about})
-                {/if}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place
-                {if !$development}
-                  ({$entityCounts->place_rdf_about})
-                {/if}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-md-9 col-lg-9">
-          <ul id="mandatory-note">
-            <li><i class="fa fa-check mandatory-icon" aria-hidden="true"></i> = Mandatory property</li>
-            <li><i class="fa fa-arrow-right mandatory-icon" aria-hidden="true"> Blue</i>
-              = at least one of the blue properties should be present (and can be used alongside each other)</li>
-            <li><i class="fa fa-circle-o mandatory-icon" aria-hidden="true"> Red</i>
-              = at least one of the red properties should be present (and can be used alongside each other)</li>
-            <li><i class="fa fa-gear mandatory-icon" aria-hidden="true"> Green</i>
-              = at least one of the green properties should be present (and can be used alongside each other)</li>
-            <li><i class="fa fa-plus mandatory-icon" aria-hidden="true"></i>
-              = recommended property</li>
-          </ul>
           <p>
             <i class="fa fa-info-circle"></i>
-            The progress bars show you the number of records containing a given EDM field for a given dataset.
-            Each field can be expanded to reveal detailed statistics about the number of its occurrences as well
-            as the distribution of its occurrences in a given dataset. You can browse and compare the statistics
-            of each EDM field with another belonging to the same EDM class.
+            The multilingual metrics quantify multilingual information in metadata. For now, we calculate the
+            number and diversity of language tags (e.g. @en, @fr) that are used to indicate the language of
+            metadata values. Europeana encourages the use of language tags by providers to
+
+            <ul>
+              <li>improve search and browsing functionalities across languages</li>
+              <li>to identify the language of metadata and show the preferred language version of
+                metadata to users</li>
+            </ul>
           </p>
-          <div id="cardinality-content"></div>
+          <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
         </div>
       </div>
+      {if ($development)}
+        <div id="record-patterns" class="tab-pane fade">
+          <div class="row">
+            <h2>Record patterns</h2>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="record-patterns-content"></div>
+          </div>
+        </div>
+        <div id="uniqueness" class="tab-pane fade">
+          <div class="row">
+            <h2>Uniqueness</h2>
+            <p>
+              <i class="fa fa-info-circle"></i>
+              It measures the uniqueness of field values in the most important descriptive fields
+              (currently: dc:title, dcterms:alternative and dc:description). If a field value is unique
+              accross all Europeana records, then its specificity or information content is high. On the other hand
+              if the value is repeated in several hundreds or thousands of records, then we can not easily
+              make distinction between these records, so the information value is low. For example: if
+              several thousand photograph has the title "Photograph" (solely) we can not find those ones, which
+              depict a specific object. We created 6 categories: unique values, and five ranges denoted
+              by ranges. The actual ranges are different for each fields, because the different fields
+              have different distribution (title occurs almost all records). The ranges became smaller and
+              smaller towards the top categories, which means, that the difference between a unique value
+              and a duplicated value are bigger than between duplicated and triplicated etc.
+            </p>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="uniqueness-content"></div>
+          </div>
+        </div>
+      {/if}
     </div>
-    <div id="multilingual-score" class="tab-pane fade">
-      <div class="row">
-        <h2>Multilinguality metrics</h2>
-        <p>Dataset:
-          {if $development && ($version == 'v2018-08' || $version == 'v2019-03')}
-            {$entityCounts->provider_proxy_rdf_about}
-          {else}
-            {$entityCounts->proxy_rdf_about}
-          {/if} records</p>
-        <p>
-          <i class="fa fa-info-circle"></i>
-          The multilingual metrics quantify multilingual information in metadata. For now, we calculate the
-          number and diversity of language tags (e.g. @en, @fr) that are used to indicate the language of
-          metadata values. Europeana encourages the use of language tags by providers to
+  </div>{* /main-content-container *}
 
-          <ul>
-            <li>improve search and browsing functionalities across languages</li>
-            <li>to identify the language of metadata and show the preferred language version of
-              metadata to users</li>
-          </ul>
-        </p>
-        <div class="col-sm-12 col-md-12 col-lg-12" id="multilinguality-content"></div>
-      </div>
-    </div>
-{if ($development)}
-    <div id="record-patterns" class="tab-pane fade">
-      <div class="row">
-        <h2>Record patterns</h2>
-        <div class="col-sm-12 col-md-12 col-lg-12" id="record-patterns-content"></div>
-      </div>
-    </div>
-    <div id="uniqueness" class="tab-pane fade">
-      <div class="row">
-        <h2>Uniqueness</h2>
-        <p>
-          <i class="fa fa-info-circle"></i>
-          It measures the uniqueness of field values in the most important descriptive fields
-          (currently: dc:title, dcterms:alternative and dc:description). If a field value is unique
-          accross all Europeana records, then its specificity or information content is high. On the other hand
-          if the value is repeated in several hundreds or thousands of records, then we can not easily
-          make distinction between these records, so the information value is low. For example: if
-          several thousand photograph has the title "Photograph" (solely) we can not find those ones, which
-          depict a specific object. We created 6 categories: unique values, and five ranges denoted
-          by ranges. The actual ranges are different for each fields, because the different fields
-          have different distribution (title occurs almost all records). The ranges became smaller and
-          smaller towards the top categories, which means, that the difference between a unique value
-          and a duplicated value are bigger than between duplicated and triplicated etc.
-        </p>
-        <div class="col-sm-12 col-md-12 col-lg-12" id="uniqueness-content"></div>
-      </div>
-    </div>
-{/if}
-  </div>
   <footer>
     {include file="../common/footer.smarty.tpl"}
   </footer>
@@ -469,41 +474,41 @@ $(document).ready(function () {
   } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else if (tabId == '#cardinality-score-agent') {
     loadedEntity = 'Agent';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else if (tabId == '#cardinality-score-concept') {
     loadedEntity = 'Concept';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else if (tabId == '#cardinality-score-place') {
     loadedEntity = 'Place';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else if (tabId == '#cardinality-score-timespan') {
     loadedEntity = 'Timespan';
     loadEntityCardinality(loadedEntity);
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else {
     console.log('else branch 4 ' + tabId);
     loadEntityCardinality('ProvidedCHO');
     loadedEntity = 'ProvidedCHO';
     toggleActivation(loadedEntity);
-    $('.nav-tabs a[href="' + tabId + '"]').tab('show');
+    $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   }
 
   $(".nav-tabs a").click(function(event) {
@@ -544,6 +549,9 @@ $(document).ready(function () {
   }
 
   $('a[data-toggle="intersection"]').on('shown.bs.tab', function (event) {
+    console.log('intersection tab clicked');
+    event.preventDefault();
+    document.getElementById('formTab').scrollIntoView();
     // var activeId = $(event.target).attr('href'); // newly activated tab
     // var previousId = $(event.relatedTarget.attr('href'); // previous active tab
     $('#intersections').html('');
@@ -555,6 +563,7 @@ $(function () {
   // $('#tablanguages').tab
   $('#entities a.nav-link').click(function (event) {
     event.preventDefault();
+    console.log('#entities a.nav-link clicked');
     var entity = $(this).attr('datatype');
     var href = $(this).attr('href');
     window.location.hash = href;
@@ -779,8 +788,8 @@ function loadMultilinguality() {
   $.get("newviz/multilinguality-ajax.php", query)
    .done(function(data) {
       $('#multilinguality-content').html(data);
-      $(".nav-tabs a").click(function(e) {
-        e.preventDefault();
+      $("#main-content-container .nav-tabs a").click(function(event) {
+        event.preventDefault();
         window.location.hash = $(this).attr('href');
         $(this).tab('show');
       });
@@ -795,12 +804,10 @@ function loadRecordPatterns() {
     'id': id, 'type': type, 'intersection': intersection,
     'count': count, 'version': version, 'development': development
   };
-  console.log("query: ");
-  console.log(query);
   $.get("newviz/record-patterns-ajax.php", query)
    .done(function(data) {
      $('#record-patterns-content').html(data);
-     $(".nav-tabs a").click(function() {
+     $("#main-content-container .nav-tabs a").click(function() {
        $(this).tab('show');
      });
    });
@@ -814,7 +821,7 @@ function loadUniqueness() {
   $.get("newviz/uniqueness-ajax.php", query)
   .done(function(data) {
     $('#uniqueness-content').html(data);
-    $(".nav-tabs a").click(function() {
+    $("#main-content-container .nav-tabs a").click(function() {
       $(this).tab('show');
     });
   });

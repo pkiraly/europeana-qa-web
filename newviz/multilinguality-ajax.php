@@ -6,6 +6,7 @@ $script = str_replace($root, '', __FILE__);
 $configuration = parse_ini_file($root . '/config.cfg');
 include_once($root . '/newviz/common.functions.php');
 include_once($root . '/common/saturation-functions.php');
+include_once($root . '/newviz/newviz-ajax-config.php');
 
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $source = getOrDefault('source', 'json', ['json', 'csv']);
@@ -35,6 +36,7 @@ $filePrefix = (is_null($intersection) || $intersection == 'all')
   ? $collectionId
   : $intersection;
 
+// language
 $languageDistribution = getLanguageDistribution();
 $fieldsByLanguageList = getFieldsByLanguageList($languageDistribution);
 $allFieldsList = getAllFields($languageDistribution);
@@ -49,7 +51,8 @@ $data = (object)[
   'languageDistribution' => $languageDistribution,
   'fieldsByLanguageList' => $fieldsByLanguageList,
   'allFieldsList' => $allFieldsList,
-  'collectionId' => $collectionId
+  'collectionId' => $collectionId,
+  'fields' => prepareFields($fields['ProvidedCHO']),
 ];
 
 $templateDir = '../templates/newviz/multilinguality/';
@@ -230,6 +233,7 @@ function getFieldInfo($field) {
     // $fields[$key] = getLabel($key);
     $specificType = "";
     $edmField = preg_replace('/_(taggedliterals|languages|literalsperlanguage)/', '', $key);
+    error_log($edmField);
     if (preg_match('/_taggedliterals/', $key)) {
       $specificType = 'taggedliterals';
     } else if (preg_match('/_languages/', $key)) {
@@ -302,4 +306,13 @@ function getLabel($key) {
   }
   $label = preg_replace('/_/', ':', $label);
   return $label;
+}
+
+function prepareFields($fields) {
+  $preparedFields = [];
+  foreach ($fields as $key => $value) {
+    $key = str_replace('proxy_', '', strtolower($key));
+    $preparedFields[$key] = $value;
+  }
+  return $preparedFields;
 }

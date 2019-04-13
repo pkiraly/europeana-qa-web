@@ -138,7 +138,7 @@ function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = 
   global $dataDir, $development;
 
   if ($id == 'all' || !in_array($type, ['c', 'd', 'p'])) {
-    return [];
+    return (object)[];
   }
 
   if ($development) {

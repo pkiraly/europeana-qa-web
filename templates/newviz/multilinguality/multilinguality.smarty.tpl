@@ -74,9 +74,11 @@
       </thead>
       <tbody>
       {strip}
-      {foreach $data->assocStat['specific'] as $field => $metrics}
+      {foreach $data->fields as $field => $label}
+        {assign var="key" value=$field|lower}
+        {assign var="metrics" value=$data->assocStat['specific'][$key]}
         <tr>
-          <td>{$field|fieldlabel}</td>
+          <td>{$label}</td>
           {foreach $data->specificMetrics as $metric => $metricLabel}
             {foreach $data->specificPrefixes as $prefix => $prefixLabel}
               <td class="numeric">
@@ -135,6 +137,7 @@
         <div id="tooltip"></div>
       </div>
 
+
       <script id="fields-by-language-data" type="application/json">{$data->fieldsByLanguageList|json_encode}</script>
       <script id="language-distribution-data" type="application/json">{$data->languageDistribution|json_encode}</script>
       <script id="language-fields-data" type="application/json">{$data->allFieldsList|json_encode}</script>
@@ -172,7 +175,7 @@
         });
         {/literal}
       </script>
-      <script type="text/javascript" src="/europeana-qa/js/multilinguality.treemap.js">
+      <script type="text/javascript" src="/europeana-qa/js/multilinguality.treemap.js"></script>
     </div>
   </div>
 </div>
