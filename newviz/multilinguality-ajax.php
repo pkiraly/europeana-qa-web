@@ -257,11 +257,25 @@ function getFieldInfo($field) {
 function getLanguageDistribution() {
   global $parameters, $collectionId, $dataDir, $filePrefix;
 
+  $non_language_fields = [
+    'proxy_edm_year', 'proxy_edm_userTag', 'proxy_edm_hasMet', 'proxy_edm_incorporates',
+    'proxy_edm_isDerivativeOf', 'proxy_edm_isRepresentationOf', 'proxy_edm_isSimilarTo',
+    'proxy_edm_isSuccessorOf', 'proxy_edm_realizes', 'proxy_edm_wasPresentAt',
+    'aggregation_edm_rights', 'aggregation_edm_ugc', 'aggregation_edm_aggregatedCHO',
+    'agent_edm_hasMet', 'agent_edm_isRelatedTo', 'agent_owl_sameAs', 'timespan_owl_sameAs'
+  ];
+
   $languageDistribution = (object)[];
   $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $filePrefix, $filePrefix);
   $languageDistributionFileExists = file_exists($languageDistributionFile);
   if ($languageDistributionFileExists) {
     $languageDistribution = json_decode(file_get_contents($languageDistributionFile));
+    foreach ($non_language_fields as $field) {
+      if (isset($languageDistribution->{$field})) {
+        unset($languageDistribution->{$field});
+      }
+    }
+    error_log('languageDistribution: ' . json_encode(array_keys(get_object_vars($languageDistribution))));
   }
   return $languageDistribution;
 }

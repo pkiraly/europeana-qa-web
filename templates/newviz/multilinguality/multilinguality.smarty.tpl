@@ -109,6 +109,8 @@
           {/foreach}
         </select>
         {/strip}
+        <br/>
+        This drop-down list shows all EDM fields where values can have a language tag, according to the EDM specification<br/>
         <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" />
         <label for="excludeZeros">Exclude records with fields without language tag</label>
 
