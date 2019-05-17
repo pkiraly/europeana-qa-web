@@ -68,10 +68,10 @@ $count = 0;
 $errors = [];
 $entityCounts = (object)[];
 
-if ($id == 'all' && ($version == 'v2018-08' || $version == 'v2019-03')) {
+if ($id == 'all' && $version >= 'v2018-08') {
   $count = getCountFromCsv($filePrefix, $errors);
   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
-} else if ($development && ($version == 'v2018-08' || $version == 'v2019-03')) {
+} else if ($development && $version >= 'v2018-08') {
   $count = getCountFromCsv($filePrefix, $errors);
   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
 } else {

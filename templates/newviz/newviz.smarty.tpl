@@ -57,6 +57,7 @@
               <input type="hidden" name="development" value="{$development}"/>
               <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
+            <p><i class="fa fa-info-circle"></i> Here is a <a target="_blank" href="demo-RD-22-v5.mp4">screencast</a> demonstrating how this filtering works</p>
           </div>
         </div>
         <div id="by-dataprovider-form" class="tab-pane{if $type == 'd'} active{/if}">
@@ -77,6 +78,7 @@
               <input type="hidden" name="development" value="{$development}"/>
               <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
+            <p><i class="fa fa-info-circle"></i> Here is a <a target="_blank" href="demo-RD-22-v5.mp4">screencast</a> demonstrating how this filtering works</p>
           </div>
         </div>
         <div id="by-provider-form" class="tab-pane{if $type == 'p'} active{/if}">
@@ -97,6 +99,7 @@
               <input type="hidden" name="development" value="{$development}"/>
               <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
             </form>
+            <p><i class="fa fa-info-circle"></i> Here is a <a target="_blank" href="demo-RD-22-v5.mp4">screencast</a> demonstrating how this filtering works</p>
           </div>
         </div>
         <div id="by-country-form" class="tab-pane{if $type == 'cn'} active{/if}">
@@ -199,6 +202,7 @@
           </div>
           <input type="button" class="btn pull-right" id="reset-intersections" value="clear selections">
         </form>
+
       </div>
 
     {else}
@@ -366,7 +370,7 @@
         <div class="row">
           <h2>Multilinguality metrics</h2>
           <p>Dataset:
-            {if $development && ($version == 'v2018-08' || $version == 'v2019-03')}
+            {if $development && $version >= 'v2018-08'}
               {$entityCounts->provider_proxy_rdf_about}
             {else}
               {$entityCounts->proxy_rdf_about}

@@ -40,7 +40,7 @@ $filePrefix = ($id == 'all')
   );
 
 $handler = 'json-v1';
-if ($development && ($version == 'v2018-08' || $version == 'v2019-03')) {
+if ($development && $version >= 'v2018-08') {
   $handler = 'csv-v2-proxy-based';
 }
 
@@ -189,7 +189,7 @@ function readStatistics($type, $id, $entity, $filePrefix) {
 
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
 
-  if ($development && ($version == 'v2018-08' || $version == 'v2019-03')) {
+  if ($development && $version >= 'v2018-08') {
     $proxyIDField = strtolower('PROVIDER_Proxy_rdf_about');
     $entityIDField = ($entity == 'ProvidedCHO' ? 'Proxy' : $entity) . '_rdf_about';
 
