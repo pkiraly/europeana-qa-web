@@ -19,8 +19,6 @@ if (isset($_GET['type'])) {
 } else {
   list($id, $type) = parseId($id);
 }
-error_log('### cardinality-ajax.php ###');
-error_log("id: " . $id);
 
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'],
   $configuration['version']);
@@ -43,8 +41,6 @@ $handler = 'json-v1';
 if ($development && $version >= 'v2018-08') {
   $handler = 'csv-v2-proxy-based';
 }
-
-error_log("filePrefix: " . $filePrefix);
 
 $allowedEntities = ['ProvidedCHO', 'Agent', 'Timespan', 'Concept', 'Place'];
 $entity = getOrDefault('entity', 'ProvidedCHO', $allowedEntities);
@@ -587,7 +583,6 @@ function readCompleteness($filePrefix, &$errors) {
     $completenessFileName = $dataDir
       . '/json/' . $filePrefix
       . '/' . $filePrefix . $suffix;
-    error_log('completenessFileName: ' . $completenessFileName);
     if (file_exists($completenessFileName)) {
       $keys = ($version == 'v2018-08')
         ? ["mean", "min", "max", "count", "sum", "median"]

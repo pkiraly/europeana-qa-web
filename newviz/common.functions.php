@@ -104,7 +104,6 @@ function readHistogramFormCsv($filePrefix, &$errors) {
     $histogramFileName = $dataDir
       . '/json/' . $filePrefix
       . '/' . $filePrefix . $suffix;
-    // error_log('histogramFileName: ' . $histogramFileName);
     if (file_exists($histogramFileName)) {
       $keys = ["id", "field", "entries"];
       foreach (file($histogramFileName) as $line) {
@@ -162,7 +161,6 @@ function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = 
       return [];
     }
   }
-  error_log(json_encode($list));
 
   $all_count = 0;
   if ($development) {
@@ -197,7 +195,6 @@ function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = 
     }
     $rows[0]->count = $all_count;
   }
-  error_log('getIntersections: ' . json_encode($rows));
   return $rows;
 }
 

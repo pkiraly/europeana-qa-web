@@ -11,8 +11,11 @@ $collectionId = $_GET['collectionId'];
 if (!isset($collectionId))
   $collectionId = 'all';
 
-$excludeZeros    = (isset($_GET['excludeZeros'])    && $_GET['excludeZeros'] == 1) ? TRUE : FALSE;
+$excludeZeros     = (isset($_GET['excludeZeros'])     && $_GET['excludeZeros']     == 1) ? TRUE : FALSE;
 $showNoOccurences = (isset($_GET['showNoOccurences']) && $_GET['showNoOccurences'] == 1) ? TRUE : FALSE;
+$version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+$intersection = getOrDefault('intersection', NULL);
+error_log('intersection: ' . $intersection);
 
 $codes = [
   'no language',
@@ -20,10 +23,17 @@ $codes = [
   'resource'
 ];
 
-$fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . '.languages.json';
+$is_languages_all = (!is_null($version) && $version >= 'v2019-03');
+$suffix = $is_languages_all ? '.languages-all.json' : '.languages.json';
+if (!is_null($intersection)) {
+  $fileName = getDataDir() . '/json/' . $intersection . '/' . $intersection . $suffix;
+} else {
+  $fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . $suffix;
+}
+error_log('fileName: ' . $fileName . ' exist? ' . (int) file_exists($fileName));
 $languages = json_decode(file_get_contents($fileName));
 
-echo getTree($languages->$field, $field, $excludeZeros, $showNoOccurences);
+echo getTree($languages->$field, $field, $excludeZeros, $showNoOccurences, $is_languages_all);
 // echo json_encode($languages->$field);
 
 /*
@@ -32,23 +42,32 @@ foreach ($languages as $key => $source) {
 }
 */
 
-function getTree($source, $key, $excludeZeros, $showNoOccurences) {
+function getTree($source, $key, $excludeZeros, $showNoOccurences, $is_languages_all) {
   $result = [
     'name' => $key,
     'children' => []
   ];
   if (!$excludeZeros && isset($source->resource)) {
-    $result['children'][] = ['name' => 'resource', 'size' => $source->resource];
+    $result['children'][] = [
+      'name' => 'resource',
+      'size' => ($is_languages_all ? $source->resource->occurences : $source->resource)
+    ];
   }
   unset($source->resource);
 
   if (!$excludeZeros && isset($source->{'no language'})) {
-    $result['children'][] = ['name' => 'no language', 'size' => $source->{'no language'}];
+    $result['children'][] = [
+      'name' => 'no language',
+      'size' => ($is_languages_all ? $source->{'no language'}->occurences : $source->{'no language'})
+    ];
   }
   unset($source->{'no language'});
 
   if ($showNoOccurences && isset($source->{'no field instance'})) {
-    $result['children'][] = ['name' => 'no field occurence', 'size' => $source->{'no field instance'}];
+    $result['children'][] = [
+      'name' => 'no field occurence',
+      'size' => ($is_languages_all ? $source->{'no field instance'}->occurences : $source->{'no field instance'})
+    ];
   }
   unset($source->{'no field instance'});
 
@@ -56,7 +75,10 @@ function getTree($source, $key, $excludeZeros, $showNoOccurences) {
   $result['children'][$i] = ['name' => 'languages', 'children' => []];
 
   foreach ($source as $language => $size) {
-    $result['children'][$i]['children'][] = ['name' => $language, 'size' => $size];
+    $result['children'][$i]['children'][] = [
+      'name' => $language,
+      'size' => ($is_languages_all ? $size->occurences : $size)
+    ];
   }
 
   return json_encode($result);

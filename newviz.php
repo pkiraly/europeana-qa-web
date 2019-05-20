@@ -11,7 +11,6 @@ $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  error_log("id: " . $id);
 
   if (isset($_GET['type'])) {
     $type = $_GET['type'];
@@ -78,7 +77,6 @@ if ($id == 'all' && $version >= 'v2018-08') {
   $count = getCountFromRGeneratedJson($filePrefix, $errors);
   $entityCounts = getEntityCountsFromRGeneratedJson($filePrefix, $errors);
 }
-error_log('count: ' . $count);
 
 $datasets = retrieveDatasets($type, ($type == 'c' ? $fragment : ''));
 $dataproviders = retrieveDataproviders($type, ($type == 'd' ? $fragment : ''));
@@ -149,7 +147,6 @@ function retrieveProviders($type, $fragment) {
 }
 
 function retrieveCsv($fileName, $fragment) {
-  error_log('retrieveCsv: ' . $fileName);
   $list = [];
   $content = explode("\n", file_get_contents($fileName));
   foreach ($content as $line) {

@@ -34,7 +34,7 @@
         </li>
         <li{if $type == 'a'} class="active"{/if}>
           <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'a'}true{else}false{/if}"
-             href="#whole-form" aria-controls="whole-form">whole</a>
+             href="#whole-form" aria-controls="whole-form">all Europeana datasets</a>
         </li>
       </ul>
 
@@ -145,7 +145,9 @@
               <input type="hidden" name="id" value="all">
               <input type="hidden" name="version" value="{$version}"/>
               <input type="hidden" name="development" value="{$development}"/>
+              <!--
               <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
+              -->
             </form>
           </div>
         </div>
@@ -202,7 +204,6 @@
           </div>
           <input type="button" class="btn pull-right" id="reset-intersections" value="clear selections">
         </form>
-
       </div>
 
     {else}
@@ -515,6 +516,11 @@ $(document).ready(function () {
     $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   }
 
+  // console.log('type: ' + type);
+  if (type == 'cn' || type == 'l' || type == 'a') {
+    $('#reset-intersections').hide();
+  }
+
   $(".nav-tabs a").click(function(event) {
     event.preventDefault();
     $(this).tab('show');
@@ -556,9 +562,19 @@ $(document).ready(function () {
     console.log('intersection tab clicked');
     event.preventDefault();
     document.getElementById('formTab').scrollIntoView();
+    var activeId = $(event.target).attr('href');
+    console.log('activeId: ' + activeId);
     // var activeId = $(event.target).attr('href'); // newly activated tab
     // var previousId = $(event.relatedTarget.attr('href'); // previous active tab
     $('#intersections').html('');
+    if (activeId == '#by-country-form' || activeId == '#by-language-form' || activeId == '#whole-form') {
+      $('#reset-intersections').hide();
+      if (activeId == '#whole-form') {
+        $('#whole-form form#collection-selector').submit();
+      }
+    } else {
+      $('#reset-intersections').show();
+    }
   })
 });
 
@@ -878,6 +894,7 @@ function loadEntityCardinality(entity) {
       $('[data-toggle="tooltip"]').tooltip();
 
       $("a.most-frequent-values").click(function(event) {
+        console.log('showMostFrequentValues()->');
         event.preventDefault();
         var field = $(this).attr('class').replace('most-frequent-values ', '');
         showMostFrequentValues(field);
@@ -887,7 +904,16 @@ function loadEntityCardinality(entity) {
 }
 
 function showMostFrequentValues(field) {
-  var url = getMostFrequentValuesUrl(field);
+  console.log('field: ' + field);
+  var key;
+  switch (field) {
+    case 'proxy_dc_contributor': key = 'CONTRIBUTOR'; break;
+    case 'proxy_dc_creator':     key = 'CREATOR'; break;
+    default:                     key = field;
+  }
+  console.log('key: ' + key);
+  var url = getMostFrequentValuesUrl(key);
+  console.log('url: ' + url);
   $.get(url)
     .done(function(data) {
       var text = [];
@@ -909,7 +935,7 @@ function getMostFrequentValuesUrl(field) {
 
 function getMostFrequentValuesQuery() {
   var key = (type == 'd') ? 'DATA_PROVIDER' : 'europeana_collectionName';
-  var value = '%22' + collectionId + '%22'
+  var value = '%22' + collectionId.replace(/ /g, '%20') + '%22'
   return key + ':' + value;
 }
 

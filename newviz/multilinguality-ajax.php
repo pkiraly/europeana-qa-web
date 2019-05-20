@@ -10,7 +10,6 @@ include_once($root . '/newviz/newviz-ajax-config.php');
 
 $development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $source = getOrDefault('source', 'json', ['json', 'csv']);
-// error_log('$source: ' . $source);
 
 $parameters = getParameters();
 $version = getOrDefault(
@@ -29,8 +28,6 @@ $collectionId = in_array($parameters->type, ['cn', 'l', 'pd', 'p', 'cd'])
     : $parameters->type . $parameters->id);
 
 $dataDir = getDataDir();
-error_log('dataDir: ' . $dataDir);
-error_log('collectionId: ' . $collectionId);
 
 $filePrefix = (is_null($intersection) || $intersection == 'all')
   ? $collectionId
@@ -170,13 +167,10 @@ function getSaturationStatisticsFromJson() {
 function getSaturationStatisticsFromCsv() {
   global $parameters, $collectionId, $dataDir, $filePrefix;
 
-  error_log('getSaturationStatisticsFromCsv');
-
   // id,    field,                            mean, min, max, count, std.dev, median
   // p-142, provider_dc_title_taggedLiterals, 0.0,  0.0, 0.0, 549,   0.0,     0.0
   $assocStat = [];
   $saturationFile = sprintf('%s/json/%s/%s.multilinguality.csv', $dataDir, $filePrefix, $filePrefix);
-  error_log('saturationFile: ' . $saturationFile);
   if (file_exists($saturationFile)) {
     $keys = ["mean", "min", "max", "count", "std.dev", "median"]; // "sum",
     foreach (file($saturationFile) as $line) {
@@ -198,7 +192,6 @@ function getSaturationStatisticsFromCsv() {
     $errors[] = $msg;
     error_log($msg);
   }
-  // error_log('getSaturationStatisticsFromCsv: ' . json_encode($assocStat['generic']));
   return $assocStat;
 }
 
@@ -230,10 +223,8 @@ function getFieldInfo($field) {
   }
 
   if ($type == 'specific') {
-    // $fields[$key] = getLabel($key);
     $specificType = "";
     $edmField = preg_replace('/_(taggedliterals|languages|literalsperlanguage)/', '', $key);
-    error_log($edmField);
     if (preg_match('/_taggedliterals/', $key)) {
       $specificType = 'taggedliterals';
     } else if (preg_match('/_languages/', $key)) {
@@ -255,7 +246,7 @@ function getFieldInfo($field) {
 }
 
 function getLanguageDistribution() {
-  global $parameters, $collectionId, $dataDir, $filePrefix;
+  global $parameters, $collectionId, $dataDir, $filePrefix, $version;
 
   $non_language_fields = [
     'proxy_edm_year', 'proxy_edm_userTag', 'proxy_edm_hasMet', 'proxy_edm_incorporates',
@@ -265,8 +256,14 @@ function getLanguageDistribution() {
     'agent_edm_hasMet', 'agent_edm_isRelatedTo', 'agent_owl_sameAs', 'timespan_owl_sameAs'
   ];
 
+  $is_languages_all = (!is_null($version) && $version >= 'v2019-03');
+
   $languageDistribution = (object)[];
-  $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $filePrefix, $filePrefix);
+  if ($is_languages_all) {
+    $languageDistributionFile = sprintf('%s/json/%s/%s.languages-all.json', $dataDir, $filePrefix, $filePrefix);
+  } else {
+    $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $filePrefix, $filePrefix);
+  }
   $languageDistributionFileExists = file_exists($languageDistributionFile);
   if ($languageDistributionFileExists) {
     $languageDistribution = json_decode(file_get_contents($languageDistributionFile));
@@ -275,7 +272,8 @@ function getLanguageDistribution() {
         unset($languageDistribution->{$field});
       }
     }
-    error_log('languageDistribution: ' . json_encode(array_keys(get_object_vars($languageDistribution))));
+  } else {
+    error_log('Language file does not exist: ' . $languageDistributionFile);
   }
   return $languageDistribution;
 }
@@ -324,8 +322,11 @@ function getLabel($key) {
 
 function prepareFields($fields) {
   $preparedFields = [];
-  foreach ($fields as $key => $value) {
-    $key = str_replace('proxy_', '', strtolower($key));
+  foreach ($fields as $field => $value) {
+    if ($field == 'proxy_edm_isNextInSequence' || $field == 'proxy_edm_type') {
+      continue;
+    }
+    $key = str_replace('proxy_', '', strtolower($field));
     $preparedFields[$key] = $value;
   }
   return $preparedFields;

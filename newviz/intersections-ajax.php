@@ -25,7 +25,6 @@ if (is_null($id) || is_null($type) || !in_array($type, ['c', 'd', 'p']) || is_nu
 $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 $intersections = getIntersections($type, $id, $type2, $id2, $targetType, $intersection);
-error_log('is null? ' . (int)($intersections == null));
 
 if ($format == 'json') {
   header("Content-type: application/json");

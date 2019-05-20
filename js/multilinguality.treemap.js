@@ -27,6 +27,7 @@ var tooltipDiv = d3.select("#tooltip")
 displayLanguageTreemap('aggregated');
 
 function getTreeMapUrl() {
+  console.log('intersection: ' + intersection);
   var field = $('#language-distribution-selector').val();
   var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
   var showNoOccurences = 0; //$('#showNoOccurences').is(':checked') ? 0 : 1;
@@ -35,6 +36,7 @@ function getTreeMapUrl() {
     + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
     + '&showNoOccurences=' + showNoOccurences // . (int)$showNoOccurences
     + '&collectionId=' + collectionId
+    + '&intersection=' + intersection
     + '&version=' + version;
   return treeMapUrl;
 }

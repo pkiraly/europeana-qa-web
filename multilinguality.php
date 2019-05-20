@@ -25,7 +25,6 @@ $features = [
 $version  = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 
 $dataDir = getDataDir();
-error_log('dataDir: ' . $dataDir);
 
 $feature = getOrDefault('feature', DEFAULT_FEATURE, array_keys($features));
 
@@ -53,7 +52,6 @@ if ($feature == 'all') {
 } else {
   $summaryFile = sprintf('json_cache/%s-multilinguality-%s-%s.json', $version, $feature, $prefix);
 }
-error_log('summaryFile: ' . $summaryFile);
 $suffix = '.saturation';
 $isSaturation2 = true;
 
@@ -79,7 +77,6 @@ if (file_exists($summaryFile)) {
 
   foreach ($csv as $id => $row) {
     $id = $row[0];
-    // error_log('id: ' . $id);
     $collectionId = $row[1];
 
     if (preg_match('/Landesbibliothek, Darmstadt/', $collectionId)) {
