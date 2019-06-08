@@ -3,6 +3,14 @@ $configuration = parse_ini_file('config.cfg');
 include_once('newviz/common.functions.php');
 include_once('common/common-functions.php');
 
+// field=proxy_dc_title
+// &excludeZeros=0
+// &showNoOccurences=0
+// &collectionId=c1529
+// &intersection=null
+// &version=v2019-03
+error_log('plainjson2tree: ' . $_SERVER['QUERY_STRING']);
+
 $field = $_GET['field'];
 if (!isset($field))
   $field = 'aggregated';

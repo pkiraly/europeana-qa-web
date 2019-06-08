@@ -529,6 +529,7 @@ function problemCatalog($key) {
   return $key;
 }
 
+/*
 function retrieveName($id, $type) {
   global $dataDir;
 
@@ -549,3 +550,4 @@ function retrieveName($id, $type) {
   }
   return $name;
 }
+*/

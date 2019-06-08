@@ -874,7 +874,8 @@ function loadEntityCardinality(entity) {
         if (typeof el.html() != "undefined") {
           html = el.clone().wrap('<div>').parent().html();
           $('#' + thisField + '-comparision-container').html(html);
-          $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
+          $("[data-toggle='histogram-popover']").on('show.bs.popover', function() {
+            console.log('->processHistogramPopoverContent');
             processHistogramPopoverContent($(this));
           });
           $('[data-toggle="histogram-popover"]').popover({html: true});
@@ -887,6 +888,7 @@ function loadEntityCardinality(entity) {
       });
 
       $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
+        console.log('->processHistogramPopoverContent');
         processHistogramPopoverContent($(this));
       });
 
@@ -945,6 +947,8 @@ function processHistogramPopoverContent(element) {
     content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
   }
   if (content.substring(0, 1) == '@') {
+    console.log(content)
+    // console.log(content)
     var parts = content.substring(1).split('|');
 
     var field = parts[0];
@@ -956,6 +960,7 @@ function processHistogramPopoverContent(element) {
     element.attr('data-content', html);
 
     var query = {'q': q, 'fq': fq, 'rows': 10, 'version': version};
+    console.log(query);
     $.get('newviz/solr-ajax.php', query)
     .done(function(data){
       var portalUrl = 'https://www.europeana.eu/portal/en/record';

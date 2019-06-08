@@ -5,8 +5,10 @@
   <tr>
     <td class="legend">range of values</td>
     {foreach $histogram as $value}
-      <td>
-        <span>{strip}
+      <td data-toggle="histogram-popover"
+          data-content="@{toSolrField($field)}|{toSolrRangeQuery($value)}|{(int)$value->min}-{(int)$value->max}|{$fq}"
+          title="List records">
+        <span data-toggle="tooltip" title="Get examples">{strip}
           {if $value->min == 0}
           0
           {else}

@@ -292,6 +292,12 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $prox
   $statistics->cardinality = new stdClass();
   $statistics->histograms = new stdClass();
 
+  $smarty->assign('proxyCount', $statistics->proxyCount);
+  $smarty->assign('entityCount', $statistics->entityCount);
+  $smarty->assign('fq', filePrefixToFq($filePrefix));
+  $smarty->registerPlugin('function', 'toSolrField', 'toSolrField');
+  $smarty->registerPlugin('function', 'toSolrRangeQuery', 'toSolrRangeQuery');
+
   foreach ($entityFields as $field) {
     foreach ($proxies as $proxy) {
       $qualifiedField = $proxy . '_' . $field;
@@ -350,8 +356,6 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $prox
       if (isset($histogram[$qualifiedField])) {
         $smarty->assign('histogram', $histogram[$qualifiedField]);
         $smarty->assign('field', $qualifiedField);
-        $smarty->assign('proxyCount', $statistics->proxyCount);
-        $smarty->assign('entityCount', $statistics->entityCount);
         $smarty->assign('displayTitle', FALSE);
         $html = $smarty->fetch('proxy-based-histogram.smarty.tpl');
         if (!isset($statistics->histograms->{$field})) {
@@ -364,6 +368,37 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $prox
       }
     }
   }
+}
+
+function filePrefixToFq($filePrefix) {
+  error_log('filePrefix: ' . $filePrefix);
+
+  if ($filePrefix == 'all') {
+    $fq = '*:*';
+  } else {
+    if (preg_match('/^(c|d|p-|cn-|l-)(\d+)$/', $filePrefix, $matches)) {
+      error_log(json_encode($matches));
+      if ($matches[1] == 'c') {
+        $field = 'dataset_i';
+      } else if ($matches[1] == 'd') {
+        $field = 'dataProvider_i';
+      } else if ($matches[1] == 'p-') {
+        $field = 'provider_i';
+      } else if ($matches[1] == 'cn-') {
+        $field = 'country_i';
+      } else if ($matches[1] == 'l-') {
+        $field = 'language_i';
+      }
+      $fq = $field . ':' . $matches[2];
+    } else if (preg_match('/^(cdp)-(\d+)-(\d+)-(\d+)$/', $filePrefix, $matches)) {
+      $fq = sprintf(
+        'dataset_i:%d&dataProvider_i:%d&provider_i:%d',
+        $matches[2], $matches[3], $matches[4]);
+      error_log(json_encode($matches));
+    }
+  }
+  error_log('fq: ' . $fq);
+  return $fq;
 }
 
 function readFreqFileExistence($type, $id, $entityFields) {
@@ -454,6 +489,8 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
 function readHistogram($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics, $smarty, $filePrefix;
 
+  error_log('readHistogram');
+
   $statistics->histFile = $dataDir . '/json/' . $filePrefix . '/'
     .  $filePrefix . '.cardinality.histogram.json';
   $statistics->histFile_exists = file_exists($statistics->histFile);
@@ -512,9 +549,19 @@ function toSolrField($key) {
     'tableOfContents', 'currentLocation', 'hasType', 'isDerivativeOf',
     'isRepresentationOf', 'isSimilarTo', 'isSuccessorOf'
   ];
-  $key = str_replace($subject, $target, $key);
+  $solrField = 'crd_' .
+    preg_replace('/^provider_/', 'PROVIDER_',
+      preg_replace('/^europeana_/', 'EUROPEANA_',
+        str_replace($subject, $target, $key)
+      )
+    )
+    . '_i';
 
-  return $key . '_f';
+  return $solrField;
+}
+
+function toSolrRangeQuery($histogramItem) {
+  return sprintf("[%s TO %s]", (int)$histogramItem->min, (int)$histogramItem->max);
 }
 
 function readMinMaxRecords($type, $id, $entityFields) {
