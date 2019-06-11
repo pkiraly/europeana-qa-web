@@ -99,14 +99,22 @@
 
         {if ($development)}
           <div class="most-frequent-values">
-            <a href="#" class="most-frequent-values {$field->key}">Show the most frequent values</a>
-            <p>
-              <em>
-                <strong>Warning!</strong> Due to the way values are stored in Europeana's search index,
-                the values here can be split in individual words and the feature may not work for some fields.
-              </em>
-            </p>
-            <div id="most-frequent-values-{$field->key}"></div>
+            {if $field->facetable}
+              <a href="#" class="most-frequent-values {$field->key}">Show the most frequent values</a>
+              <div id="most-frequent-values-{$field->key}"></div>
+            {else}
+              <p>
+                <em>
+                  <strong>Warning!</strong> Due to the way this field has been stored in Europeana's
+                  search index, we cannot display the most frequent values for it. These values have
+                  indeed been split in individual words prior to indexing, which makes the feature
+                  very confusing. We can only point, for demonstration purposes, to other fields for
+                  which Europeana's index contains values that are suitable for this feature:
+                  dc:contributor, dc:coverage, dc:creator, dc:date, dc:identifier, dc:language,
+                  dc:rights, dc:source, dc:type.
+                </em>
+              </p>
+            {/if}
           </div>
         {/if}
 

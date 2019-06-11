@@ -41,8 +41,21 @@
     <div class="col-md-6">
       <h4>This record belongs to</h4>
       <ul type="square">
-        <li>collection: <a href="newviz.php?type=c&id={$metrics->identifiers['collection']}&version={$version}">{$collection}</a></li>
-        <li>provider: <a href="newviz.php?type=d&id={$metrics->identifiers['provider']}&version={$version}">{$provider}</a></li>
+        <li>dataset:
+          <a href="newviz.php?type=c&id={$metrics->identifiers['dataset']}&version={$version}&development=1">{$dataset}</a>
+        </li>
+        <li>data provider:
+          <a href="newviz.php?type=d&id={$metrics->identifiers['dataProvider']}&version={$version}&development=1">{$dataProvider}</a>
+        </li>
+        <li>provider:
+          <a href="newviz.php?type=p&id={$metrics->identifiers['provider']}&version={$version}&development=1">{$provider}</a>
+        </li>
+        <li>country:
+          <a href="newviz.php?type=cn&id={$metrics->identifiers['country']}&version={$version}&development=1">{$country}</a>
+        </li>
+        <li>language:
+          <a href="newviz.php?type=l&id={$metrics->identifiers['language']}&version={$version}&development=1">{$language}</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -61,7 +74,7 @@
       <table id="fields">
         <thead>
         <tr>
-          {foreach $table[0] as $key}
+          {foreach $heatmap->header as $key}
             {if strpos($key, ':') === FALSE}
               <th><div class="functionality"><span>{$key}</span></div></th>
             {/if}
@@ -69,7 +82,7 @@
         </tr>
         </thead>
         <tbody>
-        {foreach $table as $key => $row}
+        {foreach $heatmap->rows as $key => $row}
           {if $key != 0}
             <tr>
               {foreach $row as $j => $cell}
@@ -153,9 +166,9 @@
         {foreach $multilinguality_labels as $metric => $label}
           <tr>
             <td>{$label}</td>
-            <td>{$metrics->multilinguality->global[$metric]->providerproxy}</td>
-            <td>{$metrics->multilinguality->global[$metric]->europeanaproxy}</td>
-            <td>{$metrics->multilinguality->global[$metric]->object}</td>
+            <td>{$metrics->multilinguality->global[$metric]->ProviderProxy}</td>
+            <td>{$metrics->multilinguality->global[$metric]->EuropeanaProxy}</td>
+            <td>{$metrics->multilinguality->global[$metric]->Object}</td>
           </tr>
         {/foreach}
         </tbody>
@@ -233,7 +246,7 @@
     </tr>
   </thead>
   <tbody>
-    {foreach $metrics->existence as $field => $value}
+    {foreach $metrics->cardinality['provider'] as $field => $value}
       {assign var="lowerField" value=strtolower($field)}
       {assign var="hasEuropeanaProxyValue" value="0"}
       {assign var="hasValue" value="0"}
@@ -257,7 +270,7 @@
         {/if}
       {/if}
       <tr{if $value == 0} class="remainder"{/if}>
-        <td class="field-name">{$field}</td>
+        <td class="field-name">{$field} ({$hasValue})</td>
         <td class="field-value">
           {if $value != 0}
             {if isset($structure[$field]) || isset($structure[$europeanaProxyName])}
@@ -273,7 +286,7 @@
             {/if}
           {/if}
         </td>
-        <td class="cardinality">{if $value == 1}{$metrics->cardinality[$field]}{/if}</td>
+        <td class="cardinality">{$value}</td>
         <td class="languages">
           {if $value == 1}
             {if isset($metrics->languages->fields[$lowerField])}
@@ -285,13 +298,15 @@
         </td>
         <td class="multilinguality">
           {assign var="multilingualityField" value=strtolower(str_replace('Proxy/', '', $field))}
-          {if $value != 0 && isset($metrics->multilinguality->fields['provider'][$multilingualityField])}
-            {assign var="multilinguality" value=$metrics->multilinguality->fields['provider'][$multilingualityField]}
+          {if $value != 0 &&
+              isset($metrics->multilinguality->fields['provider'][$multilingualityField])}
+            {assign var="multilinguality"
+                    value=$metrics->multilinguality->fields['provider'][$multilingualityField]}
             <table class="multilinguality">
               <tbody>
                 <tr>
                   <td class="m-label">tagged literals</td>
-                  <td class="m-value">{$multilinguality['taggedliterals']}</td>
+                  <td class="m-value">{$multilinguality['taggedLiterals']}</td>
                 </tr>
                 <tr>
                   <td class="m-label">number of languages</td>
@@ -299,7 +314,7 @@
                 </tr>
                 <tr>
                   <td class="m-label">literals per language</td>
-                  <td class="m-value">{$multilinguality['literalsperlanguage']}</td>
+                  <td class="m-value">{$multilinguality['literalsPerLanguage']}</td>
                 </tr>
               </tbody>
             </table>
@@ -330,7 +345,7 @@
                 <tbody>
                 <tr>
                   <td class="m-label">tagged literals</td>
-                  <td class="m-value">{$multilinguality['taggedliterals']}</td>
+                  <td class="m-value">{$multilinguality['taggedLiterals']}</td>
                 </tr>
                 <tr>
                   <td class="m-label">number of languages</td>
@@ -338,7 +353,7 @@
                 </tr>
                 <tr>
                   <td class="m-label">literals per language</td>
-                  <td class="m-value">{$multilinguality['literalsperlanguage']}</td>
+                  <td class="m-value">{$multilinguality['literalsPerLanguage']}</td>
                 </tr>
                 </tbody>
               </table>

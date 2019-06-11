@@ -58,7 +58,13 @@ readStatistics($type, $id, $entity, $filePrefix);
 //  "cardinality": ["count","sum","median","mean","html"]
 // }
 
+$facetables = [
+  'dc:contributor', 'dc:coverage', 'dc:creator', 'dc:date',
+  'dc:identifier', 'dc:language', 'dc:rights', 'dc:source', 'dc:type'
+];
+
 $fieldProperties = [];
+
 foreach ($fields[$entity] as $field => $label) {
   $key = strtolower($field);
   $properties = (object)[
@@ -71,6 +77,8 @@ foreach ($fields[$entity] as $field => $label) {
     'hasHistograms' => isset($statistics->histograms->{$key}),
     'hasMinMaxRecords' => isset($statistics->minMaxRecords->{$key}),
   ];
+  $properties->facetable = in_array($label, $facetables);
+
   if ($properties->isMandatory) {
     $properties->mandatory = $mandatory[$entity][$field];
     $properties->mandatoryIcon = getMandatoryIcon($mandatory[$entity][$field]);
@@ -371,33 +379,28 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $prox
 }
 
 function filePrefixToFq($filePrefix) {
-  error_log('filePrefix: ' . $filePrefix);
+  $map = [
+    'c' => 'dataset_i',
+    'd' => 'dataProvider_i',
+    'p-' => 'provider_i',
+    'cn-' => 'country_i',
+    'l-' => 'language_i'
+  ];
 
   if ($filePrefix == 'all') {
     $fq = '*:*';
   } else {
     if (preg_match('/^(c|d|p-|cn-|l-)(\d+)$/', $filePrefix, $matches)) {
-      error_log(json_encode($matches));
-      if ($matches[1] == 'c') {
-        $field = 'dataset_i';
-      } else if ($matches[1] == 'd') {
-        $field = 'dataProvider_i';
-      } else if ($matches[1] == 'p-') {
-        $field = 'provider_i';
-      } else if ($matches[1] == 'cn-') {
-        $field = 'country_i';
-      } else if ($matches[1] == 'l-') {
-        $field = 'language_i';
-      }
-      $fq = $field . ':' . $matches[2];
+      $fq = sprintf('%s:%d', $map[$matches[1]], $matches[2]);
     } else if (preg_match('/^(cdp)-(\d+)-(\d+)-(\d+)$/', $filePrefix, $matches)) {
       $fq = sprintf(
         'dataset_i:%d&dataProvider_i:%d&provider_i:%d',
-        $matches[2], $matches[3], $matches[4]);
-      error_log(json_encode($matches));
+        $matches[2], $matches[3], $matches[4]
+      );
+    } else {
+      error_log('Unhanded filePrefix: ' . $filePrefix);
     }
   }
-  error_log('fq: ' . $fq);
   return $fq;
 }
 

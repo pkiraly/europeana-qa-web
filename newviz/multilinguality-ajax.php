@@ -252,8 +252,17 @@ function getLanguageDistribution() {
     'proxy_edm_year', 'proxy_edm_userTag', 'proxy_edm_hasMet', 'proxy_edm_incorporates',
     'proxy_edm_isDerivativeOf', 'proxy_edm_isRepresentationOf', 'proxy_edm_isSimilarTo',
     'proxy_edm_isSuccessorOf', 'proxy_edm_realizes', 'proxy_edm_wasPresentAt',
+
     'aggregation_edm_rights', 'aggregation_edm_ugc', 'aggregation_edm_aggregatedCHO',
-    'agent_edm_hasMet', 'agent_edm_isRelatedTo', 'agent_owl_sameAs', 'timespan_owl_sameAs'
+
+    'agent_edm_hasMet', 'agent_edm_isRelatedTo', 'agent_owl_sameAs',
+
+    'concept_skos_broader', 'concept_skos_narrower', 'concept_skos_related',
+    'concept_skos_broadMatch', 'concept_skos_narrowMatch', 'concept_skos_relatedMatch',
+    'concept_skos_exactMatch', 'concept_skos_closeMatch', 'concept_skos_notation',
+    'concept_skos_inScheme',
+
+    'timespan_owl_sameAs',
   ];
 
   $is_languages_all = (!is_null($version) && $version >= 'v2019-03');

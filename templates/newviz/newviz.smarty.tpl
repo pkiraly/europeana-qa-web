@@ -695,8 +695,6 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
     query.format = 'json';
   }
 
-  console.log('query:');
-  console.log(query);
   $.get("newviz/intersections-ajax.php", query)
     .done(function(data) {
       var triggerWatcher = true;
@@ -896,7 +894,6 @@ function loadEntityCardinality(entity) {
       $('[data-toggle="tooltip"]').tooltip();
 
       $("a.most-frequent-values").click(function(event) {
-        console.log('showMostFrequentValues()->');
         event.preventDefault();
         var field = $(this).attr('class').replace('most-frequent-values ', '');
         showMostFrequentValues(field);
@@ -906,16 +903,13 @@ function loadEntityCardinality(entity) {
 }
 
 function showMostFrequentValues(field) {
-  console.log('field: ' + field);
   var key;
   switch (field) {
     case 'proxy_dc_contributor': key = 'CONTRIBUTOR'; break;
     case 'proxy_dc_creator':     key = 'CREATOR'; break;
     default:                     key = field;
   }
-  console.log('key: ' + key);
   var url = getMostFrequentValuesUrl(key);
-  console.log('url: ' + url);
   $.get(url)
     .done(function(data) {
       var text = [];
@@ -936,10 +930,41 @@ function getMostFrequentValuesUrl(field) {
 }
 
 function getMostFrequentValuesQuery() {
-  var key = (type == 'd') ? 'DATA_PROVIDER' : 'europeana_collectionName';
-  var value = '%22' + collectionId.replace(/ /g, '%20') + '%22'
-  return key + ':' + value;
+  var query;
+  if (intersection == null) {
+    query = getMostFrequentValuesQueryElement(type, collectionId);
+  } else {
+    var parts = intersection.split('-');
+    var queryParts = [];
+    queryParts.push(getMostFrequentValuesQueryElement('c', $('#cid option[value=' + parts[1] + ']').html()));
+    queryParts.push(getMostFrequentValuesQueryElement('d', $('#did option[value=' + parts[2] + ']').html()));
+    queryParts.push(getMostFrequentValuesQueryElement('p', $('#pid option[value=' + parts[3] + ']').html()));
+    query = queryParts.join('%20AND%20');
+  }
+  return query;
 }
+
+function getMostFrequentValuesQueryElement(atomicType, atomicId) {
+  var solrField = '';
+  if (atomicType == 'c')
+    solrField = 'europeana_collectionName';
+  else if (atomicType == 'd')
+    solrField = 'DATA_PROVIDER';
+  else if (atomicType == 'p')
+    solrField = 'PROVIDER';
+  else if (atomicType == 'cn')
+    solrField = 'COUNTRY';
+  else if (atomicType == 'l')
+    solrField = 'europeana_aggregation_edm_language';
+  else if (atomicType == 'a')
+    return '*:*';
+  else
+    console.log('Unhandled type in getMostFrequentValuesQueryElement: ' + atomicType);
+
+  var value = '%22' + atomicId.replace(/ /g, '%20') + '%22'
+  return solrField + ':' + value;
+}
+
 
 function processHistogramPopoverContent(element) {
   var content = element.attr('data-content');
