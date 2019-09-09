@@ -125,7 +125,7 @@ table.qa-basic-statistics td {
 
 table.qa-basic-statistics td.qa-label {
   border-left: 2px solid #ccc;
-  text-transform: italic;
+  font-style: italic;
 }
 
 table.qa-basic-statistics td.qa-value {
@@ -413,3 +413,10 @@ a.external {
   margin: 20px 20px 5px 20px;
 }
 
+div#cardinality-content h5 {
+  font-style: italic;
+}
+
+a.close-popup {
+  float: right;
+}

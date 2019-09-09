@@ -14,8 +14,8 @@
 
 <div class="row">
   <div class="col-lg-5"><h4>field</h4></div>
-  <div class="col-lg-3"><h4>original metadata</h4></div>
-  <div class="col-lg-4"><h4>Europeana enrichment</h4></div>
+  <div class="col-lg-3"><h5>original metadata</h5></div>
+  <div class="col-lg-4"><h5>Europeana enrichment</h5></div>
 </div>
 
 {foreach $fields as $field}
@@ -43,22 +43,15 @@
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="qa-details field-details" id="details-{$field->key}">
-        <div class="row">
-          <div class="col-md-6 col-lg-6">
-            <h4>original metadata</h4>
-          </div>
-          <div class="col-md-6 col-lg-6">
-            <h4>Europeana enrichment</h4>
-          </div>
-        </div>
-
         {if $field->hasFrequency}
           <h4>Number of records where the fields are present</h4>
           <div class="row">
             <div class="col-md-6 col-lg-6">
+              <h5>original metadata</h5>
               {$field->freqHtml->provider}
             </div>
             <div class="col-md-6 col-lg-6">
+              <h5>Europeana enrichment</h5>
               {$field->freqHtml->europeana}
             </div>
           </div>
@@ -68,9 +61,11 @@
           <h4>Statistics for the number of field occurrences</h4>
           <div class="row">
             <div class="col-md-6 col-lg-6">
+              <h5>original metadata</h5>
               {$field->cardinalityHtml->provider}
             </div>
             <div class="col-md-6 col-lg-6">
+              <h5>Europeana enrichment</h5>
               {$field->cardinalityHtml->europeana}
             </div>
           </div>
@@ -78,13 +73,10 @@
 
         {if $field->hasHistograms}
           <h4>Number of field occurrences in individual records</h4>
-
-
-          <div class="row">
+          <div class="histogram-wrapper">
             <h5>original metadata</h5>
             {$field->histogramHtml->provider}
-          </div>
-          <div class="row">
+
             <h5>Europeana enrichment</h5>
             {$field->histogramHtml->europeana}
           </div>
@@ -100,9 +92,10 @@
         {if ($development)}
           <div class="most-frequent-values">
             {if $field->facetable}
-              <a href="#" class="most-frequent-values {$field->key}">Show the most frequent values</a>
+              <h4><a href="#" class="most-frequent-values {$field->key}">Show the most frequent values</a></h4>
               <div id="most-frequent-values-{$field->key}"></div>
             {else}
+              <h4>Show the most frequent values</h4>
               <p>
                 <em>
                   <strong>Warning!</strong> Due to the way this field has been stored in Europeana's
@@ -119,14 +112,16 @@
         {/if}
 
         {strip}
-        Frequency compared to <select name="comparision-selector" id="{$field->key}-comparision-selector">
-        <option>--select a field--</option>
-        {foreach $fields as $otherField}
-          {if $otherField->key != $field->key}
-            <option value="{$otherField->key}">{$otherField->label}</option>
-          {/if}
-        {/foreach}
-        </select>
+          <h4>Frequency compared to &nbsp;
+          <select name="comparision-selector" id="{$field->key}-comparision-selector">
+            <option>--select a field--</option>
+            {foreach $fields as $otherField}
+              {if $otherField->key != $field->key}
+                <option value="{$otherField->key}">{$otherField->label}</option>
+              {/if}
+            {/foreach}
+          </select>
+          </h4>
         {/strip}
         <div id="{$field->key}-comparision-container"></div>
       </div>

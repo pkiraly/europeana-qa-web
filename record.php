@@ -557,6 +557,8 @@ function reorganizeMetrics($raw_metrics) {
       $reorganized->uncategorized[$key] = $value;
     }
   }
+
+  error_log('fields: ' . json_encode($reorganized->languages->fields));
   return $reorganized;
 }
 
@@ -570,11 +572,12 @@ function existenceToEdm($solrField) {
 }
 
 function langToEdm($key) {
-  $key = preg_replace(
+  $edm = preg_replace(
     '/^(ProvidedCHO|proxy|aggregation|place|agent|timespan|concept)_(.*?)$/',
     "$1/$2", $key);
-  $key = str_replace('_', ':', $key);
-  return $key;
+  $edm = strtolower(str_replace('_', ':', $edm));
+  error_log($key . ' -> ' . $edm);
+  return $edm;
 }
 
 function problemCatalog($key) {

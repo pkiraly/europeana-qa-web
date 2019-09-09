@@ -864,16 +864,15 @@ function loadEntityCardinality(entity) {
         // $(this).text($(this).text() == 'Show details' ? 'Hide details' : 'Show details');
       });
 
-      $('select[name=comparision-selector]').on('change', function(){
+      $('select[name=comparision-selector]').on('change', function() {
         var thisField = this.id.replace('-comparision-selector', '');
         var otherField = this.value;
-        var el = $('#' + otherField + '-histogram');
+        var el = $('#provider_' + otherField + '-histogram').parent();
         var html = "";
         if (typeof el.html() != "undefined") {
           html = el.clone().wrap('<div>').parent().html();
           $('#' + thisField + '-comparision-container').html(html);
           $("[data-toggle='histogram-popover']").on('show.bs.popover', function() {
-            console.log('->processHistogramPopoverContent');
             processHistogramPopoverContent($(this));
           });
           $('[data-toggle="histogram-popover"]').popover({html: true});
@@ -967,12 +966,12 @@ function getMostFrequentValuesQueryElement(atomicType, atomicId) {
 
 
 function processHistogramPopoverContent(element) {
+  var id = element.attr('id');
   var content = element.attr('data-content');
   if (content.substring(0, 1) != '@') {
     content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
   }
   if (content.substring(0, 1) == '@') {
-    console.log(content)
     // console.log(content)
     var parts = content.substring(1).split('|');
 
@@ -985,30 +984,36 @@ function processHistogramPopoverContent(element) {
     element.attr('data-content', html);
 
     var query = {'q': q, 'fq': fq, 'rows': 10, 'version': version};
-    console.log(query);
     $.get('newviz/solr-ajax.php', query)
-    .done(function(data){
-      var portalUrl = 'https://www.europeana.eu/portal/en/record';
-      var items = new Array();
-      for (i in data.ids) {
-        var recordId = data.ids[i];
-        var links = new Array();
-        links.push('<a target="_blank" href="' + portalUrl + recordId + '.json"'
-          + ' title="record id: ' + recordId + '" class="external">data</a>');
-        links.push('<a target="_blank" href="' + portalUrl + recordId + '.html"'
-          + ' title="record id: ' + recordId + '" class="external">portal</a>');
-        links.push('<a href="record.php?id=' + recordId + '&version=' + version + '"'
-          + ' title="record id: ' + recordId + '">details</a>');
-        var item = 'visit record (' + links.join(', ') + ')';
-        items.push('<li>' + item + '</li>');
-      }
-      var content = '<ul>' + items.join('') + '</ul>';
-      $('#' + targetId).html(content);
-    });
+      .done(function(data){
+        var portalUrl = 'https://www.europeana.eu/portal/en/record';
+        var items = new Array();
+        for (i in data.ids) {
+          var recordId = data.ids[i];
+          var links = new Array();
+          links.push('<a target="_blank" href="' + portalUrl + recordId + '.json"'
+            + ' title="record id: ' + recordId + '" class="external">data</a>');
+          links.push('<a target="_blank" href="' + portalUrl + recordId + '.html"'
+            + ' title="record id: ' + recordId + '" class="external">portal</a>');
+          links.push('<a href="record.php?id=' + recordId + '&version=' + version + '"'
+            + ' title="record id: ' + recordId + '">details</a>');
+          var item = 'visit record (' + links.join(', ') + ')';
+          items.push('<li>' + item + '</li>');
+        }
+        var content = '<ul>' + items.join('') + '</ul>';
+        console.log('targetId: #' + targetId);
+        $('#' + targetId).html(content);
+        $('#' + targetId).parent().parent().children('h3').append(' <a href="#" class="close-popup" data-id="' + id + '">x</a>');
+        $('a.close-popup').click(function(event) {
+          event.preventDefault();
+          var targetId = $(this).attr('data-id');
+          $('#' + targetId).popover('hide')
+        });
+      });
   }
 }
 
-$("a.qa-show-details").click(function (event) {
+$("a.qa-show-details").click(function(event) {
   event.preventDefault();
   var tabId = $(this).attr('class').replace('qa-show-details ', '#details-');
   $(tabId).toggle();

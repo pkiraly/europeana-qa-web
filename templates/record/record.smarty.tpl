@@ -288,6 +288,7 @@
         </td>
         <td class="cardinality">{$value}</td>
         <td class="languages">
+          lowerField: {$lowerField}
           {if $value == 1}
             {if isset($metrics->languages->fields[$lowerField])}
               {$metrics->languages->fields[$lowerField]|join:", "}
