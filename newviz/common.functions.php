@@ -215,8 +215,8 @@ function retrieveName($id, $type) {
     return 'all Europeana';
 
   $files = [
-    'c' => 'datasets.txt',
-    'd' => 'data-providers.txt',
+    'c' => 'datasets.csv',
+    'd' => 'data-providers.csv',
     'p' => 'providers.csv',
     'cn' => 'countries.csv',
     'l' => 'languages.csv',
@@ -224,6 +224,8 @@ function retrieveName($id, $type) {
 
   if (!isset($content)) {
     $file = $files[$type];
+    $path = $dataDir . '/' . $file;
+    error_log('path: ' . $path);
     $content = explode("\n", file_get_contents($dataDir . '/' . $file));
   }
 

@@ -591,7 +591,7 @@ function retrieveName($id, $type) {
   global $dataDir;
 
   if (!isset($content)) {
-    $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
+    $file = ($type == 'c') ? 'datasets.csv' : "data-providers.csv";
     $content = explode("\n", file_get_contents($dataDir . '/' . $file));
   }
 

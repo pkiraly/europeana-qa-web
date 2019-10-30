@@ -123,12 +123,12 @@ $smarty->display('newviz.smarty.tpl');
 
 function retrieveDatasets($type, $fragment) {
   global $dataDir;
-  return retrieveCsv($dataDir . '/datasets.txt', ($type == 'c' ? $fragment : NULL));
+  return retrieveCsv($dataDir . '/datasets.csv', ($type == 'c' ? $fragment : NULL));
 }
 
 function retrieveDataproviders($type, $fragment) {
   global $dataDir;
-  return retrieveCsv($dataDir . '/data-providers.txt', ($type == 'd' ? $fragment : NULL));
+  return retrieveCsv($dataDir . '/data-providers.csv', ($type == 'd' ? $fragment : NULL));
 }
 
 function retrieveLanguages($type, $fragment) {

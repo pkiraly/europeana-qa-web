@@ -11,8 +11,8 @@ $type = getOrDefault('type', 'c', ['c', 'd', 'p']);
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 
 $files = [
-  'c' => 'datasets.txt',
-  'd' => 'data-providers.txt',
+  'c' => 'datasets.csv',
+  'd' => 'data-providers.csv',
   'p' => 'providers.csv',
 ];
 
