@@ -11,6 +11,7 @@ $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
+  error_log("id: " . $id);
 
   if (isset($_GET['type'])) {
     $type = $_GET['type'];
@@ -30,6 +31,8 @@ if (isset($_GET['id'])) {
   }
   $type = 'c';
 }
+error_log("id: " . $id);
+
 $fragment = getOrDefault('fragment', NULL);
 $intersection = getOrDefault('intersection', NULL);
 
@@ -153,9 +156,9 @@ function getPortalUrl($type, $collectionId) {
 
 function getIntersections($type, $id) {
   global $dataDir;
+  error_log("id: " . $id);
 
-
-  $other_type = $type == 'c' ? 'd' : 'c';
+  $other_type = ($type == 'c') ? 'd' : 'c';
   $file = $dataDir . '/intersections.json';
   $data = json_decode(file_get_contents($file));
   $list = $data->$type->$id;
