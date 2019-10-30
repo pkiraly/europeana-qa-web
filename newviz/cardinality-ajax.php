@@ -4,6 +4,7 @@ $root = realpath(__DIR__. '/../');
 $script = str_replace($root, '', __FILE__);
 
 $configuration = parse_ini_file($root . '/config.cfg');
+include_once($root . '/common/common-functions.php');
 include_once($root . '/newviz/newviz-ajax-config.php');
 include_once($root . '/newviz/common.functions.php');
 
@@ -18,27 +19,52 @@ if (isset($_GET['type'])) {
 } else {
   list($id, $type) = parseId($id);
 }
+
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'],
   $configuration['version']);
 $intersection = getOrDefault('intersection', NULL);
+$development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 
-$filePrefix = (is_null($intersection) || empty($intersection) || $intersection == 'all')
-  ? $type . $id
-  : $intersection;
+$filePrefix = ($id == 'all')
+  ? $id
+  : (
+    (is_null($intersection) || empty($intersection) || $intersection == 'all')
+    ? (
+        in_array($type, ['cn', 'l', 'pd', 'p', 'cd'])
+        ? $type . '-' . $id
+        : $type . $id
+      )
+    : $intersection
+  );
 
-$entity = 'ProvidedCHO';
-$allowedEntities = ['ProvidedCHO', 'Agent', 'Timespan', 'Concept', 'Place'];
-if (isset($_GET['entity']) && in_array($_GET['entity'], $allowedEntities)) {
-  $entity = $_GET['entity'];
+$handler = 'json-v1';
+if ($development && $version >= 'v2018-08') {
+  $handler = 'csv-v2-proxy-based';
 }
+
+$allowedEntities = ['ProvidedCHO', 'Agent', 'Timespan', 'Concept', 'Place'];
+$entity = getOrDefault('entity', 'ProvidedCHO', $allowedEntities);
 
 $dataDir = getDataDir();
 $smarty = createSmarty($templateDir);
+$proxies = ['provider', 'europeana'];
 
 $statistics = new stdClass();
-readStatistics($type, $id, $entity);
+readStatistics($type, $id, $entity, $filePrefix);
+
+// $statistics: {
+//  "entityCount",
+//  "frequencyTable": ["values", "html"],
+//  "cardinality": ["count","sum","median","mean","html"]
+// }
+
+$facetables = [
+  'dc:contributor', 'dc:coverage', 'dc:creator', 'dc:date',
+  'dc:identifier', 'dc:language', 'dc:rights', 'dc:source', 'dc:type'
+];
 
 $fieldProperties = [];
+
 foreach ($fields[$entity] as $field => $label) {
   $key = strtolower($field);
   $properties = (object)[
@@ -51,30 +77,81 @@ foreach ($fields[$entity] as $field => $label) {
     'hasHistograms' => isset($statistics->histograms->{$key}),
     'hasMinMaxRecords' => isset($statistics->minMaxRecords->{$key}),
   ];
+  $properties->facetable = in_array($label, $facetables);
+
   if ($properties->isMandatory) {
     $properties->mandatory = $mandatory[$entity][$field];
     $properties->mandatoryIcon = getMandatoryIcon($mandatory[$entity][$field]);
   }
 
   if ($properties->hasFrequency) {
-    $freq = $statistics->frequencyTable->{$key};
-    $properties->freqValues = json_encode($freq['values']);
-    $properties->zeros = isset($freq['values']->{'0'})
-           ? (int)$freq['values']->{'0'}[0]
-           : (int)$statistics->entityCount;
-    $properties->nonZeros = isset($freq['values']->{'1'})
-           ? (int)$freq['values']->{'1'}[0]
-           : max($statistics->entityCount - $properties->zeros, 0);
-    $properties->percent = $properties->nonZeros / $statistics->entityCount;
-    $properties->width = (int)(300 * $properties->percent);
+    if ($handler == 'csv-v2-proxy-based') {
+      $properties->freqValues = new stdClass();
+      $properties->zeros = new stdClass();
+      $properties->nonZeros = new stdClass();
+      $properties->percent = new stdClass();
+      $properties->width = new stdClass();
+      $properties->freqHtml = new stdClass();
 
-    $properties->freqHtml = $freq['html'];
+      foreach ($proxies as $proxy) {
+        $freq = $statistics->frequencyTable->{$key}->{$proxy};
+
+        $histogram_entries = $statistics->histograms->{$key}->{$proxy}['values'];
+        if ($histogram_entries[0]->min == '0.0' && $histogram_entries[0]->max == '0.0') {
+          $zeros = $histogram_entries[0]->count;
+        } else {
+          $zeros = 0;
+        }
+
+        $values = is_array($freq['values'])
+          ? json_decode(json_encode((object)$freq['values']))
+          : $freq['values'];
+        $properties->freqValues->{$proxy} = json_encode($values);
+        $properties->zeros->{$proxy} = $zeros;
+        $properties->nonZeros->{$proxy} = $statistics->proxyCount - $zeros;
+        $properties->percent->{$proxy} = $properties->nonZeros->{$proxy}
+          / $statistics->proxyCount;
+        $properties->width->{$proxy} = (int)(200 * $properties->percent->{$proxy});
+
+        $properties->freqHtml->{$proxy} = $freq['html'];
+      }
+    } else {
+      $freq = $statistics->frequencyTable->{$key};
+      $values = is_array($freq['values'])
+        ? json_decode(json_encode((object)$freq['values']))
+        : $freq['values'];
+      $properties->freqValues = json_encode($values);
+      $properties->zeros = isset($values->{'0'})
+        ? (int)$values->{'0'}
+        : (int)$statistics->entityCount;
+      $properties->nonZeros = isset($values->{'1'})
+        ? (int)$values->{'1'}
+        : max($statistics->entityCount - $properties->zeros, 0);
+      $properties->percent = $properties->nonZeros / $statistics->entityCount;
+      $properties->width = (int)(300 * $properties->percent);
+
+      $properties->freqHtml = $freq['html'];
+    }
   }
   if ($properties->hasCardinality) {
-    $properties->cardinalityHtml = $statistics->cardinality->{$key}->html;
+    if ($handler == 'csv-v2-proxy-based') {
+      $properties->cardinalityHtml = new stdClass();
+      foreach ($proxies as $proxy) {
+        $properties->cardinalityHtml->{$proxy} = $statistics->cardinality->{$key}->{$proxy}->html;
+      }
+    } else {
+      $properties->cardinalityHtml = $statistics->cardinality->{$key}->html;
+    }
   }
   if ($properties->hasHistograms) {
-    $properties->histogramHtml = $statistics->histograms->{$key}['html'];
+    if ($handler == 'csv-v2-proxy-based') {
+      $properties->histogramHtml = new stdClass();
+      foreach ($proxies as $proxy) {
+        $properties->histogramHtml->{$proxy} = $statistics->histograms->{$key}->{$proxy}['html'];
+      }
+    } else {
+      $properties->histogramHtml = $statistics->histograms->{$key}['html'];
+    }
   }
   if ($properties->hasMinMaxRecords) {
     $properties->recMax = $statistics->minMaxRecords->{$key}->recMax;
@@ -84,7 +161,6 @@ foreach ($fields[$entity] as $field => $label) {
   $fieldProperties[$field] = $properties;
 }
 
-$development = getOrDefault('development', '0') == 1 ? TRUE : FALSE;
 $smarty->assign('development', $development);
 $smarty->assign('type', $type);
 $smarty->assign('version', $version);
@@ -92,7 +168,11 @@ $smarty->assign('entity', $entity);
 $smarty->assign('fields', $fieldProperties);
 $smarty->assign('statistics', $statistics);
 $smarty->assign('mandatory', $mandatory[$entity]);
-$smarty->display('frequency-per-entity.tpl');
+if ($handler == 'csv-v2-proxy-based') {
+  $smarty->display('proxy-based-frequency-per-entity.tpl');
+} else {
+  $smarty->display('frequency-per-entity.tpl');
+}
 
 function getMandatoryIcon($key) {
   $mandatoryIcon = '';
@@ -108,32 +188,228 @@ function getMandatoryIcon($key) {
   return $mandatoryIcon;
 }
 
-
-function readStatistics($type, $id, $entity) {
-  global $fields, $statistics;
+function readStatistics($type, $id, $entity, $filePrefix) {
+  global $fields, $statistics, $version, $development;
 
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
-  $entityIDField = $entity . '_rdf_about';
 
-  readFreqFileExistence($type, $id, $entityFields);
-  readCardinality($type, $id, $entityFields);
-  readFrequencyTable($type, $id, $entityIDField, $entityFields);
-  readHistogram($type, $id, $entityFields);
-  readMinMaxRecords($type, $id, $entityFields);
+  if ($development && $version >= 'v2018-08') {
+    $proxyIDField = strtolower('PROVIDER_Proxy_rdf_about');
+    $entityIDField = ($entity == 'ProvidedCHO' ? 'Proxy' : $entity) . '_rdf_about';
 
-  readImageFiles($type, $id, $entityFields);
+    readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $proxyIDField);
+  } else {
+    $entityIDField = $entity . '_rdf_about';
+
+    readFreqFileExistence($type, $id, $entityFields);
+    readCardinality($type, $id, $entityFields);
+    readFrequencyTable($type, $id, $entityIDField, $entityFields);
+    readHistogram($type, $id, $entityFields);
+    readMinMaxRecords($type, $id, $entityFields);
+
+    // readImageFiles($type, $id, $entityFields);
+  }
+
   return $statistics;
 }
 
-// concept_rdf_about
+function readFromCsv($filePrefix, $entityFields, $entityIDField) {
+  global $statistics, $smarty;
+
+  $errors = [];
+  $completeness = readCompleteness($filePrefix, $errors);
+  $histogram = readHistogramFormCsv($filePrefix, $errors);
+
+  $statistics->entityCount = $completeness[$entityIDField]['mean'] * $completeness[$entityIDField]['count'];
+
+  foreach ($entityFields as $field) {
+    if (isset($completeness[$field])) {
+      $frequencyTable = (object)['entityCount' => $statistics->entityCount];
+      $values = [
+        1 => $completeness[$field]['mean'] * $statistics->entityCount
+      ];
+      $values[0] = $statistics->entityCount - $values[1];
+      $frequencyTable->values = $values;
+
+      $smarty->assign('frequencyTable', $frequencyTable);
+      $smarty->assign('displayTitle', TRUE);
+      $html = $smarty->fetch('frequency-table.smarty.tpl');
+
+      $statistics->frequencyTable->{$field} = [
+        'values' => $values,
+        'html' => $html,
+      ];
+    } else {
+      error_log(sprintf('%d) Field %s is not in completeness', __LINE__, $field));
+    }
+
+    if ($filePrefix == 'all') {
+      if (isset($completeness['crd_' . $field])) {
+        $stat = $completeness['crd_' . $field];
+        $cardinality = (object)[
+          'count' => $completeness[$field]['mean'] * $statistics->entityCount,
+          'sum' => $stat['mean'] * $statistics->entityCount,
+          'median' => -1,
+          'mean' => $stat['mean']
+        ];
+        $smarty->assign('cardinality', $cardinality);
+        $smarty->assign('displayMedian', FALSE);
+        $smarty->assign('displayTitle', TRUE);
+        $cardinality->html = $smarty->fetch('cardinality.smarty.tpl');
+        $statistics->cardinality->{$field} = $cardinality;
+
+      } else {
+        error_log(sprintf('%d) Field crd_%s is not in completeness', __LINE__, $field));
+      }
+    } else {
+      if (isset($completeness[$field])) {
+        $stat = $completeness[$field];
+        $cardinality = (object)[
+          'count' => $completeness[$field]['mean'] * $statistics->entityCount,
+          'sum' => $stat['mean'] * $statistics->entityCount,
+          'median' => -1,
+          'mean' => $stat['mean']
+        ];
+        $smarty->assign('cardinality', $cardinality);
+        $smarty->assign('displayMedian', FALSE);
+        $smarty->assign('displayTitle', FALSE);
+        $cardinality->html = $smarty->fetch('cardinality.smarty.tpl');
+        $statistics->cardinality->{$field} = $cardinality;
+
+      } else {
+        error_log(sprintf('%d) Field crd_%s is not in completeness', __LINE__, $field));
+      }
+    }
+  }
+}
+
+function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $proxyIDField) {
+  global $statistics, $smarty, $proxies;
+
+  $errors = [];
+  $completeness = readCompleteness($filePrefix, $errors);
+  $histogram = readHistogramFormCsv($filePrefix, $errors);
+
+  foreach ($proxies as $proxy) {
+    $key = strtolower($proxy . '_' . $entityIDField);
+    $statistics->entityCount[$proxy] = isset($completeness[$key]) ? $completeness[$key]['count'] : 0;
+  }
+
+  $statistics->proxyCount = $completeness[$proxyIDField]['count'];
+  $statistics->frequencyTable = new stdClass();
+  $statistics->cardinality = new stdClass();
+  $statistics->histograms = new stdClass();
+
+  $smarty->assign('proxyCount', $statistics->proxyCount);
+  $smarty->assign('entityCount', $statistics->entityCount);
+  $smarty->assign('fq', filePrefixToFq($filePrefix));
+  $smarty->registerPlugin('function', 'toSolrField', 'toSolrField');
+  $smarty->registerPlugin('function', 'toSolrRangeQuery', 'toSolrRangeQuery');
+
+  foreach ($entityFields as $field) {
+    foreach ($proxies as $proxy) {
+      $qualifiedField = $proxy . '_' . $field;
+      $zeros = $statistics->proxyCount;
+      $instances = 0;
+      if (isset($completeness[$qualifiedField])) {
+        $zeros = $statistics->proxyCount - $completeness[$qualifiedField]['count'];
+        $instances = $completeness[$qualifiedField]['sum'];
+      }
+
+      $frequencyTable = (object)[
+        'entityCount' => $statistics->proxyCount,
+        'values' => [
+          0 => $zeros,
+          1 => $statistics->proxyCount - $zeros
+        ],
+        'instances' => $instances
+      ];
+
+      $smarty->assign('frequencyTable', $frequencyTable);
+      $smarty->assign('displayTitle', FALSE);
+      $html = $smarty->fetch('frequency-table.smarty.tpl');
+
+      if (!isset($statistics->frequencyTable->{$field})) {
+        $statistics->frequencyTable->{$field} = (object)[
+          'provider' => [],
+          'europeana' => []
+        ];
+      }
+      $statistics->frequencyTable->{$field}->{$proxy} = [
+        'values' => $frequencyTable->values,
+        'html' => $html,
+      ];
+
+      if (isset($completeness[$qualifiedField])) {
+        $stat = $completeness[$qualifiedField];
+        $cardinality = (object)[
+          'count' => $stat['count'],
+          'sum' => $stat['sum'],
+          'median' => $stat['median'],
+          'mean' => $stat['mean']
+        ];
+      } else {
+        $cardinality = (object)['count' => 0, 'sum' => 0, 'median' => 0, 'mean' => 0];
+      }
+
+      $smarty->assign('cardinality', $cardinality);
+      $smarty->assign('displayMedian', TRUE);
+      $smarty->assign('displayTitle', FALSE);
+      $cardinality->html = $smarty->fetch('cardinality.smarty.tpl');
+      if (!isset($statistics->cardinality->{$field})) {
+        $statistics->cardinality->{$field} = (object)[];
+      }
+      $statistics->cardinality->{$field}->{$proxy} = $cardinality;
+
+      if (isset($histogram[$qualifiedField])) {
+        $smarty->assign('histogram', $histogram[$qualifiedField]);
+        $smarty->assign('field', $qualifiedField);
+        $smarty->assign('displayTitle', FALSE);
+        $html = $smarty->fetch('proxy-based-histogram.smarty.tpl');
+        if (!isset($statistics->histograms->{$field})) {
+          $statistics->histograms->{$field} = (object)[];
+        }
+        $statistics->histograms->{$field}->{$proxy} = [
+          'values' => $histogram[$qualifiedField],
+          'html' => $html,
+        ];
+      }
+    }
+  }
+}
+
+function filePrefixToFq($filePrefix) {
+  $map = [
+    'c' => 'dataset_i',
+    'd' => 'dataProvider_i',
+    'p-' => 'provider_i',
+    'cn-' => 'country_i',
+    'l-' => 'language_i'
+  ];
+
+  if ($filePrefix == 'all') {
+    $fq = '*:*';
+  } else {
+    if (preg_match('/^(c|d|p-|cn-|l-)(\d+)$/', $filePrefix, $matches)) {
+      $fq = sprintf('%s:%d', $map[$matches[1]], $matches[2]);
+    } else if (preg_match('/^(cdp)-(\d+)-(\d+)-(\d+)$/', $filePrefix, $matches)) {
+      $fq = sprintf(
+        'dataset_i:%d&dataProvider_i:%d&provider_i:%d',
+        $matches[2], $matches[3], $matches[4]
+      );
+    } else {
+      error_log('Unhanded filePrefix: ' . $filePrefix);
+    }
+  }
+  return $fq;
+}
+
 function readFreqFileExistence($type, $id, $entityFields) {
   global $dataDir, $statistics, $filePrefix;
 
   $statistics->freqFile = $dataDir . '/json/' . $filePrefix . '/'
     . $filePrefix . '.freq.json';
-  // error_log('LOG freqFile: ' . $statistics->freqFile);
   $statistics->freqFileExists = file_exists($statistics->freqFile);
-  // error_log('LOG freqFile exists: ' . (int)$statistics->freqFileExists);
 }
 
 function readCardinality($type, $id, $entityFields) {
@@ -148,7 +424,8 @@ function readCardinality($type, $id, $entityFields) {
     $key = 'cardinality-property';
     $statistics->cardinalityProperty = isset($_GET[$key])
                                        && in_array($_GET[$key], $cardinalityProperties)
-      ? $_GET[$key] : 'sum';
+      ? $_GET[$key]
+      : 'sum';
 
     $cardinality = json_decode(file_get_contents($statistics->cardinalityFile));
     $statistics->cardinalityMax = 0;
@@ -160,6 +437,8 @@ function readCardinality($type, $id, $entityFields) {
         unset($entry->field);
         $statistics->cardinality->{$field} = $entry;
         $smarty->assign('cardinality', $entry);
+        $smarty->assign('displayMedian', TRUE);
+        $smarty->assign('displayTitle', TRUE);
         $statistics->cardinality->{$field}->html =
           $smarty->fetch('cardinality.smarty.tpl');
 
@@ -183,26 +462,28 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
     $statistics->frequencyTable = json_decode(
       file_get_contents($statistics->frequencyTableFile)
     );
+    $frequencyTable = (object)[];
     foreach ($statistics->frequencyTable as $key => $value) {
+      $value = clearJson($value);
       if ($key != strtolower($key)) {
         unset($statistics->frequencyTable->$key);
         $key = strtolower($key);
-        // echo $key, ", ";
         if ($key == strtolower($entityIDField)) {
-          $statistics->entityCount = $value->{'1'}[0];
+          $statistics->entityCount = $value->{'1'};
           $data->entityCount = $statistics->entityCount;
         } else if (in_array($key, $entityFields)) {
           $data->values = $value;
           $smarty->assign('frequencyTable', $data);
           $html = $smarty->fetch('frequency-table.smarty.tpl');
 
-          $statistics->frequencyTable->{$key} = [
+          $frequencyTable->{$key} = [
             'values' => $value,
             'html' => $html,
           ];
         }
       }
     }
+    $statistics->frequencyTable = $frequencyTable;
   } else {
     $statistics->frequencyTable = FALSE;
   }
@@ -211,12 +492,11 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
 function readHistogram($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics, $smarty, $filePrefix;
 
-  // $statistics->histFile = '../json/' . $type . $id . '/' .  $type . $id . '.hist.json';
+  error_log('readHistogram');
+
   $statistics->histFile = $dataDir . '/json/' . $filePrefix . '/'
     .  $filePrefix . '.cardinality.histogram.json';
   $statistics->histFile_exists = file_exists($statistics->histFile);
-  // error_log(sprintf("LOG histFile (%s) exists? %d\n",
-  //   $statistics->histFile, $statistics->histFile_exists));
   if (file_exists($statistics->histFile)) {
     $histograms = json_decode(file_get_contents($statistics->histFile));
     if (!isset($statistics->histograms))
@@ -232,6 +512,7 @@ function readHistogram($type, $id, $entityFields) {
           'values' => $values
         ];
         $smarty->assign('histogram', $data);
+        $smarty->assign('displayTitle', TRUE);
         $html = $smarty->fetch('histogram.smarty.tpl');
 
         $statistics->histograms->{$needle} = [
@@ -271,9 +552,19 @@ function toSolrField($key) {
     'tableOfContents', 'currentLocation', 'hasType', 'isDerivativeOf',
     'isRepresentationOf', 'isSimilarTo', 'isSuccessorOf'
   ];
-  $key = str_replace($subject, $target, $key);
+  $solrField = 'crd_' .
+    preg_replace('/^provider_/', 'PROVIDER_',
+      preg_replace('/^europeana_/', 'EUROPEANA_',
+        str_replace($subject, $target, $key)
+      )
+    )
+    . '_i';
 
-  return $key . '_f';
+  return $solrField;
+}
+
+function toSolrRangeQuery($histogramItem) {
+  return sprintf("[%s TO %s]", (int)$histogramItem->min, (int)$histogramItem->max);
 }
 
 function readMinMaxRecords($type, $id, $entityFields) {
@@ -322,4 +613,57 @@ function readImageFiles($type, $id, $entityFields) {
       'html' => sprintf('<img src="%s" height="300" />', $fileName),
     ];
   }
+}
+
+/**
+ * @param $filePrefix
+ * @param $errors
+ * @param $dataDir
+ * @return array
+ */
+function readCompleteness($filePrefix, &$errors) {
+  global $dataDir, $development, $version;
+  static $completeness;
+
+  if (!isset($completeness)) {
+    $completeness = [];
+    $suffix = $development && $version == 'v2018-08'
+      ? '.proxy-based-completeness.csv'
+      : '.completeness.csv';
+    $completenessFileName = $dataDir
+      . '/json/' . $filePrefix
+      . '/' . $filePrefix . $suffix;
+    if (file_exists($completenessFileName)) {
+      $keys = ($version == 'v2018-08')
+        ? ["mean", "min", "max", "count", "sum", "median"]
+        : ["mean", "min", "max", "count", "sum", "stddev", "median"];
+      foreach (file($completenessFileName) as $line) {
+        $values = str_getcsv($line);
+        array_shift($values);
+        $field = array_shift($values);
+        $assoc = array_combine($keys, $values);
+        $completeness[strtolower($field)] = $assoc;
+      }
+    } else {
+      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $completenessFileName);
+      $errors[] = $msg;
+      error_log($msg);
+    }
+  }
+
+  return $completeness;
+}
+
+function clearJson($values) {
+  $data = (object)[];
+  if (gettype($values) == 'object') {
+    foreach (get_object_vars($values) as $key => $value) {
+      $data->{(string)$key} = $value[0];
+    }
+  } else {
+    foreach ($values as $key => $value) {
+      $data->{(string)$key} = $value[0];
+    }
+  }
+  return $data;
 }

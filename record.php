@@ -182,20 +182,40 @@ $multilinguality_labels = [
   'languages_per_property' => 'Average number of languages per property for which there is at least one language-tagged literal'
 ];
 
+if ($version >= 'v2019-03') {
+  $multilinguality_labels = [
+    'TaggedLiterals' => 'Number of tagged literals',
+    'DistinctLanguageCount' => 'Number of distinct language tags',
+    'TaggedLiteralsPerLanguage' => 'Number of tagged literals per language tag',
+    'NumberOfLanguagesPerProperty' => 'Average number of languages per property for which there is at least one language-tagged literal'
+  ];
+}
+
 $rawMetrics = getMetricsFromSolr($id, $version);
 $metrics = reorganizeMetrics($rawMetrics);
+// error_log(json_encode($metrics->cardinality['europeana']));
+// error_log(json_encode($metrics->multilinguality));
 
 $has_alternatives = hasAlternative($optional_groups, $metrics);
 
-$table = [];
-$table[0] = [];
+$heatmap = new stdClass();
+$heatmap->header = [];
 foreach ($graphs as $key => $object) {
-  $table[0][] = $key == 'total' ? '&nbsp;' : $object['label'];
+  $heatmap->header[] = $key == 'total' ? '&nbsp;' : $object['label'];
 }
 
+$heatmap->rows = [];
 foreach ($graphs['total']['fields'] as $field) {
+  if (preg_match('/^Aggregation/', $field))
+    continue;
+
+  $solrField = $field;
   $row = array($field);
-  $color = in_array($field, $metrics->existence) && $metrics->existence[$field] == 1 ? 'green' : 'yellow';
+  $color = in_array($solrField, $metrics->cardinality['provider']) &&
+           isset($metrics->cardinality['provider'][$solrField]) &&
+           $metrics->cardinality['provider'][$solrField] != 0
+         ? 'green'
+         : 'yellow';
   // $color = $colors[rand(0, 2)];
   foreach ($graphs as $key => $object) {
     if ($key == 'total' || !isset($object['fields']))
@@ -209,7 +229,7 @@ foreach ($graphs['total']['fields'] as $field) {
       $row[] = '';
     }
   }
-  $table[] = $row;
+  $heatmap->rows[] = $row;
 }
 
 // print_r($metadata);
@@ -225,26 +245,29 @@ $smarty->assign('stylesheets', ['chart.css', 'style/newviz.css']);
 $smarty->assign('version', $version);
 $smarty->assign('development', $development);
 $smarty->assign('metrics', $metrics);
-$smarty->assign('table', $table);
+$smarty->assign('heatmap', $heatmap);
 $smarty->assign('graphs', $graphs);
 $smarty->assign('subdimensions', $subdimensions);
 $smarty->assign('metadata', $metadata);
 $smarty->assign('structure', $structure);
 $smarty->assign('problems', $problems);
-$smarty->assign('collection', retrieveName($metrics->identifiers['collection'], 'c'));
-$smarty->assign('provider', retrieveName($metrics->identifiers['provider'], 'd'));
+$smarty->assign('dataset', retrieveName($metrics->identifiers['dataset'], 'c'));
+$smarty->assign('dataProvider', retrieveName($metrics->identifiers['dataProvider'], 'd'));
+$smarty->assign('provider', retrieveName($metrics->identifiers['provider'], 'p'));
+$smarty->assign('country', retrieveName($metrics->identifiers['country'], 'cn'));
+$smarty->assign('language', retrieveName($metrics->identifiers['language'], 'l'));
 $smarty->assign('multilinguality_labels', $multilinguality_labels);
 $smarty->display('record.smarty.tpl');
 
 function hasAlternative($optional_groups, $metrics) {
-
   $has_alternative = [];
   foreach ($optional_groups as $dimension => $groups) {
     for ($g = 0; $g < count($groups); $g++) {
       $group = $groups[$g];
       for ($i =0; $i < count($group['fields']); $i++) {
         $field = $group['fields'][$i];
-        if ($metrics->existence[$field] == 1) {
+        if (isset($metrics->cardinality['PROVIDER/' . $field]) &&
+            $metrics->cardinality['PROVIDER/' . $field] != 0) {
           $optional_groups[$dimension][$g]['has_value'] = TRUE;
           break;
         }
@@ -460,7 +483,7 @@ function getSolrMetricsUrl($id, $version) {
 }
 
 function reorganizeMetrics($raw_metrics) {
-  global $subdimensions;
+  global $subdimensions, $version;
 
   $reorganized = (object)[
     'identifiers' => [],
@@ -484,13 +507,33 @@ function reorganizeMetrics($raw_metrics) {
   foreach ($raw_metrics as $key => $value) {
     if (preg_match('/^(ProvidedCHO|Proxy|Aggregation|Place|Agent|Timespan|Concept)_/', $key)) {
       $reorganized->existence[existenceToEdm($key)] = $value;
-    } else if (preg_match('/^crd_(ProvidedCHO|Proxy|Aggregation|Place|Agent|Timespan|Concept)_/', $key)) {
-      $reorganized->cardinality[existenceToEdm(str_replace('crd_', '', $key))] = $value;
+    } else if (
+        preg_match(
+          '/^crd_(PROVIDER|EUROPEANA)_(ProvidedCHO|Proxy|Aggregation|Place|Agent|Timespan|Concept)_/',
+          $key,
+          $matches)) {
+      $tag = strtolower($matches[1]);
+      $reorganized->cardinality[$tag][existenceToEdm(str_replace('crd_', '', $key))] = $value;
     } else if (preg_match($subdimensions_pattern, $key)) {
       $reorganized->subdimensions[str_replace('_f', '', $key)] = $value;
-    } else if (preg_match('/^(provider|europeana)_(.*?)_(taggedliterals|languages|literalsperlanguage)_f/', $key, $matches)) {
+    } else if (preg_match(
+        '/^(provider|europeana)_(.*?)_(taggedliterals|languages|literalsperlanguage)_i/i',
+        $key,
+        $matches)) {
       $reorganized->multilinguality->fields[$matches[1]][str_replace('_', ':', $matches[2])][$matches[3]] = $value;
-    } else if (preg_match('/^(languages_per_property|taggedliterals_per_language|taggedliterals|distinctlanguages)_in_(providerproxy|europeanaproxy|object)_f/', $key, $matches)) {
+    } else if ($version >= 'v2019-03' &&
+      preg_match(
+        '/^(NumberOfLanguagesPerProperty|TaggedLiteralsPerLanguage|TaggedLiterals|DistinctLanguageCount)In(ProviderProxy|EuropeanaProxy|Object)_f/',
+        $key,
+        $matches)) {
+      if (!isset($reorganized->multilinguality->global[$matches[1]]))
+        $reorganized->multilinguality->global[$matches[1]] = (object)[];
+      $reorganized->multilinguality->global[$matches[1]]->{$matches[2]} = $value;
+    } else if (
+      preg_match(
+        '/^(languages_per_property|taggedliterals_per_language|taggedliterals|distinctlanguages)_in_(providerproxy|europeanaproxy|object)_f/',
+        $key,
+        $matches)) {
       if (!isset($reorganized->multilinguality->global[$matches[1]]))
         $reorganized->multilinguality->global[$matches[1]] = (object)[];
       $reorganized->multilinguality->global[$matches[1]]->{$matches[2]} = $value;
@@ -498,6 +541,12 @@ function reorganizeMetrics($raw_metrics) {
       $reorganized->languages->fields[langToEdm($matches[1])] = $value;
     } else if (preg_match('/^(languages_ss)/', $key)) {
       $reorganized->languages->global = $value;
+    } else if ($version >= 'v2019-03' &&
+               preg_match(
+                 '/^(id|dataset_i|dataProvider_i|provider_i|country_i|language_i)$/',
+                 $key
+               )) {
+      $reorganized->identifiers[str_replace('_i', '', $key)] = $value;
     } else if (preg_match('/^(id|collection_i|provider_i)$/', $key)) {
       $reorganized->identifiers[str_replace('_i', '', $key)] = $value;
     } else if (preg_match('/^(long_subject_f_f|same_title_and_description_f_f|empty_string_f)$/', $key)) {
@@ -508,19 +557,27 @@ function reorganizeMetrics($raw_metrics) {
       $reorganized->uncategorized[$key] = $value;
     }
   }
+
+  error_log('fields: ' . json_encode($reorganized->languages->fields));
   return $reorganized;
 }
 
-function existenceToEdm($key) {
-  $key = preg_replace('/^(ProvidedCHO|Proxy|Aggregation|Place|Agent|Timespan|Concept)_(.*?)_f$/', "$1/$2", $key);
+function existenceToEdm($solrField) {
+  $key = preg_replace(
+    '/^(PROVIDER|EUROPEANA)_(ProvidedCHO|Proxy|Aggregation|Place|Agent|Timespan|Concept)_(.*?)_i$/',
+    "$2/$3",
+    $solrField);
   $key = str_replace('_', ':', $key);
   return $key;
 }
 
 function langToEdm($key) {
-  $key = preg_replace('/^(ProvidedCHO|proxy|aggregation|place|agent|timespan|concept)_(.*?)$/', "$1/$2", $key);
-  $key = str_replace('_', ':', $key);
-  return $key;
+  $edm = preg_replace(
+    '/^(ProvidedCHO|proxy|aggregation|place|agent|timespan|concept)_(.*?)$/',
+    "$1/$2", $key);
+  $edm = strtolower(str_replace('_', ':', $edm));
+  error_log($key . ' -> ' . $edm);
+  return $edm;
 }
 
 function problemCatalog($key) {
@@ -529,11 +586,12 @@ function problemCatalog($key) {
   return $key;
 }
 
+/*
 function retrieveName($id, $type) {
   global $dataDir;
 
   if (!isset($content)) {
-    $file = ($type == 'c') ? 'datasets.txt' : "data-providers.txt";
+    $file = ($type == 'c') ? 'datasets.csv' : "data-providers.csv";
     $content = explode("\n", file_get_contents($dataDir . '/' . $file));
   }
 
@@ -549,3 +607,4 @@ function retrieveName($id, $type) {
   }
   return $name;
 }
+*/

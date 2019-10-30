@@ -123,15 +123,16 @@ if (!isset($field))
   $field = 'all';
 
 $excludeZeros = in_array(0, $_GET['exclusions']);
-$showNoInstances = in_array(1, $_GET['exclusions']);
+$showNoOccurences = in_array(1, $_GET['exclusions']);
 
 $treeMapUrl = 'plainjson2tree.php?field=' . $field
             . '&excludeZeros=' . (int)$excludeZeros
-            . '&showNoInstances=' . (int)$showNoInstances
+            . '&showNoOccurences=' . (int)$showNoOccurences
             . '&collectionId=' . $collectionId
             . '&version=' . $version;
 
-$fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . '.languages.json';
+$fileName = getDataDir() . '/json/' . $collectionId
+  . '/' . $collectionId . '.languages.json';
 $languages = json_decode(file_get_contents($fileName));
 
 include("templates/languages/languages.tpl.php");

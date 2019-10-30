@@ -1,4 +1,6 @@
-<h3>Number of field occurrences in individual records</h3>
+{if $displayTitle}
+  <h3>Number of field occurrences in individual records</h3>
+{/if}
 <table class="histogram" id="{$histogram->field}-histogram">
   <tr>
     <td class="legend">range of values</td>

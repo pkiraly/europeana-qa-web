@@ -6,9 +6,9 @@
   The table is ordered by the number of records, so the more typical records
   are on the top. With the <i class="fa fa-plus" aria-hidden="true"></i> sign
   you can check the patterns belong to the cluster. If the field is not
-  available in all records within the cluster only in some patterns, then
+  present in all records within the cluster only in some patterns, then
   it is grayed.
-  Each line contains information about which fields are available in the
+  Each line contains information about which fields are present in the
   record, and how many records has this pattern.
   By default we do not display patterns occur in less than 1% of
   the records, but you can unhide them with the &ldquo;Show infrequent patterns!&rdquo;
@@ -21,23 +21,23 @@
     to this cluster.
   </li>
   <li>
-    The first columns contain the provider proxy fields available in the records.
+    The first columns contain the provider proxy fields present in the records.
     The order is the same as in the EDM documentation. It does not contain the fields
-    which are not available in any of the records (within the dataset). If a cell is green,
-    the field is available, otherwise not.
+    which are not present in any of the records (within the dataset). If a cell is green,
+    the field is present, otherwise not.
   </li>
   <li>
-    <em>#fields</em> &mdash; the number of fields available in the pattern
+    <em>#fields</em> &mdash; the number of fields present in the pattern
   </li>
   <li>
     <em>#patterns</em> &mdash; the number of patterns this cluster covers
   </li>
   <li>
-    <em>occurence</em> &mdash; the number of records in which this pattern is available
+    <em>occurence</em> &mdash; the number of records in which this pattern is present
   </li>
   <li>
     <em>percent</em> &mdash; the percent of records compared to the whole dataset in
-    which this pattern is available
+    which this pattern is present
   </li>
 </ul>
 

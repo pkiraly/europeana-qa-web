@@ -7,9 +7,16 @@ $configuration = parse_ini_file($root . '/config.cfg');
 include_once($root . '/common/common-functions.php');
 
 $fragment = getOrDefault('fragment', NULL);
-$type = getOrDefault('type', 'c', ['c', 'd']);
-$fileName = ($type == 'c') ? 'datasets.txt' : 'data-providers.txt';
+$type = getOrDefault('type', 'c', ['c', 'd', 'p']);
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
+
+$files = [
+  'c' => 'datasets.csv',
+  'd' => 'data-providers.csv',
+  'p' => 'providers.csv',
+];
+
+$fileName = $files[$type];
 
 $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 $content = retrieveCsv($fileName, $fragment);

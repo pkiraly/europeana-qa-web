@@ -5,7 +5,7 @@ $('#language-distribution-selector').on('change', function () {
 $('#excludeZeros').on('change', function () {
   displayLanguageTreemap();
 });
-$('#showNoInstances').on('change', function () {
+$('#showNoOccurences').on('change', function () {
   displayLanguageTreemap();
 });
 
@@ -27,14 +27,16 @@ var tooltipDiv = d3.select("#tooltip")
 displayLanguageTreemap('aggregated');
 
 function getTreeMapUrl() {
+  console.log('intersection: ' + intersection);
   var field = $('#language-distribution-selector').val();
   var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
-  var showNoInstances = 0; //$('#showNoInstances').is(':checked') ? 0 : 1;
+  var showNoOccurences = 0; //$('#showNoOccurences').is(':checked') ? 0 : 1;
 
   var treeMapUrl = 'plainjson2tree.php?field=' + field
     + '&excludeZeros=' + excludeZeros //  . (int)$excludeZeros
-    + '&showNoInstances=' + showNoInstances // . (int)$showNoInstances
+    + '&showNoOccurences=' + showNoOccurences // . (int)$showNoOccurences
     + '&collectionId=' + collectionId
+    + '&intersection=' + intersection
     + '&version=' + version;
   return treeMapUrl;
 }
@@ -165,7 +167,7 @@ function label2(d, fieldName) {
 
   if (isARealLanguageCode || language == 'no language') {
     if (fieldName == 'aggregated' && language != 'no language') {
-      text += "<br>\n<strong>available in fields</strong>: ";
+      text += "<br>\n<strong>present in fields</strong>: ";
       var items = new Array();
       for (i in fieldsByLanguage[d.name]) {
         field = fieldsByLanguage[d.name][i];
@@ -260,7 +262,7 @@ function languageFieldExamples(event, collectionId, field, language) {
        var links = new Array();
        links.push('<a target="_blank" href="' + portalUrl + id + '.json" class="external">data</a>');
        links.push('<a target="_blank" href="' + portalUrl + id + '.html" class="external">portal</a>');
-       links.push('<a href="record.php?id=' + id + '&version=' + version + '"' + ' title="record id: ' + id + '">QA</a>');
+       links.push('<a href="record.php?id=' + id + '&version=' + version + '"' + ' title="record id: ' + id + '">details</a>');
        item = 'visit record (' + links.join(', ') + ')';
        items.push('<li>' + item + '</li>');
      }

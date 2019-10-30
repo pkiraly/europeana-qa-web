@@ -127,7 +127,7 @@ form label {
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
   var margin = { top: 50, right: 0, bottom: 100, left: 30 },
-      n = <?= $n ?>,
+      n = <?= $count ?>,
       gridSizeX = gridSizeY = 14,
       width = 1000 - margin.left - margin.right,
       columns = Math.ceil(width / (gridSizeX + 2)),

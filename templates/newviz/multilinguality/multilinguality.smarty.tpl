@@ -8,7 +8,7 @@
   </tr>
   <tr>
     <th>Metric</th>
-    {foreach $data->generic_prefixes as $prefix}
+    {foreach $data->genericPrefixes as $prefix}
       <th class="first rotate"><div><span>mean</span></div></th>
       <th class="rotate" title="standard deviation"><div><span>st.&nbsp;dev.</span></div></th>
       <th class="rotate details"><div><span>min</span></div></th>
@@ -19,13 +19,13 @@
   </thead>
   {strip}
   <tbody>
-    {foreach $data->fields as $metric => $label}
+    {foreach $data->genericMetrics as $metric => $label}
       {assign var=proxies value=$data->assocStat['generic'][$metric]}
       <tr>
         <td class="metric">{$label}</td>
-        {foreach $data->generic_prefixes as $prefix => $label1}
+        {foreach $data->genericPrefixes as $prefix => $label1}
           <td class="first">{$proxies[$prefix]->mean|conditional_format:FALSE:FALSE:1}</td>
-          <td>{$proxies[$prefix]->{'std.dev'}|conditional_format:FALSE:FALSE:1}</td>
+          <td>{if isset($proxies[$prefix]->{'std.dev'})}{$proxies[$prefix]->{'std.dev'}|conditional_format:FALSE:FALSE:1}{else}0{/if}</td>
           <td class="details">{$proxies[$prefix]->min|conditional_format:FALSE:FALSE:1}</td>
           <td class="details">{$proxies[$prefix]->max|conditional_format:FALSE:FALSE:1}</td>
           <td class="details">{$proxies[$prefix]->median|conditional_format:FALSE:FALSE:1}</td>
@@ -52,8 +52,9 @@
     <p>The table shows the <em>mean</em> of the number of language tags and literals tagged with a language
       per record, in the selected set.</p>
 
-    <p><em>n/a</em> means that the particular field is not available in any record
+    <p><em>n/a</em> means that the particular field is not present in any record
       in the collection.</p>
+
     <table id="multilingual-score-general-table" class="table table-condensed table-striped tablesorter">
       <thead>
       <tr class="primary">
@@ -73,19 +74,22 @@
       </thead>
       <tbody>
       {strip}
-      {foreach $data->assocStat['specific'] as $field => $metrics}
+      {foreach $data->fields as $field => $label}
+        {assign var="key" value=$field|lower}
+        {assign var="metrics" value=$data->assocStat['specific'][$key]}
         <tr>
-          <td>{$field|fieldlabel}</td>
-          {foreach $metrics as $metric => $objects}
-            {foreach $objects as $object_name => $object}
+          <td>{$label}</td>
+          {foreach $data->specificMetrics as $metric => $metricLabel}
+            {foreach $data->specificPrefixes as $prefix => $prefixLabel}
               <td class="numeric">
-              {if ($object->mean == 'NaN')}
-                <span style="color:#999">n/a</span>
-              {else}
-                <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min} ({$object->recMin})|max: {$object->max} ({$object->recMax})|mean: {$object->mean}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}}{else}0{/if}|median: {if isset($object->median)}{$object->median}{else}0{/if}">
-                  <span data-toggle="tooltip" title="Get details">{$object->mean|conditional_format:FALSE:TRUE:3}</span>
-                </span>
-              {/if}
+                {if (!isset($metrics[$metric][$prefix]) || $metrics[$metric][$prefix]->mean == 'NaN')}
+                  <span style="color:#999">n/a</span>
+                {else}
+                  {assign var=object value=$metrics[$metric][$prefix]}
+                  <span class="pop" data-toggle="popover" title="details" data-content="min: {$object->min|conditional_format:FALSE:FALSE:3} ({if isset($object->recMin)}{$object->recMin}{/if})|max: {$object->max|conditional_format:FALSE:FALSE:3} ({if isset($object->recMax)}{$object->recMax}{/if})|mean: {$object->mean|conditional_format:FALSE:FALSE:3}|standard deviation: {if isset($object->{'std.dev'})}{$object->{'std.dev'}|conditional_format:FALSE:FALSE:3}{else}0{/if}|median: {if isset($object->median)}{$object->median|conditional_format:FALSE:FALSE:3}{else}0{/if}">
+                    <span data-toggle="tooltip" title="Get details">{$object->mean|conditional_format:FALSE:TRUE:3}</span>
+                  </span>
+                {/if}
               </td>
             {/foreach}
           {/foreach}
@@ -105,12 +109,14 @@
           {/foreach}
         </select>
         {/strip}
+        <br/>
+        This drop-down list shows all EDM fields where values can have a language tag, according to the EDM specification<br/>
         <input type="checkbox" name="exclusions[]" value="0" id="excludeZeros" />
         <label for="excludeZeros">Exclude records with fields without language tag</label>
 
         <!--
-        <input type="checkbox" name="exclusions[]" value="1" id="showNoInstances" />
-        <label for="showNoInstances">Exlude records without field</label>
+        <input type="checkbox" name="exclusions[]" value="1" id="showNoOccurences" />
+        <label for="showNoOccurences">Exlude records without field</label>
         -->
       </form>
 
@@ -132,6 +138,7 @@
         <div id="heatmap"></div>
         <div id="tooltip"></div>
       </div>
+
 
       <script id="fields-by-language-data" type="application/json">{$data->fieldsByLanguageList|json_encode}</script>
       <script id="language-distribution-data" type="application/json">{$data->languageDistribution|json_encode}</script>
@@ -159,7 +166,7 @@
                   "(visit record: "
                   + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
                   + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
-                  + ", <a href=\"record.php?id=$1&version=" + version + "\">QA</a>"
+                  + ", <a href=\"record.php?id=$1&version=" + version + "\">details</a>"
                   + ")"
                 );
               $(this).attr('data-content', content);
@@ -170,7 +177,7 @@
         });
         {/literal}
       </script>
-      <script type="text/javascript" src="/europeana-qa/js/multilinguality.treemap.js">
+      <script type="text/javascript" src="/europeana-qa/js/multilinguality.treemap.js"></script>
     </div>
   </div>
 </div>

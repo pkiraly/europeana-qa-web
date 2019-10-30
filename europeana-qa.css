@@ -95,15 +95,22 @@ table#statistics td.field-value {
   max-width: 500px;
 }
 
-table#statistics td table.multilinguality td {
-  vertical-align: top;
+table#statistics td table.multilinguality {
+  margin: 0;
 }
 
-table#statistics td table.multilinguality td.label {
+table#statistics td table.multilinguality td {
+  vertical-align: top;
+  /* border-bottom: 1px solid #d9d9d9; */
+  padding-right: 5px;
+  font-size: 80%;
+}
+
+table#statistics td table.multilinguality td.m-label {
   color: #999999;
 }
 
-table#statistics td table.multilinguality td.value {
+table#statistics td table.multilinguality td.m-value {
   text-align: right;
 }
 
@@ -118,7 +125,7 @@ table.qa-basic-statistics td {
 
 table.qa-basic-statistics td.qa-label {
   border-left: 2px solid #ccc;
-  text-transform: italic;
+  font-style: italic;
 }
 
 table.qa-basic-statistics td.qa-value {
@@ -359,6 +366,37 @@ table#dataset tr.in-all td.collection-label {
 
 #intersections label {
   font-weight: unset;
+  font-size: 90%;
+}
+
+#intersections label.disabled {
+  color: #999999;
+}
+
+#intersections label.selectable {
+  color: #9B410E;
+}
+
+#intersections legend {
+  font-size: 90%;
+  margin: 0;
+}
+
+#intersections div.row intersections-d,
+#intersections div.row intersections-p {
+  margin: 0;
+}
+
+#intersections-container,
+div.form-selector,
+form#collection-selector {
+  margin: 0;
+  padding: 0;
+}
+
+div.tab-pane div.row {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 a.external {
@@ -366,4 +404,19 @@ a.external {
   background-position: center right;
   background-repeat: no-repeat;
   padding-right: 13px;
+}
+
+/**
+ *
+ */
+.form-selector div.tab-pane div.row {
+  margin: 20px 20px 5px 20px;
+}
+
+div#cardinality-content h5 {
+  font-style: italic;
+}
+
+a.close-popup {
+  float: right;
 }

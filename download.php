@@ -15,7 +15,6 @@ $development = getOrDefault('development', 0, [0, 1]);
 
 if (!is_null($file)) {
   if (preg_match('/^[\w-]*\.json.gz$/', $file)) {
-    error_log('downloadFile: ' . $file);
     downloadFile($file);
     exit();
   } else {

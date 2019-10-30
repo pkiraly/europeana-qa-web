@@ -84,12 +84,12 @@
 </table>
 
 <h2 id="n">Number of records</h2>
-<p><?php echo number_format($n, 0, '.', ' '); ?></p>
+<p><?php echo number_format($count, 0, '.', ' '); ?></p>
 
 <?php if ($freqFileExists) { ?>
   <h2 id="frequency">Field frequency</h2>
 
-  <p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is available in every records, 0 means that this field is never available. The numbers are rounded to 2 decimals.</p>
+  <p>This chart shows the frequency of the analyzed fields in the current record set. 100% means that the field is present in every records, 0 means that this field is never present. The numbers are rounded to 2 decimals.</p>
 
   <div id="frequency-chart" class="chart"></div>
 <?php } ?>
@@ -101,7 +101,7 @@
   
   <p>
     Select statistics:
-    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'sum') ?>#cardinality">number of field instances</a>]
+    [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'sum') ?>#cardinality">number of field occurrence</a>]
     [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'mean') ?>#cardinality">average</a>]
     [<a href="<?php printf("dataset.php?id=%s&name=%s&type=%s&cardinality-property=%s", $id, $collectionId, $type, 'median') ?>#cardinality">median</a>]
   </p>
@@ -148,7 +148,7 @@
       <tr>
         <td class="legend">percentage</td>
         <?php foreach ($frequencyTable->$name as $value => $frequency) { ?>
-          <td><span title="<?= $frequency[0] * 100 / $n; ?>"><?php printf("%.2f%%", ($frequency[0] * 100 / $n)); ?></span></td>
+          <td><span title="<?= $frequency[0] * 100 / $count; ?>"><?php printf("%.2f%%", ($frequency[0] * 100 / $count)); ?></span></td>
         <?php } ?>
       </tr>
     </table>
@@ -192,8 +192,8 @@
   <input type="hidden" name="targetId" value="#language-treemap" />
   <input type="checkbox" name="excludeZeros" value="0" id="excludeZeros"/>
   <label for="excludeZeros">Exclude records without specified language</label>
-  <input type="checkbox" name="showNoInstances" value="1" id="showNoInstances"/>
-  <label for="showNoInstances">Show records without field</label>
+  <input type="checkbox" name="showNoOccurences" value="1" id="showNoOccurences"/>
+  <label for="showNoOccurences">Show records without field</label>
 </form>
 <div id="language-treemap"></div>
 <table>

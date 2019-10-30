@@ -14,6 +14,12 @@
 
   <p>Here you can download selected snapshots of the whole Europeana database.</p>
 
+  <p>
+    The data in these dumps is formatted according to the Europeana Data Model and
+    follows a syntax that is close (but not identical) to the one of the
+    <a href="https://pro.europeana.eu/resources/apis/record#json" target="_blank">Europeana Record API</a>.
+  </p>
+
   <p>versions:</p>
   <ul type="square">
     {foreach $versions as $v}

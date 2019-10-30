@@ -40,9 +40,19 @@ function getDataDir() {
   return $configuration['DATA_PATH'] . '/' . $version;
 }
 
+/**
+ * prefixes
+ * c - dataset
+ * d - dataProvider
+ * cd - [dataset] - [dataProvider]
+ * pd - [provider] - [dataProvider]
+ * p - provider
+ * cn - country
+ * l - language
+ */
 function parseId($id) {
   $type = substr($id, 0, 1);
-  if (in_array($type, ['c', 'd'])) {
+  if (in_array($type, ['c', 'd', 'pd', 'p', 'cn', 'l', 'a'])) {
     $id = substr($id, 1);
   } else {
     $type = 'c';
@@ -81,3 +91,152 @@ function createSmarty($templateDir) {
 
   return $smarty;
 }
+
+function readHistogramFormCsv($filePrefix, &$errors) {
+  global $dataDir, $development, $version;
+  static $histogram;
+
+  if (!isset($histogram)) {
+    $histogram = [];
+    $suffix = $development && $version == 'v2018-08'
+      ? '.proxy-based-completeness-histogram.csv'
+      : '.completeness-histogram.csv';
+    $histogramFileName = $dataDir
+      . '/json/' . $filePrefix
+      . '/' . $filePrefix . $suffix;
+    if (file_exists($histogramFileName)) {
+      $keys = ["id", "field", "entries"];
+      foreach (file($histogramFileName) as $line) {
+        $values = str_getcsv($line);
+        $values = array_combine($keys, $values);
+        $field = strtolower($values['field']);
+        $raw_entries = explode(';', $values['entries']);
+        $entries = [];
+        foreach ($raw_entries as $raw) {
+          list($min_max, $count) = explode(':', $raw);
+          list($min, $max) = explode('-', $min_max);
+          $entries[] = (object)[
+            'min' => $min,
+            'max' => $max,
+            'count' => $count
+          ];
+        }
+        $histogram[$field] = $entries;
+      }
+    } else {
+      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $histogramFileName);
+      $errors[] = $msg;
+      error_log($msg);
+    }
+  }
+
+  return $histogram;
+}
+
+function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = NULL, $intersection = NULL) {
+  global $dataDir, $development;
+
+  if ($id == 'all' || !in_array($type, ['c', 'd', 'p'])) {
+    return (object)[];
+  }
+
+  if ($development) {
+    $other_types = ($type == 'c' || $type == 'p') ? ['d'] : ['c', 'p'];
+    $file = $dataDir . '/proxy-based-intersections.json';
+    if (is_null($id2) && !is_null($intersection) && !is_null($type2)) {
+      $id2 = extractSubId($intersection, $type2);
+    }
+  } else {
+    $other_type = ($type == 'c') ? 'd' : 'c';
+    $file = $dataDir . '/intersections.json';
+  }
+
+  $data = json_decode(file_get_contents($file));
+
+  $list = $data->$type->$id;
+  if (!is_null($id2)) {
+    if (isset($list->$type2->$id2->$targetType)) {
+      $list = (object)[$targetType => $list->$type2->$id2->$targetType];
+    } else {
+      return [];
+    }
+  }
+
+  $all_count = 0;
+  if ($development) {
+    $rows = (object)['list' => (object)[]];
+    foreach ($list as $other_type => $original_items) {
+      $items = [];
+      foreach ($original_items as $_id => $item) {
+        $entry = $item->entry;
+        $entry->id = $_id;
+        $entry->type = $other_type;
+        $entry->name = retrieveName($_id, $other_type);
+        if ($type == 'c' && $entry->name === FALSE)
+          $entry->name = 'unspecified';
+        $items[] = $entry;
+        $all_count += $entry->count;
+      }
+      $rows->list->{$other_type} = (object)[
+        'items' => $items,
+        'count' => count($items)
+      ];
+    }
+    $rows->all_count = $all_count;
+  } else {
+    $rows = [(object)['id' => 'all', 'name'=> 'all', 'file'=> 'all']];
+    foreach ($list as $_id => $item) {
+      $item->id = $_id;
+      $item->name = retrieveName($_id, $other_type);
+      if ($type == 'c' && $item->name === FALSE)
+        $item->name = 'unspecified';
+      $rows[] = $item;
+      $all_count += $item->count;
+    }
+    $rows[0]->count = $all_count;
+  }
+  return $rows;
+}
+
+function extractSubId($intersection, $subType) {
+  list($types, $id1, $id2) = explode('-', $intersection);
+  if ($subType == $types[0]) {
+    return $id1;
+  } else if ($subType == $types[1]) {
+    return $id2;
+  }
+  return NULL;
+}
+
+function retrieveName($id, $type) {
+  global $dataDir;
+
+  if ($type == 'a')
+    return 'all Europeana';
+
+  $files = [
+    'c' => 'datasets.csv',
+    'd' => 'data-providers.csv',
+    'p' => 'providers.csv',
+    'cn' => 'countries.csv',
+    'l' => 'languages.csv',
+  ];
+
+  if (!isset($content)) {
+    $file = $files[$type];
+    $path = $dataDir . '/' . $file;
+    error_log('path: ' . $path);
+    $content = explode("\n", file_get_contents($dataDir . '/' . $file));
+  }
+
+  $name = FALSE;
+  foreach ($content as $line) {
+    list($_id, $_name) = explode(';', $line, 2);
+    if ($_id == $id) {
+      $name = $_name;
+      break;
+    }
+  }
+  return $name;
+}
+
