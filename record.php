@@ -14,7 +14,7 @@ $solrPort = 8984;
 $baseUrl = 'http://localhost:8984/solr/';
 
 $configuration = parse_ini_file('config.cfg');
-require_once($configuration['OAI_PATH'] . '/OAIHarvester.php');
+// require_once($configuration['OAI_PATH'] . '/OAIHarvester.php');
 
 $id = isset($_GET['id']) ? $_GET['id'] : $argv[1];
 if (strpos($id, ID_PREFIX) !== FALSE) {
