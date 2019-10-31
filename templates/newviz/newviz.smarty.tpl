@@ -313,7 +313,7 @@
         <div class="row">
           <h2>Multilinguality metrics</h2>
           <p>Dataset:
-            {if $development && $version >= 'v2018-08'}
+            {if $version >= 'v2018-08'}
               {$entityCounts->provider_proxy_rdf_about}
             {else}
               {$entityCounts->proxy_rdf_about}

@@ -113,11 +113,9 @@ $smarty->assign('id3', $id3);
 
 $smarty->assign('source', $source);
 
-if ($development) {
-  $smarty->assign('languages', retrieveLanguages($type, ($type == 'l' ? $fragment : '')));
-  $smarty->assign('countries', retrieveCountries($type, ($type == 'cn' ? $fragment : '')));
-  $smarty->assign('providers', retrieveProviders($type, ($type == 'p' ? $fragment : '')));
-}
+$smarty->assign('languages', retrieveLanguages($type, ($type == 'l' ? $fragment : '')));
+$smarty->assign('countries', retrieveCountries($type, ($type == 'cn' ? $fragment : '')));
+$smarty->assign('providers', retrieveProviders($type, ($type == 'p' ? $fragment : '')));
 
 $smarty->display('newviz.smarty.tpl');
 
@@ -199,12 +197,14 @@ function getCountFromRGeneratedJson($filePrefix, &$errors) {
  * @return array
  */
 function getCountFromCsv($filePrefix, &$errors) {
-  global $development;
+  global $development, $version;
 
   $count = 0;
   $completeness = readCompleteness($filePrefix, $errors);
   if (!empty($completeness)) {
-    $field = $development ? 'PROVIDER_Proxy_rdf_about' : 'ProvidedCHO_rdf_about';
+    $field = ($version >= 'v2018-08')
+           ? 'PROVIDER_Proxy_rdf_about'
+           : 'ProvidedCHO_rdf_about';
     $count = $completeness[$field]['count'];
   }
 
@@ -223,7 +223,7 @@ function readCompleteness($filePrefix, &$errors) {
 
   if (!isset($completeness)) {
     $completeness = [];
-    $suffix = ($development && $version == 'v2018-08')
+    $suffix = ($version == 'v2018-08')
       ? '.proxy-based-completeness.csv' : '.completeness.csv';
     $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . $suffix;
     if (file_exists($completenessFileName)) {
