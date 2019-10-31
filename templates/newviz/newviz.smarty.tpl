@@ -629,14 +629,6 @@ function updateIntercestionSelector(selectedType,
                                     type2, id2,
                                     targetType, targetId,
                                     intersection) {
-  console.log("updateIntercestionSelector("
-    + "selectedType: " + selectedType
-    + ", selectedId: " + selectedId
-    + ", type2: " + type2
-    + ", id2: " + id2
-    + ", targetType: " + targetType
-    + ", targetId: " + targetId
-    + ", intersection: " + intersection + ")");
   var query = {
     'type': selectedType,
     'id': selectedId,
@@ -663,7 +655,6 @@ function updateIntercestionSelector(selectedType,
         if (query.format == 'html') {
           $('#intersections').html(data);
         } else {
-          console.log(query)
           triggerWatcher = false;
           var items = data.list[query.targetType].items;
           var nf = Intl.NumberFormat();
