@@ -624,7 +624,11 @@ function resetIntersection(current) {
   current.val(current.attr('data-value'));
 }
 
-function updateIntercestionSelector(selectedType, selectedId, type2, id2, targetType, targetId, intersection) {
+function updateIntercestionSelector(selectedType,
+                                    selectedId,
+                                    type2, id2,
+                                    targetType, targetId,
+                                    intersection) {
   var query = {
     'type': selectedType,
     'id': selectedId,
@@ -635,7 +639,8 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
     query.format = 'html';
   }
 
-  if (typeof(type2) != 'undefined' && typeof(intersection) != 'undefined') {
+  if (typeof(type2) != 'undefined'
+      && typeof(intersection) != 'undefined') {
     query.type2 = type2;
     query.id2 = id2;
     query.targetType = targetType;
@@ -650,6 +655,7 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
         if (query.format == 'html') {
           $('#intersections').html(data);
         } else {
+          console.log(query)
           triggerWatcher = false;
           var items = data.list[query.targetType].items;
           var nf = Intl.NumberFormat();
