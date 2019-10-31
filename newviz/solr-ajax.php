@@ -1,9 +1,10 @@
 <?php
 
+$root = realpath(__DIR__. '/../');
+include_once $root . '/common/common-functions.php';
+
 $baseUrl = 'http://localhost:8984/solr/';
-$version = isset($_GET['version']) ? preg_replace('/^v/', '', $_GET['version']) : '2018-03';
-$version = 'qa-' . $version;
-$baseUrl .= $version;
+$baseUrl .= getOrDefault('version', 'v2019-10');
 
 $q = $_GET['q'];
 $fq = $_GET['fq'];

@@ -239,4 +239,3 @@ function retrieveName($id, $type) {
   }
   return $name;
 }
-
