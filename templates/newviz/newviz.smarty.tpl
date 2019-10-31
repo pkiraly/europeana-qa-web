@@ -641,7 +641,7 @@ function updateIntercestionSelector(selectedType, selectedId, type2, id2, target
   $.get("newviz/intersections-ajax.php", query)
     .done(function(data) {
       var triggerWatcher = true;
-      if (development) {
+      if (version >= 'v2018-08') {
         if (query.format == 'html') {
           $('#intersections').html(data);
         } else {

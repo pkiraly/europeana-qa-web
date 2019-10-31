@@ -17,7 +17,6 @@ $id2 = getOrDefault('id2', NULL);
 $targetType = getOrDefault('targetType', NULL);
 $intersection = getOrDefault('intersection', NULL);
 
-
 if (is_null($id) || is_null($type) || !in_array($type, ['c', 'd', 'p']) || is_null($version)) {
   $content = [];
 }
