@@ -247,7 +247,7 @@
           <div class="col-sm-3 col-md-3 col-lg-3">
             <h2>Field Frequency</h2>
             <p>Dataset:
-              {if $development}
+              {if $version >= 'v2018-08'}
                 {$entityCounts->provider_proxy_rdf_about}
               {else}
                 {$entityCounts->proxy_rdf_about}
@@ -256,31 +256,31 @@
             <ul id="entities" class="nav">
               <li class="nav-item">
                 <a class="nav-link" href="#cardinality-score-providedcho" datatype="ProvidedCHO">ProvidedCHO
-                  {if !$development}
+                  {if $version < 'v2018-08'}
                     ({$entityCounts->proxy_rdf_about})
                   {/if}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#cardinality-score-agent" datatype="Agent">Agent
-                  {if !$development}
+                  {if $version < 'v2018-08'}
                     ({$entityCounts->agent_rdf_about})
                   {/if}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#cardinality-score-timespan" datatype="Timespan">Timespan
-                  {if !$development}
+                  {if $version < 'v2018-08'}
                     ({$entityCounts->timespan_rdf_about})
                   {/if}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#cardinality-score-concept" datatype="Concept">Concept
-                  {if !$development}
+                  {if $version < 'v2018-08'}
                     ({$entityCounts->concept_rdf_about})
                   {/if}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#cardinality-score-place" datatype="Place">Place
-                  {if !$development}
+                  {if $version < 'v2018-08'}
                     ({$entityCounts->place_rdf_about})
                   {/if}</a>
               </li>
@@ -479,7 +479,7 @@ $(document).ready(function () {
     }
   });
 
-  if (!development) {
+  if (version < 'v2018-08') {
     showType(type);
     $("input[name='type']").on('change', function () {
       showType($(this).val());
@@ -578,7 +578,7 @@ function watchIntersections() {
 function filterIds(oForm) {
   var selectorId = (type == 'c') ? 'cid' : 'did';
 
-  if (development) {
+  if (version < 'v2018-08') {
     var type = $('input[name=type]', $(oForm)).val();
     var fragment = $('input[name=fragment]', $(oForm)).val();
   } else {
@@ -625,8 +625,13 @@ function resetIntersection(current) {
 }
 
 function updateIntercestionSelector(selectedType, selectedId, type2, id2, targetType, targetId, intersection) {
-  var query = {'type': selectedType, 'id': selectedId, 'version': version, 'development': development};
-  if (development) {
+  var query = {
+    'type': selectedType,
+    'id': selectedId,
+    'version': version,
+    'development': development
+  };
+  if (version < 'v2018-08') {
     query.format = 'html';
   }
 
