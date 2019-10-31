@@ -643,7 +643,7 @@ function updateIntercestionSelector(selectedType,
     'version': version,
     'development': development
   };
-  if (version < 'v2018-08') {
+  if (version >= 'v2018-08') {
     query.format = 'html';
   }
 
