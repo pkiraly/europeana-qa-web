@@ -67,12 +67,12 @@ $count = 0;
 $errors = [];
 $entityCounts = (object)[];
 
-if ($id == 'all' && $version >= 'v2018-08') {
+if ($version >= 'v2018-08') {
   $count = getCountFromCsv($filePrefix, $errors);
   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
-} else if ($development && $version >= 'v2018-08') {
-  $count = getCountFromCsv($filePrefix, $errors);
-  $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
+// } else if ($development && $version >= 'v2018-08') {
+//   $count = getCountFromCsv($filePrefix, $errors);
+//   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
 } else {
   $count = getCountFromRGeneratedJson($filePrefix, $errors);
   $entityCounts = getEntityCountsFromRGeneratedJson($filePrefix, $errors);
