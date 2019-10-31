@@ -133,14 +133,19 @@ function readHistogramFormCsv($filePrefix, &$errors) {
   return $histogram;
 }
 
-function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = NULL, $intersection = NULL) {
-  global $dataDir, $development;
+function getIntersections($type,
+                          $id,
+                          $type2 = NULL,
+                          $id2 = NULL,
+                          $targetType = NULL,
+                          $intersection = NULL) {
+  global $dataDir, $version, $development;
 
   if ($id == 'all' || !in_array($type, ['c', 'd', 'p'])) {
     return (object)[];
   }
 
-  if ($development) {
+  if ($version >= 'v2018-08') {
     $other_types = ($type == 'c' || $type == 'p') ? ['d'] : ['c', 'p'];
     $file = $dataDir . '/proxy-based-intersections.json';
     if (is_null($id2) && !is_null($intersection) && !is_null($type2)) {
@@ -163,7 +168,7 @@ function getIntersections($type, $id, $type2 = NULL, $id2 = NULL, $targetType = 
   }
 
   $all_count = 0;
-  if ($development) {
+  if ($version >= 'v2018-08') {
     $rows = (object)['list' => (object)[]];
     foreach ($list as $other_type => $original_items) {
       $items = [];
