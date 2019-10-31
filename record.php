@@ -4,7 +4,10 @@ include_once('common/common-functions.php');
 include_once('newviz/common.functions.php');
 
 define('LN', "\n");
-define('OAI_PMH_URL_TEMPLATE', 'http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=%s');
+define(
+  'OAI_PMH_URL_TEMPLATE',
+  'http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=%s'
+);
 define('ID_PREFIX', 'http://data.europeana.eu/item/');
 define('RECORD_API', 'http://144.76.218.178:8080/europeana-qa/record/%s.json?dataSource=mongo');
 define('METRICS_API', 'http://144.76.218.178:8080/europeana-qa/%s.json?dataSource=cassandra');

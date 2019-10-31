@@ -10,7 +10,6 @@
   </div>
 
   <div id="form-container">
-    {if ($development)}
       <ul class="nav nav-tabs" id="formTab">
         <li{if $type == 'c'} class="active"{/if}>
           <a data-toggle="intersection" role="intersection" aria-selected="{if $type == 'c'}true{else}false{/if}"
@@ -205,63 +204,6 @@
           <input type="button" class="btn pull-right" id="reset-intersections" value="clear selections">
         </form>
       </div>
-
-    {else}
-      <form id="collection-selector">
-        <div class="row">
-          <div class="col-lg-4">
-            <label><input type="radio" name="type" value="c"{if ($type == 'c')} checked="checked"{/if}>select a dataset</label>
-            <label><input type="radio" name="type" value="d"{if ($type == 'd')} checked="checked"{/if}>select a data provider</label>
-          </div>
-          <div class="col-lg-8">
-            <label for="fragment">filter the list:</label>
-            <input type="text" name="fragment" value="{$fragment}" onkeyup="filterIds(this.form);"><br>
-            {strip}
-              <select name="id" id="cid" {if ($type != 'c')} style="display:none"{/if}>
-                {foreach $datasets as $cid => $name}
-                  <option value="{$cid}"{if ($type == 'c' && $id == $cid)} selected="selected" title="{$name}"{/if}>{$name}</option>
-                {/foreach}
-              </select>
-            {/strip}
-            {strip}
-              <select name="id" id="did" {if ($type != 'c')} style="display:none"{/if}>
-                {foreach $dataproviders as $did => $name}
-                  <option value="{$did}"{if ($type == 'd' && $id == $did)} selected="selected" title="{$name}"{/if}>{$name}</option>
-                {/foreach}
-              </select>
-            {/strip}
-            <input type="hidden" name="version" value="{$version}"/>
-            <input type="hidden" name="development" value="{$development}"/>
-            <input type="submit" class="btn btn-dark btn-sm" aria-hidden="true" value="Display">
-          </div>
-        </div>
-
-        <div class="row" id="intersections">
-          {assign var=total value=count($intersections)}
-          {if $total > 6}
-            {assign var=unit_size value=ceil($total / 3)}
-          {else}
-            {assign var=unit_size value="0"}
-            <div class="col-lg-4">&nbsp;</div>
-            <div class="col-lg-8">
-          {/if}
-          {strip}
-            {foreach $intersections as $i => $item}
-              {if $unit_size > 0 && $i % $unit_size == 0}
-                {if $i != 0}</div>{/if}
-                <div class="col-lg-4">
-              {/if}
-              <label>
-                <input type="radio" name="intersection" value="{$item->file}"
-                      {if $item->file == $intersection} checked="checked"{/if}/>
-                {$item->name} ({$item->count|number_format:0:'.':' '})
-              </label><br/>
-            {/foreach}
-            </div>
-          {/strip}
-        </div>
-      </form>
-    {/if}
   </div>{* /form-container *}
 
   {if ($type == 'd')}
