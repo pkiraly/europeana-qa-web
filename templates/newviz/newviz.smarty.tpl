@@ -629,6 +629,14 @@ function updateIntercestionSelector(selectedType,
                                     type2, id2,
                                     targetType, targetId,
                                     intersection) {
+  console.log("updateIntercestionSelector("
+    + "selectedType: " + selectedType,
+    + "selectedId: " + selectedId,
+    + "type2: " + type2,
+    + "id2: " + id2,
+    + "targetType: " + targetType,
+    + "targetId: " + targetId,
+    + "intersection: " + intersection + ")");
   var query = {
     'type': selectedType,
     'id': selectedId,
