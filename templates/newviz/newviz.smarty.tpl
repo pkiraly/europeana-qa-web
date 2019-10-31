@@ -535,7 +535,7 @@ $(function () {
 });
 
 function watchIntersections() {
-  if (development) {
+  if (version >= 'v2018-08') {
     var types = ['c', 'd', 'p'];
     $('#intersections input[name^="intersection-"]').on('click', function () {
       var current = $(this);
