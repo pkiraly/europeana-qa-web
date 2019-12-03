@@ -133,6 +133,7 @@ foreach ($fields[$entity] as $field => $label) {
       $properties->freqHtml = $freq['html'];
     }
   }
+
   if ($properties->hasCardinality) {
     if ($handler == 'csv-v2-proxy-based') {
       $properties->cardinalityHtml = new stdClass();
@@ -143,6 +144,7 @@ foreach ($fields[$entity] as $field => $label) {
       $properties->cardinalityHtml = $statistics->cardinality->{$key}->html;
     }
   }
+
   if ($properties->hasHistograms) {
     if ($handler == 'csv-v2-proxy-based') {
       $properties->histogramHtml = new stdClass();
@@ -153,6 +155,7 @@ foreach ($fields[$entity] as $field => $label) {
       $properties->histogramHtml = $statistics->histograms->{$key}['html'];
     }
   }
+
   if ($properties->hasMinMaxRecords) {
     $properties->recMax = $statistics->minMaxRecords->{$key}->recMax;
     $properties->recMin = $statistics->minMaxRecords->{$key}->recMin;
@@ -193,7 +196,7 @@ function readStatistics($type, $id, $entity, $filePrefix) {
 
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
 
-  if ($development && $version >= 'v2018-08') {
+  if ($version >= 'v2018-08') {
     $proxyIDField = strtolower('PROVIDER_Proxy_rdf_about');
     $entityIDField = ($entity == 'ProvidedCHO' ? 'Proxy' : $entity) . '_rdf_about';
 
