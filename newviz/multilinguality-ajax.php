@@ -330,7 +330,6 @@ function getLabel($key) {
 }
 
 function prepareFields($fields) {
-  error_log(json_encode($fields));
   $preparedFields = [];
   $exclude = [
     'proxy_edm_hasMet', 'proxy_edm_incorporates', 'proxy_edm_isDerivativeOf', 'proxy_edm_isRepresentationOf',
