@@ -630,9 +630,7 @@ function readCompleteness($filePrefix, &$errors) {
 
   if (!isset($completeness)) {
     $completeness = [];
-    $suffix = $version >= 'v2018-08'
-      ? '.proxy-based-completeness.csv'
-      : '.completeness.csv';
+    $suffix = '.completeness.csv';
     $completenessFileName = $dataDir
       . '/json/' . $filePrefix
       . '/' . $filePrefix . $suffix;
