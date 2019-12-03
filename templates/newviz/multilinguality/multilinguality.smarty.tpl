@@ -20,6 +20,7 @@
   {strip}
   <tbody>
     {foreach $data->genericMetrics as $metric => $label}
+        {json_encode($metric)}
       {assign var=proxies value=$data->assocStat['generic'][$metric]}
       <tr>
         <td class="metric">{$label}</td>
