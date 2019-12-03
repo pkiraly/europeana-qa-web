@@ -258,19 +258,25 @@ function parseIntersection(inputString) {
   var first = parts[0];
   for (var i = 0; i<first.length; i++) {
     var typeAbbreviation = first.substr(i, 1);
-    var typeField = '';
-    switch (typeAbbreviation) {
-      case 'c': typeField = 'dataset_i'; break;
-      case 'd': typeField = 'dataProvider_i'; break;
-      case 'p': typeField = 'provider_i'; break;
-    }
-    var part = typeField + ':' + parts[i + 1]
+    var typeField = resolveTypeAbbreviation(typeAbbreviation);
+    var part = typeField + ':' + parts[i + 1];
     console.log(part);
     queryParts.push(part);
   }
   return queryParts;
 }
 
+function resolveTypeAbbreviation(typeAbbreviation) {
+  var typeField = '';
+  switch (typeAbbreviation) {
+    case 'c': typeField = 'dataset_i'; break;
+    case 'd': typeField = 'dataProvider_i'; break;
+    case 'p': typeField = 'provider_i'; break;
+    case 'cn': typeField = 'country_i'; break;
+    case 'l': typeField = 'language_i'; break;
+  }
+  return typeField;
+}
 
 function languageFieldRecordCount(collectionId, field, language) {
   // event.preventDefault();
