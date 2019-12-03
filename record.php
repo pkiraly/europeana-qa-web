@@ -471,9 +471,6 @@ function getFieldValue($field) {
 function getMetricsFromSolr($id, $version) {
   global $solrPort;
 
-  if (substr($version, 0, 1) == 'v')
-    $version = substr($version, 1);
-
   $response = json_decode(file_get_contents(getSolrMetricsUrl($id, $version)));
 
   return $response->response->docs[0];
@@ -482,7 +479,7 @@ function getMetricsFromSolr($id, $version) {
 function getSolrMetricsUrl($id, $version) {
   global $solrPort;
 
-  return sprintf('http://localhost:%s/solr/qa-%s/select?q=id:"%s"', $solrPort, $version, $id);
+  return sprintf('http://localhost:%s/solr/%s/select?q=id:"%s"', $solrPort, $version, $id);
   $raw_metrics = $response->docs[0];
   return $raw_metrics;
 }
