@@ -340,9 +340,9 @@ function prepareFields($fields) {
     if ($field == 'proxy_edm_isNextInSequence' || $field == 'proxy_edm_type') {
       continue;
     }
-    if (in_array($field, $exclude))
-      continue;
     $key = str_replace('proxy_', '', strtolower($field));
+    if (in_array($key, $exclude))
+      continue;
     $preparedFields[$key] = $value;
   }
   return $preparedFields;
