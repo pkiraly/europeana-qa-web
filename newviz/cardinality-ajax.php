@@ -192,11 +192,11 @@ function getMandatoryIcon($key) {
 }
 
 function readStatistics($type, $id, $entity, $filePrefix) {
-  global $fields, $statistics, $version, $development;
+  global $fields, $statistics, $version;
 
   $entityFields = array_map('strtolower', array_keys($fields[$entity]));
 
-  if (:$version >= 'v2018-08') {
+  if ($version >= 'v2018-08') {
     $proxyIDField = strtolower('PROVIDER_Proxy_rdf_about');
     $entityIDField = ($entity == 'ProvidedCHO' ? 'Proxy' : $entity) . '_rdf_about';
 
