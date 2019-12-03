@@ -28,7 +28,9 @@ $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configura
 $dataDir = $configuration['DATA_PATH'] . '/' . $version;
 $development = getOrDefault('development', 0, [0, 1]);
 
-$metadata = json_decode(file_get_contents(sprintf(RECORD_API, $id)));
+$record_url = sprintf(RECORD_API, $id);
+$record_url = str_replace('record//', 'record/', $record_url);
+$metadata = json_decode(file_get_contents($record_url));
 
 $subdimensions = [
   'total', 'mandatory', 'descriptiveness', 'searchability', 'contextualization',
