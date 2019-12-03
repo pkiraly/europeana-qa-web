@@ -333,16 +333,16 @@ function prepareFields($fields) {
   error_log(json_encode($fields));
   $preparedFields = [];
   $exclude = [
-    'edm_hasMet', 'edm_incorporates', 'edm_isDerivativeOf', 'edm_isRepresentationOf', 'edm_isSimilarTo',
-    'edm_isSuccessorOf', 'edm_realizes'
+    'proxy_edm_hasMet', 'proxy_edm_incorporates', 'proxy_edm_isDerivativeOf', 'proxy_edm_isRepresentationOf',
+    'proxy_edm_isSimilarTo', 'proxy_edm_isSuccessorOf', 'proxy_edm_realizes'
   ];
   foreach ($fields as $field => $value) {
     if ($field == 'proxy_edm_isNextInSequence' || $field == 'proxy_edm_type') {
       continue;
     }
-    $key = str_replace('proxy_', '', strtolower($field));
-    if (in_array($key, $exclude))
+    if (in_array($field, $exclude))
       continue;
+    $key = str_replace('proxy_', '', strtolower($field));
     $preparedFields[$key] = $value;
   }
   return $preparedFields;
