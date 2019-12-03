@@ -38,6 +38,7 @@ function getTreeMapUrl() {
     + '&collectionId=' + collectionId
     + '&intersection=' + intersection
     + '&version=' + version;
+  console.log('treeMapUrl: ' + treeMapUrl);
   return treeMapUrl;
 }
 
@@ -203,7 +204,6 @@ function formatField(field) {
 }
 
 function buildQuery(field, language, collectionId) {
-  console.log('intersection:' + intersection);
   if (language == 'no language') {
     if (field == 'aggregated') {
       var fields = [];
