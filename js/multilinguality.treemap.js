@@ -217,13 +217,14 @@ function buildQuery(field, language, collectionId) {
     var q = langField + ':"' + language + '"';
   }
 
-  var typeAbbreviation = collectionId.substring(0, 1);
   var typeField = '';
   var queryParts = [];
   if (version >= 'v2019-08') {
     if (intersection != '') {
       queryParts = parseIntersection(intersection);
     } else {
+      queryParts = parseIntersection(collectionId);
+      /*
       switch (typeAbbreviation) {
         case 'c': typeField = 'dataset_i'; break;
         case 'd': typeField = 'dataProvider_i'; break;
@@ -231,9 +232,11 @@ function buildQuery(field, language, collectionId) {
         case 'cn': typeField = 'country_i'; break;
         case 'l': typeField = 'language_i'; break;
       }
+      */
     }
     //  'cd', 'pd'
   } else {
+    var typeAbbreviation = collectionId.substring(0, 1);
     typeField = (typeAbbreviation == 'c')
       ? 'collection_i'
       : 'provider_i';
@@ -248,9 +251,10 @@ function buildQuery(field, language, collectionId) {
   return query;
 }
 
-function parseIntersection(intersection) {
+function parseIntersection(inputString) {
+  console.log(inputString);
   var queryParts = [];
-  var parts = intersection.split('-');
+  var parts = inputString.split('-');
   var first = parts[0];
   for (var i = 0; i<first.length; i++) {
     var typeAbbreviation = first.substr(i, 1);
@@ -260,7 +264,9 @@ function parseIntersection(intersection) {
       case 'd': typeField = 'dataProvider_i'; break;
       case 'p': typeField = 'provider_i'; break;
     }
-    queryParts.push(typeField + ':' + parts[i + 1]);
+    var part = typeField + ':' + parts[i + 1]
+    console.log(part);
+    queryParts.push(part);
   }
   return queryParts;
 }
