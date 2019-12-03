@@ -229,6 +229,7 @@ function buildQuery(field, language, collectionId) {
 }
 
 function languageFieldRecordCount(collectionId, field, language) {
+  console.log("languageFieldRecordCount(" + collectionId + ", " + field + ", " + language + ")");
   // event.preventDefault();
   var query = buildQuery(field, language, collectionId);
   query.rows = 0;
