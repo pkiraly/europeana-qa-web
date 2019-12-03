@@ -33,7 +33,7 @@ $codes = [
 
 $is_languages_all = (!is_null($version) && $version >= 'v2019-03');
 $suffix = $is_languages_all ? '.languages-all.json' : '.languages.json';
-if (!is_null($intersection)) {
+if (!is_null($intersection) && $intersection != '') {
   $fileName = getDataDir() . '/json/' . $intersection . '/' . $intersection . $suffix;
 } else {
   $fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . $suffix;
