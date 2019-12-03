@@ -71,9 +71,9 @@ function getPrefixes($type) {
 }
 
 function getGenericMetrics() {
-  global $development;
+  global $version;
 
-  if ($development) {
+  if ($version >= 'v2018-08') {
     $fields = [
       'taggedliterals' => 'Number of tagged literals',
       'distinctlanguagecount' => 'Number of distinct language tags',
