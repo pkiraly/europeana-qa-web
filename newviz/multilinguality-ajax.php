@@ -101,9 +101,9 @@ function getSpecificMetrics() {
 }
 
 function getSaturationStatistics() {
-  global $development;
+  global $version;
 
-  if ($development) {
+  if ($version >= 'v2018-08') {
     $assocStat = getSaturationStatisticsFromCsv();
   } else {
     $assocStat = getSaturationStatisticsFromJson();
