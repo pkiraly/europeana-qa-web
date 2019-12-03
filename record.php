@@ -469,10 +469,7 @@ function getFieldValue($field) {
 }
 
 function getMetricsFromSolr($id, $version) {
-  global $solrPort;
-
   $response = json_decode(file_get_contents(getSolrMetricsUrl($id, $version)));
-
   return $response->response->docs[0];
 }
 

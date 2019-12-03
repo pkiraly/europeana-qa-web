@@ -38,7 +38,7 @@ $filePrefix = ($id == 'all')
   );
 
 $handler = 'json-v1';
-if ($development && $version >= 'v2018-08') {
+if ($version >= 'v2018-08') {
   $handler = 'csv-v2-proxy-based';
 }
 
