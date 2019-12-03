@@ -1,3 +1,4 @@
+{json_encode($data->assocStat['generic'])}
 <table id="generic" class="table table-condensed table-striped tablesorter table-header-rotated">
   <thead>
   <tr>
