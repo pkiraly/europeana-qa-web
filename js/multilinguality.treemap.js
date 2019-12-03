@@ -256,13 +256,17 @@ function parseIntersection(inputString) {
   var queryParts = [];
   var parts = inputString.split('-');
   console.log("parts size: " + parts.length);
-  var first = parts[0];
-  for (var i = 0; i<first.length; i++) {
-    var typeAbbreviation = first.substr(i, 1);
-    var typeField = resolveTypeAbbreviation(typeAbbreviation);
-    var part = typeField + ':' + parts[i + 1];
-    console.log(i + ") " + part);
+  if (parts.length == 2) {
+    var part = resolveTypeAbbreviation(parts[0]) + ':' + parts[1];
     queryParts.push(part);
+  } else {
+    var first = parts[0];
+    for (var i = 0; i<first.length; i++) {
+      var typeAbbreviation = first.substr(i, 1);
+      var typeField = resolveTypeAbbreviation(typeAbbreviation);
+      var part = typeField + ':' + parts[i + 1];
+      console.log(i + ") " + part);
+    }
   }
   return queryParts;
 }
