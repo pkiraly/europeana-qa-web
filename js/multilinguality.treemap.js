@@ -221,13 +221,18 @@ function buildQuery(field, language, collectionId) {
 
   var typeAbbreviation = collectionId.substring(0, 1);
   var typeField = '';
+  var queryParts = [];
   if (version >= 'v2019-08') {
-    switch (typeAbbreviation) {
-      case 'c': typeField = 'dataset_i'; break;
-      case 'd': typeField = 'dataProvider_i'; break;
-      case 'p': typeField = 'provider_i'; break;
-      case 'cn': typeField = 'country_i'; break;
-      case 'l': typeField = 'language_i'; break;
+    if (intersection != '') {
+      queryParts = parseIntersection(intersection);
+    } else {
+      switch (typeAbbreviation) {
+        case 'c': typeField = 'dataset_i'; break;
+        case 'd': typeField = 'dataProvider_i'; break;
+        case 'p': typeField = 'provider_i'; break;
+        case 'cn': typeField = 'country_i'; break;
+        case 'l': typeField = 'language_i'; break;
+      }
     }
     //  'cd', 'pd'
   } else {
@@ -236,11 +241,32 @@ function buildQuery(field, language, collectionId) {
       : 'provider_i';
   }
   collectionId = collectionId.substring(1);
-  var fq = typeField + ':' + collectionId;
-
+  if (queryParts.length > 0) {
+    var fq = queryParts.join(' AND ');
+  } else {
+    var fq = typeField + ':' + collectionId;
+  }
   var query = {'q': q, 'fq': fq, 'version': version};
   return query;
 }
+
+function parseIntersection(intersection) {
+  var queryParts = [];
+  var parts = intersection.split('-');
+  var first = parts[0];
+  for (var i = 0; i<first.length; i++) {
+    var typeAbbreviation = first.substr(i, 1);
+    var typeField = '';
+    switch (typeAbbreviation) {
+      case 'c': typeField = 'dataset_i'; break;
+      case 'd': typeField = 'dataProvider_i'; break;
+      case 'p': typeField = 'provider_i'; break;
+    }
+    queryParts.push(typeField + ':' + parts[i + 1]);
+  }
+  return queryParts;
+}
+
 
 function languageFieldRecordCount(collectionId, field, language) {
   console.log("languageFieldRecordCount(" + collectionId + ", " + field + ", " + language + ")");
