@@ -245,7 +245,7 @@ function languageFieldRecordCount(collectionId, field, language) {
   console.log("languageFieldRecordCount(" + collectionId + ", " + field + ", " + language + ")");
   // event.preventDefault();
   var query = buildQuery(field, language, collectionId);
-  console.log("query: " + query.toLocaleString());
+  console.log(query);
 
   query.rows = 0;
   $.get("newviz/solr-ajax.php", query)
