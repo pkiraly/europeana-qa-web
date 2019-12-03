@@ -9,7 +9,7 @@ define(
   'http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=%s'
 );
 define('ID_PREFIX', 'http://data.europeana.eu/item/');
-define('RECORD_API', 'http://144.76.218.178:8090/europeana-qa/record/%s.json?dataSource=mongo');
+define('RECORD_API', 'http://localhost:8090/europeana-qa/record/%s.json?dataSource=mongo');
 define('METRICS_API', 'http://144.76.218.178:8090/europeana-qa/%s.json?dataSource=cassandra');
 
 $solrPort = 8984;
