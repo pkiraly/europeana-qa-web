@@ -223,6 +223,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
   $completeness = readCompleteness($filePrefix, $errors);
   $histogram = readHistogramFormCsv($filePrefix, $errors);
 
+
   $statistics->entityCount = $completeness[$entityIDField]['mean'] * $completeness[$entityIDField]['count'];
 
   foreach ($entityFields as $field) {

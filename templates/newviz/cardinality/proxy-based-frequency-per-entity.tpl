@@ -1,5 +1,5 @@
 <h3 class="entity-name">{$entity}</h3>
-{if $development}
+{if $version >= 'v2018-08'}
   <p>
     <em>number of records</em>:
     {if $entity != 'ProvidedCHO'}linked from{/if} original metadata:
