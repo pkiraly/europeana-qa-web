@@ -218,9 +218,22 @@ function buildQuery(field, language, collectionId) {
     var q = langField + ':"' + language + '"';
   }
 
-  var typeField = collectionId.substring(0, 1) == 'c'
-    ? 'collection_i'
-    : 'provider_i';
+  var typeAbbreviation = collectionId.substring(0, 1);
+  var typeField = '';
+  if (version >= 'v2019-08') {
+    switch (typeAbbreviation) {
+      case 'c': typeField = 'dataset_i'; break;
+      case 'd': typeField = 'dataProvider_i'; break;
+      case 'p': typeField = 'provider_i'; break;
+      case 'cn': typeField = 'country_i'; break;
+      case 'l': typeField = 'language_i'; break;
+    }
+    //  'cd', 'pd'
+  } else {
+    typeField = (typeAbbreviation == 'c')
+      ? 'collection_i'
+      : 'provider_i';
+  }
   collectionId = collectionId.substring(1);
   var fq = typeField + ':' + collectionId;
 
@@ -232,6 +245,8 @@ function languageFieldRecordCount(collectionId, field, language) {
   console.log("languageFieldRecordCount(" + collectionId + ", " + field + ", " + language + ")");
   // event.preventDefault();
   var query = buildQuery(field, language, collectionId);
+  console.log("query: " + query);
+
   query.rows = 0;
   $.get("newviz/solr-ajax.php", query)
    .done(function(data) {
