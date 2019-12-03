@@ -331,10 +331,16 @@ function getLabel($key) {
 
 function prepareFields($fields) {
   $preparedFields = [];
+  $exclude = [
+    'edm_hasMet', 'edm_incorporates', 'edm_isDerivativeOf', 'edm_isRepresentationOf', 'edm_isSimilarTo',
+    'edm_isSuccessorOf', 'edm_realizes'
+  ];
   foreach ($fields as $field => $value) {
     if ($field == 'proxy_edm_isNextInSequence' || $field == 'proxy_edm_type') {
       continue;
     }
+    if (in_array($field, $exclude))
+      continue;
     $key = str_replace('proxy_', '', strtolower($field));
     $preparedFields[$key] = $value;
   }

@@ -1,4 +1,3 @@
-{json_encode($data->assocStat['generic'])}
 <table id="generic" class="table table-condensed table-striped tablesorter table-header-rotated">
   <thead>
   <tr>
@@ -21,7 +20,6 @@
   {strip}
   <tbody>
     {foreach $data->genericMetrics as $metric => $label}
-        {json_encode($metric)}
       {assign var=proxies value=$data->assocStat['generic'][$metric]}
       <tr>
         <td class="metric">{$label}</td>
