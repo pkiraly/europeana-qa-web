@@ -149,6 +149,7 @@
 
         var collectionId = '{$data->collectionId}';
         var version = '{$data->version}';
+        var intersection = '{$data->intersection}';
         {literal}
         $(document).ready(function(){
           var fieldsByLanguage = JSON.parse($('#fields-by-language-data').html());

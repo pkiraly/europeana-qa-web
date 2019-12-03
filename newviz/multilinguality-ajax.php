@@ -50,6 +50,7 @@ $data = (object)[
   'allFieldsList' => $allFieldsList,
   'collectionId' => $collectionId,
   'fields' => prepareFields($fields['ProvidedCHO']),
+  'intersection' => $intersection
 ];
 
 $templateDir = '../templates/newviz/multilinguality/';
