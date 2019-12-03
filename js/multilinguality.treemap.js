@@ -203,6 +203,7 @@ function formatField(field) {
 }
 
 function buildQuery(field, language, collectionId) {
+  console.log('intersection:' + intersection);
   if (language == 'no language') {
     if (field == 'aggregated') {
       var fields = [];
