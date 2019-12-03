@@ -27,7 +27,6 @@ var tooltipDiv = d3.select("#tooltip")
 displayLanguageTreemap('aggregated');
 
 function getTreeMapUrl() {
-  console.log('intersection: ' + intersection);
   var field = $('#language-distribution-selector').val();
   var excludeZeros = $('#excludeZeros').is(':checked') ? 1 : 0;
   var showNoOccurences = 0; //$('#showNoOccurences').is(':checked') ? 0 : 1;
@@ -38,7 +37,6 @@ function getTreeMapUrl() {
     + '&collectionId=' + collectionId
     + '&intersection=' + intersection
     + '&version=' + version;
-  console.log('treeMapUrl: ' + treeMapUrl);
   return treeMapUrl;
 }
 
@@ -269,11 +267,8 @@ function parseIntersection(intersection) {
 
 
 function languageFieldRecordCount(collectionId, field, language) {
-  console.log("languageFieldRecordCount(" + collectionId + ", " + field + ", " + language + ")");
   // event.preventDefault();
   var query = buildQuery(field, language, collectionId);
-  console.log(query);
-
   query.rows = 0;
   $.get("newviz/solr-ajax.php", query)
    .done(function(data) {
