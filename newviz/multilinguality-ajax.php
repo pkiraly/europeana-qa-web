@@ -330,6 +330,7 @@ function getLabel($key) {
 }
 
 function prepareFields($fields) {
+  error_log(json_encode($fields));
   $preparedFields = [];
   $exclude = [
     'edm_hasMet', 'edm_incorporates', 'edm_isDerivativeOf', 'edm_isRepresentationOf', 'edm_isSimilarTo',
