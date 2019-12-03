@@ -224,17 +224,7 @@ function buildQuery(field, language, collectionId) {
       queryParts = parseIntersection(intersection);
     } else {
       queryParts = parseIntersection(collectionId);
-      /*
-      switch (typeAbbreviation) {
-        case 'c': typeField = 'dataset_i'; break;
-        case 'd': typeField = 'dataProvider_i'; break;
-        case 'p': typeField = 'provider_i'; break;
-        case 'cn': typeField = 'country_i'; break;
-        case 'l': typeField = 'language_i'; break;
-      }
-      */
     }
-    //  'cd', 'pd'
   } else {
     var typeAbbreviation = collectionId.substring(0, 1);
     typeField = (typeAbbreviation == 'c')
@@ -252,10 +242,8 @@ function buildQuery(field, language, collectionId) {
 }
 
 function parseIntersection(inputString) {
-  console.log(inputString);
   var queryParts = [];
   var parts = inputString.split('-');
-  console.log("parts size: " + parts.length);
   if (parts.length == 2) {
     var part = resolveTypeAbbreviation(parts[0]) + ':' + parts[1];
     queryParts.push(part);
