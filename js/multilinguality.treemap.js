@@ -255,12 +255,13 @@ function parseIntersection(inputString) {
   console.log(inputString);
   var queryParts = [];
   var parts = inputString.split('-');
+  console.log("parts size: " + parts.length);
   var first = parts[0];
   for (var i = 0; i<first.length; i++) {
     var typeAbbreviation = first.substr(i, 1);
     var typeField = resolveTypeAbbreviation(typeAbbreviation);
     var part = typeField + ':' + parts[i + 1];
-    console.log(part);
+    console.log(i + ") " + part);
     queryParts.push(part);
   }
   return queryParts;
