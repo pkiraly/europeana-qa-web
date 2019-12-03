@@ -242,7 +242,7 @@ function buildQuery(field, language, collectionId) {
   }
   collectionId = collectionId.substring(1);
   if (queryParts.length > 0) {
-    var fq = queryParts.join(' AND ');
+    var fq = queryParts.join('%20AND%20');
   } else {
     var fq = typeField + ':' + collectionId;
   }
