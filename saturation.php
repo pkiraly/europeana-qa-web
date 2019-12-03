@@ -6,7 +6,7 @@ include_once('common/saturation-functions.php');
 $global_metrics = [
   'languages_per_property' => 'Languages per property',
   'taggedliterals' => 'Tagged literals',
-  'distinctlanguages' => 'Distinct languages',
+  'distinctlanguagecount' => 'Distinct languages',
   'taggedliterals_per_language' => 'Tagged literals per language'
 ];
 
