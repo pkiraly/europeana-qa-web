@@ -170,7 +170,7 @@ function label2(d, fieldName) {
       var items = new Array();
       for (i in fieldsByLanguage[d.name]) {
         field = fieldsByLanguage[d.name][i];
-        var params = [collectionId, field.toLowerCase(), language];
+        var params = [collectionId, field, language];
         item = formatField(field)
              + ' <a href="#" class="language-field-examples"'
              + " onclick=\"languageFieldExamples(event,'" + params.join("','") + "')\""
@@ -329,7 +329,7 @@ function languageFieldExamples(event, collectionId, field, language) {
      }
      var content = '<ul>' + items.join('') + '</ul>';
      console.log(content);
-     $('#ex-' + field).html(content);
+     $('#ex-' + field.toLowerCase()).html(content);
    });
 }
 
