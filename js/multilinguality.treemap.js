@@ -247,7 +247,7 @@ function buildQuery(field, language, collectionId) {
 
 function parseTypesAndIds() {
   var queryParts = [];
-  queryParts.push(resolveTypeAbbreviation(type) + ':' + id);
+  queryParts.push(resolveTypeAbbreviation(type1) + ':' + id1);
   if (type2 != '')
     queryParts.push(resolveTypeAbbreviation(type2) + ':' + id2);
   if (type3 != '')

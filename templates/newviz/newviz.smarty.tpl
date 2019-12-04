@@ -376,8 +376,8 @@
 
 <script type="text/javascript">
 var loadedEntity = null;
-var type = '{$type}';
-var id = '{$id}';
+var type1 = '{$type}';
+var id1 = '{$id}';
 var type2 = '{$type2}';
 var id2 = '{$id2}';
 var type3 = '{$type3}';
@@ -459,7 +459,7 @@ $(document).ready(function () {
   }
 
   // console.log('type: ' + type);
-  if (type == 'cn' || type == 'l' || type == 'a') {
+  if (type1 == 'cn' || type1 == 'l' || type1 == 'a') {
     $('#reset-intersections').hide();
   }
 
@@ -480,7 +480,7 @@ $(document).ready(function () {
   });
 
   if (version < 'v2018-08') {
-    showType(type);
+    showType(type1);
     $("input[name='type']").on('change', function () {
       showType($(this).val());
     })
@@ -497,7 +497,7 @@ $(document).ready(function () {
     resetIntersections();
   })
   if (type2 != '' && id2 != '') {
-    updateIntercestionSelector(type, id, type2, id2, type3, id3, intersection);
+    updateIntercestionSelector(type1, id1, type2, id2, type3, id3, intersection);
   }
 
   $('a[data-toggle="intersection"]').on('shown.bs.tab', function (event) {
@@ -576,7 +576,7 @@ function watchIntersections() {
 }
 
 function filterIds(oForm) {
-  var selectorId = (type == 'c') ? 'cid' : 'did';
+  var selectorId = (type1 == 'c') ? 'cid' : 'did';
 
   if (version < 'v2018-08') {
     var type = $('input[name=type]', $(oForm)).val();
@@ -735,9 +735,9 @@ function isMultilingualityPanel(tabId) {
        || tabId == '#multilingual-score-languages');
 }
 
-function showType(type) {
+function showType(_type) {
   var toShowId = 'cid', toHideId = 'did';
-  if (type == 'd') {
+  if (_type == 'd') {
     toShowId = 'did', toHideId = 'cid';
   }
   var toShow = $('#' + toShowId);
@@ -752,7 +752,7 @@ function showType(type) {
 function loadMultilinguality() {
   var entity = 'ProvidedCHO';
   var query = {
-    'id': id, 'type': type, 'intersection': intersection,
+    'id': id1, 'type': type1, 'intersection': intersection,
     'entity': entity, 'version': version, 'development': development,
     'source': source
   };
@@ -772,7 +772,7 @@ function loadMultilinguality() {
 
 function loadRecordPatterns() {
   var query = {
-    'id': id, 'type': type, 'intersection': intersection,
+    'id': id1, 'type': type1, 'intersection': intersection,
     'count': count, 'version': version, 'development': development
   };
   $.get("newviz/record-patterns-ajax.php", query)
@@ -786,7 +786,7 @@ function loadRecordPatterns() {
 
 function loadUniqueness() {
   var query = {
-    'id': id, 'type': type, 'intersection': intersection,
+    'id': id1, 'type': type1, 'intersection': intersection,
     'count': count, 'version': version, 'development': development
   };
   $.get("newviz/uniqueness-ajax.php", query)
@@ -800,7 +800,7 @@ function loadUniqueness() {
 
 function loadEntityCardinality(entity) {
   var query = {
-    'id': id, 'type': type, 'intersection': intersection,
+    'id': id1, 'type': type1, 'intersection': intersection,
     'entity': entity, 'version': version, 'development': development
   };
   $.get("newviz/cardinality-ajax.php", query)
@@ -884,7 +884,7 @@ function getMostFrequentValuesUrl(field) {
 function getMostFrequentValuesQuery() {
   var query;
   if (intersection == null) {
-    query = getMostFrequentValuesQueryElement(type, collectionId);
+    query = getMostFrequentValuesQueryElement(type1, collectionId);
   } else {
     var parts = intersection.split('-');
     var queryParts = [];
