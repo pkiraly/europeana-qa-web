@@ -220,15 +220,7 @@ function buildQuery(field, language, collectionId) {
   var typeField = '';
   var queryParts = [];
   if (version >= 'v2018-08') {
-    console.log('intersection: ' + intersection);
     queryParts = parseTypesAndIds();
-    /*
-    if (intersection != '') {
-      queryParts = parseIntersection(intersection);
-    } else {
-      queryParts = parseIntersection(collectionId);
-    }
-    */
   } else {
     var typeAbbreviation = collectionId.substring(0, 1);
     typeField = (typeAbbreviation == 'c')
@@ -256,7 +248,6 @@ function parseTypesAndIds() {
 }
 
 function parseIntersection(inputString) {
-  console.log('parseIntersection(' + inputString + ')');
   var queryParts = [];
   var parts = inputString.split('-');
   if (parts.length == 2) {
@@ -264,12 +255,10 @@ function parseIntersection(inputString) {
     queryParts.push(part);
   } else {
     var first = parts[0];
-    console.log('first.length: ' + first.length);
     for (var i = 0; i<first.length - 1; i++) {
       var typeAbbreviation = first.substr(i, 1);
       var typeField = resolveTypeAbbreviation(typeAbbreviation);
       var part = typeField + ':' + parts[i + 1];
-      console.log(i + ") " + part);
     }
   }
   return queryParts;
@@ -309,10 +298,8 @@ function formatNumber(inputNumber) {
 
 function languageFieldExamples(event, collectionId, field, language) {
   event.preventDefault();
-  console.log('languageFieldExamples: ' + field);
   var query = buildQuery(field, language, collectionId);
   query.rows = 10;
-  console.log(query);
 
   $.get("newviz/solr-ajax.php", query)
    .done(function(data) {
@@ -328,7 +315,6 @@ function languageFieldExamples(event, collectionId, field, language) {
        items.push('<li>' + item + '</li>');
      }
      var content = '<ul>' + items.join('') + '</ul>';
-     console.log(content);
      $('#ex-' + field.toLowerCase()).html(content);
    });
 }

@@ -21,7 +21,6 @@ if ($rows > 0) {
   $url .= '&rows=0';
 }
 
-error_log($url);
 $response = json_decode(file_get_contents($url));
 
 $ids = [];
