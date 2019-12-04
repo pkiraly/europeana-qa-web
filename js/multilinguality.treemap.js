@@ -328,6 +328,7 @@ function languageFieldExamples(event, collectionId, field, language) {
        items.push('<li>' + item + '</li>');
      }
      var content = '<ul>' + items.join('') + '</ul>';
+     console.log(content);
      $('#ex-' + field).html(content);
    });
 }
