@@ -309,7 +309,7 @@ function formatNumber(inputNumber) {
 
 function languageFieldExamples(event, collectionId, field, language) {
   event.preventDefault();
-  console.log('languageFieldExamples');
+  console.log('languageFieldExamples: ' + field);
   var query = buildQuery(field, language, collectionId);
   query.rows = 10;
   console.log(query);
