@@ -219,7 +219,8 @@ function buildQuery(field, language, collectionId) {
 
   var typeField = '';
   var queryParts = [];
-  if (version >= 'v2019-08') {
+  if (version >= 'v2018-08') {
+    console.log('intersection: ' + intersection);
     if (intersection != '') {
       queryParts = parseIntersection(intersection);
     } else {
@@ -249,6 +250,7 @@ function parseIntersection(inputString) {
     queryParts.push(part);
   } else {
     var first = parts[0];
+    console.log('first.length: ' + first.length);
     for (var i = 0; i<first.length; i++) {
       var typeAbbreviation = first.substr(i, 1);
       var typeField = resolveTypeAbbreviation(typeAbbreviation);
