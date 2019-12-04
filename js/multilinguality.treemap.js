@@ -243,6 +243,7 @@ function buildQuery(field, language, collectionId) {
 }
 
 function parseIntersection(inputString) {
+  console.log('parseIntersection(' + inputString + ')');
   var queryParts = [];
   var parts = inputString.split('-');
   if (parts.length == 2) {
@@ -251,7 +252,7 @@ function parseIntersection(inputString) {
   } else {
     var first = parts[0];
     console.log('first.length: ' + first.length);
-    for (var i = 0; i<first.length; i++) {
+    for (var i = 0; i<first.length - 1; i++) {
       var typeAbbreviation = first.substr(i, 1);
       var typeField = resolveTypeAbbreviation(typeAbbreviation);
       var part = typeField + ':' + parts[i + 1];
