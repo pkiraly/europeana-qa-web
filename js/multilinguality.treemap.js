@@ -221,11 +221,14 @@ function buildQuery(field, language, collectionId) {
   var queryParts = [];
   if (version >= 'v2018-08') {
     console.log('intersection: ' + intersection);
+    queryParts = parseTypesAndIds();
+    /*
     if (intersection != '') {
       queryParts = parseIntersection(intersection);
     } else {
       queryParts = parseIntersection(collectionId);
     }
+    */
   } else {
     var typeAbbreviation = collectionId.substring(0, 1);
     typeField = (typeAbbreviation == 'c')
@@ -240,6 +243,16 @@ function buildQuery(field, language, collectionId) {
   }
   var query = {'q': q, 'fq': fq, 'version': version};
   return query;
+}
+
+function parseTypesAndIds() {
+  var queryParts = [];
+  queryParts.push(resolveTypeAbbreviation(type) + ':' + id);
+  if (type2 != '')
+    queryParts.push(resolveTypeAbbreviation(type2) + ':' + id2);
+  if (type3 != '')
+    queryParts.push(resolveTypeAbbreviation(type3) + ':' + id3);
+  return queryParts;
 }
 
 function parseIntersection(inputString) {
