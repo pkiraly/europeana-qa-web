@@ -163,7 +163,7 @@
               content = content
                 .replace(/\|/g, "<br>\n")
                 .replace(
-                  /\((.*?)\)/g,
+                  /\((.+?)\)/g,
                   "(visit record: "
                   + "<a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.json\" class=\"external\">data</a>"
                   + ", <a target=\"_blank\" href=\"https://www.europeana.eu/portal/en/record$1.html\" class=\"external\">portal</a>"
