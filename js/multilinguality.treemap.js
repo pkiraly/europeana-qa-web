@@ -293,8 +293,10 @@ function formatNumber(inputNumber) {
 
 function languageFieldExamples(event, collectionId, field, language) {
   event.preventDefault();
+  console.log('languageFieldExamples');
   var query = buildQuery(field, language, collectionId);
   query.rows = 10;
+  console.log(query);
 
   $.get("newviz/solr-ajax.php", query)
    .done(function(data) {
