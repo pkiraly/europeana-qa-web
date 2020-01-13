@@ -7,7 +7,7 @@ $title = 'Metadata Quality Assurance Framework for Europeana';
 $id = $collectionId = $type = "";
 
 $version = getOrDefault(
-  'version', $configuration['DEFAULT_VERSION'], $configuration['version']
+  'version', $configuration['DEFAULT_VERSION'], $configuration['downloadable_version']
 );
 $dataDir = $configuration['DOWNLOAD_PATH'] . '/' . $version;
 $file = getOrDefault('file');
