@@ -51,7 +51,9 @@ function getCsv() {
 function downloadFile($file) {
   global $dataDir;
   $path = $dataDir . '/full/' . $file;
+  error_log('download path: ' . $path);
   if (!file_exists($path)) {
+    error_log('DOES NOT exist: ' . $path);
     return;
   }
 
