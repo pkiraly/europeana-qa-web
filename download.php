@@ -28,7 +28,7 @@ if (!is_null($file)) {
 $smarty = createSmarty('templates/download');
 $smarty->assign('rand', rand());
 $smarty->assign('version', $version);
-$smarty->assign('versions', $configuration['version']);
+$smarty->assign('versions', $configuration['downloadable_version']);
 $smarty->assign('title', 'Download');
 $smarty->assign('files', getCsv());
 $smarty->assign('development', $development);
