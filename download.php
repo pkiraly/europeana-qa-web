@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', -1);
 $configuration = parse_ini_file('config.cfg');
 include_once('common/common-functions.php');
 include_once('newviz/common.functions.php');
