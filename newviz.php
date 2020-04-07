@@ -54,15 +54,16 @@ if ($id == '') {
 $filePrefix = ($id == 'all')
   ? $id
   : (
-  (is_null($intersection) || $intersection == 'all')
-    ? (
-  in_array($type, ['cn', 'l', 'pd', 'p', 'cd'])
-    ? $type . '-' . $id
-    : $type . $id
-  )
-    : $intersection
+      (is_null($intersection) || $intersection == 'all')
+      ? (
+          in_array($type, ['cn', 'l', 'pd', 'p', 'cd'])
+          ? $type . '-' . $id
+          : $type . '-' . $id
+      )
+      : $intersection
   );
 
+error_log("filePrefix: $filePrefix");
 $count = 0;
 $errors = [];
 $entityCounts = (object)[];

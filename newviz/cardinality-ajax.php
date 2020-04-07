@@ -384,8 +384,8 @@ function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $prox
 
 function filePrefixToFq($filePrefix) {
   $map = [
-    'c' => 'dataset_i',
-    'd' => 'dataProvider_i',
+    'c-' => 'dataset_i',
+    'd-' => 'dataProvider_i',
     'p-' => 'provider_i',
     'cn-' => 'country_i',
     'l-' => 'language_i'
@@ -394,7 +394,7 @@ function filePrefixToFq($filePrefix) {
   if ($filePrefix == 'all') {
     $fq = '*:*';
   } else {
-    if (preg_match('/^(c|d|p-|cn-|l-)(\d+)$/', $filePrefix, $matches)) {
+    if (preg_match('/^(c-|d-|p-|cn-|l-)(\d+)$/', $filePrefix, $matches)) {
       $fq = sprintf('%s:%d', $map[$matches[1]], $matches[2]);
     } else if (preg_match('/^(cdp)-(\d+)-(\d+)-(\d+)$/', $filePrefix, $matches)) {
       $fq = sprintf(
