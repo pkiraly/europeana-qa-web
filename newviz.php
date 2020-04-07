@@ -63,14 +63,15 @@ $filePrefix = ($id == 'all')
       : $intersection
   );
 
+error_log("type: $type");
 error_log("filePrefix: $filePrefix");
 $count = 0;
 $errors = [];
 $entityCounts = (object)[];
 
 if ($version >= 'v2018-08') {
-  $count = getCountFromCsv($filePrefix, $errors);
-  $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
+  $count = getCountFromCsv($type, $filePrefix, $errors);
+  $entityCounts = getEntityCountsFromCsv($type, $filePrefix, $count, $errors);
 // } else if ($development && $version >= 'v2018-08') {
 //   $count = getCountFromCsv($filePrefix, $errors);
 //   $entityCounts = getEntityCountsFromCsv($filePrefix, $count, $errors);
@@ -197,11 +198,11 @@ function getCountFromRGeneratedJson($filePrefix, &$errors) {
  * @param $errors
  * @return array
  */
-function getCountFromCsv($filePrefix, &$errors) {
+function getCountFromCsv($type, $filePrefix, &$errors) {
   global $development, $version;
 
   $count = 0;
-  $completeness = readCompleteness($filePrefix, $errors);
+  $completeness = readCompleteness($type, $filePrefix, $errors);
   if (!empty($completeness)) {
     $field = ($version >= 'v2018-08')
            ? 'PROVIDER_Proxy_rdf_about'
@@ -218,7 +219,7 @@ function getCountFromCsv($filePrefix, &$errors) {
  * @param $dataDir
  * @return array
  */
-function readCompleteness($filePrefix, &$errors) {
+function readCompleteness($type, $filePrefix, &$errors) {
   global $dataDir, $development, $version;
   static $completeness;
 
@@ -226,7 +227,7 @@ function readCompleteness($filePrefix, &$errors) {
     $completeness = [];
     $suffix = ($version == 'v2018-08')
       ? '.proxy-based-completeness.csv' : '.completeness.csv';
-    $completenessFileName = $dataDir . '/json/' . $filePrefix . '/' . $filePrefix . $suffix;
+    $completenessFileName = $dataDir . '/json/' . $type . '/' . $filePrefix . '/' . $filePrefix . $suffix;
     if (file_exists($completenessFileName)) {
       $keys = ($version == 'v2018-08')
         ? ["mean", "min", "max", "count", "sum", "median"]
