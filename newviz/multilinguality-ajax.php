@@ -160,7 +160,7 @@ function getSaturationStatisticsFromJson() {
       }
     }
   } else {
-    error_log("Saturation file does not exist: " . $saturationFile);
+    error_log(sprintf("%s:%d Saturation file does not exist: %s", basename(__FILE__), __LINE__, $saturationFile));
   }
   return $assocStat;
 }
@@ -189,7 +189,7 @@ function getSaturationStatisticsFromCsv() {
       }
     }
   } else {
-    $msg = sprintf("%s:%s file %s is not existing", __FILE__, __LINE__, $saturationFile);
+    $msg = sprintf("%s:%s file %s is not existing", basename(__FILE__), __LINE__, $saturationFile);
     $errors[] = $msg;
     error_log($msg);
   }
@@ -283,7 +283,7 @@ function getLanguageDistribution() {
       }
     }
   } else {
-    error_log('Language file does not exist: ' . $languageDistributionFile);
+    error_log(sprintf('%s:%d Language file does not exist: %s', basename(__FILE__), __LINE__, $languageDistributionFile));
   }
   return $languageDistribution;
 }

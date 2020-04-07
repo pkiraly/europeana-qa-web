@@ -63,8 +63,8 @@ $filePrefix = ($id == 'all')
       : $intersection
   );
 
-error_log(sprintf("%s:%s type: %s", __FILE__, __LINE__, $type));
-error_log(sprintf("%s:%s filePrefix: %s", __FILE__, __LINE__, $filePrefix));
+error_log(sprintf("%s:%s type: %s", basename(__FILE__), __LINE__, $type));
+error_log(sprintf("%s:%s filePrefix: %s", basename(__FILE__), __LINE__, $filePrefix));
 $count = 0;
 $errors = [];
 $entityCounts = (object)[];
@@ -185,7 +185,7 @@ function getCountFromRGeneratedJson($filePrefix, &$errors) {
     $stats = json_decode(file_get_contents($jsonCountFileName));
     $count = $stats[0]->count;
   } else {
-    $msg = sprintf("%s:%s file %s is not existing", __FILE__, __LINE__, $jsonCountFileName);
+    $msg = sprintf("%s:%s file %s is not existing", basename(__FILE__), __LINE__, $jsonCountFileName);
     $errors[] = $msg;
     error_log($msg);
   }
@@ -238,7 +238,7 @@ function readCompleteness($type, $filePrefix, &$errors) {
         $field = array_shift($values);
         if (count($keys) != count($values)) {
           $msg = sprintf("%s:%d different counts: %d vs %d - values: %s",
-            __FILE__, __LINE__,
+            basename(__FILE__), __LINE__,
             count($keys), count($values), join(', ', $values));
           error_log($msg);
         }
@@ -246,7 +246,7 @@ function readCompleteness($type, $filePrefix, &$errors) {
         $completeness[$field] = $assoc;
       }
     } else {
-      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $completenessFileName);
+      $msg = sprintf("%s:%d file %s is not existing", basename(__FILE__), __LINE__, $completenessFileName);
       $errors[] = $msg;
       error_log($msg);
     }
@@ -274,7 +274,7 @@ function getEntityCountsFromRGeneratedJson($filePrefix, &$errors) {
       }
     }
   } else {
-    $msg = sprintf("%s:%s file %s is not existing", __FILE__, __LINE__, $jsonFreqFileName);
+    $msg = sprintf("%s:%s file %s is not existing", basename(__FILE__), __LINE__, $jsonFreqFileName);
     $errors[] = $msg;
     error_log($msg);
   }

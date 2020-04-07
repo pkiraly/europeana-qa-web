@@ -123,7 +123,7 @@ function readHistogramFormCsv($type, $filePrefix, &$errors) {
         $histogram[$field] = $entries;
       }
     } else {
-      $msg = sprintf("%s:%d file %s is not existing", __FILE__, __LINE__, $histogramFileName);
+      $msg = sprintf("%s:%d file %s is not existing", basename(__FILE__), __LINE__, $histogramFileName);
       $errors[] = $msg;
       error_log($msg);
     }
