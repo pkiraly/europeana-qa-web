@@ -25,7 +25,7 @@ $collectionId = in_array($parameters->type, ['cn', 'l', 'pd', 'p', 'cd'])
   ? $parameters->type . '-' . $parameters->id
   : ($parameters->type == 'a'
     ? $parameters->id
-    : $parameters->type . $parameters->id);
+    : $parameters->type . '-' . $parameters->id);
 
 $dataDir = getDataDir();
 
@@ -270,9 +270,9 @@ function getLanguageDistribution() {
 
   $languageDistribution = (object)[];
   if ($is_languages_all) {
-    $languageDistributionFile = sprintf('%s/json/%s/%s.languages-all.json', $dataDir, $filePrefix, $filePrefix);
+    $languageDistributionFile = sprintf('%s/json/%s/%s/%s.languages-all.json', $dataDir, $parameters->type, $filePrefix, $filePrefix);
   } else {
-    $languageDistributionFile = sprintf('%s/json/%s/%s.languages.json', $dataDir, $filePrefix, $filePrefix);
+    $languageDistributionFile = sprintf('%s/json/%s/%s/%s.languages.json', $dataDir, $parameters->type, $filePrefix, $filePrefix);
   }
   $languageDistributionFileExists = file_exists($languageDistributionFile);
   if ($languageDistributionFileExists) {
