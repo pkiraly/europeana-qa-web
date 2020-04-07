@@ -557,7 +557,7 @@ function reorganizeMetrics($raw_metrics) {
     }
   }
 
-  error_log('fields: ' . json_encode($reorganized->languages->fields));
+  error_log(sprintf('%s:%d fields: %s', basename(__FILE__), __LINE__, json_encode($reorganized->languages->fields)));
   return $reorganized;
 }
 
@@ -575,7 +575,7 @@ function langToEdm($key) {
     '/^(ProvidedCHO|proxy|aggregation|place|agent|timespan|concept)_(.*?)$/',
     "$1/$2", $key);
   $edm = strtolower(str_replace('_', ':', $edm));
-  error_log($key . ' -> ' . $edm);
+  error_log(sprintf('%s:%d %s -> %s', basename(__FILE__), __LINE__, $key, $edm));
   return $edm;
 }
 

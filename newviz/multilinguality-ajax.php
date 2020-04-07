@@ -189,7 +189,7 @@ function getSaturationStatisticsFromCsv() {
       }
     }
   } else {
-    $msg = sprintf("%s:%s file %s is not existing", basename(__FILE__), __LINE__, $saturationFile);
+    $msg = sprintf("%s:%d file %s is not existing", basename(__FILE__), __LINE__, $saturationFile);
     $errors[] = $msg;
     error_log($msg);
   }

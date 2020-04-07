@@ -209,7 +209,7 @@ function reorderFields($fields) {
   }
   if (count($ordered) != count($fields)) {
     $fields = array_diff($fields, $ordered);
-    error_log("unrecognized fields: " . implode(', ', $fields));
+    error_log(sprintf('%s:%d unrecognized fields: %s', basename(__FILE__), __LINE__, implode(', ', $fields)));
   }
   return $ordered;
 }

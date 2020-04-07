@@ -244,7 +244,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
         'html' => $html,
       ];
     } else {
-      error_log(sprintf('%s:%d) Field %s is not in completeness', basename(__FILE__), __LINE__, $field));
+      error_log(sprintf('%s:%d Field %s is not in completeness', basename(__FILE__), __LINE__, $field));
     }
 
     if ($filePrefix == 'all') {
@@ -263,7 +263,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
         $statistics->cardinality->{$field} = $cardinality;
 
       } else {
-        error_log(sprintf('%s:%d) Field crd_%s is not in completeness', basename(__FILE__), __LINE__, $field));
+        error_log(sprintf('%s:%d Field crd_%s is not in completeness', basename(__FILE__), __LINE__, $field));
       }
     } else {
       if (isset($completeness[$field])) {
@@ -281,7 +281,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
         $statistics->cardinality->{$field} = $cardinality;
 
       } else {
-        error_log(sprintf('%s:%d) Field crd_%s is not in completeness', basename(__FILE__), __LINE__, $field));
+        error_log(sprintf('%s:%d Field crd_%s is not in completeness', basename(__FILE__), __LINE__, $field));
       }
     }
   }

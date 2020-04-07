@@ -19,11 +19,11 @@ if (!is_null($file)) {
     downloadFile($file);
     exit();
   } else {
-    error_log('unmatched file: ' . $file);
+    error_log(sprintf('%s:%d unmatched file: %s', basename(__FILE__), __LINE__, $file));
   }
 } else {
-  error_log('null file: ' . gettype($file));
-  error_log('GET: ' . json_encode($_GET));
+  error_log(sprintf('%s:%d null file: ', basename(__FILE__), __LINE__, gettype($file)));
+  error_log(sprintf('%s:%d GET: ', basename(__FILE__), __LINE__, json_encode($_GET)));
 }
 
 $smarty = createSmarty('templates/download');
@@ -52,9 +52,9 @@ function getCsv() {
 function downloadFile($file) {
   global $dataDir;
   $path = $dataDir . '/full/' . $file;
-  error_log('download path: ' . $path);
+  error_log(sprintf('%s:%d download path: %s', basename(__FILE__), __LINE__, $path));
   if (!file_exists($path)) {
-    error_log('DOES NOT exist: ' . $path);
+    error_log(sprintf('%s:%d DOES NOT exist: %s', basename(__FILE__), __LINE__, $path));
     return;
   }
 

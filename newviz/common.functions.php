@@ -229,7 +229,7 @@ function retrieveName($id, $type) {
   if (!isset($content)) {
     $file = $files[$type];
     $path = $dataDir . '/' . $file;
-    error_log('path: ' . $path);
+    error_log(sprintf('%s:%d path: %s', basename(__FILE__), __LINE__, $path));
     $content = explode("\n", file_get_contents($dataDir . '/' . $file));
   }
 
