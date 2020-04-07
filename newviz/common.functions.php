@@ -92,7 +92,7 @@ function createSmarty($templateDir) {
   return $smarty;
 }
 
-function readHistogramFormCsv($filePrefix, &$errors) {
+function readHistogramFormCsv($type, $filePrefix, &$errors) {
   global $dataDir, $development, $version;
   static $histogram;
 
@@ -101,8 +101,7 @@ function readHistogramFormCsv($filePrefix, &$errors) {
     $suffix = $development && $version == 'v2018-08'
       ? '.proxy-based-completeness-histogram.csv'
       : '.completeness-histogram.csv';
-    $histogramFileName = $dataDir
-      . '/json/' . $filePrefix
+    $histogramFileName = $dataDir . '/json/' . $type . '/' . $filePrefix
       . '/' . $filePrefix . $suffix;
     if (file_exists($histogramFileName)) {
       $keys = ["id", "field", "entries"];

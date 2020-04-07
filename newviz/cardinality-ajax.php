@@ -32,7 +32,7 @@ $filePrefix = ($id == 'all')
     ? (
         in_array($type, ['cn', 'l', 'pd', 'p', 'cd'])
         ? $type . '-' . $id
-        : $type . $id
+        : $type . '-' . $id
       )
     : $intersection
   );
@@ -200,7 +200,7 @@ function readStatistics($type, $id, $entity, $filePrefix) {
     $proxyIDField = strtolower('PROVIDER_Proxy_rdf_about');
     $entityIDField = ($entity == 'ProvidedCHO' ? 'Proxy' : $entity) . '_rdf_about';
 
-    readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $proxyIDField);
+    readFromProxyBasedCsv($type, $filePrefix, $entityFields, $entityIDField, $proxyIDField);
   } else {
     $entityIDField = $entity . '_rdf_about';
 
@@ -287,12 +287,12 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
   }
 }
 
-function readFromProxyBasedCsv($filePrefix, $entityFields, $entityIDField, $proxyIDField) {
+function readFromProxyBasedCsv($type, $filePrefix, $entityFields, $entityIDField, $proxyIDField) {
   global $statistics, $smarty, $proxies;
 
   $errors = [];
-  $completeness = readCompleteness($filePrefix, $errors);
-  $histogram = readHistogramFormCsv($filePrefix, $errors);
+  $completeness = readCompleteness($type, $filePrefix, $errors);
+  $histogram = readHistogramFormCsv($type, $filePrefix, $errors);
 
   foreach ($proxies as $proxy) {
     $key = strtolower($proxy . '_' . $entityIDField);
@@ -625,16 +625,14 @@ function readImageFiles($type, $id, $entityFields) {
  * @param $dataDir
  * @return array
  */
-function readCompleteness($filePrefix, &$errors) {
+function readCompleteness($type, $filePrefix, &$errors) {
   global $dataDir, $version;
   static $completeness;
 
   if (!isset($completeness)) {
     $completeness = [];
     $suffix = '.completeness.csv';
-    $completenessFileName = $dataDir
-      . '/json/' . $filePrefix
-      . '/' . $filePrefix . $suffix;
+    $completenessFileName = $dataDir . '/json/' . $type . '/' . $filePrefix . '/' . $filePrefix . $suffix;
     if (file_exists($completenessFileName)) {
       $keys = ($version == 'v2018-08')
         ? ["mean", "min", "max", "count", "sum", "median"]
