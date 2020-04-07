@@ -586,13 +586,11 @@ function filterIds(oForm) {
     var fragment = $('input[name=fragment]').val();
   }
 
-  console.log(type);
   var selectorIndex = {c: 'cid', d: 'did', p: 'pid'};
   var query = {'fragment': fragment, 'type': type, 'version': version};
   $.get("newviz/dataset-filter-ajax.php", query)
    .done(function(data) {
      var selectorId = selectorIndex[type]; //(type == 'c') ? 'cid' : 'did';
-     console.log('#' + selectorId);
      // $('#' + selectorId + ' option').remove();
      $('#' + selectorId).empty();
 
@@ -604,7 +602,7 @@ function filterIds(oForm) {
          '<option value="' + this.value + '">' + this.name + '</option>'
        );
      });
-     console.log($('#' + selectorId).html());
+     // console.log($('#' + selectorId).html());
      updateIntercestionSelector(type, first);
    });
 }
