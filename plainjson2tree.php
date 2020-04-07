@@ -18,11 +18,9 @@ if (!isset($field))
 $collectionId = $_GET['collectionId'];
 if (!isset($collectionId))
   $collectionId = 'all';
-
 error_log(sprintf('%s:%d collectionId: %s', __FILE__, __LINE__, $collectionId));
-if (preg_match('/^([^-]+)-/', $collectionId, $matches)) {
-  $type = $matches[1];
-}
+
+$type = (preg_match('/^([^-]+)-/', $collectionId, $matches)) ? $matches[1] : 'all';
 error_log(sprintf('%s:%d type: %s', __FILE__, __LINE__, $type));
 
 $excludeZeros     = (isset($_GET['excludeZeros'])     && $_GET['excludeZeros']     == 1) ? TRUE : FALSE;
@@ -40,9 +38,9 @@ $codes = [
 $is_languages_all = (!is_null($version) && $version >= 'v2019-03');
 $suffix = $is_languages_all ? '.languages-all.json' : '.languages.json';
 if (!is_null($intersection) && $intersection != '') {
-  $fileName = getDataDir() . '/json/' . $intersection . '/' . $intersection . $suffix;
+  $fileName = getDataDir() . '/json/' . $type . '/' . $intersection . '/' . $intersection . $suffix;
 } else {
-  $fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . $suffix;
+  $fileName = getDataDir() . '/json/' . $type . '/' . $collectionId . '/' . $collectionId . $suffix;
 }
 error_log(sprintf('%s:%d fileName: %s exist? %d', __FILE__, __LINE__, $fileName, (int) file_exists($fileName)));
 $languages = json_decode(file_get_contents($fileName));
