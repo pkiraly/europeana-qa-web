@@ -19,11 +19,13 @@ $collectionId = $_GET['collectionId'];
 if (!isset($collectionId))
   $collectionId = 'all';
 
+error_log(sprintf('%s:%d collectionId: %s', __FILE__, __LINE__, $collectionId));
+
 $excludeZeros     = (isset($_GET['excludeZeros'])     && $_GET['excludeZeros']     == 1) ? TRUE : FALSE;
 $showNoOccurences = (isset($_GET['showNoOccurences']) && $_GET['showNoOccurences'] == 1) ? TRUE : FALSE;
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $intersection = getOrDefault('intersection', NULL);
-error_log('intersection: ' . $intersection);
+error_log(sprintf('%s:%d intersection: %s', __FILE__, __LINE__, $intersection));
 
 $codes = [
   'no language',
@@ -38,7 +40,7 @@ if (!is_null($intersection) && $intersection != '') {
 } else {
   $fileName = getDataDir() . '/json/' . $collectionId . '/' . $collectionId . $suffix;
 }
-error_log('fileName: ' . $fileName . ' exist? ' . (int) file_exists($fileName));
+error_log(sprintf('%s:%d fileName: %s exist? %d', __FILE__, __LINE__, $fileName, (int) file_exists($fileName)));
 $languages = json_decode(file_get_contents($fileName));
 
 echo getTree($languages->$field, $field, $excludeZeros, $showNoOccurences, $is_languages_all);
