@@ -171,7 +171,7 @@ function getSaturationStatisticsFromCsv() {
   // id,    field,                            mean, min, max, count, std.dev, median
   // p-142, provider_dc_title_taggedLiterals, 0.0,  0.0, 0.0, 549,   0.0,     0.0
   $assocStat = [];
-  $saturationFile = sprintf('%s/json/%s/%s.multilinguality.csv', $dataDir, $filePrefix, $filePrefix);
+  $saturationFile = sprintf('%s/json/%s/%s/%s.multilinguality.csv', $dataDir, $parameters->type, $filePrefix, $filePrefix);
   if (file_exists($saturationFile)) {
     $keys = ["mean", "min", "max", "count", "std.dev", "median"]; // "sum",
     foreach (file($saturationFile) as $line) {
@@ -189,7 +189,7 @@ function getSaturationStatisticsFromCsv() {
       }
     }
   } else {
-    $msg = sprintf("file %s is not existing", $saturationFile);
+    $msg = sprintf("%s:%s file %s is not existing", __FILE__, __LINE__, $saturationFile);
     $errors[] = $msg;
     error_log($msg);
   }

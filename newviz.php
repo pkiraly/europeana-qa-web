@@ -63,8 +63,8 @@ $filePrefix = ($id == 'all')
       : $intersection
   );
 
-error_log("type: $type");
-error_log("filePrefix: $filePrefix");
+error_log(sprintf("%s:%s type: %s", __FILE__, __LINE__, $type));
+error_log(sprintf("%s:%s filePrefix: %s", __FILE__, __LINE__, $filePrefix));
 $count = 0;
 $errors = [];
 $entityCounts = (object)[];
@@ -185,7 +185,7 @@ function getCountFromRGeneratedJson($filePrefix, &$errors) {
     $stats = json_decode(file_get_contents($jsonCountFileName));
     $count = $stats[0]->count;
   } else {
-    $msg = sprintf("file %s is not existing", $jsonCountFileName);
+    $msg = sprintf("%s:%s file %s is not existing", __FILE__, __LINE__, $jsonCountFileName);
     $errors[] = $msg;
     error_log($msg);
   }
@@ -274,7 +274,7 @@ function getEntityCountsFromRGeneratedJson($filePrefix, &$errors) {
       }
     }
   } else {
-    $msg = sprintf("file %s is not existing", $jsonFreqFileName);
+    $msg = sprintf("%s:%s file %s is not existing", __FILE__, __LINE__, $jsonFreqFileName);
     $errors[] = $msg;
     error_log($msg);
   }

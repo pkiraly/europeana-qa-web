@@ -244,7 +244,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
         'html' => $html,
       ];
     } else {
-      error_log(sprintf('%d) Field %s is not in completeness', __LINE__, $field));
+      error_log(sprintf('%s:%d) Field %s is not in completeness', __FILE__, __LINE__, $field));
     }
 
     if ($filePrefix == 'all') {
@@ -263,7 +263,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
         $statistics->cardinality->{$field} = $cardinality;
 
       } else {
-        error_log(sprintf('%d) Field crd_%s is not in completeness', __LINE__, $field));
+        error_log(sprintf('%s:%d) Field crd_%s is not in completeness', __FILE__, __LINE__, $field));
       }
     } else {
       if (isset($completeness[$field])) {
@@ -281,7 +281,7 @@ function readFromCsv($filePrefix, $entityFields, $entityIDField) {
         $statistics->cardinality->{$field} = $cardinality;
 
       } else {
-        error_log(sprintf('%d) Field crd_%s is not in completeness', __LINE__, $field));
+        error_log(sprintf('%s:%d) Field crd_%s is not in completeness', __FILE__, __LINE__, $field));
       }
     }
   }
@@ -402,7 +402,7 @@ function filePrefixToFq($filePrefix) {
         $matches[2], $matches[3], $matches[4]
       );
     } else {
-      error_log('Unhanded filePrefix: ' . $filePrefix);
+      error_log(sprintf('%s:%d Unhanded filePrefix: ', __FILE__, __LINE__, $filePrefix));
     }
   }
   return $fq;
@@ -496,7 +496,7 @@ function readFrequencyTable($type, $id, $entityIDField, $entityFields) {
 function readHistogram($type, $id, $entityFields) {
   global $dataDir, $templateDir, $statistics, $smarty, $filePrefix;
 
-  error_log('readHistogram');
+  error_log(sprintf('%s:%d readHistogram', __FILE__, __LINE__));
 
   $statistics->histFile = $dataDir . '/json/' . $filePrefix . '/'
     .  $filePrefix . '.cardinality.histogram.json';
