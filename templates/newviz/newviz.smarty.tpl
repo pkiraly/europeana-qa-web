@@ -578,7 +578,7 @@ function watchIntersections() {
 function filterIds(oForm) {
   var selectorId = (type1 == 'c') ? 'cid' : 'did';
 
-  if (version < 'v2018-08') {
+  if (version >= 'v2018-08') {
     var type = $('input[name=type]', $(oForm)).val();
     var fragment = $('input[name=fragment]', $(oForm)).val();
   } else {
