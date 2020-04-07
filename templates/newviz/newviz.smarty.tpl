@@ -451,14 +451,13 @@ $(document).ready(function () {
     toggleActivation(loadedEntity);
     $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   } else {
-    console.log('else branch 4 ' + tabId);
+    console.log('else branch 4 "' + tabId + '"');
     loadEntityCardinality('ProvidedCHO');
     loadedEntity = 'ProvidedCHO';
     toggleActivation(loadedEntity);
     $('#main-content-container .nav-tabs a[href="' + tabId + '"]').tab('show');
   }
 
-  // console.log('type: ' + type);
   if (type1 == 'cn' || type1 == 'l' || type1 == 'a') {
     $('#reset-intersections').hide();
   }
@@ -501,13 +500,9 @@ $(document).ready(function () {
   }
 
   $('a[data-toggle="intersection"]').on('shown.bs.tab', function (event) {
-    console.log('intersection tab clicked');
     event.preventDefault();
     document.getElementById('formTab').scrollIntoView();
     var activeId = $(event.target).attr('href');
-    console.log('activeId: ' + activeId);
-    // var activeId = $(event.target).attr('href'); // newly activated tab
-    // var previousId = $(event.relatedTarget.attr('href'); // previous active tab
     $('#intersections').html('');
     if (activeId == '#by-country-form' || activeId == '#by-language-form' || activeId == '#whole-form') {
       $('#reset-intersections').hide();
@@ -525,7 +520,6 @@ $(function () {
   // $('#tablanguages').tab
   $('#entities a.nav-link').click(function (event) {
     event.preventDefault();
-    console.log('#entities a.nav-link clicked');
     var entity = $(this).attr('datatype');
     var href = $(this).attr('href');
     window.location.hash = href;
@@ -536,7 +530,6 @@ $(function () {
 
 function watchIntersections() {
   if (version >= 'v2018-08') {
-    console.log("version (" + version + ") >= 'v2018-08'");
     var types = ['c', 'd', 'p'];
     $('#intersections input[name^="intersection-"]').on('click', function () {
       var current = $(this);
@@ -570,7 +563,6 @@ function watchIntersections() {
         $('input[name=fragment]', oForm).val($('#' + activeTab + ' input[name=fragment]').val());
         oForm.submit();
       }
-      console.log('watchIntersections::hey');
     })
   }
 }
@@ -602,7 +594,6 @@ function filterIds(oForm) {
          '<option value="' + this.value + '">' + this.name + '</option>'
        );
      });
-     // console.log($('#' + selectorId).html());
      updateIntercestionSelector(type, first);
    });
 }
@@ -835,8 +826,7 @@ function loadEntityCardinality(entity) {
         $(this).css('color', '#337ab7');
       });
 
-      $("[data-toggle='histogram-popover']").on('show.bs.popover', function(){
-        console.log('->processHistogramPopoverContent');
+      $("[data-toggle='histogram-popover']").on('show.bs.popover', function() {
         processHistogramPopoverContent($(this));
       });
 
@@ -923,7 +913,6 @@ function processHistogramPopoverContent(element) {
     content = content.replace(/^.*data-content="([^"]+)".*$/, "$1")
   }
   if (content.substring(0, 1) == '@') {
-    // console.log(content)
     var parts = content.substring(1).split('|');
 
     var field = parts[0];
@@ -952,7 +941,6 @@ function processHistogramPopoverContent(element) {
           items.push('<li>' + item + '</li>');
         }
         var content = '<ul>' + items.join('') + '</ul>';
-        console.log('targetId: #' + targetId);
         $('#' + targetId).html(content);
         $('#' + targetId).parent().parent().children('h3').append(' <a href="#" class="close-popup" data-id="' + id + '">x</a>');
         $('a.close-popup').click(function(event) {
