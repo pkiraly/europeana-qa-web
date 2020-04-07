@@ -20,6 +20,10 @@ if (!isset($collectionId))
   $collectionId = 'all';
 
 error_log(sprintf('%s:%d collectionId: %s', __FILE__, __LINE__, $collectionId));
+if (preg_match('/^([^-]+)-/', $collectionId, $matches)) {
+  $type = $matches[1];
+}
+error_log(sprintf('%s:%d type: %s', __FILE__, __LINE__, $type));
 
 $excludeZeros     = (isset($_GET['excludeZeros'])     && $_GET['excludeZeros']     == 1) ? TRUE : FALSE;
 $showNoOccurences = (isset($_GET['showNoOccurences']) && $_GET['showNoOccurences'] == 1) ? TRUE : FALSE;
