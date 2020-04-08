@@ -18,16 +18,13 @@ if (!isset($field))
 $collectionId = $_GET['collectionId'];
 if (!isset($collectionId))
   $collectionId = 'all';
-error_log(sprintf('%s:%d collectionId: %s', basename(__FILE__), __LINE__, $collectionId));
 
 $type = (preg_match('/^([^-]+)-/', $collectionId, $matches)) ? $matches[1] : 'a';
-error_log(sprintf('%s:%d type: %s', basename(__FILE__), __LINE__, $type));
 
 $excludeZeros     = (isset($_GET['excludeZeros'])     && $_GET['excludeZeros']     == 1) ? TRUE : FALSE;
 $showNoOccurences = (isset($_GET['showNoOccurences']) && $_GET['showNoOccurences'] == 1) ? TRUE : FALSE;
 $version = getOrDefault('version', $configuration['DEFAULT_VERSION'], $configuration['version']);
 $intersection = getOrDefault('intersection', NULL);
-error_log(sprintf('%s:%d intersection: %s', basename(__FILE__), __LINE__, $intersection));
 
 $codes = [
   'no language',
@@ -42,17 +39,14 @@ if (!is_null($intersection) && $intersection != '') {
 } else {
   $fileName = getDataDir() . '/json/' . $type . '/' . $collectionId . '/' . $collectionId . $suffix;
 }
-error_log(sprintf('%s:%d fileName: %s exist? %d', basename(__FILE__), __LINE__, $fileName, (int) file_exists($fileName)));
+
+if (!file_exists($fileName)) {
+  error_log(sprintf('%s:%d File does not exist: %s (collectionId: %s, type: %s, intersection: %s)',
+    basename(__FILE__), __LINE__, $fileName, $collectionId, $type, $intersection));
+}
 $languages = json_decode(file_get_contents($fileName));
 
 echo getTree($languages->$field, $field, $excludeZeros, $showNoOccurences, $is_languages_all);
-// echo json_encode($languages->$field);
-
-/*
-foreach ($languages as $key => $source) {
-  file_put_contents($key . '.json', getTree($source, $key));
-}
-*/
 
 function getTree($source, $key, $excludeZeros, $showNoOccurences, $is_languages_all) {
   $result = [
