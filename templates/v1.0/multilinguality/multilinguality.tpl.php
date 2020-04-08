@@ -237,19 +237,19 @@
       <table class="histogram">
         <tr>
           <td class="legend">range of values</td>
-          <?php for($i = 0; $i < count($histograms[$name]); $i++) { ?>
+          <?php for ($i = 0; $i < count($histograms[$name]); $i++) { ?>
             <td><?= format_histogram_range($histograms[$name][$i]->label, $i == (count($histograms[$name]) - 1)); ?></td>
           <?php } ?>
         </tr>
         <tr>
           <td class="legend">number of objects</td>
-          <?php for($i = 0; $i < count($histograms[$name]); $i++) { ?>
+          <?php for ($i = 0; $i < count($histograms[$name]); $i++) { ?>
             <td><?= number_format($histograms[$name][$i]->count); ?></td>
           <?php } ?>
         </tr>
         <tr>
           <td class="legend">percentage</td>
-          <?php for($i = 0; $i < count($histograms[$name]); $i++) { ?>
+          <?php for ($i = 0; $i < count($histograms[$name]); $i++) { ?>
             <td><?php echo ($histograms[$name][$i]->count == 0 ? '0%' : sprintf("%.2f%%", $histograms[$name][$i]->density)); ?></td>
           <?php } ?>
         </tr>
@@ -261,13 +261,13 @@
       <table class="histogram">
         <tr>
           <td class="legend">range of values</td>
-          <?php for($i = 0; $i < count($normalizedHistograms[$name]); $i++) { ?>
+          <?php for ($i = 0; $i < count($normalizedHistograms[$name]); $i++) { ?>
             <td><?= format_histogram_range($normalizedHistograms[$name][$i]->label); ?></td>
           <?php } ?>
         </tr>
         <tr>
           <td class="legend">number of objects</td>
-          <?php for($i = 0; $i < count($normalizedHistograms[$name]); $i++) { ?>
+          <?php for ($i = 0; $i < count($normalizedHistograms[$name]); $i++) { ?>
             <td><?= number_format($normalizedHistograms[$name][$i]->count); ?></td>
           <?php } ?>
         </tr>

@@ -27,25 +27,25 @@
       </tr>
       <tr>
         <td class="legend">stars</td>
-        <?php for($i = 0; $i < count($hist->frequencies); $i++) { ?>
+        <?php for ($i = 0; $i < count($hist->frequencies); $i++) { ?>
           <td class="udata"><h2><?= $data->stars[$i]; ?></h2></td>
         <?php } ?>
       </tr>
       <tr>
         <td class="legend">repetitions</td>
-        <?php for($i = 0; $i < count($hist->frequencies); $i++) { ?>
+        <?php for ($i = 0; $i < count($hist->frequencies); $i++) { ?>
           <td class="udata"><?= $hist->frequencies[$i]->label; ?></td>
         <?php } ?>
       </tr>
       <tr>
         <td class="legend">nr of records</td>
-        <?php for($i = 0; $i < count($hist->frequencies); $i++) { ?>
+        <?php for ($i = 0; $i < count($hist->frequencies); $i++) { ?>
           <td class="udata"><?= number_format($hist->frequencies[$i]->count, 0, '.', ','); ?></td>
         <?php } ?>
       </tr>
       <tr>
         <td class="legend">percentage</td>
-        <?php for($i = 0; $i < count($hist->frequencies); $i++) { ?>
+        <?php for ($i = 0; $i < count($hist->frequencies); $i++) { ?>
           <td class="udata"><?php printf("%.2f%%", ($hist->frequencies[$i]->percent * 100)); ?></td>
         <?php } ?>
       </tr>

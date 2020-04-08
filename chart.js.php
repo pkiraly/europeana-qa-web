@@ -86,7 +86,7 @@ d3.json("<?= $filename; ?>", function(data) {
         offset += labelSize;
       return left_width + offset;
     })
-    .attr("y", function(d, i){ return (dy * i) + 10; } )
+    .attr("y", function(d, i) {return (dy * i) + 10;} )
     .attr("dx", -5)
     .attr("dy", ".36em")
     .attr("font-size", "12px")
@@ -99,7 +99,7 @@ d3.json("<?= $filename; ?>", function(data) {
         classNames += " small";
       return classNames;
     })
-    .text(function(d){
+    .text(function(d) {
       return formatNumber(d[property], property);
     })
   ;
