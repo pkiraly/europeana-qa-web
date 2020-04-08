@@ -303,13 +303,12 @@ function languageFieldExamples(event, collectionId, field, language) {
 
   $.get("newviz/solr-ajax.php", query)
    .done(function(data) {
-     var apiUrlPattern = 'https://www.europeana.eu/api/v2/record%s.json?wskey=api2demo';
      var portalUrl = 'https://www.europeana.eu/portal/en/record';
      var items = new Array();
      for (i in data.ids) {
        id = data.ids[i];
        var links = new Array();
-       links.push('<a target="_blank" href="' + sprintf(apiUrlPattern, recordId) + '" class="external">data</a>');
+       links.push('<a target="_blank" href="' + getRecordLink(recordId) + '" class="external">data</a>');
        links.push('<a target="_blank" href="' + portalUrl + id + '.html" class="external">portal</a>');
        links.push('<a href="record.php?id=' + id + '&version=' + version + '"' + ' title="record id: ' + id + '">details</a>');
        item = 'visit record (' + links.join(', ') + ')';
@@ -318,6 +317,10 @@ function languageFieldExamples(event, collectionId, field, language) {
      var content = '<ul>' + items.join('') + '</ul>';
      $('#ex-' + field.toLowerCase()).html(content);
    });
+}
+
+function getRecordLink(recordId) {
+  return 'https://www.europeana.eu/api/v2/record' + recordId + '.json?wskey=api2demo';
 }
 
 function hasChildren(root) {

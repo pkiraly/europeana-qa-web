@@ -926,13 +926,12 @@ function processHistogramPopoverContent(element) {
     var query = {'q': q, 'fq': fq, 'rows': 10, 'version': version};
     $.get('newviz/solr-ajax.php', query)
       .done(function(data) {
-        var apiUrlPattern = 'https://www.europeana.eu/api/v2/record%s.json?wskey=api2demo';
         var portalUrl = 'https://www.europeana.eu/portal/en/record';
         var items = new Array();
         for (i in data.ids) {
           var recordId = data.ids[i];
           var links = new Array();
-          links.push('<a target="_blank" href="' + sprintf(apiUrlPattern, recordId) + '"'
+          links.push('<a target="_blank" href="' + getRecordLink(recordId) + '"'
             + ' title="record id: ' + recordId + '" class="external">data</a>');
           links.push('<a target="_blank" href="' + portalUrl + recordId + '.html"'
             + ' title="record id: ' + recordId + '" class="external">portal</a>');
@@ -951,6 +950,10 @@ function processHistogramPopoverContent(element) {
         });
       });
   }
+}
+
+function getRecordLink(recordId) {
+  return 'https://www.europeana.eu/api/v2/record' + recordId + '.json?wskey=api2demo';
 }
 
 $("a.qa-show-details").click(function(event) {
