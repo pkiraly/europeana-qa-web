@@ -242,13 +242,13 @@ function buildQuery(field, language, collectionId) {
 
 function parseTypesAndIds() {
   var queryParts = [];
-  console.log('type1: ' + type1);
-  console.log('resolved: ' + resolveTypeAbbreviation(type1));
-  queryParts.push(resolveTypeAbbreviation(type1) + ':' + id1);
-  if (type2 != '')
-    queryParts.push(resolveTypeAbbreviation(type2) + ':' + id2);
-  if (type3 != '')
-    queryParts.push(resolveTypeAbbreviation(type3) + ':' + id3);
+  if (type1 != 'a') {
+    queryParts.push(resolveTypeAbbreviation(type1) + ':' + id1);
+    if (type2 != '')
+      queryParts.push(resolveTypeAbbreviation(type2) + ':' + id2);
+    if (type3 != '')
+      queryParts.push(resolveTypeAbbreviation(type3) + ':' + id3);
+  }
   return queryParts;
 }
 
