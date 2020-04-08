@@ -7,13 +7,16 @@ $baseUrl = 'http://localhost:8984/solr/';
 $baseUrl .= getOrDefault('version', 'v2019-10');
 
 error_log(sprintf('%s:%d query: %s', basename(__FILE__), __LINE__, $_SERVER['QUERY_STRING']));
+
 $q = $_GET['q'];
-$fq = $_GET['fq'];
+$fq = (isset($_GET['fq'])) ? $_GET['fq'] : '';
 $rows = isset($_GET['rows']) ? (int)$_GET['rows'] : 0;
 
 $url = $baseUrl . '/select'
-  . '?q=' . urlencode($q)
-  . '&fq=' . $fq;
+  . '?q=' . urlencode($q);
+
+if ($fq != '')
+  $url .= '&fq=' . $fq;
 
 if ($rows > 0) {
   $url .= '&f=id'

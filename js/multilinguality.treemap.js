@@ -310,7 +310,7 @@ function languageFieldExamples(event, collectionId, field, language) {
      var portalUrl = 'https://www.europeana.eu/portal/en/record';
      var items = new Array();
      for (i in data.ids) {
-       id = data.ids[i];
+       var id = data.ids[i];
        var links = new Array();
        links.push(getRecordLink(id, 'data'));
        links.push('<a target="_blank" href="' + portalUrl + id + '.html" class="external">portal</a>');
