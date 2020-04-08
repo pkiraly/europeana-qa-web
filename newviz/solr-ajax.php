@@ -6,6 +6,7 @@ include_once $root . '/common/common-functions.php';
 $baseUrl = 'http://localhost:8984/solr/';
 $baseUrl .= getOrDefault('version', 'v2019-10');
 
+error_log(sprintf('%s:%d query: %s', basename(__FILE__), __LINE__, $_SERVER['QUERY_STRING']));
 $q = $_GET['q'];
 $fq = $_GET['fq'];
 $rows = isset($_GET['rows']) ? (int)$_GET['rows'] : 0;
