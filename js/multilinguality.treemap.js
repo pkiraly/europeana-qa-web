@@ -319,10 +319,6 @@ function languageFieldExamples(event, collectionId, field, language) {
    });
 }
 
-function getRecordLink(recordId) {
-  return 'https://www.europeana.eu/api/v2/record' + recordId + '.json?wskey=hgQQMdjcG';
-}
-
 function hasChildren(root) {
   var hasChildren = false;
   for (i in root.children) {

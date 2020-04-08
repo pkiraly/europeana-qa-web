@@ -21,6 +21,7 @@
   <link rel="icon" type="image/png" href="https://europeana-style-production.cdnedge.bluemix.net/v0.4.29/images/favicons/favicon-32x32.png?ver=alpha" sizes="32x32">
   <!-- load jQuery and tablesorter scripts -->
   <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="js/europeana-qa.js"></script>
   <link rel="stylesheet" href="europeana-qa.css?a={$rand}" type="text/css"/>
   {if isset($stylesheets)}
     {foreach $stylesheets as $stylesheet}

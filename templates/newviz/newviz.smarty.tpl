@@ -952,10 +952,6 @@ function processHistogramPopoverContent(element) {
   }
 }
 
-function getRecordLink(recordId) {
-  return 'https://www.europeana.eu/api/v2/record' + recordId + '.json?wskey=hgQQMdjcG';
-}
-
 $("a.qa-show-details").click(function(event) {
   event.preventDefault();
   var tabId = $(this).attr('class').replace('qa-show-details ', '#details-');
