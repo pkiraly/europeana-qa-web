@@ -220,7 +220,10 @@ function buildQuery(field, language, collectionId) {
   var typeField = '';
   var queryParts = [];
   if (version >= 'v2018-08') {
+    console.log('on the good version');
     queryParts = parseTypesAndIds();
+    console.log('queryParts');
+    console.log(queryParts);
   } else {
     var typeAbbreviation = collectionId.substring(0, 1);
     typeField = (typeAbbreviation == 'c')
