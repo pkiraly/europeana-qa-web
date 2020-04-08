@@ -240,7 +240,7 @@ function buildQuery(field, language, collectionId) {
 function parseTypesAndIds() {
   var queryParts = [];
   if (type1 == 'a') {
-    queryParts.push('dataset_i:*');
+    queryParts.push('*:*');
   } else {
     queryParts.push(resolveTypeAbbreviation(type1) + ':' + id1);
     if (type2 != '')
