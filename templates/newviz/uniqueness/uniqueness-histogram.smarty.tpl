@@ -106,9 +106,7 @@ function processUniquenessPopoverContent(element) {
        var items = new Array();
        for (i in data.ids) {
          var recordId = data.ids[i];
-         var item = '<a target="_blank" href="' + getRecordLink(recordId) + '"'
-                  + ' title="record id: ' + recordId + '">visit record</a>';
-         items.push('<li>' + item + '</li>');
+         items.push('<li>' + getRecordLink(recordId, 'visit record') + '</li>');
        }
        var content = '<ul>' + items.join('') + '</ul>';
        $('#' + targetId).html(content);

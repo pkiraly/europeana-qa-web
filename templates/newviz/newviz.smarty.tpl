@@ -931,8 +931,7 @@ function processHistogramPopoverContent(element) {
         for (i in data.ids) {
           var recordId = data.ids[i];
           var links = new Array();
-          links.push('<a target="_blank" href="' + getRecordLink(recordId) + '"'
-            + ' title="record id: ' + recordId + '" class="external">data</a>');
+          links.push(getRecordLink(recordId, 'data'));
           links.push('<a target="_blank" href="' + portalUrl + recordId + '.html"'
             + ' title="record id: ' + recordId + '" class="external">portal</a>');
           links.push('<a href="record.php?id=' + recordId + '&version=' + version + '"'
