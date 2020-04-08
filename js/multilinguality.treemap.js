@@ -321,10 +321,10 @@ function languageFieldExamples(event, collectionId, field, language) {
 
 function hasChildren(root) {
   var hasChildren = false;
-  for (var i in root.children) {
-    var child = root.children[i];
+  for (i in root.children) {
+    child = root.children[i];
     if (typeof child.size != "undefined"
-       || (typeof child.children != "undefined" && child.children.length > 0)) {
+      || (typeof child.children != "undefined" && child.children.length > 0)) {
       hasChildren = true;
       break;
     }
