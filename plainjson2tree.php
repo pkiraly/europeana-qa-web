@@ -20,7 +20,7 @@ if (!isset($collectionId))
   $collectionId = 'all';
 error_log(sprintf('%s:%d collectionId: %s', basename(__FILE__), __LINE__, $collectionId));
 
-$type = (preg_match('/^([^-]+)-/', $collectionId, $matches)) ? $matches[1] : 'all';
+$type = (preg_match('/^([^-]+)-/', $collectionId, $matches)) ? $matches[1] : 'a';
 error_log(sprintf('%s:%d type: %s', basename(__FILE__), __LINE__, $type));
 
 $excludeZeros     = (isset($_GET['excludeZeros'])     && $_GET['excludeZeros']     == 1) ? TRUE : FALSE;
