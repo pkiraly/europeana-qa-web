@@ -863,7 +863,7 @@ function showMostFrequentValues(field) {
 }
 
 function getMostFrequentValuesUrl(field) {
-  var url = 'https://www.europeana.eu/api/v2/search.json?wskey=api2demo&rows=0&profile=facets'
+  var url = 'https://www.europeana.eu/api/v2/search.json?wskey=hgQQMdjcG&rows=0&profile=facets'
           + '&facet=' + field + '&f.' + field + '.facet.limit=100'
           + '&query=' + getMostFrequentValuesQuery();
   return url;
@@ -953,7 +953,7 @@ function processHistogramPopoverContent(element) {
 }
 
 function getRecordLink(recordId) {
-  return 'https://www.europeana.eu/api/v2/record' + recordId + '.json?wskey=api2demo';
+  return 'https://www.europeana.eu/api/v2/record' + recordId + '.json?wskey=hgQQMdjcG';
 }
 
 $("a.qa-show-details").click(function(event) {

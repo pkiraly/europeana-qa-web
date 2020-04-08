@@ -32,9 +32,9 @@
       <ul type="square">
         <li>Canonical identifier: <a href="http://data.europeana.eu/item{$id}" target="_blank">http://data.europeana.eu/item{$id}</a></li>
         <li><a href="http://europeana.eu/portal/record{$id}.html" target="_blank">Europeana portal</a></li>
-        <li><a href="http://www.europeana.eu/api/v2/record{$id}.json?wskey=api2demo" target="_blank">REST API: full record in JSON</a></li>
-        <li><a href="http://www.europeana.eu/api/v2/record{$id}.jsonld?wskey=api2demo" target="_blank">REST API: full record in JSON-LD</a></li>
-        <li><a href="http://www.europeana.eu/api/v2/search.json?query=europeana_id:%22{$id}%22&wskey=api2demo" target="_blank">REST API: search record</a></li>
+        <li><a href="http://www.europeana.eu/api/v2/record{$id}.json?wskey=hgQQMdjcG" target="_blank">REST API: full record in JSON</a></li>
+        <li><a href="http://www.europeana.eu/api/v2/record{$id}.jsonld?wskey=hgQQMdjcG" target="_blank">REST API: full record in JSON-LD</a></li>
+        <li><a href="http://www.europeana.eu/api/v2/search.json?query=europeana_id:%22{$id}%22&wskey=hgQQMdjcG" target="_blank">REST API: search record</a></li>
         <li><a href="http://oai.europeana.eu/oaicat/OAIHandler?verb=GetRecord&metadataPrefix=edm&identifier=http://data.europeana.eu/item{$id}" target="_blank">OAI-PMH server</a></li>
       </ul>
     </div>
