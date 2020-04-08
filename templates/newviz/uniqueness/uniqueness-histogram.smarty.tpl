@@ -102,11 +102,9 @@ function processUniquenessPopoverContent(element) {
     var query = {'q': q, 'fq': fq, 'rows': 10};
     $.get('newviz/solr-ajax.php', query)
      .done(function(data) {
-       var portalUrl = 'https://www.europeana.eu/portal/en/record';
        var items = new Array();
        for (i in data.ids) {
-         var recordId = data.ids[i];
-         items.push('<li>' + getRecordLink(recordId, 'visit record') + '</li>');
+         items.push('<li>' + getRecordLink(data.ids[i], 'visit record') + '</li>');
        }
        var content = '<ul>' + items.join('') + '</ul>';
        $('#' + targetId).html(content);
