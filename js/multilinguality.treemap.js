@@ -169,9 +169,9 @@ function label2(d, fieldName) {
       text += "<br>\n<strong>present in fields</strong>: ";
       var items = new Array();
       for (i in fieldsByLanguage[d.name]) {
-        field = fieldsByLanguage[d.name][i];
+        var field = fieldsByLanguage[d.name][i];
         var params = [collectionId, field, language];
-        item = formatField(field)
+        var item = formatField(field)
              + ' <a href="#" class="language-field-examples"'
              + " onclick=\"languageFieldExamples(event,'" + params.join("','") + "')\""
              + '>examples <i class="fa fa-angle-down" aria-hidden="true"></i></a>'
