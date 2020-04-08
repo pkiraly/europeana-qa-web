@@ -220,10 +220,7 @@ function buildQuery(field, language, collectionId) {
   var typeField = '';
   var queryParts = [];
   if (version >= 'v2018-08') {
-    console.log('on the good version');
     queryParts = parseTypesAndIds();
-    console.log('queryParts');
-    console.log(queryParts);
   } else {
     var typeAbbreviation = collectionId.substring(0, 1);
     typeField = (typeAbbreviation == 'c')
@@ -242,7 +239,9 @@ function buildQuery(field, language, collectionId) {
 
 function parseTypesAndIds() {
   var queryParts = [];
-  if (type1 != 'a') {
+  if (type1 == 'a') {
+    queryParts.push('dataset_i:*');
+  } else {
     queryParts.push(resolveTypeAbbreviation(type1) + ':' + id1);
     if (type2 != '')
       queryParts.push(resolveTypeAbbreviation(type2) + ':' + id2);
