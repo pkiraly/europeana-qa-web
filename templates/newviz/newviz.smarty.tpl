@@ -800,7 +800,7 @@ function loadEntityCardinality(entity) {
         event.preventDefault();
         var tabId = $(this).attr('class').replace('qa-show-details ', '#details-');
         $(tabId).toggle();
-        faClass = $("i", this).attr('class') == 'fa fa-angle-down'
+        var faClass = $("i", this).attr('class') == 'fa fa-angle-down'
           ? 'fa fa-angle-up' : 'fa fa-angle-down';
         $("i", this).attr('class', faClass);
         // $(this).text($(this).text() == 'Show details' ? 'Hide details' : 'Show details');
