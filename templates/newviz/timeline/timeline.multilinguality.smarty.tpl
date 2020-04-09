@@ -10,6 +10,7 @@
   </thead>
   <tbody>
     {foreach $data->timelines['general'] as $property => $locations}
+      <tr><td colspan="8">0: {json_encode($locations)}</td></tr>
       {foreach $data->{'multilinguality-general-locations'} as $location => $label}
         {assign var="timeline" value=$locations[$location]}
         <tr><td colspan="8">1: {json_encode($location)}</td></tr>
