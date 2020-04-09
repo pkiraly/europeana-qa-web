@@ -40,7 +40,7 @@ function getTimelineFiles($collectionId) {
 }
 
 function getTimelines($files) {
-  $timeline = new stdClass();
+  $timeline = [];
   foreach ($files as $version => $file) {
     if (file_exists($file)) {
       $keys = ($version == 'v2018-08')
@@ -57,8 +57,6 @@ function getTimelines($files) {
           error_log($msg);
         }
         $row = array_combine($keys, $values);
-        error_log(sprintf('%s:%d type: %s', basename(__FILE__), __LINE__, gettype($row)));
-        error_log(sprintf('%s:%d row: %s', basename(__FILE__), __LINE__, json_encode($row)));
         $timeline[$field][$version] = $row['mean'];
       }
     }
