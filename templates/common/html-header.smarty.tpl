@@ -21,11 +21,6 @@
   <link rel="icon" type="image/png" href="https://europeana-style-production.cdnedge.bluemix.net/v0.4.29/images/favicons/favicon-32x32.png?ver=alpha" sizes="32x32">
   <!-- load jQuery and tablesorter scripts -->
   <!-- script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script -->
-  <!--
-  <script src="https://code.jquery.com/jquery-1.12.4.js"
-          integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
-          crossorigin="anonymous"></script>
-  -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
           crossorigin="anonymous"></script>

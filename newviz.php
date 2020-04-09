@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     list($id, $type) = parseId($id);
   }
 
-  if (isset($_GET['name']) && $_GET['name'] != "") {
+  if (isset($_GET['name']) && $_GET['name'] != '') {
     $collectionId = $_GET['name'];
   } else {
     $collectionId = retrieveName($id, $type);
@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
     $collectionId = $argv[1];
     $id = strstr($collectionId, '_', true);
   }
-  $type = 'c';
+  $type = 'a';
 }
 
 $fragment = getOrDefault('fragment', NULL);
@@ -43,25 +43,20 @@ $id3 = getOrDefault('id3', NULL);
 $source = getOrDefault('source', 'json', ['json', 'csv']);
 
 if ($id == '') {
+  $id = 'all';
+  /*
   $datasets = retrieveDatasets($type, $fragment);
   foreach ($datasets as $id => $collectionId) {
     break;
   }
+  */
 }
 
 // getIntersections($type, $id, $type2, $id2, $type3, $intersection) {
 
 $filePrefix = ($id == 'all')
   ? $id
-  : (
-      (is_null($intersection) || $intersection == 'all')
-      ? (
-          in_array($type, ['cn', 'l', 'pd', 'p', 'cd'])
-          ? $type . '-' . $id
-          : $type . '-' . $id
-      )
-      : $intersection
-  );
+  : ((is_null($intersection) || $intersection == 'all') ? $type . '-' . $id : $intersection);
 
 error_log(sprintf("%s:%d type: %s", basename(__FILE__), __LINE__, $type));
 error_log(sprintf("%s:%d filePrefix: %s", basename(__FILE__), __LINE__, $filePrefix));
