@@ -11,7 +11,7 @@
   <tbody>
     {foreach $data->timelines as $entity => $fields}
       <tr>
-        <td>{$entity}</td>
+        <td colspan="{count($data->files) + 2}">{$entity}</td>
       </tr>
       {foreach $fields as $field => $field_properties}
         {foreach $field_properties as $location => $timeline}
