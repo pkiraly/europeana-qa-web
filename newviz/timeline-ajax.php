@@ -36,6 +36,8 @@ function getTimelineFiles($collectionId) {
       $files[$version] = $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
     }
   }
+  ksort($files);
+
   return $files;
 }
 
