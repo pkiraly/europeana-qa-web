@@ -826,7 +826,8 @@ function loadTimeline() {
   console.log('statistic: ' + statistic)
   var query = {
     'id': id1, 'type': type1, 'intersection': intersection,
-    'count': count, 'version': version, 'development': development
+    'count': count, 'version': version, 'development': development,
+    'feature': feature, 'statistic': statistic
   };
   $.get("newviz/timeline-ajax.php", query)
   .done(function(data) {

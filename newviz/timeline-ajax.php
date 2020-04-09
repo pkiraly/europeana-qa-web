@@ -9,26 +9,39 @@ $parameters = getParameters();
 $collectionId = ($parameters->type == 'a') ? $parameters->id : $parameters->type . '-' . $parameters->id;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 
-$files = getTimelineFiles($collectionId);
+$feature = getOrDefault('feature', 'completeness', ['completeness', 'multilinguality']);
+$statistic = getOrDefault('statistic', 'mean', ['mean', 'min', 'max', 'count', 'sum', 'stddev', 'median']);
+
+$files = getTimelineFiles($collectionId, $feature);
 $data = (object)[
   'version' => getOrDefault('version'),
   'files' => $files,
-  'timelines' => getTimelines($files),
+  'timelines' => getTimelines($files, $feature, $statistic),
 ];
 
 $smarty = createSmarty('../templates/newviz/timeline/');
 $smarty->assign('data', $data);
-$smarty->display('timeline.smarty.tpl');
+$template = getTemplateName($feature);
+if ($template != '') {
+  $smarty->display($template);
+}
 
-function getTimelineFiles($collectionId) {
+function getTimelineFiles($collectionId, $feature) {
   global $parameters, $configuration;
+
+  switch ($feature) {
+    case 'multilinguality': $suffix = '.multilinguality.csv'; break;
+    case 'completeness':
+    default:
+      $suffix = '.completeness.csv'; break;
+  }
 
   $files = [];
   foreach ($configuration['version'] as $version) {
     if ($version >= 'v2019-08') {
       $baseDatadir = $configuration['DATA_PATH'] . '/' . $version;
       $dataDir = $baseDatadir . '/json/' . $parameters->type . '/' . $collectionId;
-      $files[$version] = $dataDir . '/' .  $collectionId . '.completeness.csv';
+      $files[$version] = $dataDir . '/' .  $collectionId . $suffix;
     }
   }
   ksort($files);
@@ -36,7 +49,8 @@ function getTimelineFiles($collectionId) {
   return $files;
 }
 
-function getTimelines($files) {
+function getTimelines($files, $feature, $statistic) {
+
   $timeline = [];
   foreach ($files as $version => $file) {
     if (file_exists($file)) {
@@ -54,13 +68,38 @@ function getTimelines($files) {
           error_log($msg);
         }
         $row = array_combine($keys, $values);
-        list($location, $entity, $encodedfield) = explode('_', $field, 3);
-        $location = strtolower($location);
-        $edmfield = preg_replace('/^([^_]+)_/', "$1:", $encodedfield);
-        $timeline[$entity][$edmfield][$location][$version] = $row['mean'];
+        if ($feature == 'completeness') {
+          list($location, $entity, $encodedfield) = explode('_', $field, 3);
+          $location = strtolower($location);
+          $edmfield = preg_replace('/^([^_]+)_/', "$1:", $encodedfield);
+          $timeline[$entity][$edmfield][$location][$version] = $row[$statistic];
+        } elseif ($feature == 'multilinguality') {
+          if (preg_match('/^(europeana|provider)_(.*?)_(taggedLiterals|languages|literalsPerLanguage)$/', $field, $matches)) {
+            $location = $matches[1];
+            $encodedfield = $matches[2];
+            $property = $matches[3];
+            $edmfield = preg_replace('/^([^_]+)_/', "$1:", $encodedfield);
+            $timeline['specific'][$edmfield][$location][$property][$version] = $row[$statistic];
+          } else {
+            $timeline['general'][$field][$version] = $row[$statistic];
+          }
+        }
       }
     }
   }
 
+  if ($feature == 'multilinguality')
+    ksort($timeline['general']);
+
   return $timeline;
+}
+
+
+function getTemplateName($feature) {
+  if ($feature == 'completeness') {
+    return 'timeline.completeness.smarty.tpl';
+  } elseif ($feature == 'multilinguality') {
+    return 'timeline.multilinguality.smarty.tpl';
+  }
+  return '';
 }
