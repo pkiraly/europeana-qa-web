@@ -487,6 +487,8 @@ $(document).ready(function () {
         loadRecordPatterns();
       else if (tabId == '#uniqueness')
         loadUniqueness();
+      else if (tabId == '#timeline')
+        loadTimeline();
       else
         loadEntityCardinality('ProvidedCHO');
     }
@@ -815,8 +817,6 @@ function loadTimeline() {
   });
 }
 
-
-
 function loadEntityCardinality(entity) {
   var query = {
     'id': id1, 'type': type1, 'intersection': intersection,
@@ -868,7 +868,6 @@ function loadEntityCardinality(entity) {
         var field = $(this).attr('class').replace('most-frequent-values ', '');
         showMostFrequentValues(field);
       });
-
     });
 }
 
