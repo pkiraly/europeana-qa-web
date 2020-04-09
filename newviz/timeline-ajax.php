@@ -13,14 +13,13 @@ $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 
 $dataDir = getDataDir();
 
-$file = getTimelineFile($collectionId);
-error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $file));
-error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, json_encode($configuration['version'])));
+$files = getTimelineFiles($collectionId);
+error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $files));
 
 $data = (object)[
   'version' => getOrDefault('version'),
-  'file' => $file,
-  'histogram' => getHistogram($file),
+  'file' => $files,
+  'histogram' => getHistogram($files),
   'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*'],
   'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
 ];
@@ -29,10 +28,17 @@ $smarty = createSmarty('../templates/newviz/timeline/');
 $smarty->assign('data', $data);
 $smarty->display('timeline.smarty.tpl');
 
-function getTimelineFile($collectionId) {
-  global $dataDir, $parameters;
+function getTimelineFiles($collectionId) {
+  global $parameters, $configuration;
 
-  return $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
+  $files = [];
+  foreach ($configuration['version'] as $version) {
+    if ($version >= 'v2019-08') {
+      $dataDir = $configuration['DATA_PATH'] . '/' . $version;
+      $files[] = $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
+    }
+  }
+  return $files;
 }
 
 function getHistogram($file) {
