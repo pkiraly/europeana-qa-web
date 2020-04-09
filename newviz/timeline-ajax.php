@@ -1,4 +1,5 @@
 <?php
+error_log(sprintf('%s:%d timeline ajax', basename(__FILE__), __LINE__, $file));
 
 $root = realpath(__DIR__. '/../');
 $script = str_replace($root, '', __FILE__);
@@ -13,7 +14,7 @@ $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 $dataDir = getDataDir();
 
 $file = getTimelineFile($collectionId);
-error_log(sprintf('%s:%d file: ', basename(__FILE__), __LINE__, $file));
+error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $file));
 
 $data = (object)[
   'version' => getOrDefault('version'),
