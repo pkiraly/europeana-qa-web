@@ -10,6 +10,9 @@
   <tbody>
     {foreach $data->timelines['general'] as $field => $timeline}
       <tr>
+        <td colspan="8">{json_encode($timeline)}</td>
+      </tr>
+      <tr>
         <td>{$field}</td>
         {foreach $data->files as $version => $file}
           <td>{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
