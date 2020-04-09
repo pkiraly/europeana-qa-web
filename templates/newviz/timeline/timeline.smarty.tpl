@@ -16,12 +16,12 @@
       {foreach $fields as $field => $field_properties}
         {assign var="i" value="0"}
         {foreach $field_properties as $location => $timeline}
-          {$i++}
+          {$i = $i + 1}
           <tr>
             <td>{if $i == 1}{$field}{/if}</td>
             <td>{$location}</td>
             {foreach $timeline as $version => $value}
-              <td>{$value|number_format:2}</td>
+              <td>{if isset($value)}{$value|number_format:2}{/fi}</td>
             {/foreach}
           </tr>
         {/foreach}
