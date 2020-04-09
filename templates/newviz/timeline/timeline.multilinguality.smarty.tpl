@@ -1,4 +1,4 @@
-<table class="timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
+<table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
       <th>field</th>
@@ -12,7 +12,7 @@
       <tr>
         <td>{$field}</td>
         {foreach $data->files as $version => $file}
-          <td>{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
+          <td calss="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
         {/foreach}
       </tr>
     {/foreach}

@@ -420,3 +420,8 @@ div#cardinality-content h5 {
 a.close-popup {
   float: right;
 }
+
+table.timeline td.num {
+  text-align: right;
+  padding-right: 5px;
+}
