@@ -103,7 +103,7 @@ function processUniquenessPopoverContent(element) {
     $.get('newviz/solr-ajax.php', query)
      .done(function(data) {
        var items = new Array();
-       for (i in data.ids) {
+       for (var i in data.ids) {
          items.push('<li>' + getRecordLink(data.ids[i], 'visit record') + '</li>');
        }
        var content = '<ul>' + items.join('') + '</ul>';

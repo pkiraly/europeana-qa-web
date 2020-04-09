@@ -169,7 +169,7 @@ function label2(d, fieldName) {
     if (fieldName == 'aggregated' && language != 'no language') {
       text += "<br>\n<strong>present in fields</strong>: ";
       var items = new Array();
-      for (i in fieldsByLanguage[d.name]) {
+      for (var i in fieldsByLanguage[d.name]) {
         var field = fieldsByLanguage[d.name][i];
         var params = [collectionId, field, language];
         var item = formatField(field)
@@ -206,7 +206,7 @@ function buildQuery(field, language, collectionId) {
   if (language == 'no language') {
     if (field == 'aggregated') {
       var fields = [];
-      for (i in languageFields) {
+      for (var i in languageFields) {
         fields.push('lang_' + languageFields[i].toLowerCase() + '__0_i:[1 TO *]');
       }
       var q = fields.join(' OR ');
@@ -310,13 +310,13 @@ function languageFieldExamples(event, collectionId, field, language) {
    .done(function(data) {
      var portalUrl = 'https://www.europeana.eu/portal/en/record';
      var items = new Array();
-     for (i in data.ids) {
+     for (var i in data.ids) {
        var id = data.ids[i];
        var links = new Array();
        links.push(getRecordLink(id, 'data'));
        links.push('<a target="_blank" href="' + portalUrl + id + '.html" class="external">portal</a>');
        links.push('<a href="record.php?id=' + id + '&version=' + version + '"' + ' title="record id: ' + id + '">details</a>');
-       item = 'visit record (' + links.join(', ') + ')';
+       var item = 'visit record (' + links.join(', ') + ')';
        items.push('<li>' + item + '</li>');
      }
      var content = '<ul>' + items.join('') + '</ul>';

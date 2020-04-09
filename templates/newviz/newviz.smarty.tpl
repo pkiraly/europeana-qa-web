@@ -546,7 +546,7 @@ function watchIntersections() {
         $('input[name=id2]', oForm).val(id2);
 
         var targetType;
-        for (i in types) {
+        for (var  i in types) {
           if (types[i] != activeType && types[i] != type2) {
             targetType = types[i];
             break;
@@ -652,7 +652,7 @@ function updateIntercestionSelector(selectedType,
             resetIntersection(current);
             if (current.attr('data-type') == query.targetType) {
               var found = false;
-              for (i in items) {
+              for (var i in items) {
                 var item = items[i];
                 if (current.attr('data-id') == item.id) {
                   found = true;
@@ -684,7 +684,7 @@ function updateIntercestionSelector(selectedType,
         if (unit_size == 0)
           radios.push('<div class="col-lg-4">&nbsp;</div><div class="col-lg-8">');
 
-        for (i in data) {
+        for (var i in data) {
           var item = data[i];
           if (unit_size > 0 && i % unit_size == 0) {
             if (i != 0)
@@ -853,7 +853,7 @@ function showMostFrequentValues(field) {
   $.get(url)
     .done(function(data) {
       var text = [];
-      for (i in data.facets[0].fields) {
+      for (var i in data.facets[0].fields) {
         var facet = data.facets[0].fields[i];
         text.push(facet.label + ' <em>(' + facet.count + ')</em>');
       }
@@ -928,7 +928,7 @@ function processHistogramPopoverContent(element) {
       .done(function(data) {
         var portalUrl = 'https://www.europeana.eu/portal/en/record';
         var items = new Array();
-        for (i in data.ids) {
+        for (var i in data.ids) {
           var recordId = data.ids[i];
           var links = new Array();
           links.push(getRecordLink(recordId, 'data'));
