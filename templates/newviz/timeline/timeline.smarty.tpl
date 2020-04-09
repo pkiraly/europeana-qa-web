@@ -1,4 +1,4 @@
-<table class="histogram uniqueness-statistics" id="{$field}-uniqueness-statistics" xmlns="http://www.w3.org/1999/html">
+<table class="timeline" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
       <th>field</th>
