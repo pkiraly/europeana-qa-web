@@ -1,5 +1,5 @@
 <?php
-error_log(sprintf('%s:%d timeline ajax', basename(__FILE__), __LINE__, $file));
+error_log(sprintf('%s:%d timeline ajax', basename(__FILE__), __LINE__));
 
 $root = realpath(__DIR__. '/../');
 $script = str_replace($root, '', __FILE__);
@@ -15,6 +15,7 @@ $dataDir = getDataDir();
 
 $file = getTimelineFile($collectionId);
 error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $file));
+error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, json_encode($configuration)));
 
 $data = (object)[
   'version' => getOrDefault('version'),
