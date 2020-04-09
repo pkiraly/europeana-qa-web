@@ -435,3 +435,7 @@ table.timeline td.num {
 table.timeline tr.newline td {
   border-top: 1px solid lawngreen;
 }
+
+table.timeline td.property {
+  width: 25%;
+}
