@@ -368,10 +368,17 @@
               <i class="fa fa-info-circle"></i>
             </p>
             <form id="timeline-form">
+              feature:
+              <select name="statistic">
+                <option value="completeness" selected="selected">Completeness</option>
+                <option value="multilinguality" selected="selected">Multilinguality</option>
+              </select>
+
+              statistics:
               <select name="statistic">
                 {assign var="statistics" value=["mean", "min", "max", "count", "sum", "stddev", "median"]}
                 {foreach $statistics as $statistic}
-                  <option>{$statistic}</option>
+                  <option {if $statistic == 'mean'}selected="selected"{/if}>{$statistic}</option>
                 {/foreach}
               </select>
             </form>
