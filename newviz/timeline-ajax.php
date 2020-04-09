@@ -88,7 +88,7 @@ function getTimelines($files, $feature, $statistic) {
           } elseif (preg_match('/^(.*?)(InProviderProxy|InEuropeanaProxy|InObject)$/', $field, $matches)) {
             $property = $matches[1];
             $location = $matches[2];
-            $timeline['general'][$property][$location] = $row[$statistic];
+            $timeline['general'][$property][$location][$version] = $row[$statistic];
           }
         }
       }
