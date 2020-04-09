@@ -52,7 +52,7 @@
           {$j = $j + 1}
           <tr {if $i == 1 && $j == 1}class="newline"{/if}>
             <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
-            <td>{if $j == 1}{$data->{'multilinguality-field-locations'}[$location]}{/if}</td>
+            <td>{if $j == 1}{$location} {$data->{'multilinguality-field-locations'}[$location]}{/if}</td>
             <td>{$property}</td>
               {foreach $data->files as $version => $file}
                 <td class="num {if $timeline[$version] == 0.0}nil{/if}">
