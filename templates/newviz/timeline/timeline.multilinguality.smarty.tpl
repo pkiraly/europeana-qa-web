@@ -16,7 +16,7 @@
       {foreach $data->{'multilinguality-general-locations'} as $location => $location_label}
         {$i = $i + 1}
         {assign var="timeline" value=$locations[$location]}
-        <tr>
+        <tr {if $i == 1}class="newline"{/if}>
           {if $i == 1}
             <td rowspan="3">{$property_label}</td>
           {/if}

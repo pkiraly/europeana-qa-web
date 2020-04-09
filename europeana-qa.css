@@ -430,3 +430,7 @@ table.timeline td.num {
   text-align: right;
   padding-right: 20px;
 }
+
+table.timeline tr.newline td {
+  border-top: 1px solid coral;
+}
