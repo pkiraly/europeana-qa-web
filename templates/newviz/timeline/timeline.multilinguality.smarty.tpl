@@ -17,7 +17,9 @@
         {$i = $i + 1}
         {assign var="timeline" value=$locations[$location]}
         <tr>
-          <td>{if $i == 1}{$property_label}{/if}</td>
+          {if $i == 1}
+            <td rowspan="3">{$property_label}</td>
+          {/if}
           <td>{$location_label}</td>
           {foreach $data->files as $version => $file}
             <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
