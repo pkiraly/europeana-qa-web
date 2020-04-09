@@ -1,6 +1,6 @@
 <h2>Changes of multilinguality scores</h2>
 
-<h3>General properties</h3>
+<h3>General multilinguality scores</h3>
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
@@ -32,7 +32,7 @@
   </tbody>
 </table>
 
-<h3>Fields</h3>
+<h3>Multilinguality scores per fields</h3>
 <table class="timeline timeline-multilinguality-fields" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
