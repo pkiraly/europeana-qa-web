@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    {foreach $data->timelines['multilinguality-general-properties'] as $property => $property_label}
+    {foreach $data->{'multilinguality-general-properties'} as $property => $property_label}
       {assign var="i" value="0"}
       {assign var="locations" value=$data->timelines['general'][$property]}
       {foreach $data->{'multilinguality-general-locations'} as $location => $location_label}
