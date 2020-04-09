@@ -45,7 +45,7 @@
         {foreach $properties as $property => $timeline}
           {$j = $j + 1}
           <tr>
-            <td>{if $i == 1}{$field}{/if}</td>
+            <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
             <td>{if $j == 1}{$location}{/if}</td>
             <td>{$property}</td>
               {foreach $data->files as $version => $file}
