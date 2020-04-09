@@ -421,6 +421,11 @@ a.close-popup {
   float: right;
 }
 
+table.timeline {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 table.timeline td,
 table.timeline th {
   vertical-align: top;

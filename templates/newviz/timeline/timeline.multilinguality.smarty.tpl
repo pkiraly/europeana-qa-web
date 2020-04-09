@@ -30,7 +30,7 @@
   </tbody>
 </table>
 
-<h3>Field</h3>
+<h3>Fields</h3>
 <table class="timeline timeline-multilinguality-fields" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
@@ -53,7 +53,7 @@
           <tr {if $i == 1 && $j == 1}class="newline"{/if}>
             <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
             <td>{if $j == 1}{$data->multilinguality_field_locations[$location]}{/if}</td>
-            <td>{$property}</td>
+            <td>{$data->multilinguality_field_properties[$property]}</td>
               {foreach $data->files as $version => $file}
                 <td class="num {if $timeline[$version] == 0.0}nil{/if}">
                   {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
