@@ -57,7 +57,9 @@ function getTimelines($files) {
           error_log($msg);
         }
         $row = array_combine($keys, $values);
-        $timeline[$field][$version] = $row['mean'];
+        list($location, $entity, $encodedfield) = explode('_', $field, 3);
+        $edmfield = preg_replace('/^([^_]+)_/', "$1:", $encodedfield);
+        $timeline[$entity][$location][$edmfield][$version] = $row['mean'];
       }
     }
   }
