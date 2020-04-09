@@ -1,3 +1,4 @@
+<h3>General multilinguality</h3>
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
@@ -26,11 +27,13 @@
   </tbody>
 </table>
 
+<h3>Field</h3>
 <table class="timeline timeline-multilinguality-fields" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
       <th>field</th>
       <th>location</th>
+      <th>property</th>
       {foreach $data->files as $version => $file}
         <th>{$version}</th>
       {/foreach}
