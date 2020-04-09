@@ -8,7 +8,7 @@ $configuration = parse_ini_file($root . '/config.cfg');
 include_once($root . '/newviz/common.functions.php');
 
 $parameters = getParameters();
-$collectionId = $parameters->type . '-' . $parameters->id;
+$collectionId = ($parameters->type == 'a') ? $parameters->id : $parameters->type . '-' . $parameters->id;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 
 $dataDir = getDataDir();
