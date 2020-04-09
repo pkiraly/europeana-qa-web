@@ -10,14 +10,12 @@
   </thead>
   <tbody>
     {foreach $data->timelines['general'] as $property => $locations}
-      <tr><td colspan="8">0: {json_encode($locations)}</td></tr>
+      {assign var="i" value="0"}
       {foreach $data->{'multilinguality-general-locations'} as $location => $label}
+        {$i = $i + 1}
         {assign var="timeline" value=$locations[$location]}
-        <tr><td colspan="8">1: {json_encode($location)}</td></tr>
-        <tr><td colspan="8">2: {json_encode($locations[$location])}</td></tr>
-        <tr><td colspan="8">3: {json_encode($timeline)}</td></tr>
         <tr>
-          <td>{$property}</td>
+          <td>{if $i == 1}{$property}{/if}</td>
           <td>{$label}</td>
           {foreach $data->files as $version => $file}
             <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
