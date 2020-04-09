@@ -10,14 +10,15 @@
     </tr>
   </thead>
   <tbody>
-    {foreach $data->timelines['general'] as $property => $locations}
+    {foreach $data->timelines['multilinguality-general-properties'] as $property => $property_label}
       {assign var="i" value="0"}
-      {foreach $data->{'multilinguality-general-locations'} as $location => $label}
+      {assign var="locations" value=$data->timelines['general'][$property]}
+      {foreach $data->{'multilinguality-general-locations'} as $location => $location_label}
         {$i = $i + 1}
         {assign var="timeline" value=$locations[$location]}
         <tr>
-          <td>{if $i == 1}{$property}{/if}</td>
-          <td>{$label}</td>
+          <td>{if $i == 1}{$property_label}{/if}</td>
+          <td>{$location_label}</td>
           {foreach $data->files as $version => $file}
             <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
           {/foreach}

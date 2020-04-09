@@ -21,6 +21,12 @@ $data = (object)[
     'InProviderProxy' => 'original',
     'InEuropeanaProxy' => 'enrichment',
     'InObject' => 'whole'
+  ],
+  'multilinguality-general-properties' => [
+    'TaggedLiterals' => 'Number of tagged literals',
+    'DistinctLanguageCount' => 'Number of distinct language tags',
+    'TaggedLiteralsPerLanguage' => 'Number of tagged literals per language tag',
+    'NumberOfLanguagesPerProperty' => 'Average number of languages per property for which there is at least one language-tagged literal'
   ]
 ];
 
