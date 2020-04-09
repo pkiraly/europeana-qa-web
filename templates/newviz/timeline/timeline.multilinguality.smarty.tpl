@@ -12,7 +12,7 @@
       <tr>
         <td>{$field}</td>
         {foreach $data->files as $version => $file}
-          <td calss="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
+          <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
         {/foreach}
       </tr>
     {/foreach}
