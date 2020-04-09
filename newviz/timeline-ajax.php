@@ -15,7 +15,7 @@ $dataDir = getDataDir();
 
 $file = getTimelineFile($collectionId);
 error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $file));
-error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, json_encode($configuration)));
+error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, json_encode($configuration['version'])));
 
 $data = (object)[
   'version' => getOrDefault('version'),
