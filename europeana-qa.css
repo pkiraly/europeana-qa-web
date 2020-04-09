@@ -422,7 +422,7 @@ a.close-popup {
 }
 
 table.timeline td {
-  padding: 5px;
+  padding-right: 5px;
 }
 
 table.timeline td.num {
