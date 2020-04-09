@@ -42,15 +42,8 @@ $type3 = getOrDefault('type3', NULL);
 $id3 = getOrDefault('id3', NULL);
 $source = getOrDefault('source', 'json', ['json', 'csv']);
 
-if ($id == '') {
+if ($id == '')
   $id = 'all';
-  /*
-  $datasets = retrieveDatasets($type, $fragment);
-  foreach ($datasets as $id => $collectionId) {
-    break;
-  }
-  */
-}
 
 // getIntersections($type, $id, $type2, $id2, $type3, $intersection) {
 

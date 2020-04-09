@@ -238,6 +238,7 @@
       {if ($development)}
         <li><a href="#record-patterns">Record patterns</a></li>
         <li><a href="#uniqueness">Uniqueness</a></li>
+        <li><a href="#timeline">Timeline</a></li>
       {/if}
     </ul>
 
@@ -360,6 +361,15 @@
             <div class="col-sm-12 col-md-12 col-lg-12" id="uniqueness-content"></div>
           </div>
         </div>
+        <div id="timeline" class="tab-pane fade">
+          <div class="row">
+            <h2>Timeline</h2>
+            <p>
+              <i class="fa fa-info-circle"></i>
+            </p>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="timeline-content"></div>
+          </div>
+        </div>
       {/if}
     </div>
   </div>{* /main-content-container *}
@@ -403,6 +413,7 @@ $(document).ready(function () {
     '#multilingual-score-languages': false,
     '#record-patterns': false,
     '#uniqueness': false,
+    '#timeline': false,
   };
   // $("#generic").tablesorter();
   // $("#specific-taggedliterals").tablesorter();
@@ -418,6 +429,9 @@ $(document).ready(function () {
   } else if (tabId == '#uniqueness') {
     loadUniqueness();
     $('.nav-tabs a[href="#uniqueness"]').tab('show');
+  } else if (tabId == '#timeline') {
+    loadTimeline();
+    $('.nav-tabs a[href="#timeline"]').tab('show');
   } else if (tabId == '#cardinality-score-providedcho') {
     loadedEntity = 'ProvidedCHO';
     loadEntityCardinality(loadedEntity);
@@ -786,6 +800,22 @@ function loadUniqueness() {
     });
   });
 }
+
+function loadTimeline() {
+  var query = {
+    'id': id1, 'type': type1, 'intersection': intersection,
+    'count': count, 'version': version, 'development': development
+  };
+  $.get("newviz/timeline-ajax.php", query)
+  .done(function(data) {
+    $('#timeline-content').html(data);
+    $("#main-content-container .nav-tabs a").click(function() {
+      $(this).tab('show');
+    });
+  });
+}
+
+
 
 function loadEntityCardinality(entity) {
   var query = {
