@@ -57,7 +57,7 @@ function getTimelines($files) {
           error_log($msg);
         }
         $row = array_combine($keys, $values);
-        $timeline[$field][$version] = $row->mean;
+        $timeline[$field][$version] = $row['mean'];
       }
     }
   }
