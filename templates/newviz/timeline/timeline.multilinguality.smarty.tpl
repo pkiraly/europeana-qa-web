@@ -8,13 +8,17 @@
     </tr>
   </thead>
   <tbody>
-    {foreach $data->timelines['general'] as $field => $timeline}
-      <tr>
-        <td>{$field}</td>
-        {foreach $data->files as $version => $file}
-          <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
-        {/foreach}
-      </tr>
+    {foreach $data->timelines['general'] as $property => $locations}
+      {foreach $data->{'multilinguality-general-locations'} as $location => $label}
+        {assign var="timeline" value=$locations[$location]}
+        <tr>
+          <td>{$field}</td>
+          <td>{$label}</td>
+          {foreach $data->files as $version => $file}
+            <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
+          {/foreach}
+        </tr>
+      {/foreach}
     {/foreach}
   </tbody>
 </table>

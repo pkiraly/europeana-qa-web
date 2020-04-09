@@ -17,6 +17,11 @@ $data = (object)[
   'version' => getOrDefault('version'),
   'files' => $files,
   'timelines' => getTimelines($files, $feature, $statistic),
+  'multilinguality-general-locations' => [
+    'InProviderProxy' => 'original',
+    'InEuropeanaProxy' => 'enrichment',
+    'InObject' => 'whole'
+  ]
 ];
 
 $smarty = createSmarty('../templates/newviz/timeline/');
@@ -80,8 +85,10 @@ function getTimelines($files, $feature, $statistic) {
             $property = $matches[3];
             $edmfield = preg_replace('/^([^_]+)_/', "$1:", $encodedfield);
             $timeline['specific'][$edmfield][$location][$property][$version] = $row[$statistic];
-          } else {
-            $timeline['general'][$field][$version] = $row[$statistic];
+          } elseif (preg_match('/^(.*?)(InProviderProxy|InEuropeanaProxy|InObject)$/', $field, $matches)) {
+            $property = $matches[1];
+            $location = $matches[2];
+            $timeline['general'][$property][$location] = $row[$statistic];
           }
         }
       }
