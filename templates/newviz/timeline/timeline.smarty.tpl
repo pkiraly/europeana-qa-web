@@ -3,7 +3,7 @@
     <tr>
       <th>field</th>
       {foreach $data->files as $version => $file}
-        <th>$version</th>
+        <th>{$version}</th>
       {/foreach}
     </tr>
   </thead>
@@ -12,7 +12,7 @@
       <tr>
         <td>{$field}</td>
         {foreach $timeline as $version => $value}
-          <td>{$value}</td>
+          <td>{$value|number_format:2}</td>
         {/foreach}
       </tr>
     {/foreach}
