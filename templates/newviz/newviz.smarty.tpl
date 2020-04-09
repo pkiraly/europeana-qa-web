@@ -370,7 +370,7 @@
             <form id="timeline-form">
               <select name="statistic">
                 {assign var="statistics" value='["mean", "min", "max", "count", "sum", "stddev", "median"]'}
-                {foreach $statistics as statistic}
+                {foreach $statistics as $statistic}
                   <option>{$statistic}</option>
                 {/foreach}
               </select>
