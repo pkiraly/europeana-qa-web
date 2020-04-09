@@ -18,8 +18,8 @@ error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $file));
 
 $data = (object)[
   'version' => getOrDefault('version'),
-  'file' => getUniquenessFile($collectionId),
-  'histogram' => getHistogram(getUniquenessFile($collectionId)),
+  'file' => $file,
+  'histogram' => getHistogram($file),
   'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*'],
   'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
 ];
