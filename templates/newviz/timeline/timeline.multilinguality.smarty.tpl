@@ -1,3 +1,5 @@
+<h2>Changes of multilinguality scores</h2>
+
 <h3>General properties</h3>
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>

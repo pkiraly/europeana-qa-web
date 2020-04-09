@@ -365,16 +365,18 @@
           <div class="row">
             <h2>Timeline</h2>
             <p>
-              <i class="fa fa-info-circle"></i>
+              <i class="fa fa-info-circle"></i> These tables shows how the metadata quality scores changed over the times.
             </p>
             <form id="timeline-form">
-              feature:
+              Please select the data you would like to study!
+
+              Feature:
               <select name="feature">
                 <option value="completeness" selected="selected">Completeness</option>
                 <option value="multilinguality" selected="selected">Multilinguality</option>
               </select>
 
-              statistics:
+              Statistics:
               <select name="statistic">
                 {assign var="statistics" value=["mean", "min", "max", "count", "sum", "stddev", "median"]}
                 {foreach $statistics as $statistic}

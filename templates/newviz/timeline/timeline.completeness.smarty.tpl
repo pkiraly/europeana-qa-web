@@ -1,3 +1,5 @@
+<h2>Changes of completeness scores</h2>
+
 {foreach $data->timelines as $entity => $fields}
   <h3>{$entity}</h3>
   <table class="timeline timeline-completeness" xmlns="http://www.w3.org/1999/html">
@@ -19,7 +21,7 @@
             <td>{if $i == 1}{$field}{/if}</td>
             <td>{if $location == 'provider'}original{else}enrichment{/if}</td>
             {foreach $data->files as $version => $file}
-              <td>{if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}</td>
+              <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}</td>
             {/foreach}
           </tr>
         {/foreach}
