@@ -83,6 +83,7 @@ function displayLanguageTreemap() {
         if (d.children) {
           return null;
         } else {
+          var text = '';
           if (d.name == 'no language') {
             text = 'literal without language tag';
           } else if (d.name == 'resource') {
