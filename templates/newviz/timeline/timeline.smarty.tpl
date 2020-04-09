@@ -21,7 +21,7 @@
             <td>{if $i == 1}{$field}{/if}</td>
             <td>{$location}</td>
             {foreach $data->files as $version => $file}
-              <td>{if isset($timeline['value'])}{$timeline['value']|number_format:2}{/if}</td>
+              <td>{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
             {/foreach}
           </tr>
         {/foreach}
