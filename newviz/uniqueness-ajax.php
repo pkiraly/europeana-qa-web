@@ -15,7 +15,7 @@ $dataDir = getDataDir();
 $data = (object)[
   'version' => getOrDefault('version'),
   'file' => getUniquenessFile($collectionId),
-  'histogram' => getHistogram(getUniquenessFile($collectionId)),
+  'histogram' => getTimelines(getUniquenessFile($collectionId)),
   'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*'],
   'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
 ];

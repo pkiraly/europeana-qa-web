@@ -14,14 +14,12 @@ $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 $dataDir = getDataDir();
 
 $files = getTimelineFiles($collectionId);
-error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, json_encode($files)));
+error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, join(', ', $files)));
 
 $data = (object)[
   'version' => getOrDefault('version'),
-  'file' => $files,
-  'histogram' => getHistogram($files),
-  'stars' => ['<i class="fa fa-certificate"></i>', '*****', '****', '***', '**', '*'],
-  'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
+  'files' => $files,
+  'timelines' => getTimelines($files),
 ];
 
 $smarty = createSmarty('../templates/newviz/timeline/');
@@ -35,49 +33,34 @@ function getTimelineFiles($collectionId) {
   foreach ($configuration['version'] as $version) {
     if ($version >= 'v2019-08') {
       $dataDir = $configuration['DATA_PATH'] . '/' . $version;
-      $files[] = $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
+      $files[$version] = $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
     }
   }
   return $files;
 }
 
-function getHistogram($file) {
-  $histogram = new stdClass();
-  if (file_exists($file)) {
-    $histogram = json_decode(file_get_contents($file));
-  }
-  return $histogram;
-}
-
-
-function getPatterns($collectionId, $count) {
-  global $dataDir;
-
-  $fileName = getProfileFile($collectionId);
-
-  $profiles = [];
-  if ($file = fopen($fileName, "r")) {
-    $lineSet = FALSE;
-    while(!feof($file)) {
-      $line = trim(fgets($file));
-      if ($line == '')
-        continue;
-      $row = [];
-      list($profile, $row['nr'], $row['occurence'], $row['percent']) = explode(',', $line);
-      if ($count != -1)
-        $row['percent'] = $row['occurence'] / $count;
-      $row['profileFields'] = explode(';', $profile);
-      if ($row['percent'] * 100 < 1 && !$lineSet) {
-        $lineSet = TRUE;
-        $drawLine = TRUE;
-      } else {
-        $drawLine = FALSE;
+function getTimelines($files) {
+  $timeline = new stdClass();
+  foreach ($files as $version => $file) {
+    if (file_exists($file)) {
+      $keys = ($version == 'v2018-08')
+        ? ["mean", "min", "max", "count", "sum", "median"]
+        : ["mean", "min", "max", "count", "sum", "stddev", "median"];
+      foreach (file($file) as $line) {
+        $values = str_getcsv($line);
+        $collection = array_shift($values);
+        $field = array_shift($values);
+        if (count($keys) != count($values)) {
+          $msg = sprintf("%s:%d different counts: %d vs %d - values: %s",
+            basename(__FILE__), __LINE__,
+            count($keys), count($values), join(', ', $values));
+          error_log($msg);
+        }
+        $row = array_combine($keys, $values);
+        $timeline[$field][$version] = $row->mean;
       }
-      $row['drawLine'] = $drawLine;
-      $profiles[] = $row;
     }
-    fclose($file);
   }
 
-  return $profiles;
+  return $timeline;
 }
