@@ -14,7 +14,7 @@ $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 $dataDir = getDataDir();
 
 $files = getTimelineFiles($collectionId);
-error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, $files));
+error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, json_encode($files)));
 
 $data = (object)[
   'version' => getOrDefault('version'),
