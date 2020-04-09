@@ -88,8 +88,8 @@ function getTimelines($files, $feature, $statistic) {
     }
   }
 
-  if ($feature == 'multilinguality')
-    ksort($timeline['general']);
+  // if ($feature == 'multilinguality')
+  //  ksort($timeline['general']);
 
   return $timeline;
 }
