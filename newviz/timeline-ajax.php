@@ -21,6 +21,11 @@ $data = (object)[
     'provider' => 'original',
     'europeana' => 'enrichment',
   ],
+  'multilinguality_field_properties' => [
+    'taggedLiterals' => 'Number of tagged literals',
+    'languages' => 'Number of distinct language tags',
+    'literalsPerLanguage' => 'Number of tagged literals per language tag',
+  ],
   'multilinguality_general_locations' => [
     'InProviderProxy' => 'original',
     'InEuropeanaProxy' => 'enrichment',

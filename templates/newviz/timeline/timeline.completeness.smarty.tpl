@@ -21,7 +21,7 @@
             <td>{if $i == 1}{$field}{/if}</td>
             <td>{if $location == 'provider'}original{else}enrichment{/if}</td>
             {foreach $data->files as $version => $file}
-              <td>{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
+              <td>{if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}</td>
             {/foreach}
           </tr>
         {/foreach}

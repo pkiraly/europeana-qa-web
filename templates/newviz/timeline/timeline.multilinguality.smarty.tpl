@@ -22,7 +22,7 @@
           {/if}
           <td>{$location_label}</td>
           {foreach $data->files as $version => $file}
-            <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
+            <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}</td>
           {/foreach}
         </tr>
       {/foreach}
@@ -56,7 +56,7 @@
             <td>{$property}</td>
               {foreach $data->files as $version => $file}
                 <td class="num {if $timeline[$version] == 0.0}nil{/if}">
-                  {if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}
+                  {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
                 </td>
               {/foreach}
           </tr>
