@@ -421,7 +421,8 @@ a.close-popup {
   float: right;
 }
 
-table.timeline td {
+table.timeline td,
+table.timeline th {
   vertical-align: top;
   padding-right: 5px;
 }
