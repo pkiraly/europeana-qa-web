@@ -1,4 +1,4 @@
-<table class="timeline" xmlns="http://www.w3.org/1999/html">
+<table class="timeline timeline-completeness" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
       <th>field</th>
@@ -17,7 +17,7 @@
         {assign var="i" value="0"}
         {foreach $field_properties as $location => $timeline}
           {$i = $i + 1}
-          <tr>
+          <tr {if $i == 1}class="newline"{/if}>
             <td>{if $i == 1}{$field}{/if}</td>
             <td>{if $location == 'provider'}original{else}enrichment{/if}</td>
             {foreach $data->files as $version => $file}

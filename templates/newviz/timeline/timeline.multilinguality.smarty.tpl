@@ -1,4 +1,4 @@
-<h3>General multilinguality</h3>
+<h3>General properties</h3>
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
@@ -50,7 +50,7 @@
         {assign var="j" value="0"}
         {foreach $properties as $property => $timeline}
           {$j = $j + 1}
-          <tr>
+          <tr {if $i == 1 && $j == 1}class="newline"{/if}>
             <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
             <td>{if $j == 1}{$location}{/if}</td>
             <td>{$property}</td>
