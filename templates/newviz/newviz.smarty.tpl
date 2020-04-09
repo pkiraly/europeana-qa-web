@@ -513,19 +513,23 @@ $(document).ready(function () {
     showType(type1);
     $("input[name='type']").on('change', function () {
       showType($(this).val());
-    })
+    });
   }
+
+  $("form#timeline-form select").on('change', function () {
+    loadTimeline();
+  });
 
   $("form#collection-selector select[name='id']").on('change', function() {
     var selectedType = $(this).siblings('input[name=type]').val();
     var selectedId = $(this).val();
     updateIntercestionSelector(selectedType, selectedId);
-  })
+  });
 
   watchIntersections();
   $('#reset-intersections').on('click', function () {
     resetIntersections();
-  })
+  });
   if (type2 != '' && id2 != '') {
     updateIntercestionSelector(type1, id1, type2, id2, type3, id3, intersection);
   }
