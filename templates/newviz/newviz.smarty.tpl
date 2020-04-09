@@ -367,6 +367,14 @@
             <p>
               <i class="fa fa-info-circle"></i>
             </p>
+            <form id="timeline-form">
+              <select name="statistic">
+                {assign var="statistics" value='["mean", "min", "max", "count", "sum", "stddev", "median"]'}
+                {foreach $statistics as statistic}
+                  <option>{$statistic}</option>
+                {/foreach}
+              </select>
+            </form>
             <div class="col-sm-12 col-md-12 col-lg-12" id="timeline-content"></div>
           </div>
         </div>

@@ -1,6 +1,4 @@
 <?php
-error_log(sprintf('%s:%d timeline ajax', basename(__FILE__), __LINE__));
-
 $root = realpath(__DIR__. '/../');
 $script = str_replace($root, '', __FILE__);
 
@@ -11,11 +9,7 @@ $parameters = getParameters();
 $collectionId = ($parameters->type == 'a') ? $parameters->id : $parameters->type . '-' . $parameters->id;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 
-$dataDir = getDataDir();
-
 $files = getTimelineFiles($collectionId);
-error_log(sprintf('%s:%d file: %s', basename(__FILE__), __LINE__, join(', ', $files)));
-
 $data = (object)[
   'version' => getOrDefault('version'),
   'files' => $files,
@@ -32,8 +26,9 @@ function getTimelineFiles($collectionId) {
   $files = [];
   foreach ($configuration['version'] as $version) {
     if ($version >= 'v2019-08') {
-      $dataDir = $configuration['DATA_PATH'] . '/' . $version;
-      $files[$version] = $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
+      $baseDatadir = $configuration['DATA_PATH'] . '/' . $version;
+      $dataDir = $baseDatadir . '/json/' . $parameters->type . '/' . $collectionId;
+      $files[$version] = $dataDir . '/' .  $collectionId . '.completeness.csv';
     }
   }
   ksort($files);
