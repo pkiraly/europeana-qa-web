@@ -12,7 +12,7 @@
       {foreach $data->{'multilinguality-general-locations'} as $location => $label}
         {assign var="timeline" value=$locations[$location]}
         <tr>
-          <td>{$field}</td>
+          <td>{$property}</td>
           <td>{$label}</td>
           {foreach $data->files as $version => $file}
             <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
