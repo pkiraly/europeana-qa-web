@@ -10,10 +10,10 @@
     </tr>
   </thead>
   <tbody>
-    {foreach $data->{'multilinguality-general-properties'} as $property => $property_label}
+    {foreach $data->multilinguality_general_properties as $property => $property_label}
       {assign var="i" value="0"}
       {assign var="locations" value=$data->timelines['general'][$property]}
-      {foreach $data->{'multilinguality-general-locations'} as $location => $location_label}
+      {foreach $data->multilinguality_general_locations as $location => $location_label}
         {$i = $i + 1}
         {assign var="timeline" value=$locations[$location]}
         <tr {if $i == 1}class="newline"{/if}>
@@ -52,7 +52,7 @@
           {$j = $j + 1}
           <tr {if $i == 1 && $j == 1}class="newline"{/if}>
             <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
-            <td>{if $j == 1}{$location} {$data->multilinguality_field_locations[$location]}{/if}</td>
+            <td>{if $j == 1}{$data->multilinguality_field_locations[$location]}{/if}</td>
             <td>{$property}</td>
               {foreach $data->files as $version => $file}
                 <td class="num {if $timeline[$version] == 0.0}nil{/if}">
