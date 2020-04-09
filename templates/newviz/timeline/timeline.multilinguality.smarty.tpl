@@ -1,7 +1,8 @@
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
-      <th>field</th>
+      <th>property</th>
+      <th>location</th>
       {foreach $data->files as $version => $file}
         <th>{$version}</th>
       {/foreach}
@@ -11,6 +12,9 @@
     {foreach $data->timelines['general'] as $property => $locations}
       {foreach $data->{'multilinguality-general-locations'} as $location => $label}
         {assign var="timeline" value=$locations[$location]}
+        <tr><td colspan="8">1: {json_encode($location)}</td></tr>
+        <tr><td colspan="8">2: {json_encode($locations[$location])}</td></tr>
+        <tr><td colspan="8">3: {json_encode($timeline)}</td></tr>
         <tr>
           <td>{$property}</td>
           <td>{$label}</td>
