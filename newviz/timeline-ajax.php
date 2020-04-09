@@ -84,7 +84,7 @@ function getTimelines($files, $feature, $statistic) {
             $encodedfield = $matches[2];
             $property = $matches[3];
             $edmfield = preg_replace('/^([^_]+)_/', "$1:", $encodedfield);
-            $timeline['specific'][$edmfield][$location][$property][$version] = $row[$statistic];
+            $timeline['fields'][$edmfield][$location][$property][$version] = $row[$statistic];
           } elseif (preg_match('/^(.*?)(InProviderProxy|InEuropeanaProxy|InObject)$/', $field, $matches)) {
             $property = $matches[1];
             $location = $matches[2];
