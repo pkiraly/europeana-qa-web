@@ -369,7 +369,7 @@
             </p>
             <form id="timeline-form">
               feature:
-              <select name="statistic">
+              <select name="feature">
                 <option value="completeness" selected="selected">Completeness</option>
                 <option value="multilinguality" selected="selected">Multilinguality</option>
               </select>
@@ -819,6 +819,11 @@ function loadUniqueness() {
 }
 
 function loadTimeline() {
+  var oForm = $('form#timeline-form');
+  var feature = $('select[name=feature]', oForm).val();
+  var statistic = $('select[name=statistic]', oForm).val();
+  console.log('feature: ' + feature)
+  console.log('statistic: ' + statistic)
   var query = {
     'id': id1, 'type': type1, 'intersection': intersection,
     'count': count, 'version': version, 'development': development
