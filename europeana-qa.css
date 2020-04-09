@@ -432,8 +432,12 @@ table.timeline td.num {
   padding-right: 20px;
 }
 
+table.timeline td.nil {
+  color: #cccccc;
+}
+
 table.timeline tr.newline td {
-  border-top: 1px solid lawngreen;
+  border-top: 1px solid #cccccc;
 }
 
 table.timeline td.property {

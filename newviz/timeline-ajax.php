@@ -17,6 +17,10 @@ $data = (object)[
   'version' => getOrDefault('version'),
   'files' => $files,
   'timelines' => getTimelines($files, $feature, $statistic),
+  'multilinguality-field-locations' => [
+    'provider' => 'original',
+    'europeana' => 'enrichment',
+  ],
   'multilinguality-general-locations' => [
     'InProviderProxy' => 'original',
     'InEuropeanaProxy' => 'enrichment',

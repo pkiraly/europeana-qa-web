@@ -52,10 +52,12 @@
           {$j = $j + 1}
           <tr {if $i == 1 && $j == 1}class="newline"{/if}>
             <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
-            <td>{if $j == 1}{$location}{/if}</td>
+            <td>{if $j == 1}{$data->{multilinguality-field-locations}[$location]}{/if}</td>
             <td>{$property}</td>
               {foreach $data->files as $version => $file}
-                <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}</td>
+                <td class="num {if $timeline[$version] == 0.0}nil{/if}">
+                  {if isset($timeline[$version])}{$timeline[$version]|number_format:2}{/if}
+                </td>
               {/foreach}
           </tr>
         {/foreach}
