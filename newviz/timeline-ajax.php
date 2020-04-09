@@ -52,11 +52,11 @@ function getTimelineFiles($collectionId, $feature) {
 function getTimelines($files, $feature, $statistic) {
 
   $timeline = [];
+  $keys = ($feature == 'completeness')
+    ? ["mean", "min", "max", "count", "sum", "stddev", "median"]
+    : ["mean", "min", "max", "count", "stddev", "median"];
   foreach ($files as $version => $file) {
     if (file_exists($file)) {
-      $keys = ($version == 'v2018-08')
-        ? ["mean", "min", "max", "count", "sum", "median"]
-        : ["mean", "min", "max", "count", "sum", "stddev", "median"];
       foreach (file($file) as $line) {
         $values = str_getcsv($line);
         $collection = array_shift($values);
