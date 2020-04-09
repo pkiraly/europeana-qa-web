@@ -12,6 +12,9 @@ $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 
 $dataDir = getDataDir();
 
+$file = getTimelineFile($collectionId);
+error_log(sprintf('%s:%d file: ', basename(__FILE__), __LINE__, $file));
+
 $data = (object)[
   'version' => getOrDefault('version'),
   'file' => getUniquenessFile($collectionId),
@@ -20,14 +23,14 @@ $data = (object)[
   'fq' => sprintf("%s:%d", ($parameters->type == 'c' ? 'collection_i' : 'provider_i'), $parameters->id)
 ];
 
-$smarty = createSmarty('../templates/newviz/uniqueness/');
+$smarty = createSmarty('../templates/newviz/timeline/');
 $smarty->assign('data', $data);
-$smarty->display('uniqueness-histogram.smarty.tpl');
+$smarty->display('timeline.smarty.tpl');
 
-function getUniquenessFile($collectionId) {
-  global $dataDir;
+function getTimelineFile($collectionId) {
+  global $dataDir, $parameters;
 
-  return $dataDir . '/json/' . $collectionId . '/' .  $collectionId . '.uniqueness.histogram.json';
+  return $dataDir . '/json/' . $parameters->type . '/' . $collectionId . '/' .  $collectionId . '.completeness.csv';
 }
 
 function getHistogram($file) {
