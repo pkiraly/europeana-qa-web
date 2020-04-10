@@ -23,7 +23,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     var max = d3.max(dataset);
     var min = d3.min(dataset);
     var range = max - min;
-    var minmaxPadding = range / 4;
+    var minmaxPadding = (range != 0) ? range / 4 : 1.0;
 
     var yScale = d3.scale.linear()
     .domain([min - minmaxPadding, max + minmaxPadding])
