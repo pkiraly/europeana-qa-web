@@ -110,7 +110,7 @@ $(document).ready(function () {
     var max = d3.max(dataset);
     var min = d3.min(dataset);
     var range = max - min;
-    var minmaxPadding = range / 3;
+    var minmaxPadding = range / 4;
 
     var yScale = d3.scale.linear()
                    .domain([min - minmaxPadding, max + minmaxPadding])
