@@ -1,8 +1,6 @@
 <h2>Changes of multilinguality scores</h2>
 
-<div id='svg-container'>
-  <svg />
-</div>
+<div id="svg-container"></div>
 
 <h3>General multilinguality scores</h3>
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
@@ -98,8 +96,8 @@ $(document).ready(function () {
     console.log('values: ' + dataset);
 
     var margin = {top: 40, right: 10, bottom: 10, left: 10},
-        width = 200 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        width = 500 - margin.left - margin.right,
+        height = 200 - margin.top - margin.bottom;
 
     var heatmap = d3.select("#svg-container")
       .style("position", "relative")
