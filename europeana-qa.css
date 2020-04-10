@@ -449,7 +449,7 @@ table.timeline td.property {
   width: 25%;
 }
 
-#svg-container {
+div.svg-container {
   background-color: #428bca;
   padding: 20px;
   height: 140px;

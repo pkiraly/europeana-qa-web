@@ -1,6 +1,6 @@
 <h2>Changes of completeness scores</h2>
 
-<div id="svg-container-completeness"></div>
+<div id="svg-container-completeness" class="svg-container"></div>
 
 {foreach $data->timelines as $entity => $fields}
   <h3>{$entity}</h3>

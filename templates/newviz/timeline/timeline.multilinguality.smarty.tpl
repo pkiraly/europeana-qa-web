@@ -1,6 +1,6 @@
 <h2>Changes of multilinguality scores</h2>
 
-<div id="svg-container-multilinguality"></div>
+<div id="svg-container-multilinguality" class="svg-container"></div>
 
 <h3>General multilinguality scores</h3>
 <table class="timeline timeline-multilinguality timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
