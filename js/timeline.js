@@ -27,7 +27,8 @@ function startInteractiveTimeline(targetId, tableClass) {
 
     var yScale = d3.scale.linear()
     // .domain([min - minmaxPadding, max + minmaxPadding])
-    .domain([min, max])
+    // .domain([min, max])
+    .domain([0, max])
     .range([0, timeline_h]);
 
     svg.selectAll("rect")
