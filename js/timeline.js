@@ -10,6 +10,10 @@ function startInteractiveTimeline(targetId, tableClass) {
 
   var dataset = [];
   $('table.' + tableClass + ' td.property').on('click', function(e) {
+    $('table.' + tableClass + ' td.highlighted').each(function(e) {
+      $(this).removeClass('highlighted');
+    });
+
     var mousePosition = e.pageY;
     var oTarget = $('div#' + targetId);
     oTarget.css('position', 'absolute');
@@ -17,10 +21,8 @@ function startInteractiveTimeline(targetId, tableClass) {
     oTarget.animate({"top": (mousePosition - 540) + 'px'}, "slow");
     oTarget.on('click', function() {
       oTarget.hide(1000);
-      $('table.' + tableClass + ' td.num').each(function(e) {
-        if ($(this).hasClass('highlighted')) {
-          $(this).removeClass('highlighted');
-        }
+      $('table.' + tableClass + ' td.highlighted').each(function(e) {
+        $(this).removeClass('highlighted');
       });
     })
     dataset = [];
