@@ -10,11 +10,16 @@ function startInteractiveTimeline(targetId, tableClass) {
 
   var dataset = [];
   $('table.' + tableClass + ' td.property').on('click', function(e) {
-    console.log(e.pageY);
-    var current = $('div#' + targetId).position().top;
-    console.log($('div#' + targetId).height());
-    console.log($('div#' + targetId).css('height'));
-    console.log($('div#' + targetId).css('box-sizing'));
+    var mousePosition = e.pageY;
+    console.log('mousePosition: ' + mousePosition);
+    var tdPosition = $(this).position().top;
+    console.log('tdPosition: ' + tdPosition);
+    var oTarget = $('div#' + targetId);
+    var targetPosition = oTarget.position().top;
+    console.log('targetPosition: ' + targetPosition);
+    console.log(oTarget.height());
+    console.log(oTarget.css('height'));
+    console.log(oTarget.css('box-sizing'));
     dataset = [];
 
     $(this).siblings('td').each(function() {
