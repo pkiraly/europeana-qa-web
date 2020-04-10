@@ -43,7 +43,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     .attr("height", function(d) {
       return yScale(d);
     })
-    .attr('fill', '#ccc')
+    .attr('fill', '#333')
     ;
 
     svg.selectAll("text")
