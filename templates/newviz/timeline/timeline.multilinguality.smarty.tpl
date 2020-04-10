@@ -77,7 +77,8 @@
   <style type="text/css">
     #svg-container {
       background-color: #428bca;
-      margin: 20px;
+      padding: 20px;
+      height: 120px;
     }
   </style>
 <script type="text/javascript">
