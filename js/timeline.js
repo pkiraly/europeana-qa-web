@@ -15,13 +15,23 @@ function startInteractiveTimeline(targetId, tableClass) {
     oTarget.css('position', 'absolute');
     oTarget.show(1000);
     oTarget.animate({"top": (mousePosition - 540) + 'px'}, "slow");
-    oTarget.on('click', function() {oTarget.hide(1000);})
+    oTarget.on('click', function() {
+      oTarget.hide(1000);
+      $('table.' + tableClass + ' td.num').each(function(e) {
+        if ($(this).hasClass('highlighted')) {
+          $(this).removeClass('highlighted');
+        }
+      });
+    })
     dataset = [];
 
     $(this).siblings('td').each(function() {
-      if ($(this).hasClass('num') && $(this).attr('data') !== typeof undefined) {
-        var value = Number($(this).attr('data'));  // or $(this).html()
-        dataset.push(value);
+      if ($(this).hasClass('num')) {
+        if ($(this).attr('data') !== typeof undefined) {
+          var value = Number($(this).attr('data'));  // or $(this).html()
+          dataset.push(value);
+        }
+        $(this).addClass('highlighted');
       }
     });
 

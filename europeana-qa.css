@@ -450,6 +450,10 @@ table.timeline td.property {
   cursor: pointer;
 }
 
+table.timeline td.highlighted {
+  background-color: #cccccc;
+}
+
 div.svg-container {
   background-color: #428bca;
   padding: 20px;
