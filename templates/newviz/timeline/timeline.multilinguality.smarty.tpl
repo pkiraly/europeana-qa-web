@@ -107,14 +107,21 @@ $(document).ready(function () {
     });
     console.log('values: ' + dataset);
 
-    var max = d3.max(dataset);
-    var min = d3.min(dataset);
-    var range = max - min;
-    var minmaxPadding = range / 3
+    console.log('timeline_h: ' + timeline_h);
 
-    var yScale = d3.scale.linear()
-      .domain([min - minmaxPadding, max + minmaxPadding])
-      .range([0, timeline_h]);
+    var max = d3.max(dataset);
+    console.log('max: ' + max);
+    var min = d3.min(dataset);
+    console.log('min: ' + min);
+    var range = max - min;
+    console.log('range: ' + range);
+    var minmaxPadding = range / 3;
+    console.log('minmaxPadding: ' + minmaxPadding);
+
+    var yScale = d3.scale
+                   .linear()
+                   .domain([min - minmaxPadding, max + minmaxPadding])
+                   .range([0, timeline_h]);
 
     for (var i in dataset) {
       console.log(i + '; ' + dataset[i] + '; ' + yScale(dataset[i]));
