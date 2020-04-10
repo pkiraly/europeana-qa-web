@@ -10,6 +10,11 @@ function startInteractiveTimeline(targetId, tableClass) {
 
   var dataset = [];
   $('table.' + tableClass + ' td.property').on('click', function(e) {
+    console.log(e.pageY);
+    var current = $('div#' + targetId).position().top;
+    console.log($('div#' + targetId).height());
+    console.log($('div#' + targetId).css('height'));
+    console.log($('div#' + targetId).css('box-sizing'));
     dataset = [];
 
     $(this).siblings('td').each(function() {
