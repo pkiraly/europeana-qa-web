@@ -55,7 +55,7 @@
           <tr {if $i == 1 && $j == 1}class="newline"{/if}>
             <td>{if $i == 1 && $j == 1}{$field}{/if}</td>
             <td>{if $j == 1}{$data->multilinguality_field_locations[$location]}{/if}</td>
-            <td>{$data->multilinguality_field_properties[$property]}</td>
+            <td class="property">{$data->multilinguality_field_properties[$property]}</td>
               {foreach $data->files as $version => $file}
                 <td class="num {if $timeline[$version] == 0.0}nil{/if}">
                   {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
@@ -67,3 +67,8 @@
     {/foreach}
   </tbody>
 </table>
+{literal}
+$(document).ready(function () {
+    alert('log');
+});
+{/literal}
