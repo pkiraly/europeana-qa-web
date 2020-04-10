@@ -22,7 +22,7 @@
           {if $i == 1}
             <td rowspan="3" class="property">{$property_label}</td>
           {/if}
-          <td>{$location_label}</td>
+          <td class="property">{$location_label}</td>
           {foreach $data->files as $version => $file}
             <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}</td>
           {/foreach}
