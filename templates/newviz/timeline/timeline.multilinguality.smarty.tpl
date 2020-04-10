@@ -74,9 +74,11 @@ $(document).ready(function () {
   $('table.timeline td.property').on('click', function(e) {
     var values = [];
     $(this).siblings('td').each(function() {
-      var value = $(this).html();
-      console.log('value: ' + value);
-      values.push(value);
+      if ($(this).hasClass('num')) {
+        var value = $(this).html();
+        console.log('value: ' + value);
+        values.push(value);
+      }
     });
     console.log('values: ' + values);
   });
