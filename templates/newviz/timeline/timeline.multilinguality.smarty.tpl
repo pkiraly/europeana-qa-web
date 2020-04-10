@@ -84,7 +84,6 @@
       background-color: greenyellow;
     }
   </style>
-<script src="https://d3js.org/d3.v5.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
   var margin = {top: 20, right: 10, bottom: 20, left: 10},
