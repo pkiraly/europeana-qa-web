@@ -24,7 +24,9 @@
           {/if}
           <td class="property">{$location_label}</td>
           {foreach $data->files as $version => $file}
-            <td class="num">{if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}</td>
+            <td class="num" {if isset($timeline[$version])}data="{$timeline[$version]}"{/if}>
+              {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
+            </td>
           {/foreach}
         </tr>
       {/foreach}
@@ -57,7 +59,8 @@
             <td>{if $j == 1}{$data->multilinguality_field_locations[$location]}{/if}</td>
             <td class="property">{$data->multilinguality_field_properties[$property]}</td>
               {foreach $data->files as $version => $file}
-                <td class="num {if $timeline[$version] == 0.0}nil{/if}">
+                <td class="num {if $timeline[$version] == 0.0}nil{/if}"
+                    {if isset($timeline[$version])}data="{$timeline[$version]}"{/if}>
                   {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
                 </td>
               {/foreach}
@@ -74,9 +77,8 @@ $(document).ready(function () {
   $('table.timeline td.property').on('click', function(e) {
     var values = [];
     $(this).siblings('td').each(function() {
-      if ($(this).hasClass('num')) {
-        var value = $(this).html();
-        console.log('value: ' + value);
+      if ($(this).hasClass('num') && $(this).hasAttribute('data')) {
+        var value = $(this).attr('data');
         values.push(value);
       }
     });
