@@ -76,6 +76,14 @@
 </table>
 
 {literal}
+  <style type="text/css">
+    div.bar {
+      display: inline-block;
+      width: 20px;
+      height: 75px;
+      background-color: teal;
+    }
+  </style>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
