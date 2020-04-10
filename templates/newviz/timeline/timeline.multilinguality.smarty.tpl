@@ -77,7 +77,7 @@ $(document).ready(function () {
   $('table.timeline td.property').on('click', function(e) {
     var values = [];
     $(this).siblings('td').each(function() {
-      if ($(this).hasClass('num') && $(this).hasAttribute('data')) {
+      if ($(this).hasClass('num') && $(this).attr('data') !== typeof undefined) {
         var value = $(this).attr('data');
         values.push(value);
       }
