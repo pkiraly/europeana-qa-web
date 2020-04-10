@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     $(this).siblings('td').each(function() {
       if ($(this).hasClass('num') && $(this).attr('data') !== typeof undefined) {
-        var value = $(this).attr('data');  // or $(this).html()
+        var value = Number($(this).attr('data'));  // or $(this).html()
         dataset.push(value);
       }
     });
