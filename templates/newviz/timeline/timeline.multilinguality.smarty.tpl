@@ -89,15 +89,15 @@ $(document).ready(function () {
     });
     console.log('values: ' + dataset);
 
-    d3.select("div.svg-container").selectAll("div")
+    d3.select("body").selectAll("div")
      .data(dataset)  // <-- The answer is here!
-    .enter()
-    .append("div")
-    .attr("class", "bar")
-    .style("height", function(d) {
-      var barHeight = d * 5;
-      return barHeight + "px";
-    });
+     .enter()
+     .append("div")
+     .attr("class", "bar")
+     .style("height", function(d) {
+       var barHeight = d * 5;
+       return barHeight + "px";
+     });
   });
 });
 </script>
