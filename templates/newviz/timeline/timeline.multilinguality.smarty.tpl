@@ -105,27 +105,15 @@ $(document).ready(function () {
         dataset.push(value);
       }
     });
-    console.log('values: ' + dataset.join(', '));
-
-    console.log('timeline_h: ' + timeline_h);
 
     var max = d3.max(dataset);
-    console.log('max: ' + max);
     var min = d3.min(dataset);
-    console.log('min: ' + min);
     var range = max - min;
-    console.log('range: ' + range);
     var minmaxPadding = range / 3;
-    console.log('minmaxPadding: ' + minmaxPadding);
-    minmaxPadding = 0
 
     var yScale = d3.scale.linear()
                    .domain([min - minmaxPadding, max + minmaxPadding])
                    .range([0, timeline_h]);
-
-    for (var i in dataset) {
-      console.log(i + '; ' + dataset[i] + '; ' + (typeof dataset[i]) + '; ' + yScale(dataset[i]));
-    }
 
     svg.selectAll("rect")
       .data(dataset)
