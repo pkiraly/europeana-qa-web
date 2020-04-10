@@ -19,7 +19,7 @@ function startInteractiveTimeline(targetId, tableClass) {
       }
     });
 
-    $('div#.' + targetId + " svg").children().each(function(e) {$(this).remove()})
+    $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
     var max = d3.max(dataset);
     var min = d3.min(dataset);
     var range = max - min;
