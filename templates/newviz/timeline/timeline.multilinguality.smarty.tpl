@@ -129,6 +129,7 @@ $(document).ready(function () {
       .attr("height", function(d) {
         return yScale(d);
       })
+      .attr('fill', '#ccc')
     ;
 
     svg.selectAll("text")
