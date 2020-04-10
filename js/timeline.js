@@ -13,9 +13,9 @@ function startInteractiveTimeline(targetId, tableClass) {
     var mousePosition = e.pageY;
     var oTarget = $('div#' + targetId);
     oTarget.css('position', 'absolute');
-    $(this).show();
+    oTarget.show();
     oTarget.animate({"top": (mousePosition - 540) + 'px'}, "slow");
-    oTarget.on('click', function() {oTarget.hide(1000);})
+    oTarget.on('click', function() {oTarget.hide();})
     dataset = [];
 
     $(this).siblings('td').each(function() {
