@@ -21,7 +21,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     console.log(oTarget.css('height'));
     console.log(oTarget.css('box-sizing'));
     oTarget.css('position', 'absolute');
-    oTarget.animate({"top": (mousePosition - 570) + 'px'}, "slow");
+    oTarget.animate({"top": (mousePosition - 500) + 'px'}, "slow");
     dataset = [];
 
     $(this).siblings('td').each(function() {
