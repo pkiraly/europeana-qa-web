@@ -90,7 +90,7 @@ $(document).ready(function () {
     console.log('values: ' + dataset);
 
     d3.select("div.svg-container").selectAll("div")
-    .data(dataset)  // <-- The answer is here!
+     .data(dataset)  // <-- The answer is here!
     .enter()
     .append("div")
     .attr("class", "bar")
@@ -98,7 +98,7 @@ $(document).ready(function () {
       var barHeight = d * 5;
       return barHeight + "px";
     });
-
+  });
 });
 </script>
 {/literal}
