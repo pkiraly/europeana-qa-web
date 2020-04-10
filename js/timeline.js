@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function startInteractiveTimeline() {
   var timeline_w = 500;
   var timeline_h = 100;
   var timeline_barPadding = 2;
@@ -68,4 +68,4 @@ $(document).ready(function () {
     ;
 
   });
-});
+}

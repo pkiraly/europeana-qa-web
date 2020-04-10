@@ -74,3 +74,8 @@
 </table>
 
 <script type="text/javascript" src="js/timeline.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    startInteractiveTimeline();
+  });
+</script>
