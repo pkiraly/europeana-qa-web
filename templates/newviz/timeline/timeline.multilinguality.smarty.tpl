@@ -72,8 +72,11 @@
 <script type="text/javascript">
 $(document).ready(function () {
   $('table.timeline td.property').on('click', function(e) {
-    var value = $(this).siblings('td[class=num]').html();
-    console.log('value: ' + value);
+    var values = [];
+    $(this).siblings('td[class=num]').each(function() {
+      values.push($(this).html());
+    });
+    console.log('values: ' + values);
   });
 });
 </script>
