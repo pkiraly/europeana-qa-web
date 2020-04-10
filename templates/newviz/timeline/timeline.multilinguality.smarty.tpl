@@ -67,8 +67,11 @@
     {/foreach}
   </tbody>
 </table>
+
 {literal}
+<script type="text/javascript">
 $(document).ready(function () {
     alert('log');
 });
+</script>
 {/literal}
