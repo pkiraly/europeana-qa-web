@@ -18,7 +18,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     var oTarget = $('div#' + targetId);
     oTarget.css('position', 'absolute');
     oTarget.show(1000);
-    oTarget.animate({"top": (mousePosition - 500) + 'px'}, "slow");
+    oTarget.animate({"top": (mousePosition - 570) + 'px'}, "slow");
     oTarget.on('click', function() {
       oTarget.hide(1000);
       $('table.' + tableClass + ' td.highlighted').each(function(e) {
