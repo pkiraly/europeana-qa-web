@@ -86,16 +86,14 @@
   </style>
 <script type="text/javascript">
 $(document).ready(function () {
-  var margin = {top: 20, right: 10, bottom: 20, left: 10},
-    width = 500 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
+  var timeline_w = 500;
+  var timeline_h = 100;
+  var timeline_barPadding = 2;
 
-  var heatmap = d3.select("#svg-container")
-    .style("position", "relative")
-    .style("width", (width + margin.left + margin.right) + "px")
-    .style("height", (height + margin.top + margin.bottom) + "px")
-    .style("left", margin.left + "px")
-    .style("top", margin.top + "px");
+  var svg = d3.select("div#svg-container")
+              .append("svg")
+              .attr("width", timeline_w)
+              .attr("height", timeline_h);
 
   var dataset = [];
   $('table.timeline td.property').on('click', function(e) {
@@ -109,14 +107,50 @@ $(document).ready(function () {
     });
     console.log('values: ' + dataset);
 
-    heatmap.data(dataset)  // <-- The answer is here!
+    var max = d3.max(dataset);
+    var min = d3.min(dataset);
+    var range = max - min;
+    var minmaxPadding = range / 3
+
+    var yScale = d3.scale.linear()
+    .domain([min - minmaxPadding, max + minmaxPadding])
+    .range([0, timeline_h]);
+
+    svg.selectAll("rect")
+      .data(dataset)
       .enter()
-      .append("div")
-      .attr("class", "bar")
-      .style("height", function(d) {
-        var barHeight = d * 50;
-        return barHeight + "px";
-     });
+      .append("rect")
+      .attr("x", function(d, i) {
+        return i * (timeline_w / dataset.length);
+      })
+      .attr("y", function(d) {
+        return timeline_h - yScale(d);
+      })
+      .attr("width", timeline_w / dataset.length - timeline_barPadding)
+      .attr("height", function(d) {
+        return yScale(d);
+      })
+    ;
+
+    svg.selectAll("text")
+      .data(dataset)
+      .enter()
+      .append("text")
+      .text(function(d) {
+        return Math.ceil(d * 1000) / 1000;
+      })
+      .attr("x", function(d, i) {
+        return i * (timeline_w / dataset.length) + (timeline_w / dataset.length - timeline_barPadding) / 2;
+      })
+      .attr("y", function(d) {
+        return timeline_h - yScale(d) + 14;
+      })
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "11px")
+      .attr("fill", "white")
+      .attr("text-anchor", "middle")
+    ;
+
   });
 });
 </script>
