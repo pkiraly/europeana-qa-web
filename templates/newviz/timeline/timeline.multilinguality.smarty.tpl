@@ -103,7 +103,7 @@ $(document).ready(function () {
      .append("div")
      .attr("class", "bar")
      .style("height", function(d) {
-       var barHeight = d * 5;
+       var barHeight = d * 50;
        return barHeight + "px";
      });
   });
