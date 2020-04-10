@@ -450,9 +450,10 @@ table.timeline td.property {
   cursor: pointer;
 }
 
-
 div.svg-container {
   background-color: #428bca;
   padding: 20px;
   height: 140px;
+  cursor: pointer;
+  display: none;
 }
