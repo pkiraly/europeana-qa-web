@@ -77,11 +77,7 @@
   <style type="text/css">
     #svg-container {
       background-color: #428bca;
-    }
-    #svg-container div.bar {
-      width: 20px;
-      margin: 0 5px 0 5px;
-      background-color: greenyellow;
+      margin: 20px;
     }
   </style>
 <script type="text/javascript">
