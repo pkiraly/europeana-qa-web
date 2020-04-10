@@ -75,7 +75,10 @@
 
 {literal}
   <style type="text/css">
-    div.bar {
+    #svg-container {
+      background-color: #428bca;
+    }
+    #svg-container div.bar {
       display: inline-block;
       width: 20px;
       height: 75px;
@@ -85,6 +88,17 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+  var margin = {top: 40, right: 10, bottom: 10, left: 10},
+    width = 500 - margin.left - margin.right,
+    height = 200 - margin.top - margin.bottom;
+
+  var heatmap = d3.select("#svg-container")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
+
   $('table.timeline td.property').on('click', function(e) {
     var dataset = [];
     $(this).siblings('td').each(function() {
@@ -95,17 +109,8 @@ $(document).ready(function () {
     });
     console.log('values: ' + dataset);
 
-    var margin = {top: 40, right: 10, bottom: 10, left: 10},
-        width = 500 - margin.left - margin.right,
-        height = 200 - margin.top - margin.bottom;
 
-    var heatmap = d3.select("#svg-container")
-      .style("position", "relative")
-      .style("width", (width + margin.left + margin.right) + "px")
-      .style("height", (height + margin.top + margin.bottom) + "px")
-      .style("left", margin.left + "px")
-      .style("top", margin.top + "px")
-      .data(dataset)  // <-- The answer is here!
+    heatmap.data(dataset)  // <-- The answer is here!
       .enter()
       .append("div")
       .attr("class", "bar")
