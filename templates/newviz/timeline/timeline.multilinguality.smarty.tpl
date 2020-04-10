@@ -71,7 +71,9 @@
 {literal}
 <script type="text/javascript">
 $(document).ready(function () {
-    alert('log');
+  $('table.timeline td.property').on('click', function(e) {
+    alert('clicked');
+  });
 });
 </script>
 {/literal}
