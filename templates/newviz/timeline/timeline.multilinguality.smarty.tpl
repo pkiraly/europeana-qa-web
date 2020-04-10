@@ -73,7 +73,7 @@
 $(document).ready(function () {
   $('table.timeline td.property').on('click', function(e) {
     var values = [];
-    $(this).siblings('td[class=num]').each(function() {
+    $(this).siblings('td').each(function() {
       var value = $(this).html();
       console.log('value: ' + value);
       values.push(value);
