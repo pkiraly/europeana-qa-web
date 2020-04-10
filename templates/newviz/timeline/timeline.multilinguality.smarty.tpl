@@ -117,8 +117,10 @@ $(document).ready(function () {
 
     svg.selectAll("rect")
       .data(dataset)
-      .enter()
-      .append("rect")
+      .transition()
+      .duration(1000)
+//      .enter()
+//      .append("rect")
       .attr("x", function(d, i) {
         return i * (timeline_w / dataset.length);
       })
