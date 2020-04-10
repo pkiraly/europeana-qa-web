@@ -33,8 +33,6 @@ function startInteractiveTimeline(targetId, tableClass) {
     .data(dataset)
     .enter()
     .append("rect")
-    .transition()
-    .duration(1000)
     .attr("x", function(d, i) {
       return i * (timeline_w / dataset.length);
     })
