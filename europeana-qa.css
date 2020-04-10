@@ -448,3 +448,9 @@ table.timeline tr.newline td {
 table.timeline td.property {
   width: 25%;
 }
+
+#svg-container {
+  background-color: #428bca;
+  padding: 20px;
+  height: 140px;
+}
