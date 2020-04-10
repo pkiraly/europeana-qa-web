@@ -113,8 +113,12 @@ $(document).ready(function () {
     var minmaxPadding = range / 3
 
     var yScale = d3.scale.linear()
-    .domain([min - minmaxPadding, max + minmaxPadding])
-    .range([0, timeline_h]);
+      .domain([min - minmaxPadding, max + minmaxPadding])
+      .range([0, timeline_h]);
+
+    for (var i in dataset) {
+      console.log(i + '; ' + dataset[i] + '; ' + yScale(dataset[i]));
+    }
 
     svg.selectAll("rect")
       .data(dataset)
