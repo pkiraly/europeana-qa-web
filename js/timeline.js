@@ -11,17 +11,11 @@ function startInteractiveTimeline(targetId, tableClass) {
   var dataset = [];
   $('table.' + tableClass + ' td.property').on('click', function(e) {
     var mousePosition = e.pageY;
-    console.log('mousePosition: ' + mousePosition);
-    var tdPosition = $(this).position().top;
-    console.log('tdPosition: ' + tdPosition);
     var oTarget = $('div#' + targetId);
-    var targetPosition = oTarget.position().top;
-    console.log('targetPosition: ' + targetPosition);
-    console.log(oTarget.height());
-    console.log(oTarget.css('height'));
-    console.log(oTarget.css('box-sizing'));
     oTarget.css('position', 'absolute');
+    $(this).show(1000);
     oTarget.animate({"top": (mousePosition - 540) + 'px'}, "slow");
+    oTarget.on('click', function() {$(this).hide(1000)})
     dataset = [];
 
     $(this).siblings('td').each(function() {
@@ -57,7 +51,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     .attr("height", function(d) {
       return yScale(d);
     })
-    .attr('fill', '#333')
+    .attr('fill', '#666')
     ;
 
     svg.selectAll("text")
