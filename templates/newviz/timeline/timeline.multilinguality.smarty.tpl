@@ -1,5 +1,9 @@
 <h2>Changes of multilinguality scores</h2>
 
+<div id='svg-container'>
+  <svg />
+</div>
+
 <h3>General multilinguality scores</h3>
 <table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
@@ -72,18 +76,29 @@
 </table>
 
 {literal}
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
   $('table.timeline td.property').on('click', function(e) {
-    var values = [];
+    var dataset = [];
     $(this).siblings('td').each(function() {
       if ($(this).hasClass('num') && $(this).attr('data') !== typeof undefined) {
-        var value = $(this).attr('data');
-        values.push(value);
+        var value = $(this).attr('data');  // or $(this).html()
+        dataset.push(value);
       }
     });
-    console.log('values: ' + values);
-  });
+    console.log('values: ' + dataset);
+
+    d3.select("div.svg-container").selectAll("div")
+    .data(dataset)  // <-- The answer is here!
+    .enter()
+    .append("div")
+    .attr("class", "bar")
+    .style("height", function(d) {
+      var barHeight = d * 5;
+      return barHeight + "px";
+    });
+
 });
 </script>
 {/literal}
