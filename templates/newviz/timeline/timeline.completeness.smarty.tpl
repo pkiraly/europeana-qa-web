@@ -1,6 +1,6 @@
 <h2>Changes of completeness scores</h2>
 
-<div id="svg-container"></div>
+<div id="svg-container-completeness"></div>
 
 {foreach $data->timelines as $entity => $fields}
   <h3>{$entity}</h3>
@@ -37,6 +37,6 @@
 <script type="text/javascript" src="js/timeline.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
-    startInteractiveTimeline();
+    startInteractiveTimeline('svg-container-completeness', 'timeline-completeness');
   });
 </script>

@@ -1,9 +1,9 @@
 <h2>Changes of multilinguality scores</h2>
 
-<div id="svg-container"></div>
+<div id="svg-container-multilinguality"></div>
 
 <h3>General multilinguality scores</h3>
-<table class="timeline timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
+<table class="timeline timeline-multilinguality timeline-multilinguality-general" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
       <th>property</th>
@@ -37,7 +37,7 @@
 </table>
 
 <h3>Multilinguality scores per fields</h3>
-<table class="timeline timeline-multilinguality-fields" xmlns="http://www.w3.org/1999/html">
+<table class="timeline timeline-multilinguality timeline-multilinguality-fields" xmlns="http://www.w3.org/1999/html">
   <thead>
     <tr>
       <th>field</th>
@@ -76,6 +76,6 @@
 <script type="text/javascript" src="js/timeline.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
-    startInteractiveTimeline();
+    startInteractiveTimeline('svg-container-multilinguality', 'timeline-multilinguality');
   });
 </script>

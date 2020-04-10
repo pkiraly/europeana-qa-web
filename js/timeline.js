@@ -1,15 +1,15 @@
-function startInteractiveTimeline() {
+function startInteractiveTimeline(targetId, tableClass) {
   var timeline_w = 500;
   var timeline_h = 100;
   var timeline_barPadding = 2;
 
-  var svg = d3.select("div#svg-container")
+  var svg = d3.select('div#' + targetId)
   .append("svg")
   .attr("width", timeline_w)
   .attr("height", timeline_h);
 
   var dataset = [];
-  $('table.timeline td.property').on('click', function(e) {
+  $('table.' + tableClass + ' td.property').on('click', function(e) {
     dataset = [];
 
     $(this).siblings('td').each(function() {
@@ -19,7 +19,7 @@ function startInteractiveTimeline() {
       }
     });
 
-    $("#svg-container svg").children().each(function(e) {$(this).remove()})
+    $('div#.' + targetId + " svg").children().each(function(e) {$(this).remove()})
     var max = d3.max(dataset);
     var min = d3.min(dataset);
     var range = max - min;
