@@ -88,7 +88,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-  var margin = {top: 40, right: 10, bottom: 10, left: 10},
+  var margin = {top: 20, right: 10, bottom: 20, left: 10},
     width = 500 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom;
 
@@ -99,8 +99,10 @@ $(document).ready(function () {
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
+  var dataset = [];
   $('table.timeline td.property').on('click', function(e) {
-    var dataset = [];
+    dataset = [];
+
     $(this).siblings('td').each(function() {
       if ($(this).hasClass('num') && $(this).attr('data') !== typeof undefined) {
         var value = $(this).attr('data');  // or $(this).html()
@@ -108,7 +110,6 @@ $(document).ready(function () {
       }
     });
     console.log('values: ' + dataset);
-
 
     heatmap.data(dataset)  // <-- The answer is here!
       .enter()
