@@ -97,14 +97,23 @@ $(document).ready(function () {
     });
     console.log('values: ' + dataset);
 
-    d3.select("body").selectAll("div")
-     .data(dataset)  // <-- The answer is here!
-     .enter()
-     .append("div")
-     .attr("class", "bar")
-     .style("height", function(d) {
-       var barHeight = d * 50;
-       return barHeight + "px";
+    var margin = {top: 40, right: 10, bottom: 10, left: 10},
+        width = 200 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var heatmap = d3.select("#svg-container")
+      .style("position", "relative")
+      .style("width", (width + margin.left + margin.right) + "px")
+      .style("height", (height + margin.top + margin.bottom) + "px")
+      .style("left", margin.left + "px")
+      .style("top", margin.top + "px")
+      .data(dataset)  // <-- The answer is here!
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      .style("height", function(d) {
+        var barHeight = d * 50;
+        return barHeight + "px";
      });
   });
 });
