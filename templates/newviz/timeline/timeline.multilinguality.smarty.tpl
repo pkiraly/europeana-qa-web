@@ -79,10 +79,9 @@
       background-color: #428bca;
     }
     #svg-container div.bar {
-      display: inline-block;
       width: 20px;
-      height: 75px;
-      background-color: teal;
+      margin: 0 5px 0 5px;
+      background-color: greenyellow;
     }
   </style>
 <script src="https://d3js.org/d3.v5.min.js"></script>
