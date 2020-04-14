@@ -14,10 +14,9 @@ function startInteractiveTimeline(targetId, tableClass) {
       $(this).removeClass('highlighted');
     });
 
-    var mousePosition = e.pageY;
     var oTarget = $('div#' + targetId);
     oTarget.css('position', 'absolute');
-    oTarget.show(1000);
+    oTarget.show();
     dataset = [];
 
     var x = null,
@@ -28,21 +27,13 @@ function startInteractiveTimeline(targetId, tableClass) {
           var value = Number($(this).attr('data'));  // or $(this).html()
           dataset.push(value);
           if (x == null) {
-            var offset = $(this).offset();
-            // var posX = offset.left // - $(window).scrollLeft();
-            var posY = offset.top  // - $(window).scrollTop();
             x = $(this).position().left + 15;
-            // y = $(this).position().top;
-            y = posY
-            // console.log('posX: ' + posX + ', posY: ' + posY);
+            y = $(this).offset().top
           }
         }
         $(this).addClass('highlighted');
       }
     });
-    console.log('x:' + x);
-    console.log('y:' + y);
-    console.log('mousePosition:' + mousePosition);
     oTarget.animate({"top": (y - 510) + 'px', "left": x + 'px'}, "fast");
     oTarget.on('click', function() {
       oTarget.hide(1000);
