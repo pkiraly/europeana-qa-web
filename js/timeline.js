@@ -18,7 +18,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     var oTarget = $('div#' + targetId);
     oTarget.css('position', 'absolute');
     oTarget.show(1000);
-    oTarget.animate({"top": (mousePosition - 570) + 'px'}, "slow");
+    oTarget.animate({"top": (mousePosition - 560) + 'px'}, "slow");
     oTarget.on('click', function() {
       oTarget.hide(1000);
       $('table.' + tableClass + ' td.highlighted').each(function(e) {
@@ -34,7 +34,7 @@ function startInteractiveTimeline(targetId, tableClass) {
           var value = Number($(this).attr('data'));  // or $(this).html()
           dataset.push(value);
           if (x == null) {
-            x = $(this).position().left
+            x = $(this).position().left + 10
           }
         }
         $(this).addClass('highlighted');
