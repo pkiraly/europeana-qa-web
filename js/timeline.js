@@ -28,10 +28,15 @@ function startInteractiveTimeline(targetId, tableClass) {
     dataset = [];
 
     $(this).siblings('td').each(function() {
+      var x = null
       if ($(this).hasClass('num')) {
         if ($(this).attr('data') !== typeof undefined) {
           var value = Number($(this).attr('data'));  // or $(this).html()
           dataset.push(value);
+          if (x == null) {
+            x = $(this).position().left
+            oTarget.animate({"left": x + 'px'});
+          }
         }
         $(this).addClass('highlighted');
       }
