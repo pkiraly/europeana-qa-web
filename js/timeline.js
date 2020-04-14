@@ -28,12 +28,13 @@ function startInteractiveTimeline(targetId, tableClass) {
           var value = Number($(this).attr('data'));  // or $(this).html()
           dataset.push(value);
           if (x == null) {
-            x = $(this).position().left + 15;
-            y = $(this).position().top;
             var offset = $(this).offset();
-            var posX = offset.left // - $(window).scrollLeft();
+            // var posX = offset.left // - $(window).scrollLeft();
             var posY = offset.top  // - $(window).scrollTop();
-            console.log('posX: ' + posX + ', posY: ' + posY);
+            x = $(this).position().left + 15;
+            // y = $(this).position().top;
+            y = posY
+            // console.log('posX: ' + posX + ', posY: ' + posY);
           }
         }
         $(this).addClass('highlighted');
