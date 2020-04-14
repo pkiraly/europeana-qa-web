@@ -40,6 +40,7 @@ function startInteractiveTimeline(targetId, tableClass) {
         $(this).addClass('highlighted');
       }
     });
+    console.log('x:' + x);
     oTarget.animate({"left": x + 'px'}, 'slow');
 
     $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
