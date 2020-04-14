@@ -34,7 +34,7 @@ function startInteractiveTimeline(targetId, tableClass) {
           var value = Number($(this).attr('data'));  // or $(this).html()
           dataset.push(value);
           if (x == null) {
-            x = $(this).position().left + 10
+            x = $(this).position().left + 15
           }
         }
         $(this).addClass('highlighted');
