@@ -18,13 +18,6 @@ function startInteractiveTimeline(targetId, tableClass) {
     var oTarget = $('div#' + targetId);
     oTarget.css('position', 'absolute');
     oTarget.show(1000);
-    oTarget.animate({"top": (mousePosition - 525) + 'px'}, "slow");
-    oTarget.on('click', function() {
-      oTarget.hide(1000);
-      $('table.' + tableClass + ' td.highlighted').each(function(e) {
-        $(this).removeClass('highlighted');
-      });
-    })
     dataset = [];
 
     var x = null;
@@ -41,7 +34,13 @@ function startInteractiveTimeline(targetId, tableClass) {
       }
     });
     console.log('x:' + x);
-    oTarget.animate({"left": x + 'px'}, 'slow');
+    oTarget.animate({"top": (mousePosition - 525) + 'px', "left": x + 'px'}, "fast");
+    oTarget.on('click', function() {
+      oTarget.hide(1000);
+      $('table.' + tableClass + ' td.highlighted').each(function(e) {
+        $(this).removeClass('highlighted');
+      });
+    })
 
     $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
     var max = d3.max(dataset);
