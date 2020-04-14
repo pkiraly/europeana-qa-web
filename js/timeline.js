@@ -20,7 +20,8 @@ function startInteractiveTimeline(targetId, tableClass) {
     oTarget.show(1000);
     dataset = [];
 
-    var x = null;
+    var x = null,
+        y = null;
     $(this).siblings('td').each(function() {
       if ($(this).hasClass('num')) {
         if ($(this).attr('data') !== typeof undefined) {
@@ -28,12 +29,15 @@ function startInteractiveTimeline(targetId, tableClass) {
           dataset.push(value);
           if (x == null) {
             x = $(this).position().left + 15
+            y = $(this).position().top
           }
         }
         $(this).addClass('highlighted');
       }
     });
     console.log('x:' + x);
+    console.log('y:' + y);
+    console.log('mousePosition:' + mousePosition);
     oTarget.animate({"top": (mousePosition - 525) + 'px', "left": x + 'px'}, "fast");
     oTarget.on('click', function() {
       oTarget.hide(1000);
