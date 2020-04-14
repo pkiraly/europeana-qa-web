@@ -43,7 +43,7 @@ function startInteractiveTimeline(targetId, tableClass) {
     console.log('x:' + x);
     console.log('y:' + y);
     console.log('mousePosition:' + mousePosition);
-    oTarget.animate({"top": (y - 515) + 'px', "left": x + 'px'}, "fast");
+    oTarget.animate({"top": (y - 510) + 'px', "left": x + 'px'}, "fast");
     oTarget.on('click', function() {
       oTarget.hide(1000);
       $('table.' + tableClass + ' td.highlighted').each(function(e) {
