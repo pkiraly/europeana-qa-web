@@ -31,8 +31,8 @@ function startInteractiveTimeline(targetId, tableClass) {
             x = $(this).position().left + 15;
             y = $(this).position().top;
             var offset = $(this).offset();
-            var posX = offset.left - $(window).scrollLeft();
-            var posY = offset.top  - $(window).scrollTop();
+            var posX = offset.left // - $(window).scrollLeft();
+            var posY = offset.top  // - $(window).scrollTop();
             console.log('posX: ' + posX + ', posY: ' + posY);
           }
         }
