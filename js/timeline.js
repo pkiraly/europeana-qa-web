@@ -124,10 +124,12 @@ function drawLinechart(svg, dataset) {
   var maxy = d3.max(dataset, function(d) { return d.value; })
   var y = d3.scaleLinear()
             .domain([miny / 2, maxy * 1.05])
-            .range([timeline_h, timeline_h / 2]);
+            .range([timeline_h, 0]);
 
+  /*
   svg.append("g")
      .call(d3.axisLeft(y));
+   */
 
   // Add the line
   svg.append("path")
