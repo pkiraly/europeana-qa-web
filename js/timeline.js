@@ -109,7 +109,7 @@ function drawBarchart(svg, dataset) {
 }
 
 function drawLinechart(svg, dataset) {
-  var x = d3.scaleTime()
+  var x = d3.time.scale()
             .domain(d3.extent(data, function(d) { return d.date; }))
             .range([ 0, width ]);
 
