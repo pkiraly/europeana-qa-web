@@ -44,6 +44,13 @@ function getTreeMapUrl() {
 }
 
 function displayLanguageTreemapv5() {
+  var margin = {top: 0, right: 0, bottom: 0, left: 0},
+    aspect = .85,
+    minHeight = 400,
+    duration = 1000,
+    categories = "abcdef".split(""),
+    colors = {};
+
   var treemap = d3.treemap()
                   .padding(1)
                   .round(true);
@@ -80,6 +87,21 @@ function displayLanguageTreemapv5() {
     console.log('root');
     console.log(root);
 
+    width = innerWidth - margin.left - margin.right;
+    var baseHeight = innerWidth * aspect;
+    baseHeight = baseHeight < minHeight
+      ? minHeight
+      : baseHeight > innerHeight
+        ? innerHeight
+        : baseHeight;
+    height = baseHeight - margin.top - margin.bottom;
+    svg.attr("width", width + margin.left + margin.right)
+       .attr("height", height + margin.top + margin.bottom);
+
+    g.attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    treemap.size([width, height]);
+
     var leaves = treemap(root).leaves();
     console.log('leaves');
     console.log(leaves);
@@ -88,7 +110,7 @@ function displayLanguageTreemapv5() {
        .enter()
        .append("rect")
        .attr("class", "rect")
-       .style("fill", d => colors[0])
+       .style("fill", 'blue')
        .attr("transform", d => `translate(${d.x0},${d.y0})`)
        .attr("width", d => d.x1 - d.x0)
        .attr("height", d => d.y1 - d.y0)
