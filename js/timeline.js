@@ -1,5 +1,5 @@
 var timeline_w = 500;
-var timeline_h = 100;
+var timeline_h = 130;
 var timeline_barPadding = 2;
 
 function startInteractiveTimeline(targetId, tableClass) {
@@ -113,10 +113,10 @@ function drawBarchart(svg, dataset) {
 function drawLinechart(svg, dataset) {
   var x = d3.scaleTime()
             .domain(d3.extent(dataset, function(d) { return d.date; }))
-            .range([0, timeline_w - 10]);
+            .range([0, timeline_w - 40]);
 
   svg.append("g")
-     .attr("transform", "translate(20," + (timeline_h - 15) + ")")
+     .attr("transform", "translate(20," + (timeline_h - 35) + ")")
      .call(d3.axisBottom(x));
 
   // Add Y axis
