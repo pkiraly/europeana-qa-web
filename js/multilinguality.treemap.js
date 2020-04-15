@@ -63,19 +63,19 @@ function displayLanguageTreemapv5() {
   var url = getTreeMapUrl();
   console.log(url);
   d3.json(url).then(function(root) {
-    console.log('fetched ' + url);
-    // if (error) throw error;
-    console.log(root);
 
     if (!hasChildren(root)) {
       var warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: maroon"></i>'
         + ' In this dataset ' + formatField(root.name) + ' is not used';
       $('#tooltip').html(warning);
     }
+    console.log('hasChildren');
 
     d3.selectAll('#heatmap .node').remove();
+    console.log('remove');
 
     var leaves = treemap(root).leaves();
+    console.log('leaves');
     console.log(leaves);
     var rects = svg.selectAll(".rect")
                    .data(leaves, d => d.data.name);
