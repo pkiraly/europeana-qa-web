@@ -65,65 +65,66 @@ function drawBarchart(svg, dataset) {
   var minmaxPadding = (range != 0) ? range / 4 : 1.0;
 
   var yScale = d3.scale.linear()
-  // .domain([min - minmaxPadding, max + minmaxPadding])
-  // .domain([min, max])
-  .domain([0, max])
-  .range([0, timeline_h]);
+    // .domain([min - minmaxPadding, max + minmaxPadding])
+    // .domain([min, max])
+    .domain([0, max])
+    .range([0, timeline_h])
+  ;
 
   svg.selectAll("rect")
-  .data(dataset)
-  .enter()
-  .append("rect")
-  .attr("x", function(d, i) {
-    return i * (timeline_w / dataset.length);
-  })
-  .attr("y", function(d) {
-    return timeline_h - yScale(d.value);
-  })
-  .attr("width", timeline_w / dataset.length - timeline_barPadding)
-  .attr("height", function(d) {
-    return yScale(d.value);
-  })
-  .attr('fill', '#666')
+     .data(dataset)
+     .enter()
+     .append("rect")
+     .attr("x", function(d, i) {
+       return i * (timeline_w / dataset.length);
+     })
+     .attr("y", function(d) {
+       return timeline_h - yScale(d.value);
+     })
+     .attr("width", timeline_w / dataset.length - timeline_barPadding)
+     .attr("height", function(d) {
+       return yScale(d.value);
+     })
+     .attr('fill', '#666')
   ;
 
   svg.selectAll("text")
-  .data(dataset)
-  .enter()
-  .append("text")
-  .text(function(d) {
-    return Math.ceil(d.value * 1000) / 1000;
-  })
-  .attr("x", function(d, i) {
-    return i * (timeline_w / dataset.length) + (timeline_w / dataset.length - timeline_barPadding) / 2;
-  })
-  .attr("y", function(d) {
-    return timeline_h - yScale(d.value) + 14;
-  })
-  .attr("font-family", "sans-serif")
-  .attr("font-size", "11px")
-  .attr("fill", "white")
-  .attr("text-anchor", "middle")
+     .data(dataset)
+     .enter()
+     .append("text")
+     .text(function(d) {
+       return Math.ceil(d.value * 1000) / 1000;
+     })
+     .attr("x", function(d, i) {
+       return i * (timeline_w / dataset.length) + (timeline_w / dataset.length - timeline_barPadding) / 2;
+     })
+     .attr("y", function(d) {
+       eturn timeline_h - yScale(d.value) + 14;
+     })
+     .attr("font-family", "sans-serif")
+     .attr("font-size", "11px")
+     .attr("fill", "white")
+     .attr("text-anchor", "middle")
   ;
 
 }
 
 function drawLinechart(svg, dataset) {
-  var x = d3.time.scale()
+  var x = d3.scaleTime()
             .domain(d3.extent(dataset, function(d) { return d.date; }))
             .range([0, timeline_w]);
 
   svg.append("g")
      .attr("transform", "translate(20," + timeline_h + ")")
-     .call(d3.svg.axis(x));
+     .call(d3.axisBottom(x));
 
   // Add Y axis
-  var y = d3.scale.linear()
+  var y = d3.scaleLinear()
             .domain([0, d3.max(dataset, function(d) { return +d.value; })])
             .range([timeline_h, 0]);
 
   svg.append("g")
-     .call(d3.svg.axis(y));
+     .call(d3.axisLeft(y));
 
   // Add the line
   svg.append("path")
