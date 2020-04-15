@@ -102,6 +102,7 @@ function displayLanguageTreemapv5() {
        .attr("width", d => d.x1 - d.x0)
        .attr("height", d => d.y1 - d.y0)
       .on("click", function(d) {
+        console.log('click on rect')
         tooltipDiv.transition()
         .duration(200)
         .style("opacity", 1);
@@ -140,6 +141,7 @@ function displayLanguageTreemapv5() {
       })
       .style('cursor', 'pointer')
       .on("click", function(d) {
+        console.log('click on text')
         tooltipDiv.transition()
         .duration(200)
         .style("opacity", 1);
