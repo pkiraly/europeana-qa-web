@@ -116,7 +116,7 @@ function drawLinechart(svg, dataset) {
 
   // console.log(timeline_h - 110);
   svg.append("g")
-     .attr("transform", "translate(20," + (timeline_h) + ")")
+     .attr("transform", "translate(20," + (timeline_h - 10) + ")")
      .call(d3.axisBottom(x));
 
   // Add Y axis
