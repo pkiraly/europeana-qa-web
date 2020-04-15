@@ -59,9 +59,15 @@ function displayLanguageTreemapv5() {
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-  var svg = heatmap.append("svg")
-  var g = svg.append("g")
-             .attr("transform", "translate(0,0)");
+  var svg = heatmap
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+  var g = svg
+    .append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+  treemap.size([width, height]);
 
   var url = getTreeMapUrl();
   console.log(url);
@@ -82,21 +88,6 @@ function displayLanguageTreemapv5() {
       .sort((a, b) => b.size - a.size);
     console.log('root');
     console.log(root);
-
-    // width = innerWidth - margin.left - margin.right;
-    var baseHeight = innerWidth * aspect;
-    baseHeight = baseHeight < minHeight
-      ? minHeight
-      : baseHeight > innerHeight
-        ? innerHeight
-        : baseHeight;
-    // height = baseHeight - margin.top - margin.bottom;
-    svg.attr("width", width) // + margin.left + margin.right)
-       .attr("height", height) // + margin.top + margin.bottom);
-
-    g.attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-    treemap.size([width, height]);
 
     var leaves = treemap(root).leaves();
     console.log('leaves');
