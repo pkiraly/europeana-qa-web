@@ -84,18 +84,14 @@ function displayLanguageTreemapv5() {
     console.log('leaves');
     console.log(leaves);
     var rects = svg.selectAll(".rect")
-                   .data(leaves, function(d) {
-                     console.log(d.data.name);
-                     return d.data.name
-                   });
-    console.log('selectAll rects');
-
-    rects.enter().append("rect")
-      .attr("class", "rect")
-      .style("fill", d => colors[d.parent.data.name])
-      .attr("transform", d => `translate(${d.x0},${d.y0})`)
-      .attr("width", d => d.x1 - d.x0)
-      .attr("height", d => d.y1 - d.y0)
+       .data(leaves)
+       .enter()
+       .append("rect")
+       .attr("class", "rect")
+       .style("fill", d => colors[0])
+       .attr("transform", d => `translate(${d.x0},${d.y0})`)
+       .attr("width", d => d.x1 - d.x0)
+       .attr("height", d => d.y1 - d.y0)
     console.log('append rects');
 
     var labels = svg.selectAll(".label")
