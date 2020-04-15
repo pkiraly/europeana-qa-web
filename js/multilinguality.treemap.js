@@ -75,6 +75,13 @@ function displayLanguageTreemapv5() {
     var rects = svg.selectAll(".rect")
                    .data(leaves, d => d.data.name);
 
+    rects.enter().append("rect")
+      .attr("class", "rect")
+      .style("fill", d => colors[d.parent.data.name])
+      .attr("transform", d => `translate(${d.x0},${d.y0})`)
+      .attr("width", d => d.x1 - d.x0)
+      .attr("height", d => d.y1 - d.y0)
+
     /*
     node = heatmap
     .datum(root)
