@@ -2,11 +2,6 @@ var timeline_w = 500;
 var timeline_h = 100;
 var timeline_barPadding = 2;
 
-var svg = d3.select('div#' + targetId)
-            .append("svg")
-            .attr("width", timeline_w)
-            .attr("height", timeline_h);
-
 function startInteractiveTimeline(targetId, tableClass) {
   var dataset = [];
   $('table.' + tableClass + ' td.property').on('click', function(e) {
@@ -45,11 +40,15 @@ function startInteractiveTimeline(targetId, tableClass) {
 
     $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
 
-    drawBarchart(dataset);
+    var svg = d3.select('div#' + targetId)
+                .append("svg")
+                .attr("width", timeline_w)
+                .attr("height", timeline_h);
+    drawBarchart(svg, dataset);
   });
 }
 
-function drawBarchart(dataset) {
+function drawBarchart(svg, dataset) {
   var max = d3.max(dataset, d => d.value);
   var min = d3.min(dataset, d => d.value);
   var range = max - min;
