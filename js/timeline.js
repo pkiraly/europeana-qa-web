@@ -99,7 +99,7 @@ function drawBarchart(svg, dataset) {
        return i * (timeline_w / dataset.length) + (timeline_w / dataset.length - timeline_barPadding) / 2;
      })
      .attr("y", function(d) {
-       eturn timeline_h - yScale(d.value) + 14;
+       return timeline_h - yScale(d.value) + 14;
      })
      .attr("font-family", "sans-serif")
      .attr("font-size", "11px")
