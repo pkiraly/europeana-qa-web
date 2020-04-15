@@ -120,12 +120,12 @@ function displayLanguageTreemapv5() {
           return null;
         } else {
           var text = '';
-          if (d.name == 'no language') {
+          if (d.data.name == 'no language') {
             text = 'literal without language tag';
-          } else if (d.name == 'resource') {
+          } else if (d.data.name == 'resource') {
             text = 'resource value (URI)';
           } else {
-            text = d.name;
+            text = d.data.name;
           }
           return text;
         }
