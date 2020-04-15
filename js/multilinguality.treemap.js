@@ -80,11 +80,11 @@ function displayLanguageTreemapv5() {
     console.log('root');
     console.log(root);
 
-    // var leaves = treemap(root).leaves();
-    // console.log('leaves');
-    // console.log(leaves);
+    var leaves = treemap(root).leaves();
+    console.log('leaves');
+    console.log(leaves);
     var rects = svg.selectAll(".rect")
-                   .data(root, function(d) {
+                   .data(leaves, function(d) {
                      console.log(d);
                      return d.data.name
                    });
