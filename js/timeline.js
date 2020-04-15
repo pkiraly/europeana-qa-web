@@ -1,5 +1,4 @@
 function startInteractiveTimeline(targetId, tableClass) {
-  console.log('versions: ' + versions.join(', '));
   var timeline_w = 500;
   var timeline_h = 100;
   var timeline_barPadding = 2;
@@ -21,12 +20,13 @@ function startInteractiveTimeline(targetId, tableClass) {
     dataset = [];
 
     var x = null,
-        y = null;
+        y = null,
+        i = 0;
     $(this).siblings('td').each(function() {
       if ($(this).hasClass('num')) {
         if ($(this).attr('data') !== typeof undefined) {
           var value = Number($(this).attr('data'));  // or $(this).html()
-          dataset.push(value);
+          dataset.push({'version': versions[i], 'value': value});
           if (x == null) {
             x = $(this).position().left + 15;
             y = $(this).offset().top
@@ -35,6 +35,7 @@ function startInteractiveTimeline(targetId, tableClass) {
         $(this).addClass('highlighted');
       }
     });
+    console.log(dataset);
     oTarget.animate({"top": (y - 510) + 'px', "left": x + 'px'}, "fast");
     oTarget.on('click', function() {
       oTarget.hide(1000);

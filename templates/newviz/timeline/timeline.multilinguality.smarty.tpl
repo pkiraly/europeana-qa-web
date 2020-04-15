@@ -26,7 +26,7 @@
           {/if}
           <td class="property">{$location_label}</td>
           {foreach $data->files as $version => $file}
-            <td class="num" {if isset($timeline[$version])}data="{$timeline[$version]}"{/if}>
+            <td class="num" data="{if isset($timeline[$version])}{$timeline[$version]}{/if}">
               {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
             </td>
           {/foreach}
@@ -62,7 +62,7 @@
             <td class="property">{$data->multilinguality_field_properties[$property]}</td>
               {foreach $data->files as $version => $file}
                 <td class="num {if $timeline[$version] == 0.0}nil{/if}"
-                    {if isset($timeline[$version])}data="{$timeline[$version]}"{/if}>
+                    data="{if isset($timeline[$version])}{$timeline[$version]}{/if}">
                   {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
                 </td>
               {/foreach}
