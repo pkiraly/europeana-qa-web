@@ -111,16 +111,16 @@ function drawBarchart(svg, dataset) {
 function drawLinechart(svg, dataset) {
   var x = d3.time.scale()
             .domain(d3.extent(dataset, function(d) { return d.date; }))
-            .range([ 0, width ]);
+            .range([0, timeline_w]);
 
   svg.append("g")
-     .attr("transform", "translate(20," + height + ")")
+     .attr("transform", "translate(20," + timeline_h + ")")
      .call(d3.axisBottom(x));
 
   // Add Y axis
   var y = d3.scaleLinear()
             .domain([0, d3.max(dataset, function(d) { return +d.value; })])
-            .range([ height, 0 ]);
+            .range([timeline_h, 0]);
 
   svg.append("g")
      .call(d3.axisLeft(y));
