@@ -62,17 +62,23 @@ function displayLanguageTreemapv5() {
 
   var url = getTreeMapUrl();
   console.log(url);
-  d3.json(url).then(function(root) {
+  d3.json(url).then(function(raw) {
 
-    if (!hasChildren(root)) {
+    if (!hasChildren(raw)) {
       var warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: maroon"></i>'
-        + ' In this dataset ' + formatField(root.name) + ' is not used';
+        + ' In this dataset ' + formatField(raw.name) + ' is not used';
       $('#tooltip').html(warning);
     }
     console.log('hasChildren');
 
     d3.selectAll('#heatmap .node').remove();
     console.log('remove');
+
+    var root = d3.hierarchy(raw)
+      .sum(d => d.size)
+      .sort((a, b) => b.size - a.size);
+    console.log('root');
+    console.log(root);
 
     // var leaves = treemap(root).leaves();
     // console.log('leaves');
