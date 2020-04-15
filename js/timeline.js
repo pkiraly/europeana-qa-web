@@ -52,7 +52,8 @@ function startInteractiveTimeline(targetId, tableClass) {
 
     $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
 
-    drawBarchart(svg, dataset);
+    // drawBarchart(svg, dataset);
+    drawLinechart(svg, dataset);
 
   });
 }
@@ -107,3 +108,63 @@ function drawBarchart(svg, dataset) {
 
 }
 
+function drawLinechart(svg, dataset) {
+  var x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return d.date; }))
+            .range([ 0, width ]);
+
+  svg.append("g")
+     .attr("transform", "translate(20," + height + ")")
+     .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) { return +d.value; })])
+            .range([ height, 0 ]);
+
+  svg.append("g")
+     .call(d3.axisLeft(y));
+
+  // Add the line
+  svg.append("path")
+     .datum(data)
+     .attr("fill", "none")
+     .attr("stroke", "steelblue")
+     .attr("stroke-width", 1.5)
+     .attr("d", d3.line()
+       .x(function(d) { return x(d.date) + 20 })
+       .y(function(d) { return y(d.value) })
+     )
+  ;
+
+  svg.append("g")
+     .selectAll("text")
+     .data(data)
+     .enter()
+     .append("text")
+     .text(function(d) {
+       return Math.round(d.value * 1000) / 1000;
+     })
+     .attr("x", function(d, i) {
+       return x(d.date) + 20;
+     })
+     .attr("y", function(d) {
+       return y(d.value) + 15;
+     })
+     .attr("font-family", "sans-serif")
+     .attr("font-size", "11px")
+     .attr("fill", "maroon")
+     .attr("text-anchor", "middle")
+  ;
+
+  svg.selectAll("myCircles")
+     .data(data)
+     .enter()
+     .append("circle")
+     .attr("fill", "maroon")
+     .attr("stroke", "none")
+     .attr("cx", function(d) {return x(d.date) + 20;})
+     .attr("cy", function(d) {return y(d.value);})
+     .attr("r", 3)
+  ;
+}
