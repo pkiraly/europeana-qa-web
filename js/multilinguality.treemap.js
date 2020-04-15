@@ -44,12 +44,8 @@ function getTreeMapUrl() {
 }
 
 function displayLanguageTreemapv5() {
-  var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    aspect = .85,
-    minHeight = 400,
-    duration = 1000,
-    categories = "abcdef".split(""),
-    colors = {};
+  var aspect = .85,
+    minHeight = 400;
 
   var treemap = d3.treemap()
                   .padding(1)
