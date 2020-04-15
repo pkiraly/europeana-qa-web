@@ -42,7 +42,7 @@ function startInteractiveTimeline(targetId, tableClass) {
         $(this).addClass('highlighted');
       }
     });
-    console.log(dataset);
+
     oTarget.animate({"top": (y - 510) + 'px', "left": x + 'px'}, "fast");
     oTarget.on('click', function() {
       oTarget.hide(1000);
@@ -115,7 +115,6 @@ function drawLinechart(svg, dataset) {
             .domain(d3.extent(dataset, function(d) { return d.date; }))
             .range([0, timeline_w - 40]);
 
-  // console.log(timeline_h - 110);
   svg.append("g")
      .attr("transform", "translate(20," + (timeline_h - 35) + ")")
      .call(d3.axisBottom(x));
@@ -127,10 +126,8 @@ function drawLinechart(svg, dataset) {
             .domain([miny / 2, maxy * 1.05])
             .range([timeline_h, 0]);
 
-  /*
   svg.append("g")
      .call(d3.axisLeft(y));
-   */
 
   // Add the line
   svg.append("path")
