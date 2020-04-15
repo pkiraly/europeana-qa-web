@@ -131,7 +131,7 @@ function drawLinechart(svg, dataset) {
      .attr("fill", "none")
      .attr("stroke", "steelblue")
      .attr("stroke-width", 1.5)
-     .attr("d", d3.line()
+     .attr("d", d3.svg.line()
        .x(function(d) { return x(d.date) + 20 })
        .y(function(d) { return y(d.value) })
      )
