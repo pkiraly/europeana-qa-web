@@ -83,7 +83,7 @@ function displayLanguageTreemapv5() {
     console.log('root');
     console.log(root);
 
-    width = innerWidth - margin.left - margin.right;
+    // width = innerWidth - margin.left - margin.right;
     var baseHeight = innerWidth * aspect;
     baseHeight = baseHeight < minHeight
       ? minHeight
