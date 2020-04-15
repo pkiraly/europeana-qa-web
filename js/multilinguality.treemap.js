@@ -2,9 +2,11 @@ $('#language-distribution-selector').on('change', function () {
   displayLanguageTreemap();
   $('#tooltip').html("");
 });
+
 $('#excludeZeros').on('change', function () {
   displayLanguageTreemap();
 });
+
 $('#showNoOccurences').on('change', function () {
   displayLanguageTreemap();
 });
@@ -13,7 +15,8 @@ var margin = {top: 10, right: 10, bottom: 10, left: 10},
   width  = 850 - margin.left - margin.right,
   height = 500 - margin.top  - margin.bottom;
 
-var color = d3.scale.category20c();
+// var color = d3.scale.category20c();
+var color = scaleOrdinal(d3.schemeCategory10);
 
 var node;
 
