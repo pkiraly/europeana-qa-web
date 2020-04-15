@@ -455,7 +455,7 @@ table.timeline td.highlighted {
 }
 
 div.svg-container {
-  background-color: #428bca;
+  background-color: #eee;
   padding: 15px;
   height: 130px;
   cursor: pointer;
