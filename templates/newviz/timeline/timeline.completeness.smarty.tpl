@@ -28,7 +28,7 @@
                   {if ($data->statistic == 'mean' || $data->statistic == 'stddev')}
                     {$timeline[$version]|number_format:3}
                   {else}
-                    {$timeline[$version]|number_format:0:'.':' '}
+                    {$timeline[$version]|number_format:0:'.':' '|str_replace:' ':'&nbsp;'}
                   {/if}
                 {/if}
               </td>
