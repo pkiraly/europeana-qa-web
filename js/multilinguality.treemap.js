@@ -16,7 +16,7 @@ var margin = {top: 10, right: 10, bottom: 10, left: 10},
   height = 500 - margin.top  - margin.bottom;
 
 // var color = d3.scale.category20c();
-var color = d3.scaleOrdinal(d3.schemeCategory10);
+var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
 var node;
 
