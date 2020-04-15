@@ -112,10 +112,11 @@ function drawBarchart(svg, dataset) {
 function drawLinechart(svg, dataset) {
   var x = d3.scaleTime()
             .domain(d3.extent(dataset, function(d) { return d.date; }))
-            .range([0, timeline_w - 20]);
+            .range([0, timeline_w - 40]);
 
+  console.log(timeline_h - 110);
   svg.append("g")
-     .attr("transform", "translate(20," + (timeline_h - 110) + ")")
+     .attr("transform", "translate(10," + (timeline_h - 110) + ")")
      .call(d3.axisBottom(x));
 
   // Add Y axis
@@ -137,7 +138,7 @@ function drawLinechart(svg, dataset) {
      .attr("stroke", "steelblue")
      .attr("stroke-width", 1.5)
      .attr("d", d3.line()
-       .x(function(d) { return x(d.date) + 20 })
+       .x(function(d) { return x(d.date) + 10 })
        .y(function(d) { return y(d.value) })
      )
   ;
@@ -151,7 +152,7 @@ function drawLinechart(svg, dataset) {
        return Math.round(d.value * 1000) / 1000;
      })
      .attr("x", function(d, i) {
-       return x(d.date) + 20;
+       return x(d.date) + 10;
      })
      .attr("y", function(d) {
        return y(d.value) + 15;
@@ -168,7 +169,7 @@ function drawLinechart(svg, dataset) {
      .append("circle")
      .attr("fill", "maroon")
      .attr("stroke", "none")
-     .attr("cx", function(d) {return x(d.date) + 20;})
+     .attr("cx", function(d) {return x(d.date) + 10;})
      .attr("cy", function(d) {return y(d.value);})
      .attr("r", 3)
   ;
