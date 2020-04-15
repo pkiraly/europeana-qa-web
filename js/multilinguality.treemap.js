@@ -116,7 +116,7 @@ function displayLanguageTreemapv5() {
       .style("fill", 'white')
       .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
       .text(function(d) {
-        if (d.children) {
+        if (d.data.children) {
           return null;
         } else {
           var text = '';
