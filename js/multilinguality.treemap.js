@@ -27,7 +27,7 @@ var tooltipDiv = d3.select("#tooltip")
   // .style("opacity", 0)
   ;
 
-displayLanguageTreemap('aggregated');
+displayLanguageTreemapv5('aggregated');
 
 function getTreeMapUrl() {
   var field = $('#language-distribution-selector').val();
@@ -43,15 +43,86 @@ function getTreeMapUrl() {
   return treeMapUrl;
 }
 
-function displayLanguageTreemap() {
-  var treemap =  data => d3.treemap()
+function displayLanguageTreemapv5() {
+  var treemap = d3.treemap()
+                  .padding(1)
+                  .round(true);
+
+  var heatmap = d3.select("#heatmap")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("float", "left")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
+
+  var svg = heatmap.append("svg")
+  var g = svg.append("g")
+             .attr("transform", "translate(0,0)");
+
+  d3.json(getTreeMapUrl(), function(error, root) {
+    if (error) throw error;
+
+    if (!hasChildren(root)) {
+      var warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: maroon"></i>'
+        + ' In this dataset ' + formatField(root.name) + ' is not used';
+      $('#tooltip').html(warning);
+    }
+
+    d3.selectAll('#heatmap .node').remove();
+
+    var leaves = treemap(root).leaves();
+    var rects = svg.selectAll(".rect")
+                   .data(leaves, d => d.data.name);
+
+    /*
+    node = heatmap
+    .datum(root)
+    .selectAll(".node")
+    .data(treemap.nodes)
+    .enter().append("div")
+    .attr("class", "node")
+    .call(position)
+    // .style("color", '#fff')
+    // .style("font-weight", 'bold')
+    .style('cursor', 'pointer')
+    .style("background", function(d) {
+      // return d.children ? color(d.name) : null;
+      return d.children ? '#3182bd' : null; //
+    })
+    .text(function(d) {
+      if (d.children) {
+        return null;
+      } else {
+        var text = '';
+        if (d.name == 'no language') {
+          text = 'literal without language tag';
+        } else if (d.name == 'resource') {
+          text = 'resource value (URI)';
+        } else {
+          text = d.name;
+        }
+        return text;
+      }
+    })
+    .on("click", function(d) {
+      tooltipDiv.transition()
+      .duration(200)
+      .style("opacity", 1);
+      tooltipDiv.html(label2(d, root.name))
+      // .style("left", (d3.event.pageX) + "px")
+      // .style("top", (d3.event.pageY - 28) + "px");
+    })
+     */
+  });
+
+}
+
+function displayLanguageTreemapv3() {
+  var treemap = d3.layout.treemap()
     .size([width, height])
-    (d3.hierarchy(data)
-       .sum(d => d.size)
-       .sort((a, b) => b.size - a.size))
-    // .sticky(true)
-    // .tile(d3.treemapResquarify)
-    // .value(function(d) { return d.size; });
+    .sticky(true)
+    .value(function(d) { return d.size; });
 
   var heatmap = d3.select("#heatmap")
     .style("position", "relative")
