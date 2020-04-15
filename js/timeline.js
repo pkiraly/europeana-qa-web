@@ -112,10 +112,10 @@ function drawBarchart(svg, dataset) {
 function drawLinechart(svg, dataset) {
   var x = d3.scaleTime()
             .domain(d3.extent(dataset, function(d) { return d.date; }))
-            .range([0, timeline_w]);
+            .range([0, timeline_w - 20]);
 
   svg.append("g")
-     .attr("transform", "translate(20," + (timeline_h - 100) + ")")
+     .attr("transform", "translate(20," + (timeline_h - 110) + ")")
      .call(d3.axisBottom(x));
 
   // Add Y axis
