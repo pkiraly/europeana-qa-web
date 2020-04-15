@@ -118,12 +118,12 @@ function drawLinechart(svg, dataset) {
      .call(d3.svg.axis(x));
 
   // Add Y axis
-  var y = d3.scaleLinear()
+  var y = d3.scale.linear()
             .domain([0, d3.max(dataset, function(d) { return +d.value; })])
             .range([timeline_h, 0]);
 
   svg.append("g")
-     .call(d3.axisLeft(y));
+     .call(d3.svg.axis(y));
 
   // Add the line
   svg.append("path")
