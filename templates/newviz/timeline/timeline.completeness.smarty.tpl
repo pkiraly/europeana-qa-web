@@ -24,7 +24,13 @@
             <td class="property">{if $location == 'provider'}original{else}enrichment{/if}</td>
             {foreach $data->files as $version => $file}
               <td class="num" data="{if isset($timeline[$version])}{$timeline[$version]}{/if}">
-                  {if isset($timeline[$version])}{$timeline[$version]|number_format:3}{/if}
+                {if isset($timeline[$version])}
+                  {if ($data->statistic == 'mean' || $data->statistic == 'stddev')}
+                    {$timeline[$version]|number_format:3}
+                  {else}
+                    {$timeline[$version]}
+                  {/if}
+                {/if}
               </td>
             {/foreach}
           </tr>
