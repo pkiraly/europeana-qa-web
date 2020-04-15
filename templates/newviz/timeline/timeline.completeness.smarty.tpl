@@ -36,6 +36,8 @@
 
 <script type="text/javascript" src="js/timeline.js"></script>
 <script type="text/javascript">
+  var versions = [{foreach from=$data->files key=version item=file name=versions}'{$version}'{if !$smarty.foreach.posts.last},{/if}{/foreach}];
+
   $(document).ready(function () {
     startInteractiveTimeline('svg-container-completeness', 'timeline-completeness');
   });
