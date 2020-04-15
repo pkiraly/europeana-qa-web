@@ -45,8 +45,8 @@ function startInteractiveTimeline(targetId, tableClass) {
     })
 
     $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
-    var max = d3.max(dataset);
-    var min = d3.min(dataset);
+    var max = d3.max(dataset, d => d.value);
+    var min = d3.min(dataset, d => d.value);
     var range = max - min;
     var minmaxPadding = (range != 0) ? range / 4 : 1.0;
 
@@ -64,11 +64,11 @@ function startInteractiveTimeline(targetId, tableClass) {
          return i * (timeline_w / dataset.length);
        })
        .attr("y", function(d) {
-         return timeline_h - yScale(d);
+         return timeline_h - yScale(d.value);
        })
        .attr("width", timeline_w / dataset.length - timeline_barPadding)
        .attr("height", function(d) {
-         return yScale(d);
+         return yScale(d.value);
        })
        .attr('fill', '#666')
     ;
@@ -78,13 +78,13 @@ function startInteractiveTimeline(targetId, tableClass) {
        .enter()
        .append("text")
        .text(function(d) {
-         return Math.ceil(d * 1000) / 1000;
+         return Math.ceil(d.value * 1000) / 1000;
        })
        .attr("x", function(d, i) {
          return i * (timeline_w / dataset.length) + (timeline_w / dataset.length - timeline_barPadding) / 2;
        })
        .attr("y", function(d) {
-         return timeline_h - yScale(d) + 14;
+         return timeline_h - yScale(d.value) + 14;
        })
        .attr("font-family", "sans-serif")
        .attr("font-size", "11px")
