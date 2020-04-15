@@ -111,8 +111,9 @@ function displayLanguageTreemapv5() {
       .enter()
       .append("text")
       .attr("class", "label")
-      .attr("dy", 16)
+      .attr("dy", 10)
       .attr("dx", 5)
+      .style("fill", 'white')
       .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
       .html(d => d.data.name)
 
