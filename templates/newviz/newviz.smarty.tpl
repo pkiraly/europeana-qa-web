@@ -381,7 +381,7 @@
                 {assign var="statistics" value=["mean", "min", "max", "count", "sum", "stddev", "median"]}
                 {assign var="labels" value=["mean occurence", "min occurence", "max occurence", "number of records", "number of occurrences", "occurence stddev", "occurence median"]}
                 {foreach $statistics as $i => $statistic}
-                  <option {if $statistic == 'mean'}selected="selected"{/if}>{$labels[$i]}</option>
+                  <option value="{$statistic}" {if $statistic == 'mean'}selected="selected"{/if}>{$labels[$i]}</option>
                 {/foreach}
               </select>
             </form>
