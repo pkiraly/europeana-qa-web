@@ -99,15 +99,17 @@ function displayLanguageTreemapv5() {
     console.log('append rects');
 
     var labels = svg.selectAll(".label")
-                    .data(leaves.filter(f => f.x1 - f.x0 > 60 && f.y1 - f.y0 > 30), d => d.data.name);
+                    .data(leaves, d => d.data.name);
     labels.html(d => d.data.name)
 
-    labels.enter().append("text")
-    .attr("class", "label")
-    .attr("dy", 16)
-    .attr("dx", 5)
-    .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
-    .html(d => d.data.name)
+    labels
+      .enter()
+      .append("text")
+      .attr("class", "label")
+      .attr("dy", 16)
+      .attr("dx", 5)
+      // .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
+      .html(d => d.data.name)
 
     /*
     node = heatmap
