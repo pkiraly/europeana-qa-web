@@ -60,7 +60,9 @@ function displayLanguageTreemapv5() {
   var g = svg.append("g")
              .attr("transform", "translate(0,0)");
 
-  d3.json(getTreeMapUrl(), function(error, root) {
+  var url = getTreeMapUrl();
+  console.log(url);
+  d3.json(url, function(error, root) {
     if (error) throw error;
     console.log(root);
 
