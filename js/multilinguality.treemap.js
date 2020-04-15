@@ -78,7 +78,10 @@ function displayLanguageTreemapv5() {
     // console.log('leaves');
     // console.log(leaves);
     var rects = svg.selectAll(".rect")
-                   .data(root, d => d.data.name);
+                   .data(root, function(d) {
+                     console.log(d);
+                     return d.data.name
+                   });
     console.log('rects');
 
     rects.enter().append("rect")
