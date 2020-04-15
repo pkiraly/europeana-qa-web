@@ -112,10 +112,24 @@ function displayLanguageTreemapv5() {
       .append("text")
       .attr("class", "label")
       .attr("dy", 10)
-      .attr("dx", 5)
+      .attr("dx", 2)
       .style("fill", 'white')
       .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
-      .html(d => d.data.name)
+      .text(function(d) {
+        if (d.children) {
+          return null;
+        } else {
+          var text = '';
+          if (d.name == 'no language') {
+            text = 'literal without language tag';
+          } else if (d.name == 'resource') {
+            text = 'resource value (URI)';
+          } else {
+            text = d.name;
+          }
+          return text;
+        }
+      })
 
     /*
     node = heatmap
