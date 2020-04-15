@@ -113,7 +113,7 @@ function displayLanguageTreemapv5() {
       .attr("class", "label")
       .attr("dy", 16)
       .attr("dx", 5)
-      // .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
+      .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
       .html(d => d.data.name)
 
     /*
