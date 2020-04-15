@@ -130,6 +130,14 @@ function displayLanguageTreemapv5() {
           return text;
         }
       })
+      .on("click", function(d) {
+        tooltipDiv.transition()
+        .duration(200)
+        .style("opacity", 1);
+        tooltipDiv.html(label2(d, root.name))
+        // .style("left", (d3.event.pageX) + "px")
+        // .style("top", (d3.event.pageY - 28) + "px");
+      })
 
     /*
     node = heatmap
