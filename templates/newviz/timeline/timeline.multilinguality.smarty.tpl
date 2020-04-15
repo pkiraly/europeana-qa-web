@@ -74,6 +74,8 @@
 </table>
 
 <script type="text/javascript" src="js/timeline.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 <script type="text/javascript">
    var versions = [{foreach from=$data->files key=version item=file name=versions}'{$version}'{if !$smarty.foreach.posts.last},{/if}{/foreach}];
 
