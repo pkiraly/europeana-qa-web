@@ -110,7 +110,7 @@ function drawBarchart(svg, dataset) {
 
 function drawLinechart(svg, dataset) {
   var x = d3.time.scale()
-            .domain(d3.extent(data, function(d) { return d.date; }))
+            .domain(d3.extent(dataset, function(d) { return d.date; }))
             .range([ 0, width ]);
 
   svg.append("g")
@@ -119,7 +119,7 @@ function drawLinechart(svg, dataset) {
 
   // Add Y axis
   var y = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d) { return +d.value; })])
+            .domain([0, d3.max(dataset, function(d) { return +d.value; })])
             .range([ height, 0 ]);
 
   svg.append("g")
@@ -127,7 +127,7 @@ function drawLinechart(svg, dataset) {
 
   // Add the line
   svg.append("path")
-     .datum(data)
+     .datum(dataset)
      .attr("fill", "none")
      .attr("stroke", "steelblue")
      .attr("stroke-width", 1.5)
@@ -139,7 +139,7 @@ function drawLinechart(svg, dataset) {
 
   svg.append("g")
      .selectAll("text")
-     .data(data)
+     .data(dataset)
      .enter()
      .append("text")
      .text(function(d) {
@@ -158,7 +158,7 @@ function drawLinechart(svg, dataset) {
   ;
 
   svg.selectAll("myCircles")
-     .data(data)
+     .data(dataset)
      .enter()
      .append("circle")
      .attr("fill", "maroon")
