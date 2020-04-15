@@ -74,11 +74,12 @@ function displayLanguageTreemapv5() {
     d3.selectAll('#heatmap .node').remove();
     console.log('remove');
 
-    var leaves = treemap(root).leaves();
-    console.log('leaves');
-    console.log(leaves);
+    // var leaves = treemap(root).leaves();
+    // console.log('leaves');
+    // console.log(leaves);
     var rects = svg.selectAll(".rect")
-                   .data(leaves, d => d.data.name);
+                   .data(root, d => d.data.name);
+    console.log('rects');
 
     rects.enter().append("rect")
       .attr("class", "rect")
