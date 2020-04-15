@@ -115,7 +115,7 @@ function drawLinechart(svg, dataset) {
 
   svg.append("g")
      .attr("transform", "translate(20," + timeline_h + ")")
-     .call(d3.axisBottom(x));
+     .call(d3.svg.axis(x));
 
   // Add Y axis
   var y = d3.scaleLinear()
