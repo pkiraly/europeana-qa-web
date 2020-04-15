@@ -62,7 +62,7 @@ function displayLanguageTreemapv5() {
 
   var url = getTreeMapUrl();
   console.log(url);
-  d3.json(url, function(error, root) {
+  d3.json(url).then(function(error, root) {
     console.log('fetched1 ' + url);
   });
 
