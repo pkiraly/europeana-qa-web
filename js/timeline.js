@@ -122,7 +122,7 @@ function drawLinechart(svg, dataset) {
   var miny = d3.min(dataset, function(d) { return d.value; })
   var maxy = d3.max(dataset, function(d) { return d.value; })
   var y = d3.scaleLinear()
-            .domain([miny * 0.9, maxy * 1.1])
+            .domain([miny / 2, maxy * 1.1])
             .range([timeline_h, 0]);
 
   svg.append("g")
