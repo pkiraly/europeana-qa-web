@@ -44,11 +44,14 @@ function getTreeMapUrl() {
 }
 
 function displayLanguageTreemap() {
-  var treemap = d3.treemap()
+  var treemap =  data => d3.treemap()
     .size([width, height])
+    (d3.hierarchy(data)
+       .sum(d => d.size)
+       .sort((a, b) => b.size - a.size))
     // .sticky(true)
     // .tile(d3.treemapResquarify)
-    .value(function(d) { return d.size; });
+    // .value(function(d) { return d.size; });
 
   var heatmap = d3.select("#heatmap")
     .style("position", "relative")
