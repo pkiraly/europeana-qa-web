@@ -85,10 +85,10 @@ function displayLanguageTreemapv5() {
     console.log(leaves);
     var rects = svg.selectAll(".rect")
                    .data(leaves, function(d) {
-                     console.log(d);
+                     console.log(d.data.name);
                      return d.data.name
                    });
-    console.log('rects');
+    console.log('selectAll rects');
 
     rects.enter().append("rect")
       .attr("class", "rect")
@@ -96,6 +96,18 @@ function displayLanguageTreemapv5() {
       .attr("transform", d => `translate(${d.x0},${d.y0})`)
       .attr("width", d => d.x1 - d.x0)
       .attr("height", d => d.y1 - d.y0)
+    console.log('append rects');
+
+    var labels = svg.selectAll(".label")
+                    .data(leaves.filter(f => f.x1 - f.x0 > 60 && f.y1 - f.y0 > 30), d => d.data.name);
+    labels.html(d => d.data.name)
+
+    labels.enter().append("text")
+    .attr("class", "label")
+    .attr("dy", 16)
+    .attr("dx", 5)
+    .attr("transform", d => `translate(${d.x0}, ${d.y0})`)
+    .html(d => d.data.name)
 
     /*
     node = heatmap
