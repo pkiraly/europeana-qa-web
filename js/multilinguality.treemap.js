@@ -47,7 +47,7 @@ function displayLanguageTreemap() {
   var treemap = d3.treemap()
     .size([width, height])
     // .sticky(true)
-    .tile(d3.treemapResquarify)
+    // .tile(d3.treemapResquarify)
     .value(function(d) { return d.size; });
 
   var heatmap = d3.select("#heatmap")
