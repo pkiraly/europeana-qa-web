@@ -102,7 +102,7 @@ function displayLanguageTreemapv5() {
        .attr("transform", d => `translate(${d.x0},${d.y0})`)
        .attr("width", d => d.x1 - d.x0)
        .attr("height", d => d.y1 - d.y0)
-       .on("click", d => triggerTooltip(d))
+       .on("click", d => triggerTooltip(d, root.data.name))
 
     var labels = svg.selectAll(".label")
                     .data(leaves, d => d.data.name);
@@ -132,17 +132,16 @@ function displayLanguageTreemapv5() {
         }
       })
       .style('cursor', 'pointer')
-      .on("click", d => triggerTooltip(d))
+      .on("click", d => triggerTooltip(d, root.data.name))
   });
 }
 
-function triggerTooltip(d) {
+function triggerTooltip(d, fieldName) {
   tooltipDiv.transition()
     .duration(200)
     .style("opacity", 1);
-  tooltipDiv.html(label2(d.data, root.data.name))
+  tooltipDiv.html(label2(d.data, fieldName))
 }
-
 
 function displayLanguageTreemapv3() {
   var treemap = d3.layout.treemap()
