@@ -125,8 +125,10 @@ function drawLinechart(svg, dataset) {
             .domain([miny / 2, maxy * 1.1])
             .range([timeline_h, 0]);
 
+  /*
   svg.append("g")
      .call(d3.axisLeft(y));
+   */
 
   // Add the line
   svg.append("path")
