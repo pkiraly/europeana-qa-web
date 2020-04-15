@@ -103,12 +103,12 @@ function displayLanguageTreemapv5() {
        .attr("height", d => d.y1 - d.y0)
       .on("click", function(d) {
         console.log('click on rect')
-        console.log(d)
-        console.log(root)
+        console.log(d.data)
+        console.log(root.data.name)
         tooltipDiv.transition()
           .duration(200)
           .style("opacity", 1);
-        tooltipDiv.html(label2(d.data, root.name))
+        tooltipDiv.html(label2(d.data, root.data.name))
         // .style("left", (d3.event.pageX) + "px")
         // .style("top", (d3.event.pageY - 28) + "px");
       })
