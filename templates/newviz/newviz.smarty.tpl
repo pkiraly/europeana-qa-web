@@ -378,8 +378,8 @@
 
               Statistics:
               <select name="statistic">
-                {assign var="statistics" value=["mean", "min", "max", "count", "sum", "stddev", "median"]}
-                {assign var="labels" value=["mean occurence", "min occurence", "max occurence", "number of records", "number of occurrences", "occurence stddev", "occurence median"]}
+                {assign var="statistics" value=["mean", "stddev", "median", "min", "max", "count", "sum"]}
+                {assign var="labels" value=["mean occurence", "occurence standard deviation", "occurence median", "min occurence", "max occurence", "number of records", "number of occurrences"]}
                 {foreach $statistics as $i => $statistic}
                   <option value="{$statistic}" {if $statistic == 'mean'}selected="selected"{/if}>{$labels[$i]}</option>
                 {/foreach}
