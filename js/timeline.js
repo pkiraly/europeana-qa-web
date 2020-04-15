@@ -26,7 +26,7 @@ function startInteractiveTimeline(targetId, tableClass) {
       if ($(this).hasClass('num')) {
         if ($(this).attr('data') !== typeof undefined) {
           var value = Number($(this).attr('data'));  // or $(this).html()
-          dataset.push({'version': versions[i], 'value': value});
+          dataset.push({'version': versions[i++], 'value': value});
           if (x == null) {
             x = $(this).position().left + 15;
             y = $(this).offset().top
