@@ -102,13 +102,7 @@ function displayLanguageTreemapv5() {
        .attr("transform", d => `translate(${d.x0},${d.y0})`)
        .attr("width", d => d.x1 - d.x0)
        .attr("height", d => d.y1 - d.y0)
-       .on("click", function(d) {
-         tooltipDiv.transition()
-           .duration(200)
-           .style("opacity", 1);
-         tooltipDiv.html(label2(d.data, root.data.name))
-      })
-    console.log('append rects');
+       .on("click", d => triggerTooltip(d))
 
     var labels = svg.selectAll(".label")
                     .data(leaves, d => d.data.name);
@@ -138,58 +132,17 @@ function displayLanguageTreemapv5() {
         }
       })
       .style('cursor', 'pointer')
-      .on("click", function(d) {
-        console.log('click on text')
-        tooltipDiv.transition()
-        .duration(200)
-        .style("opacity", 1);
-        tooltipDiv.html(label2(d.data, root.data.name))
-        // .style("left", (d3.event.pageX) + "px")
-        // .style("top", (d3.event.pageY - 28) + "px");
-      })
-
-    /*
-    node = heatmap
-    .datum(root)
-    .selectAll(".node")
-    .data(treemap.nodes)
-    .enter().append("div")
-    .attr("class", "node")
-    .call(position)
-    // .style("color", '#fff')
-    // .style("font-weight", 'bold')
-    .style('cursor', 'pointer')
-    .style("background", function(d) {
-      // return d.children ? color(d.name) : null;
-      return d.children ? '#3182bd' : null; //
-    })
-    .text(function(d) {
-      if (d.children) {
-        return null;
-      } else {
-        var text = '';
-        if (d.name == 'no language') {
-          text = 'literal without language tag';
-        } else if (d.name == 'resource') {
-          text = 'resource value (URI)';
-        } else {
-          text = d.name;
-        }
-        return text;
-      }
-    })
-    .on("click", function(d) {
-      tooltipDiv.transition()
-      .duration(200)
-      .style("opacity", 1);
-      tooltipDiv.html(label2(d, root.name))
-      // .style("left", (d3.event.pageX) + "px")
-      // .style("top", (d3.event.pageY - 28) + "px");
-    })
-     */
+      .on("click", d => triggerTooltip(d))
   });
-
 }
+
+function triggerTooltip(d) {
+  tooltipDiv.transition()
+    .duration(200)
+    .style("opacity", 1);
+  tooltipDiv.html(label2(d.data, root.data.name))
+}
+
 
 function displayLanguageTreemapv3() {
   var treemap = d3.layout.treemap()
