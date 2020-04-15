@@ -44,7 +44,7 @@ function getTreeMapUrl() {
 }
 
 function displayLanguageTreemap() {
-  var treemap = d3.layout.treemap()
+  var treemap = d3.treemap()
     .size([width, height])
     .sticky(true)
     .value(function(d) { return d.size; });
