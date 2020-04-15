@@ -1,13 +1,13 @@
-var timeline_w = 500;
-var timeline_h = 100;
-var timeline_barPadding = 2;
-
-var svg = d3.select('div#' + targetId)
-            .append("svg")
-            .attr("width", timeline_w)
-            .attr("height", timeline_h);
-
 function startInteractiveTimeline(targetId, tableClass) {
+  var timeline_w = 500;
+  var timeline_h = 100;
+  var timeline_barPadding = 2;
+
+  var svg = d3.select('div#' + targetId)
+              .append("svg")
+              .attr("width", timeline_w)
+              .attr("height", timeline_h);
+
   var dataset = [];
   $('table.' + tableClass + ' td.property').on('click', function(e) {
     $('table.' + tableClass + ' td.highlighted').each(function(e) {
@@ -45,7 +45,6 @@ function startInteractiveTimeline(targetId, tableClass) {
     })
 
     $('div#' + targetId + " svg").children().each(function(e) {$(this).remove()})
-
     var max = d3.max(dataset, d => d.value);
     var min = d3.min(dataset, d => d.value);
     var range = max - min;
