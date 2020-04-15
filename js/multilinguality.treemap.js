@@ -62,6 +62,7 @@ function displayLanguageTreemapv5() {
 
   d3.json(getTreeMapUrl(), function(error, root) {
     if (error) throw error;
+    console.log(root);
 
     if (!hasChildren(root)) {
       var warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: maroon"></i>'
