@@ -23,13 +23,14 @@ function startInteractiveTimeline(targetId, tableClass) {
     var x = null,
         y = null,
         i = 0;
+    var parseTime = d3.timeParse("v%Y-%m");
     $(this).siblings('td').each(function() {
       if ($(this).hasClass('num')) {
         if ($(this).attr('data') !== typeof undefined) {
           var value = Number($(this).attr('data'));  // or $(this).html()
           dataset.push({
             'version': versions[i],
-            'date': d3.timeParse("v%Y-%m")(versions[i]),
+            'date': parseTime(versions[i]),
             'value': value
           });
           i++;
@@ -123,7 +124,7 @@ function drawLinechart(svg, dataset) {
   var miny = d3.min(dataset, function(d) { return d.value; })
   var maxy = d3.max(dataset, function(d) { return d.value; })
   var y = d3.scaleLinear()
-            .domain([miny / 2, maxy * 1.1])
+            .domain([miny / 2, maxy * 1.05])
             .range([timeline_h, 0]);
 
   /*
