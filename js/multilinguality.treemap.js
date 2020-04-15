@@ -97,7 +97,7 @@ function displayLanguageTreemapv5() {
        .enter()
        .append("rect")
        .attr("class", "rect")
-       .style("fill", 'blue')
+       .style("fill", '#3182bd')
        .style('cursor', 'pointer')
        .attr("transform", d => `translate(${d.x0},${d.y0})`)
        .attr("width", d => d.x1 - d.x0)
