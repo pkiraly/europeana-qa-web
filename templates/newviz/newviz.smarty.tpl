@@ -606,6 +606,7 @@ function watchIntersections() {
 }
 
 function filterIds(oForm) {
+  console.log('filterIds');
   var selectorId = (type1 == 'c') ? 'cid' : 'did';
 
   if (version >= 'v2018-08') {
