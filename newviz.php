@@ -135,15 +135,20 @@ function retrieveProviders($type, $fragment) {
 }
 
 function retrieveCsv($fileName, $fragment) {
-  $list = [];
-  $content = explode("\n", file_get_contents($fileName));
-  foreach ($content as $line) {
-    if ($line == '')
-      continue;
 
-    if (is_null($fragment) || $fragment == '' || stristr($line, $fragment)) {
-      list($_id, $_name) = explode(';', $line, 2);
-      $list[$_id] = $_name;
+  $list = [];
+  if (!file_exists($fileName)) {
+    error_log("File doesn't exists: $fileName");
+  } else {
+    $content = explode("\n", file_get_contents($fileName));
+    foreach ($content as $line) {
+      if ($line == '')
+        continue;
+
+      if (is_null($fragment) || $fragment == '' || stristr($line, $fragment)) {
+        list($_id, $_name) = explode(';', $line, 2);
+        $list[$_id] = $_name;
+      }
     }
   }
   return $list;
