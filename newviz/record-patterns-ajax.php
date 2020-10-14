@@ -46,7 +46,7 @@ function getProfileFile($type, $id) {
   global $dataDir, $parameters;
 
   $prefix = ($type == 'a') ? $id : sprintf('%s-%s', $type, $id);
-  $suffix = ($type != 'a' && $parameters->clustered) ? '-clustered' : '';
+  $suffix = ($parameters->clustered) ? '-clustered' : '';
 
   return sprintf('%s/json/%s/%s/%s.profile-patterns%s.csv',
     $dataDir, $type, $prefix, $prefix, $suffix);
@@ -73,7 +73,7 @@ function getProfileFields($type, $id) {
 function getPatterns($type, $id, $count) {
   global $parameters;
 
-  if ($type != 'a' && $parameters->clustered)
+  if ($parameters->clustered)
     return getClusteredPatterns($type, $id, $count);
   else
     return getIndividualPatterns($type, $id, $count);
@@ -185,7 +185,7 @@ function getIndividualPatterns($type, $id, $count) {
       if ($line == '')
         continue;
       $row = [];
-      if ($type != 'a' && $parameters->clustered) {
+      if ($parameters->clustered) {
         list($row['clusterID'], $profile, $row['length'], $row['count'],
              $row['total'], $row['percent']) = explode(',', $line);
       } else {
