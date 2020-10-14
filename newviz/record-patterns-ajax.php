@@ -36,16 +36,17 @@ function getFieldsFile($type, $id) {
   global $dataDir;
 
   $prefix = sprintf('%s-%s', $type, $id);
-  return $dataDir . sprintf('/json/%s/%s/%s.profile-field-counts.csv', $type, $prefix, $prefix);
+  return sprintf('%s/json/%s/%s/%s.profile-field-counts.csv', $dataDir, $type, $prefix, $prefix);
 }
 
-function getProfileFile($collectionId) {
+function getProfileFile($type, $id) {
   global $dataDir, $parameters;
 
+  $prefix = sprintf('%s-%s', $type, $id);
   if ($parameters->clustered)
-    return $dataDir . '/json/' . $collectionId . '/' . $collectionId . '-profiles-clustered.csv';
+    return sprintf('%s/json/%s/%s/%s.profiles-clustered.csv', $dataDir, $type, $prefix, $prefix);
   else
-    return $dataDir . '/json/' . $collectionId . '/' . $collectionId . '-profiles.csv';
+    return sprintf('%s/json/%s/%s/%s.profiles.csv', $dataDir, $type, $prefix, $prefix);
 }
 
 function getProfileFields($type, $id) {
