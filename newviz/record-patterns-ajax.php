@@ -131,8 +131,8 @@ function getClusteredPatterns($type, $id, $count) {
       $cluster['count'] += $row['count'];
       $cluster['percent'] += $row['percent'];
 
-      if ($cluster['total'] == -1)
-        $cluster['total'] = $row['total'];
+      // if ($cluster['total'] == -1)
+      //   $cluster['total'] = $row['total'];
 
       if ($cluster['fieldMin'] == 0 || $cluster['fieldMin'] > $row['length'])
         $cluster['fieldMin'] = $row['length'];
