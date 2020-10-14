@@ -37,14 +37,14 @@ $smarty->display($tpl);
 function getFieldsFile($type, $id) {
   global $dataDir;
 
-  $prefix = sprintf('%s-%s', $type, $id);
+  $prefix = ($type == 'a') ? $id : sprintf('%s-%s', $type, $id);
   return sprintf('%s/json/%s/%s/%s.profile-field-counts.csv', $dataDir, $type, $prefix, $prefix);
 }
 
 function getProfileFile($type, $id) {
   global $dataDir, $parameters;
 
-  $prefix = sprintf('%s-%s', $type, $id);
+  $prefix = ($type == 'a') ? $id : sprintf('%s-%s', $type, $id);
   $suffix = ($parameters->clustered) ? '-clustered' : '';
 
   return sprintf('%s/json/%s/%s/%s.profile-patterns%s.csv',
