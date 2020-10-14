@@ -50,12 +50,17 @@ function getProfileFile($collectionId) {
 
 function getProfileFields($type, $id) {
   $file = getFieldsFile($type, $id);
-  if (file_exists($file)) {
-    return reorderFields(explode(';', file_get_contents($file)));
-  } else {
+  if (!file_exists($file)) {
     error_log("File doesn't exist: $file");
     return false;
   }
+  $content = file_get_contents($file);
+  if (preg_match('/^[^"]+,"(.*?)"$/', $content, $matches)) {
+    $fields_raw = $matches[1];
+    error_log($fields_raw);
+    return reorderFields(explode(',', $fields_raw));
+  }
+  return false;
 }
 
 function getPatterns($collectionId, $count) {
