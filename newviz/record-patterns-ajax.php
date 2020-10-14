@@ -90,8 +90,8 @@ function getClusteredPatterns($type, $id, $count) {
       if ($line == '' || preg_match('/^#/', $line))
         continue;
       $row = [];
-      list($row['clusterID'], $profile, $row['length'], $row['count'],
-           $row['total'], $row['percent']) = explode(',', $line);
+      list($row['clusterID'], $prefix, $profile,
+           $row['length'], $row['count'], $row['percent']) = explode(',', $line);
       $row['profileFields'] = explode(';', $profile);
       if ($row['percent'] * 100 < 1 && !$lineSet) {
         $lineSet = TRUE;
