@@ -172,10 +172,10 @@ function getClusteredPatterns($type, $id, $count) {
   return [$clusters, $allFields, $lineSet];
 }
 
-function getIndividualPatterns($collectionId, $count) {
+function getIndividualPatterns($type, $id, $count) {
   global $parameters;
 
-  $fileName = getProfileFile($collectionId);
+  $fileName = getProfileFile($type, $id);
 
   $profiles = [];
   if ($file = fopen($fileName, "r")) {
