@@ -7,6 +7,8 @@ $configuration = parse_ini_file($root . '/config.cfg');
 include_once($root . '/newviz/common.functions.php');
 
 $parameters = getParameters();
+$type = $parameters->type;
+$id = $parameters->id;
 $collectionId = $parameters->type . $parameters->id;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : -1;
 $parameters->clustered = TRUE;
@@ -14,7 +16,7 @@ $parameters->clustered = TRUE;
 $dataDir = getDataDir();
 
 $data = (object)[
-  'fields' => getProfileFields($collectionId),
+  'fields' => getProfileFields($type, $id),
   'style' => 'jakob',
 ];
 
@@ -30,10 +32,11 @@ $smarty = createSmarty('../templates/newviz/record-patterns/');
 $smarty->assign('data', $data);
 $smarty->display($tpl);
 
-function getFieldsFile($collectionId) {
+function getFieldsFile($type, $id) {
   global $dataDir;
 
-  return $dataDir . '/json/' . $collectionId . '/' .  $collectionId . '-fields.csv';
+  $prefix = sprintf('%s-%s', $type, $id);
+  return $dataDir . sprintf('/json/%s/%s/%s.profile-field-counts.csv', $type, $prefix, $prefix);
 }
 
 function getProfileFile($collectionId) {
@@ -45,8 +48,14 @@ function getProfileFile($collectionId) {
     return $dataDir . '/json/' . $collectionId . '/' . $collectionId . '-profiles.csv';
 }
 
-function getProfileFields($collectionId) {
-  return reorderFields(explode(';', file_get_contents(getFieldsFile($collectionId))));
+function getProfileFields($type, $id) {
+  $file = getFieldsFile($type, $id);
+  if (file_exists($file)) {
+    return reorderFields(explode(';', file_get_contents($file)));
+  } else {
+    error_log("File doesn't exist: $file");
+    return false;
+  }
 }
 
 function getPatterns($collectionId, $count) {
@@ -73,7 +82,7 @@ function getClusteredPatterns($collectionId, $count) {
         continue;
       $row = [];
       list($row['clusterID'], $profile, $row['length'], $row['count'],
-          $row['total'], $row['percent']) = explode(',', $line);
+           $row['total'], $row['percent']) = explode(',', $line);
       $row['profileFields'] = explode(';', $profile);
       if ($row['percent'] * 100 < 1 && !$lineSet) {
         $lineSet = TRUE;
