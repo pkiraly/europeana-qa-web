@@ -56,9 +56,12 @@ function getProfileFields($type, $id) {
   }
   $content = file_get_contents($file);
   if (preg_match('/^[^"]+,"(.*?)"$/', $content, $matches)) {
-    $fields_raw = $matches[1];
-    error_log($fields_raw);
-    return reorderFields(explode(',', $fields_raw));
+    $fields_raw = explode(',', $matches[1]);
+    $fields = [];
+    foreach ($fields_raw as $field) {
+      $fields[] = preg_replace('/=\d+$/', '', $field);
+    }
+    return reorderFields($fields);
   }
   return false;
 }
