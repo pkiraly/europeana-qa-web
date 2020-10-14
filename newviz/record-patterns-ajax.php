@@ -185,7 +185,7 @@ function getIndividualPatterns($type, $id, $count) {
       if ($line == '')
         continue;
       $row = [];
-      if ($parameters->clustered) {
+      if ($type != 'a' && $parameters->clustered) {
         list($row['clusterID'], $profile, $row['length'], $row['count'],
              $row['total'], $row['percent']) = explode(',', $line);
       } else {
