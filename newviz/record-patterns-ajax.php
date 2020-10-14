@@ -114,6 +114,7 @@ function getClusteredPatterns($type, $id, $count) {
     $cluster['patternCount'] = count($cluster['rows']);
     $cluster['total'] = -1;
     $cluster['count'] = 0;
+    $cluster['percent'] = 0.0;
     $cluster['fieldMin'] = 0;
     $cluster['fieldMax'] = 0;
     foreach ($cluster['rows'] as $row) {
