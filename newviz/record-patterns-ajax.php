@@ -73,7 +73,7 @@ function getProfileFields($type, $id) {
 function getPatterns($type, $id, $count) {
   global $parameters;
 
-  if ($parameters->clustered)
+  if ($type != 'a' && $parameters->clustered)
     return getClusteredPatterns($type, $id, $count);
   else
     return getIndividualPatterns($type, $id, $count);
@@ -189,7 +189,7 @@ function getIndividualPatterns($collectionId, $count) {
         list($row['clusterID'], $profile, $row['length'], $row['count'],
              $row['total'], $row['percent']) = explode(',', $line);
       } else {
-        list($profile, $row['nr'], $row['occurence'], $row['percent']) = explode(',', $line);
+        list($prefix, $profile, $row['nr'], $row['occurence'], $row['percent']) = explode(',', $line);
         if ($count != -1)
           $row['percent'] = $row['occurence'] / $count;
       }
