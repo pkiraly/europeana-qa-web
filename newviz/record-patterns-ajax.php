@@ -20,7 +20,7 @@ $data = (object)[
   'style' => 'jakob',
 ];
 
-list($profiles, $fields) = getPatterns($collectionId, $count);
+list($profiles, $fields) = getPatterns($type, $id, $count);
 $data->profiles = $profiles;
 $data->fields = $fields;
 
@@ -67,19 +67,19 @@ function getProfileFields($type, $id) {
   return false;
 }
 
-function getPatterns($collectionId, $count) {
+function getPatterns($type, $id, $count) {
   global $parameters;
 
   if ($parameters->clustered)
-    return getClusteredPatterns($collectionId, $count);
+    return getClusteredPatterns($type, $id, $count);
   else
-    return getIndividualPatterns($collectionId, $count);
+    return getIndividualPatterns($type, $id, $count);
 }
 
-function getClusteredPatterns($collectionId, $count) {
+function getClusteredPatterns($type, $id, $count) {
   global $parameters;
 
-  $fileName = getProfileFile($collectionId);
+  $fileName = getProfileFile($type, $id);
 
   $clusters = [];
   $profiles = [];
