@@ -128,6 +128,7 @@ function getClusteredPatterns($type, $id, $count) {
         $allFields[$field] += $row['count'];
       }
       $cluster['count'] += $row['count'];
+      $cluster['percent'] += $row['percent'];
 
       if ($cluster['total'] == -1)
         $cluster['total'] = $row['total'];
@@ -142,7 +143,8 @@ function getClusteredPatterns($type, $id, $count) {
       ? sprintf("%d-%d", $cluster['fieldMin'], $cluster['fieldMax'])
       : $cluster['fieldMin'];
 
-    $cluster['percent'] = $cluster['count'] * 100 / $cluster['total'];
+    // error_log('count: ' + $cluster['count'] + ', total: ' + $cluster['total']);
+    // $cluster['percent'] = $cluster['count'] * 100 / $cluster['total'];
     foreach ($profileFields as $field => $counter) {
       $cluster['profileFields'][$field]['class'] = ($counter['pattern'] == $cluster['patternCount'])
         ? 'filled'
