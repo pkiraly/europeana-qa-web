@@ -24,6 +24,7 @@ list($profiles, $fields, $has_hidden) = getPatterns($type, $id, $count);
 $data->profiles = $profiles;
 $data->fields = $fields;
 $data->has_hidden = $has_hidden;
+error_log('has_hidden: ' . (int) $has_hidden);
 
 $tpl = $parameters->clustered
   ? 'record-patterns-clustered.smarty.tpl'
