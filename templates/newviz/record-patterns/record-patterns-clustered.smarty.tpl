@@ -140,7 +140,7 @@
       {/if}
     {/foreach}
     {strip}
-      {if $has_hidden}
+      {if $data->has_hidden}
         <tr class="show-more">
           <td colspan="{$data->fields|count+6}" class="noborder">
             <a class="qa-show-infrequent-patterns" href="#"
