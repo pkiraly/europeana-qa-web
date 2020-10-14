@@ -43,10 +43,10 @@ function getProfileFile($type, $id) {
   global $dataDir, $parameters;
 
   $prefix = sprintf('%s-%s', $type, $id);
-  if ($parameters->clustered)
-    return sprintf('%s/json/%s/%s/%s.profiles-clustered.csv', $dataDir, $type, $prefix, $prefix);
-  else
-    return sprintf('%s/json/%s/%s/%s.profiles.csv', $dataDir, $type, $prefix, $prefix);
+  $suffix = ($parameters->clustered) ? '-clustered' : '';
+
+  return sprintf('%s/json/%s/%s/%s.profile-patterns%s.csv',
+    $dataDir, $type, $prefix, $prefix, $suffix);
 }
 
 function getProfileFields($type, $id) {
