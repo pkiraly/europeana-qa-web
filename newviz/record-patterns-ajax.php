@@ -109,6 +109,7 @@ function getClusteredPatterns($type, $id, $count) {
 
   $lineSet = FALSE;
   $allFields = [];
+  error_log('count(clusters): ' . count($clusters));
   foreach ($clusters as $id => $cluster) {
     $profileFields = [];
     $cluster['id'] = $id;
