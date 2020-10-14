@@ -46,7 +46,7 @@ function getProfileFile($type, $id) {
   global $dataDir, $parameters;
 
   $prefix = ($type == 'a') ? $id : sprintf('%s-%s', $type, $id);
-  $suffix = ($parameters->clustered) ? '-clustered' : '';
+  $suffix = ($type != 'a' && $parameters->clustered) ? '-clustered' : '';
 
   return sprintf('%s/json/%s/%s/%s.profile-patterns%s.csv',
     $dataDir, $type, $prefix, $prefix, $suffix);
