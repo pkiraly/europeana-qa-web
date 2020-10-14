@@ -38,6 +38,7 @@ function getFieldsFile($type, $id) {
   global $dataDir;
 
   $prefix = ($type == 'a') ? $id : sprintf('%s-%s', $type, $id);
+  error_log("type: $type, prefix: $prefix");
   return sprintf('%s/json/%s/%s/%s.profile-field-counts.csv', $dataDir, $type, $prefix, $prefix);
 }
 
